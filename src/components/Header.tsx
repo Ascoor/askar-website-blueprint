@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Header: React.FC = () => {
@@ -44,6 +45,7 @@ export const Header: React.FC = () => {
 
           {/* Right Side */}
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
+            <ThemeSwitcher />
             <LanguageSwitcher />
             
             {/* Mobile Menu Button */}

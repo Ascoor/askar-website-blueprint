@@ -68,6 +68,10 @@ const translations = {
     'blog.title': 'Latest Insights',
     'blog.subtitle': 'Stay updated with AR trends and innovations',
     
+    // FAQ
+    'faq.title': 'Frequently Asked Questions',
+    'faq.subtitle': 'Get answers to the most common questions about our AR services',
+    
     // Footer
     'footer.tagline': 'Transforming reality through innovation',
     'footer.contact.title': 'Contact Info',
@@ -128,6 +132,10 @@ const translations = {
     // Blog
     'blog.title': 'أحدث الرؤى',
     'blog.subtitle': 'ابق محدثاً مع اتجاهات وابتكارات الواقع المعزز',
+    
+    // FAQ
+    'faq.title': 'الأسئلة الشائعة',
+    'faq.subtitle': 'احصل على إجابات لأهم الأسئلة حول خدمات الواقع المعزز لدينا',
     
     // Footer
     'footer.tagline': 'نحول الواقع من خلال الابتكار',
