@@ -1,13 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Ask-ar Design System - Premium AR Technology Brand
 All colors MUST be HSL. Navy, turquoise, gold gradients with modern tech aesthetic.
 */
 
-/* Google Fonts Import */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts Import */
 
 @layer base {
   :root {

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Logo from '@/components/ui/Logo'; // Adjust the import path as necessary
 
 export const Header: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -24,10 +25,8 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
-            <div className="w-10 h-10 bg-gradient-turquoise rounded-lg flex items-center justify-center shadow-glow">
-              <span className="text-white font-bold text-lg">AR</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Ask-ar</span>
+   <Logo />
+           
           </div>
 
           {/* Desktop Navigation */}
