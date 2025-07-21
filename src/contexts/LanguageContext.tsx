@@ -44,8 +44,11 @@ const translations = {
     'services.warning': 'Beware of long-term rentals\u2014you pay more and own nothing!',
     
     // Portfolio
-    'portfolio.title': 'Featured Projects',
-    'portfolio.subtitle': 'Showcasing our expertise in creating immersive AR experiences',
+    'portfolio.title': 'Success Stories Built on Code',
+    'portfolio.subtitle': 'Real-world solutions driving measurable results',
+    'portfolio.cta.more': 'See More',
+    'portfolio.cta.demo': 'Request Demo',
+    'portfolio.cta.solution': 'Get Similar Solution',
     
     // About
     'about.title': 'About Ask-ar',
@@ -119,8 +122,11 @@ const translations = {
     'services.warning': 'احذر من حلول التأجير طويلة المدى... تدفع الكثير دون أن تملك شيئًا!',
     
     // Portfolio
-    'portfolio.title': 'مشاريع مميزة',
-    'portfolio.subtitle': 'عرض خبرتنا في إنشاء تجارب واقع معزز غامرة',
+    'portfolio.title': 'مشاريع صنعت الفارق',
+    'portfolio.subtitle': 'حلول واقعية تحقق نتائج ملموسة',
+    'portfolio.cta.more': 'عرض المزيد',
+    'portfolio.cta.demo': 'طلب تجربة',
+    'portfolio.cta.solution': 'اطلب حلاً مشابهاً',
     
     // About
     'about.title': 'عن أسك-أر',
