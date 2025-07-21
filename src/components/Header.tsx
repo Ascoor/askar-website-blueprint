@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Logo from '@/components/ui/Logo'; // Adjust the import path as necessary
+import { Logo } from '@/components/ui/Logo';
 
 export const Header: React.FC = () => {
   const { t, direction } = useLanguage();

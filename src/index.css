@@ -152,11 +152,22 @@ All colors MUST be HSL. Navy, turquoise, gold gradients with modern tech aesthet
   body {
     @apply bg-background text-foreground transition-colors;
     font-family: 'Inter', 'Cairo', sans-serif;
+    line-height: 1.6;
   }
   
-  /* RTL Support */
+  /* RTL Support - Arabic Typography */
   [dir="rtl"] {
     font-family: 'Cairo', 'Inter', sans-serif;
+    line-height: 1.8;
+  }
+  
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+  
+  [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div {
+    letter-spacing: 0.01em;
   }
   
   /* Smooth scrolling */
@@ -211,17 +222,17 @@ All colors MUST be HSL. Navy, turquoise, gold gradients with modern tech aesthet
   
   /* Glass morphism effect */
   .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
   }
   
-  .glass-dark {
+  .dark .glass {
     background: rgba(30, 58, 138, 0.1);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(6, 182, 212, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(6, 182, 212, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(6, 182, 212, 0.15);
   }
   
   /* Hover effects */

@@ -6,10 +6,10 @@ export const About: React.FC = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { number: '100+', label: 'Projects Completed' },
-    { number: '50+', label: 'Happy Clients' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '24/7', label: 'Support' },
+    { number: '100+', labelKey: 'about.stats.projects' },
+    { number: '50+', labelKey: 'about.stats.clients' },
+    { number: '5+', labelKey: 'about.stats.experience' },
+    { number: '24/7', labelKey: 'about.stats.support' },
   ];
 
   return (
@@ -32,7 +32,9 @@ export const About: React.FC = () => {
                   <Target className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Mission</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {t('about.mission').split(':')[0] || 'Mission'}
+                  </h3>
                   <p className="text-muted-foreground">{t('about.mission')}</p>
                 </div>
               </div>
@@ -42,7 +44,9 @@ export const About: React.FC = () => {
                   <Eye className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Vision</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {t('about.vision').split(':')[0] || 'Vision'}
+                  </h3>
                   <p className="text-muted-foreground">{t('about.vision')}</p>
                 </div>
               </div>
@@ -61,7 +65,7 @@ export const About: React.FC = () => {
                     {stat.number}
                   </div>
                   <div className="text-muted-foreground font-medium">
-                    {stat.label}
+                    {t(stat.labelKey)}
                   </div>
                 </div>
               ))}

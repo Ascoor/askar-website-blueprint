@@ -77,6 +77,12 @@ const translations = {
     'footer.contact.title': 'Contact Info',
     'footer.services.title': 'Services',
     'footer.company.title': 'Company',
+    
+    // About Stats
+    'about.stats.projects': 'Projects Completed',
+    'about.stats.clients': 'Happy Clients', 
+    'about.stats.experience': 'Years Experience',
+    'about.stats.support': 'Support',
   },
   ar: {
     // Navigation
@@ -142,6 +148,12 @@ const translations = {
     'footer.contact.title': 'معلومات الاتصال',
     'footer.services.title': 'الخدمات',
     'footer.company.title': 'الشركة',
+    
+    // About Stats
+    'about.stats.projects': 'مشروع مكتمل',
+    'about.stats.clients': 'عميل راضي',
+    'about.stats.experience': 'سنوات خبرة',
+    'about.stats.support': 'دعم',
   }
 };
 
