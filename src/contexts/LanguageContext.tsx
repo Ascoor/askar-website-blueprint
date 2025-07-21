@@ -41,8 +41,11 @@ const translations = {
     'services.maintenance.description': 'Ongoing technical support and updates to keep your AR solutions running smoothly.',
     
     // Portfolio
-    'portfolio.title': 'Featured Projects',
-    'portfolio.subtitle': 'Showcasing our expertise in creating immersive AR experiences',
+    'portfolio.title': 'Success Stories Built on Code',
+    'portfolio.subtitle': 'Real-world solutions driving measurable results',
+    'portfolio.cta.more': 'See More',
+    'portfolio.cta.demo': 'Request Demo',
+    'portfolio.cta.solution': 'Get Similar Solution',
     
     // About
     'about.title': 'About Ask-ar',
@@ -113,8 +116,11 @@ const translations = {
     'services.maintenance.description': 'دعم تقني مستمر وتحديثات للحفاظ على حلول الواقع المعزز تعمل بسلاسة.',
     
     // Portfolio
-    'portfolio.title': 'مشاريع مميزة',
-    'portfolio.subtitle': 'عرض خبرتنا في إنشاء تجارب واقع معزز غامرة',
+    'portfolio.title': 'مشاريع صنعت الفارق',
+    'portfolio.subtitle': 'حلول واقعية تحقق نتائج ملموسة',
+    'portfolio.cta.more': 'عرض المزيد',
+    'portfolio.cta.demo': 'طلب تجربة',
+    'portfolio.cta.solution': 'اطلب حلاً مشابهاً',
     
     // About
     'about.title': 'عن أسك-أر',
