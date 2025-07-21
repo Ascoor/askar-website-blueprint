@@ -10,10 +10,10 @@ export const Footer: React.FC = () => {
 
   const footerLinks = {
     services: [
-      { key: 'services.ar_development.title', href: '#services' },
-      { key: 'services.3d_modeling.title', href: '#services' },
-      { key: 'services.consulting.title', href: '#services' },
-      { key: 'services.maintenance.title', href: '#services' }
+      { key: 'services.full_control.title', href: '#services' },
+      { key: 'services.open_code.title', href: '#services' },
+      { key: 'services.limitless_growth.title', href: '#services' },
+      { key: 'services.investment_protection.title', href: '#services' }
     ],
     company: [
       { key: 'nav.about', href: '#about' },
