@@ -1,12 +1,13 @@
 import React from 'react';
-import { Smartphone, Box, Users, Wrench } from 'lucide-react';
+import { PackageOpen, Unlock, Code, TrendingUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const serviceIcons = {
-  ar_development: Smartphone,
-  '3d_modeling': Box,
-  consulting: Users,
-  maintenance: Wrench,
+  full_control: Unlock,
+  open_code: Code,
+  limitless_growth: TrendingUp,
+  investment_protection: PackageOpen,
 };
 
 export const Services: React.FC = () => {
@@ -14,20 +15,20 @@ export const Services: React.FC = () => {
 
   const services = [
     {
-      key: 'ar_development',
-      icon: serviceIcons.ar_development,
+      key: 'full_control',
+      icon: serviceIcons.full_control,
     },
     {
-      key: '3d_modeling', 
-      icon: serviceIcons['3d_modeling'],
+      key: 'open_code',
+      icon: serviceIcons.open_code,
     },
     {
-      key: 'consulting',
-      icon: serviceIcons.consulting,
+      key: 'limitless_growth',
+      icon: serviceIcons.limitless_growth,
     },
     {
-      key: 'maintenance',
-      icon: serviceIcons.maintenance,
+      key: 'investment_protection',
+      icon: serviceIcons.investment_protection,
     },
   ];
 
@@ -67,6 +68,17 @@ export const Services: React.FC = () => {
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-12 space-y-4">
+          <p className="text-sm text-destructive">{t('services.warning')}</p>
+          <Button
+            size="lg"
+            className="bg-turquoise hover:bg-turquoise-dark text-white px-8 py-4 font-semibold hover-lift shadow-glow"
+          >
+            {t('services.cta')}
+          </Button>
+          <p className="text-muted-foreground">{t('services.closing')}</p>
         </div>
       </div>
     </section>
