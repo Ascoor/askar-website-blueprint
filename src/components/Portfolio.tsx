@@ -1,50 +1,92 @@
 import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { SiReact, SiNodedotjs, SiFlutter, SiPython, SiPostgresql, SiMysql, SiMongodb } from 'react-icons/si';
+
+const techMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  React: SiReact,
+  'Node.js': SiNodedotjs,
+  Flutter: SiFlutter,
+  Python: SiPython,
+  PostgreSQL: SiPostgresql,
+  MySQL: SiMysql,
+  MongoDB: SiMongodb,
+};
+
+interface Project {
+  id: number;
+  title: { en: string; ar: string };
+  description: { en: string; ar: string };
+  result: { en: string; ar: string };
+  image: string;
+  technologies: string[];
+  ctaKey: 'portfolio.cta.more' | 'portfolio.cta.demo' | 'portfolio.cta.solution';
+}
 
 export const Portfolio: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
-      title: 'Interactive Product Showcase',
-      description: 'AR application allowing customers to visualize products in their space before purchase.',
-      image: 'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=600&h=400&fit=crop',
-      tags: ['Mobile AR', 'E-commerce', 'iOS/Android'],
-      category: 'Retail'
+      title: {
+        en: 'Smart HR System for Manufacturing',
+        ar: 'نظام موارد بشرية ذكي لمصنع مصري',
+      },
+      description: {
+        en: 'Manual onboarding replaced with AI automation for a leading factory.',
+        ar: 'استبدال إجراءات التعيين اليدوية بأتمتة ذكية في أحد المصانع الكبرى.',
+      },
+      result: {
+        en: '30% faster hiring, +25% productivity',
+        ar: 'تسريع التوظيف ٣٠٪ وزيادة الإنتاجية ٢٥٪',
+      },
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop',
+      technologies: ['React', 'Node.js', 'PostgreSQL'],
+      ctaKey: 'portfolio.cta.demo',
     },
     {
       id: 2,
-      title: 'Virtual Training Platform',
-      description: 'Immersive AR training modules for industrial equipment maintenance.',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop',
-      tags: ['Enterprise AR', 'Training', 'WebAR'],
-      category: 'Education'
+      title: {
+        en: 'E-Learning Portal for International School',
+        ar: 'بوابة تعليمية لمدرسة دولية',
+      },
+      description: {
+        en: 'End-to-end web and mobile platform with payments and live classes.',
+        ar: 'نظام ويب وموبايل متكامل للدفع والفصول الافتراضية.',
+      },
+      result: {
+        en: '50% increase in digital engagement',
+        ar: 'زيادة التفاعل الرقمي ٥٠٪',
+      },
+      image: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600&h=400&fit=crop',
+      technologies: ['Flutter', 'Python', 'MySQL'],
+      ctaKey: 'portfolio.cta.solution',
     },
     {
       id: 3,
-      title: 'AR Navigation System',
-      description: 'Smart indoor navigation using AR markers and real-time positioning.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop',
-      tags: ['Navigation', 'IoT', 'Computer Vision'],
-      category: 'Smart City'
-    },
-    {
-      id: 4,
-      title: 'Medical AR Assistant',
-      description: 'AR visualization tool for medical procedures and anatomy education.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop',
-      tags: ['Healthcare', 'Education', 'HoloLens'],
-      category: 'Healthcare'
+      title: {
+        en: 'Customer Service Automation for Bank',
+        ar: 'أتمتة خدمة العملاء لبنك محلي',
+      },
+      description: {
+        en: 'Implemented AI chatbots and workflow automation.',
+        ar: 'تطبيق روبوتات محادثة ذكية وتدفق عمل مؤتمت.',
+      },
+      result: {
+        en: '70% drop in manual queries',
+        ar: 'انخفاض الطلبات اليدوية ٧٠٪',
+      },
+      image: 'https://images.unsplash.com/photo-1521790797524-b2497295b8a0?w=600&h=400&fit=crop',
+      technologies: ['Node.js', 'MongoDB'],
+      ctaKey: 'portfolio.cta.solution',
     },
   ];
 
   return (
     <section id="portfolio" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('portfolio.title')}
@@ -53,63 +95,48 @@ export const Portfolio: React.FC = () => {
             {t('portfolio.subtitle')}
           </p>
         </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group bg-card border border-border rounded-2xl overflow-hidden hover-lift shadow-medium"
+              className="group glass border border-border rounded-2xl overflow-hidden hover-lift shadow-medium"
             >
-              {/* Project Image */}
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-smooth"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-smooth"></div>
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-turquoise text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Hover Actions */}
-                <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-smooth">
-                  <Button size="sm" variant="secondary" className="rounded-full">
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
-                  <Button size="sm" variant="secondary" className="rounded-full">
-                    <Github className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {project.title}
+              <img
+                src={project.image}
+                alt={project.title[language]}
+                className="w-full h-56 object-cover group-hover:scale-105 transition-smooth"
+              />
+              <div className="p-6 space-y-4">
+                <h3 className="text-xl font-semibold text-foreground">
+                  {project.title[language]}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {project.description}
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description[language]}
                 </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <p className="font-medium text-green-600 dark:text-green-400">
+                  {project.result[language]}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.technologies.map((tech) => {
+                    const Icon = techMap[tech];
+                    return (
+                      <Badge key={tech} variant="secondary" className="flex items-center gap-1">
+                        {Icon && <Icon className="w-4 h-4" />}
+                        <span>{tech}</span>
+                      </Badge>
+                    );
+                  })}
                 </div>
+                <Button variant="link" className="mt-4 p-0">
+                  {t(project.ctaKey)}
+                </Button>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="mt-12 flex justify-center gap-6 opacity-75">
+          {[1,2,3,4].map((n) => (
+            <img key={n} src={`/logo-${n}.png`} alt={`client-${n}`} className="h-10 w-auto" />
           ))}
         </div>
       </div>
