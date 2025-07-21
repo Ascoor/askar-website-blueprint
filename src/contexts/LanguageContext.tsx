@@ -76,7 +76,7 @@ const translations = {
     
     // FAQ
     'faq.title': 'Frequently Asked Questions',
-    'faq.subtitle': 'Get answers to the most common questions about our AR services',
+    'faq.subtitle': 'Quick answers about our software solutions',
     
     // Footer
     'footer.tagline': 'Transforming reality through innovation',
@@ -153,8 +153,8 @@ const translations = {
     'blog.subtitle': 'ابق محدثاً مع اتجاهات وابتكارات الواقع المعزز',
     
     // FAQ
-    'faq.title': 'الأسئلة الشائعة',
-    'faq.subtitle': 'احصل على إجابات لأهم الأسئلة حول خدمات الواقع المعزز لدينا',
+    'faq.title': 'كل ما تريد معرفته',
+    'faq.subtitle': 'إجابات سريعة حول حلولنا البرمجية',
     
     // Footer
     'footer.tagline': 'نحول الواقع من خلال الابتكار',
