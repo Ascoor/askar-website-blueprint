@@ -11,6 +11,7 @@ import { Blog } from '@/components/Blog';
 import { FAQ } from '@/components/FAQ';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { BackToTopButton } from '@/components/BackToTopButton';
 
 const Index = () => {
   return (
@@ -27,6 +28,7 @@ const Index = () => {
           <FAQ />
           <Contact />
           <Footer />
+          <BackToTopButton />
         </div>
       </LanguageProvider>
     </ThemeProvider>

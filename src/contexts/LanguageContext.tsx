@@ -83,6 +83,7 @@ const translations = {
     'about.stats.clients': 'Happy Clients', 
     'about.stats.experience': 'Years Experience',
     'about.stats.support': 'Support',
+    'back_to_top': 'Back to Top',
   },
   ar: {
     // Navigation
@@ -154,6 +155,7 @@ const translations = {
     'about.stats.clients': 'عميل راضي',
     'about.stats.experience': 'سنوات خبرة',
     'about.stats.support': 'دعم',
+    'back_to_top': 'العودة للأعلى',
   }
 };
 
