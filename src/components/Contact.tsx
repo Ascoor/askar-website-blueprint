@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { toast } from '@/components/ui/sonner';
+import confetti from 'canvas-confetti';
 
 export const Contact: React.FC = () => {
   const { t, direction } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     message: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    // Handle form submission (e.g., send data to API)
     console.log('Form submitted:', formData);
+    toast.success(t('contact.success'), {
+      icon: <CheckCircle className="text-green-500" />,
+    });
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
   };
 
   const contactInfo = [
@@ -84,6 +92,16 @@ export const Contact: React.FC = () => {
                   placeholder={t('contact.form.company')}
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  className="h-12 text-base"
+                />
+              </div>
+
+              <div>
+                <Input
+                  type="tel"
+                  placeholder={t('contact.form.phone')}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="h-12 text-base"
                 />
               </div>

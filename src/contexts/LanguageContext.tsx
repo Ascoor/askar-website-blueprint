@@ -59,12 +59,14 @@ const translations = {
     
     // Contact
     'contact.title': 'Get In Touch',
-    'contact.subtitle': 'Ready to start your AR journey? Let\'s discuss your project.',
+    'contact.subtitle': "We're here to answer your questions or discuss your next big project!",
     'contact.form.name': 'Full Name',
     'contact.form.email': 'Email Address',
     'contact.form.company': 'Company',
+    'contact.form.phone': 'Phone (optional)',
     'contact.form.message': 'Project Details',
     'contact.form.submit': 'Send Message',
+    'contact.success': 'Thank you! We will get back to you soon.',
     
     // Testimonials
     'testimonials.title': 'Client Success Stories',
@@ -137,12 +139,14 @@ const translations = {
     
     // Contact
     'contact.title': 'تواصل معنا',
-    'contact.subtitle': 'مستعد لبدء رحلة الواقع المعزز؟ دعنا نناقش مشروعك.',
+    'contact.subtitle': 'جاهزون للرد على استفساراتك أو مناقشة مشروعك القادم!',
     'contact.form.name': 'الاسم الكامل',
     'contact.form.email': 'البريد الإلكتروني',
     'contact.form.company': 'الشركة',
+    'contact.form.phone': 'رقم الهاتف (اختياري)',
     'contact.form.message': 'تفاصيل المشروع',
     'contact.form.submit': 'إرسال الرسالة',
+    'contact.success': 'شكرًا لتواصلك معنا! سنرد عليك قريبًا.',
     
     // Testimonials
     'testimonials.title': 'قصص نجاح العملاء',
