@@ -13,6 +13,7 @@ import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
  
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import PageProgressBar from '@/components/PageProgressBar';
  
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
     <ThemeProvider>
       <LanguageProvider>
         <div className="min-h-screen bg-background">
+          <PageProgressBar />
           <Header />
           <Hero />
           <Services />
