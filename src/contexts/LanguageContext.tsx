@@ -80,7 +80,7 @@ const translations = {
     
     // About Stats
     'about.stats.projects': 'Projects Completed',
-    'about.stats.clients': 'Happy Clients', 
+    'about.stats.clients': 'Happy Clients',
     'about.stats.experience': 'Years Experience',
     'about.stats.support': 'Support',
     'back_to_top': 'Back to Top',
