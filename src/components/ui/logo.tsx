@@ -9,9 +9,9 @@ export const Logo = ({ className = "", clickable = false }) => {
 
   const getLogoSrc = () => {
     if (language === "ar") {
-      return theme === "dark" ? "/patren-wh.png" : "/patren-blue.png";
+      return theme === "dark" ? "/logo-dark-1.png" : "/logo-day-1.png";
     }
-    return theme === "dark" ? "/patren-wh.png" : "/patren-blue.png";
+    return theme === "dark" ? "/logo-dark-1.png" : "/logo-day-1.png";
   };
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc);
