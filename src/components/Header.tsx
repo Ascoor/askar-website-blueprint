@@ -19,38 +19,35 @@ export const Header: React.FC = () => {
     { key: 'nav.contact', href: '#contact' },
   ];
 
-  return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-soft">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        <div className="flex flex-1 items-center">
-          <Logo />
-        </div>
-
-        <nav className="hidden md:flex flex-1 items-center justify-center space-x-6 rtl:space-x-reverse">
-          {navigationItems.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="font-medium text-gray-800 dark:text-gray-200 hover:text-turquoise dark:hover:text-yellow-300"
-            >
-              {t(item.key)}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex flex-1 items-center justify-end space-x-3 rtl:space-x-reverse">
-          <ThemeSwitcher />
-          <LanguageSwitcher />
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
-        </div>
-      </div>
+  return ( 
+    <header
+      className={`
+        fixed top-0 w-full z-50 border-b border-white/10
+        bg-gradient-to-r
+        from-[#fafaf7] via-[#f4f3ed] to-[#e7dcc4]
+        dark:from-[#0d1117]/90 dark:via-[#1b1f23]/80 dark:to-[#a99d86]/30
+        backdrop-blur-lg
+        transition-all duration-500
+        shadow-[0_4px_32px_0_rgba(0,0,0,0.10)]
+      `}
+      style={{
+        backgroundSize: "200% 200%",
+        animation: "gradient-x 8s ease-in-out infinite"
+      }}
+    >
+      <style>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50%      { background-position: 100% 50%; }
+        }
+      `}</style>
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-3 rtl:space-x-reverse">
+            <Logo /> 
+          </div>
+       
 
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-white/10 bg-white/90 dark:bg-gray-900/95 backdrop-blur-md">
@@ -58,16 +55,20 @@ export const Header: React.FC = () => {
             {navigationItems.map((item) => (
               <a
                 key={item.key}
-                href={item.href}
-                className="block rounded-md px-4 py-2 text-gray-800 hover:bg-turquoise/10 hover:text-turquoise dark:text-gray-100 dark:hover:bg-yellow-900/10 dark:hover:text-yellow-300"
-                onClick={() => setIsMobileMenuOpen(false)}
+                href={item.href} 
+                className="text-neutral-800 dark:text-gray-300 hover:text-[#b76e79] dark:hover:text-[#d4af37] transition-colors font-medium"
+ 
               >
                 {t(item.key)}
               </a>
             ))}
           </nav>
-        </div>
+        </div>  
+        )}
+      </div>
+ 
       )}
+ 
     </header>
   );
 };
