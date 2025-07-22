@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Logo } from '@/components/ui/Logo'; // Assuming Logo is in the same directory
+import { Logo } from '@/components/ui/Logo';
 
 export const Header: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
     { key: 'nav.contact', href: '#contact' },
   ];
 
-  return (
+  return ( 
     <header
       className={`
         fixed top-0 w-full z-50 border-b border-white/10
@@ -47,55 +47,28 @@ export const Header: React.FC = () => {
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <Logo /> 
           </div>
-      
+       
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-white/10 bg-white/90 dark:bg-gray-900/95 backdrop-blur-md">
+          <nav className="py-4 space-y-2">
             {navigationItems.map((item) => (
               <a
                 key={item.key}
-                href={item.href}
+                href={item.href} 
                 className="text-neutral-800 dark:text-gray-300 hover:text-[#b76e79] dark:hover:text-[#d4af37] transition-colors font-medium"
+ 
               >
                 {t(item.key)}
               </a>
             ))}
           </nav>
-
-          {/* Right Side */}
-          <div className="flex items-center space-x-4 rtl:space-x-reverse">
-            <ThemeSwitcher />
-            <LanguageSwitcher />
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-[#fafaf7]/95 dark:bg-[#0d1117]/95 backdrop-blur-lg">
-            <nav className="py-4 space-y-2">
-              {navigationItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="block px-4 py-2 text-neutral-800 dark:text-gray-100 hover:text-[#b76e79] dark:hover:text-[#d4af37] hover:bg-[#b76e79]/10 dark:hover:bg-[#d4af37]/10 transition-colors rounded-md"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t(item.key)}
-                </a>
-              ))}
-            </nav>
-          </div>
+        </div>  
         )}
       </div>
+ 
+      )}
+ 
     </header>
   );
 };
