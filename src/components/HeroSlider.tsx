@@ -33,7 +33,7 @@ const HeroSlider: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative mt-16 h-[calc(100vh-4rem)] w-full overflow-hidden"
+      className="relative mt-20 h-[calc(100vh-5rem)] w-full overflow-hidden"
       onMouseEnter={pause}
       onMouseLeave={play}
       onTouchStart={pause}
