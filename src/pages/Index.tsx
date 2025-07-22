@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
+import HeroSlider from '@/components/HeroSlider';
 import Services from '@/components/Services';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <Hero />
+      <HeroSlider />
       <Services />
       <About />
       <Contact />
