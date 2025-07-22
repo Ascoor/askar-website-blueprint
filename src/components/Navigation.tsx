@@ -107,8 +107,8 @@ const Navigation = () => {
 
           {/* الليل/النهار + اللغة */}
           <div
-            className={`hidden md:flex items-center gap-2 ${
-              language === "ar" ? "order-3 ml-2" : "order-3 mr-2"
+            className={`flex items-center gap-2 ${
+              language === "ar" ? "md:order-3 ml-auto" : "md:order-3 mr-auto"
             }`}
           >
             <Button
@@ -135,19 +135,7 @@ const Navigation = () => {
           </div>
 
           {/* زر القائمة الجانبية في الموبايل */}
-          <div className="md:hidden flex items-center space-x-2 order-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
+          <div className="md:hidden flex items-center ml-2">
             <Button
               variant="ghost"
               size="icon"
@@ -159,49 +147,22 @@ const Navigation = () => {
           </div>
         </div>
         {isOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-md rounded-lg shadow-lg mt-2 p-4">
-            <div
-              className={`flex flex-col space-y-4 ${
-                language === "ar" ? "items-end" : "items-start"
-              }`}
-            >
+          <div className="md:hidden fixed inset-0 z-40 flex items-center justify-center bg-background/95 backdrop-blur-md">
+            <div className="flex flex-col items-center space-y-6 py-6">
               {navItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className={`transition-all duration-300 font-medium transform ${
+                  className={`text-xl transition-all duration-300 font-medium ${
                     activeId === item.href.slice(1)
-                      ? 'text-primary scale-105'
-                      : 'text-foreground hover:text-primary'
+                      ? ' text-primary scale-105'
+                      : ' text-foreground hover:text-primary'
                   }`}
-                  style={{
-                    textAlign: language === 'ar' ? 'right' : 'left',
-                  }}
+                  style={{ textAlign: 'center' }}
                 >
                   {t(item.key)}
                 </button>
               ))}
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  onClick={toggleTheme}
-                  className="rounded-full"
-                >
-                  {theme === "light" ? (
-                    <Moon className="h-5 w-5" />
-                  ) : (
-                    <Sun className="h-5 w-5" />
-                  )}
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-                  className="rounded-full"
-                >
-                  <Globe className="h-4 w-4 mr-2" />
-                  {language === "en" ? "العربية" : "English"}
-                </Button>
-              </div>
             </div>
           </div>
         )}
