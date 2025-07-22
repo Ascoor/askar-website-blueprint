@@ -68,16 +68,27 @@ const HeroSlider: React.FC = () => {
             initial={{
               opacity: 0,
               clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+              scale: 1,
             }}
             animate={{
               opacity: 1,
               clipPath: `circle(150% at ${origin.x} ${origin.y})`,
+              scale: [1, 1.05, 1],
             }}
             exit={{
               opacity: 0,
               clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+              scale: 1,
             }}
-            transition={{ duration: TRANSITION_DURATION, ease: 'easeInOut' }}
+            transition={{
+              clipPath: { duration: TRANSITION_DURATION, ease: 'easeInOut' },
+              opacity: { duration: TRANSITION_DURATION, ease: 'easeInOut' },
+              scale: {
+                duration: DISPLAY_DURATION / 1000,
+                ease: 'easeInOut',
+                times: [0, 0.5, 1],
+              },
+            }}
             style={{
               minHeight: `${MOBILE_MIN_HEIGHT}px`,
             }}
