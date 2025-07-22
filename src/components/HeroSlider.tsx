@@ -6,8 +6,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 // Configuration constants for easy customization
 const NAVBAR_HEIGHT = 64; // Height of the fixed navigation bar in pixels
-const TRANSITION_DURATION = 2; // seconds
-const DISPLAY_DURATION = 7000; // milliseconds
+const SLIDER_OFFSET = 20; // Push slider down to avoid navbar overlap
+const TRANSITION_DURATION = 3; // seconds
+const DISPLAY_DURATION = 8000; // milliseconds
 const MOBILE_MIN_HEIGHT = 500; // minimum height on mobile devices
 
 const images = [
@@ -44,8 +45,8 @@ const HeroSlider: React.FC = () => {
         flex items-center justify-center
       `}
       style={{
-        paddingTop: `${NAVBAR_HEIGHT}px`,
-        minHeight: `calc(100vh - 0px)`, // Full viewport height accounting for navbar
+        paddingTop: `${NAVBAR_HEIGHT + SLIDER_OFFSET}px`,
+        minHeight: `calc(100vh - ${SLIDER_OFFSET}px)`, // Full viewport height accounting for navbar and offset
         maxHeight: '1200px'
       }}
       onMouseEnter={pause}
@@ -66,20 +67,23 @@ const HeroSlider: React.FC = () => {
               object-cover object-center
             `}
             style={{ minHeight: `${MOBILE_MIN_HEIGHT}px` }}
-            initial={{ 
-              opacity: 0, 
-              scale: 1.1,
-              filter: 'brightness(0.8)' 
+            initial={{
+              opacity: 0,
+              scale: 1.15,
+              rotateX: 15,
+              filter: 'brightness(0.8)'
             }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               scale: 1,
-              filter: 'brightness(1)' 
+              rotateX: 0,
+              filter: 'brightness(1)'
             }}
-            exit={{ 
-              opacity: 0, 
-              scale: 1.05,
-              filter: 'brightness(0.9)' 
+            exit={{
+              opacity: 0,
+              scale: 0.95,
+              rotateX: -15,
+              filter: 'brightness(0.9)'
             }}
             transition={{ 
               duration: TRANSITION_DURATION, 
