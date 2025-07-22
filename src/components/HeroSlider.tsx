@@ -36,7 +36,7 @@ const HeroSlider: React.FC = () => {
   className="
     relative
     w-full
-    pt-16
+    mt-16
     min-h-[calc(100vh-64px)]
     max-h-[1200px]
     overflow-hidden
