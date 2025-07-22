@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const NAVBAR_HEIGHT = 64
-const TRANSITION_DURATION = 2
-const DISPLAY_DURATION = 7000
+const TRANSITION_DURATION = 3.5 // Slower, smoother
+const DISPLAY_DURATION = 8000 // Slower change
 const MOBILE_MIN_HEIGHT = 500
 
 const images = [
@@ -15,38 +15,27 @@ const images = [
   '/hero5.png',
 ]
 
-interface Origin {
-  x: string
-  y: string
-}
-
-const origins: Origin[] = [
-  { x: '50%', y: '50%' },
-  { x: '0%', y: '50%' },
-  { x: '100%', y: '50%' },
-  { x: '50%', y: '0%' },
-  { x: '50%', y: '100%' },
-  { x: '0%', y: '0%' },
-  { x: '100%', y: '0%' },
-  { x: '0%', y: '100%' },
-  { x: '100%', y: '100%' },
+// Alternate directions (slide in/out from left/right)
+const directions = [
+  { in: 100, out: -100 },
+  { in: -100, out: 100 },
 ]
-
-const getRandomOrigin = () =>
-  origins[Math.floor(Math.random() * origins.length)]
 
 const HeroSlider: React.FC = () => {
   const { t } = useLanguage()
   const [index, setIndex] = useState(0)
-  const [origin, setOrigin] = useState<Origin>(getRandomOrigin())
+  const [directionIdx, setDirectionIdx] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIndex((i) => (i + 1) % images.length)
-      setOrigin(getRandomOrigin())
+      setIndex(i => (i + 1) % images.length)
+      setDirectionIdx(d => (d + 1) % directions.length)
     }, DISPLAY_DURATION)
     return () => clearTimeout(timer)
   }, [index])
+
+  // Key for animation: changes on every slide
+  const key = index
 
   return (
     <section
@@ -59,25 +48,28 @@ const HeroSlider: React.FC = () => {
       }}
     >
       <div className="absolute inset-0 w-full h-full">
-        <AnimatePresence>
+        <AnimatePresence custom={directionIdx} mode="wait">
           <motion.img
-            key={index}
+            key={key}
             src={images[index]}
             alt={`Hero slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{
               opacity: 0,
-              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+              x: directions[directionIdx].in,
             }}
             animate={{
               opacity: 1,
-              clipPath: `circle(150% at ${origin.x} ${origin.y})`,
+              x: 0,
             }}
             exit={{
               opacity: 0,
-              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+              x: directions[directionIdx].out,
             }}
-            transition={{ duration: TRANSITION_DURATION, ease: 'easeInOut' }}
+            transition={{
+              duration: TRANSITION_DURATION,
+              ease: 'easeInOut',
+            }}
             style={{
               minHeight: `${MOBILE_MIN_HEIGHT}px`,
             }}
@@ -108,9 +100,8 @@ const HeroSlider: React.FC = () => {
           </motion.p>
         </div>
       </div>
-
     </section>
-  );
-};
+  )
+}
 
-export default HeroSlider;
+export default HeroSlider
