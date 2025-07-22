@@ -1,12 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // Configuration constants for easy customization
 const NAVBAR_HEIGHT = 64; // Height of the fixed navigation bar in pixels
-const SLIDER_OFFSET = 20; // Push slider down to avoid navbar overlap
 const TRANSITION_DURATION = 3; // seconds
 const DISPLAY_DURATION = 8000; // milliseconds
 const MOBILE_MIN_HEIGHT = 500; // minimum height on mobile devices
@@ -45,9 +43,9 @@ const HeroSlider: React.FC = () => {
         flex items-center justify-center
       `}
       style={{
-        paddingTop: `${NAVBAR_HEIGHT + SLIDER_OFFSET}px`,
-        minHeight: `calc(100vh - ${SLIDER_OFFSET}px)`, // Full viewport height accounting for navbar and offset
-        maxHeight: '1200px'
+        paddingTop: `${NAVBAR_HEIGHT}px`,
+        minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`, // Full viewport height excluding the navbar
+        maxHeight: '1024px'
       }}
       onMouseEnter={pause}
       onMouseLeave={play}
@@ -69,19 +67,22 @@ const HeroSlider: React.FC = () => {
             style={{ minHeight: `${MOBILE_MIN_HEIGHT}px` }}
             initial={{
               opacity: 0,
-              scale: 1.15,
+              scale: 1.2,
+              x: 100,
               rotateX: 15,
               filter: 'brightness(0.8)'
             }}
             animate={{
               opacity: 1,
               scale: 1,
+              x: 0,
               rotateX: 0,
               filter: 'brightness(1)'
             }}
             exit={{
               opacity: 0,
-              scale: 0.95,
+              scale: 0.9,
+              x: -100,
               rotateX: -15,
               filter: 'brightness(0.9)'
             }}
@@ -145,29 +146,6 @@ const HeroSlider: React.FC = () => {
             {t('heroSubtitle')}
           </motion.p>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              size="lg"
-              className="
-                bg-primary hover:bg-primary-hover 
-                text-primary-foreground 
-                px-6 sm:px-8 py-3 sm:py-4
-                text-base sm:text-lg
-                rounded-full 
-                shadow-elegant hover:shadow-premium
-                transition-all duration-300
-                transform hover:-translate-y-1 active:translate-y-0
-                border-2 border-white/20 hover:border-white/30
-              "
-            >
-              {t('getStarted')}
-            </Button>
-          </motion.div>
         </div>
       </div>
 
