@@ -4,6 +4,27 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
+
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+const smoothScroll = (target: HTMLElement) => {
+  const startY = window.scrollY || window.pageYOffset;
+  const targetY = target.getBoundingClientRect().top + startY;
+  const duration = 700;
+  const startTime = performance.now();
+
+  const scroll = (currentTime: number) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    window.scrollTo(0, startY + (targetY - startY) * ease);
+    if (progress < 1) requestAnimationFrame(scroll);
+  };
+
+  requestAnimationFrame(scroll);
+};
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,15 +42,24 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      console.log('[nav-scroll] position:', window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
+  const activeId = useScrollSpy([
+    "hero",
+    "services",
+    "about",
+    "contact",
+  ], 200);
+
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      smoothScroll(element);
+      console.log(`[nav-scroll] to ${sectionId}`); // signature log
       setIsOpen(false);
     }
   };
@@ -59,9 +89,9 @@ const Navigation = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  className={`transition-colors duration-200 font-medium ${activeId === item.href.slice(1) ? 'text-primary border-b-2 border-primary' : 'text-foreground hover:text-primary'}`}
                   style={{
-                    textAlign: language === "ar" ? "right" : "left",
+                    textAlign: language === 'ar' ? 'right' : 'left',
                   }}
                 >
                   {t(item.key)}
@@ -134,9 +164,9 @@ const Navigation = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  className={`transition-colors duration-200 font-medium ${activeId === item.href.slice(1) ? 'text-primary' : 'text-foreground hover:text-primary'}`}
                   style={{
-                    textAlign: language === "ar" ? "right" : "left",
+                    textAlign: language === 'ar' ? 'right' : 'left',
                   }}
                 >
                   {t(item.key)}
