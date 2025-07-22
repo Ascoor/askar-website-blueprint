@@ -24,8 +24,8 @@ export const Header: React.FC = () => {
       className={`
         fixed top-0 w-full z-50 border-b border-white/10
         bg-gradient-to-r
-        from-white/70 via-blue-100 to-yellow-50
-        dark:from-gray-900/90 dark:via-blue-900/80 dark:to-yellow-800/40
+        from-[#fafaf7] via-[#f4f3ed] to-[#e7dcc4]
+        dark:from-[#0d1117]/90 dark:via-[#1b1f23]/80 dark:to-[#a99d86]/30
         backdrop-blur-lg
         transition-all duration-500
         shadow-[0_4px_32px_0_rgba(0,0,0,0.10)]
@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-gray-800 dark:text-gray-200 hover:text-turquoise dark:hover:text-yellow-300 transition-colors font-medium"
+                className="text-neutral-800 dark:text-gray-300 hover:text-[#b76e79] dark:hover:text-[#d4af37] transition-colors font-medium"
               >
                 {t(item.key)}
               </a>
@@ -80,13 +80,13 @@ export const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg">
+          <div className="md:hidden border-t border-white/10 bg-[#fafaf7]/95 dark:bg-[#0d1117]/95 backdrop-blur-lg">
             <nav className="py-4 space-y-2">
               {navigationItems.map((item) => (
                 <a
                   key={item.key}
                   href={item.href}
-                  className="block px-4 py-2 text-gray-800 dark:text-gray-100 hover:text-turquoise dark:hover:text-yellow-300 hover:bg-turquoise/10 dark:hover:bg-yellow-900/10 transition-colors rounded-md"
+                  className="block px-4 py-2 text-neutral-800 dark:text-gray-100 hover:text-[#b76e79] dark:hover:text-[#d4af37] hover:bg-[#b76e79]/10 dark:hover:bg-[#d4af37]/10 transition-colors rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t(item.key)}
