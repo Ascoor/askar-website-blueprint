@@ -15,34 +15,35 @@ const images = [
   '/hero5.png',
 ]
 
-interface Direction {
-  x: string | number
-  y: string | number
+interface Origin {
+  x: string
+  y: string
 }
 
-const slideDirections: Direction[] = [
-  { x: '-100%', y: 0 },
-  { x: '100%', y: 0 },
-  { x: 0, y: '-100%' },
-  { x: 0, y: '100%' },
-  { x: '-100%', y: '-100%' },
-  { x: '100%', y: '-100%' },
-  { x: '-100%', y: '100%' },
+const origins: Origin[] = [
+  { x: '50%', y: '50%' },
+  { x: '0%', y: '50%' },
+  { x: '100%', y: '50%' },
+  { x: '50%', y: '0%' },
+  { x: '50%', y: '100%' },
+  { x: '0%', y: '0%' },
+  { x: '100%', y: '0%' },
+  { x: '0%', y: '100%' },
   { x: '100%', y: '100%' },
 ]
 
-const getRandomDirection = () =>
-  slideDirections[Math.floor(Math.random() * slideDirections.length)]
+const getRandomOrigin = () =>
+  origins[Math.floor(Math.random() * origins.length)]
 
 const HeroSlider: React.FC = () => {
   const { t } = useLanguage()
   const [index, setIndex] = useState(0)
-  const [direction, setDirection] = useState<Direction>(getRandomDirection())
+  const [origin, setOrigin] = useState<Origin>(getRandomOrigin())
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIndex((i) => (i + 1) % images.length)
-      setDirection(getRandomDirection())
+      setOrigin(getRandomOrigin())
     }, DISPLAY_DURATION)
     return () => clearTimeout(timer)
   }, [index])
@@ -64,9 +65,18 @@ const HeroSlider: React.FC = () => {
             src={images[index]}
             alt={`Hero slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0, ...direction }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, ...direction }}
+            initial={{
+              opacity: 0,
+              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+            }}
+            animate={{
+              opacity: 1,
+              clipPath: `circle(150% at ${origin.x} ${origin.y})`,
+            }}
+            exit={{
+              opacity: 0,
+              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+            }}
             transition={{ duration: TRANSITION_DURATION, ease: 'easeInOut' }}
             style={{ minHeight: `${MOBILE_MIN_HEIGHT}px` }}
           />
