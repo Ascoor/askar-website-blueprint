@@ -59,7 +59,7 @@ const HeroSlider: React.FC = () => {
       }}
     >
       <div className="absolute inset-0 w-full h-full">
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.img
             key={index}
             src={images[index]}
