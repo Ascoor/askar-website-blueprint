@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,13 +7,16 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
+// Configuration constants for easy customization
+const NAVBAR_HEIGHT = 64; // Must match HeroSlider NAVBAR_HEIGHT
+
 // smoother acceleration/deceleration for scroll animations
 const easeInOutQuart = (t: number) =>
   t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
 const smoothScroll = (target: HTMLElement) => {
   const startY = window.scrollY || window.pageYOffset;
-  const targetY = target.getBoundingClientRect().top + startY;
+  const targetY = target.getBoundingClientRect().top + startY - NAVBAR_HEIGHT;
   const duration = 800;
   const startTime = performance.now();
 
@@ -54,13 +58,18 @@ const Navigation = () => {
     "services",
     "about",
     "contact",
-  ], 200);
+  ], NAVBAR_HEIGHT + 50);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      smoothScroll(element);
-      console.log(`[nav-scroll] to ${sectionId}`); // signature log
+      if (sectionId === 'hero') {
+        // For hero section, scroll to very top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        smoothScroll(element);
+      }
+      console.log(`[nav-scroll] to ${sectionId}`);
       setIsOpen(false);
     }
   };
@@ -68,103 +77,98 @@ const Navigation = () => {
   return (
     <nav
       dir={language === "ar" ? "rtl" : "ltr"}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      }`}
+      className={`
+        fixed top-0 w-full z-50 
+        transition-all duration-300
+        ${scrolled
+          ? "bg-background/95 backdrop-blur-md shadow-elegant"
+          : "bg-background/90 backdrop-blur-sm"
+        }
+      `}
+      style={{ height: `${NAVBAR_HEIGHT}px` }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`flex items-center h-16 w-full`}
-        >
-          {/* الشعار */}
-          <div className={`flex-shrink-0 ${language === "ar" ? "order-1" : "order-1"}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
+          {/* Logo */}
+          <div className="flex-shrink-0">
             <Logo />
           </div>
 
-          {/* رؤوس الأقسام */}
-          <div className={`flex-1 flex justify-center order-2`}>
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.key}
-                  onClick={() => scrollToSection(item.href.slice(1))}
-                  className={`transition-all duration-300 font-medium transform ${
-                    activeId === item.href.slice(1)
-                      ? 'text-primary border-b-2 border-primary scale-105'
-                      : 'text-foreground hover:text-primary'
-                  }`}
-                  style={{
-                    textAlign: language === 'ar' ? 'right' : 'left',
-                  }}
-                >
-                  {t(item.key)}
-                </button>
-              ))}
-            </div>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={() => scrollToSection(item.href.slice(1))}
+                className={`
+                  transition-all duration-300 font-medium text-sm lg:text-base
+                  ${activeId === item.href.slice(1)
+                    ? 'text-primary border-b-2 border-primary scale-105'
+                    : 'text-foreground hover:text-primary hover:scale-105'
+                  }
+                `}
+              >
+                {t(item.key)}
+              </button>
+            ))}
           </div>
 
-          {/* الليل/النهار + اللغة */}
-          <div
-            className={`flex items-center gap-2 flex-1 justify-center ${
-              language === "ar"
-                ? "md:order-3 md:ml-auto md:flex-none md:justify-end"
-                : "md:order-3 md:mr-auto md:flex-none md:justify-end"
-            }`}
-          >
+          {/* Theme and Language Controls */}
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full w-9 h-9"
             >
               {theme === "light" ? (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-4 w-4" />
               ) : (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-4 w-4" />
               )}
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-              className="rounded-full"
+              className="rounded-full text-xs lg:text-sm"
             >
-              <Globe className="h-4 w-4 mr-2" />
+              <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
               {language === "en" ? "العربية" : "English"}
             </Button>
           </div>
 
-          {/* زر القائمة الجانبية في الموبايل */}
-          <div
-            className={`md:hidden flex items-center ${
-              language === "ar" ? "mr-2" : "ml-2"
-            }`}
-          >
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full"
+              className="rounded-full w-9 h-9"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden fixed inset-0 z-40 flex items-center justify-center bg-background/95 backdrop-blur-md">
-            <div className="flex flex-col items-center space-y-6 py-6">
+          <div 
+            className="md:hidden fixed inset-0 bg-background/95 backdrop-blur-md flex items-center justify-center z-40"
+            style={{ top: `${NAVBAR_HEIGHT}px` }}
+          >
+            <div className="flex flex-col items-center space-y-8 py-8">
               {navItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className={`text-xl transition-all duration-300 font-medium ${
-                    activeId === item.href.slice(1)
-                      ? ' text-primary scale-105'
-                      : ' text-foreground hover:text-primary'
-                  }`}
-                  style={{ textAlign: 'center' }}
+                  className={`
+                    text-xl font-medium transition-all duration-300
+                    ${activeId === item.href.slice(1)
+                      ? 'text-primary scale-110'
+                      : 'text-foreground hover:text-primary hover:scale-105'
+                    }
+                  `}
                 >
                   {t(item.key)}
                 </button>
