@@ -65,13 +65,21 @@ const HeroSlider: React.FC = () => {
             src={images[index]}
             alt={`Hero slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.2 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{
+              opacity: 0,
+              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+            }}
+            animate={{
+              opacity: 1,
+              clipPath: `circle(150% at ${origin.x} ${origin.y})`,
+            }}
+            exit={{
+              opacity: 0,
+              clipPath: `circle(0% at ${origin.x} ${origin.y})`,
+            }}
             transition={{ duration: TRANSITION_DURATION, ease: 'easeInOut' }}
             style={{
               minHeight: `${MOBILE_MIN_HEIGHT}px`,
-              transformOrigin: `${origin.x} ${origin.y}`,
             }}
           />
         </AnimatePresence>
