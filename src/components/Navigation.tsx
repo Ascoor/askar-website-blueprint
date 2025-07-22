@@ -6,19 +6,20 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
-const easeInOutCubic = (t: number) =>
-  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+// smoother acceleration/deceleration for scroll animations
+const easeInOutQuart = (t: number) =>
+  t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
 const smoothScroll = (target: HTMLElement) => {
   const startY = window.scrollY || window.pageYOffset;
   const targetY = target.getBoundingClientRect().top + startY;
-  const duration = 700;
+  const duration = 800;
   const startTime = performance.now();
 
   const scroll = (currentTime: number) => {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    const ease = easeInOutCubic(progress);
+    const ease = easeInOutQuart(progress);
     window.scrollTo(0, startY + (targetY - startY) * ease);
     if (progress < 1) requestAnimationFrame(scroll);
   };
@@ -89,7 +90,11 @@ const Navigation = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className={`transition-colors duration-200 font-medium ${activeId === item.href.slice(1) ? 'text-primary border-b-2 border-primary' : 'text-foreground hover:text-primary'}`}
+                  className={`transition-all duration-300 font-medium transform ${
+                    activeId === item.href.slice(1)
+                      ? 'text-primary border-b-2 border-primary scale-105'
+                      : 'text-foreground hover:text-primary'
+                  }`}
                   style={{
                     textAlign: language === 'ar' ? 'right' : 'left',
                   }}
@@ -164,7 +169,11 @@ const Navigation = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  className={`transition-colors duration-200 font-medium ${activeId === item.href.slice(1) ? 'text-primary' : 'text-foreground hover:text-primary'}`}
+                  className={`transition-all duration-300 font-medium transform ${
+                    activeId === item.href.slice(1)
+                      ? 'text-primary scale-105'
+                      : 'text-foreground hover:text-primary'
+                  }`}
                   style={{
                     textAlign: language === 'ar' ? 'right' : 'left',
                   }}
