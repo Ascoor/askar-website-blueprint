@@ -51,10 +51,10 @@ const HeroSlider: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden flex items-center justify-center"
+      className="relative w-full overflow-hidden mt-6 flex items-center justify-center"
       style={{
         paddingTop: `${NAVBAR_HEIGHT}px`,
-        minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+        minHeight: `calc(125vh - ${NAVBAR_HEIGHT}px)`,
         maxHeight: '1024px',
       }}
     >
