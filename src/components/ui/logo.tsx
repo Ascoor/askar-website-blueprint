@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 
 export const Logo = ({ className = "", clickable = false }) => {
   const { theme, toggleTheme } = useTheme();
@@ -20,22 +20,35 @@ export const Logo = ({ className = "", clickable = false }) => {
     setLogoSrc(getLogoSrc());
   }, [theme, language]);
 
+  const altTitle = language === "ar"
+    ? "شعار الشركة"
+    : "Company Logo";
+
   return (
     <span
       className={cn(
-        "inline-block align-middle",
+        "inline-flex items-center justify-center",
         className
       )}
+      style={{
+        minHeight: 48,
+        minWidth: 100,
+      }}
     >
       <img
         src={logoSrc}
-        alt="Logo"
+        alt={altTitle}
+        title={altTitle}
+        draggable={false}
         className={cn(
-          "h-10 w-28 sm:h-12 sm:w-36 md:h-14 md:w-44 object-contain transition-all duration-300 select-none",
-          clickable && "cursor-pointer hover:opacity-80"
+          // زيادة الحجم مع التجاوب
+          "object-contain mt-6 select-none",
+          "h-16 w-44 xs:h-12 xs:w-32 sm:h-16 sm:w-44 md:h-20 md:w-56 lg:h-21 lg:w-46  ",
+          "max-h-28 max-w-[18rem]",
+          clickable && "cursor-pointer hover:opacity-90"
         )}
-        title={clickable ? "Toggle theme" : ""}
         onClick={clickable ? toggleTheme : undefined}
+        // بدون أي خلفية أو ظل أو طبقة إضافية
       />
     </span>
   );
