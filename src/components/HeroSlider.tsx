@@ -31,40 +31,49 @@ const HeroSlider: React.FC = () => {
   const play = () => setPaused(false);
 
   return (
-    <section
-      id="hero"
-      className="relative mt-16 h-[calc(100vh-4rem)] w-full overflow-hidden"
-      onMouseEnter={pause}
-      onMouseLeave={play}
-      onTouchStart={pause}
-      onTouchEnd={play}
+   <section
+  id="hero"
+  className="
+    relative
+    w-full
+    pt-16
+    min-h-[calc(100vh-64px)]
+    max-h-[1200px]
+    overflow-hidden
+    flex items-center justify-center
+  "
+  onMouseEnter={pause}
+  onMouseLeave={play}
+  onTouchStart={pause}
+  onTouchEnd={play}
+>
+  <AnimatePresence>
+    <motion.img
+      key={index}
+      src={images[index]}
+      className="absolute inset-0 h-full w-full min-h-[350px] object-cover"
+      initial={{ opacity: 0, scale: 1.1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.05 }}
+      transition={{ duration: transitionDuration, ease: 'easeInOut' }}
+    />
+  </AnimatePresence>
+
+  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+
+  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-6">
+    <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('heroTitle')}</h1>
+    <p className="text-lg md:text-xl max-w-2xl mb-8">{t('heroSubtitle')}</p>
+    <Button
+      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+      size="lg"
+      className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full shadow-lg"
     >
-      <AnimatePresence>
-        <motion.img
-          key={index}
-          src={images[index]}
-          className="absolute inset-0 h-full w-full object-cover"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: transitionDuration, ease: 'easeInOut' }}
-        />
-      </AnimatePresence>
+      {t('getStarted')}
+    </Button>
+  </div>
+</section>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-6">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('heroTitle')}</h1>
-        <p className="text-lg md:text-xl max-w-2xl mb-8">{t('heroSubtitle')}</p>
-        <Button
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          size="lg"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full shadow-lg"
-        >
-          {t('getStarted')}
-        </Button>
-      </div>
-    </section>
   );
 };
 

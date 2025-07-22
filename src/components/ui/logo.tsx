@@ -42,7 +42,7 @@ export const Logo = ({ className = "", clickable = false }) => {
         draggable={false}
         className={cn(
           // زيادة الحجم مع التجاوب
-          "object-contain mt-6 select-none",
+          "object-contain mt-4 select-none",
           "h-16 w-44 xs:h-12 xs:w-32 sm:h-16 sm:w-44 md:h-20 md:w-56 lg:h-21 lg:w-46  ",
           "max-h-28 max-w-[18rem]",
           clickable && "cursor-pointer hover:opacity-90"
