@@ -374,9 +374,7 @@
   }
 }
 
-#hero {
-  scroll-margin-top: 4rem;
-}
+
 
 /* Print Styles */
 @media print {
