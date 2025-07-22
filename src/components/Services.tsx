@@ -1,86 +1,79 @@
+
 import React from 'react';
-import { PackageOpen, Unlock, Code, TrendingUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Code, Smartphone, Cloud, Users } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const serviceIcons = {
-  full_control: Unlock,
-  open_code: Code,
-  limitless_growth: TrendingUp,
-  investment_protection: PackageOpen,
-};
-
-export const Services: React.FC = () => {
+const Services = () => {
   const { t } = useLanguage();
 
   const services = [
     {
-      key: 'full_control',
-      icon: serviceIcons.full_control,
+      icon: Code,
+      title: t('webDev'),
+      description: t('webDevDesc'),
+      color: 'bg-blue-500'
     },
     {
-      key: 'open_code',
-      icon: serviceIcons.open_code,
+      icon: Smartphone,
+      title: t('mobileDev'),
+      description: t('mobileDevDesc'),
+      color: 'bg-green-500'
     },
     {
-      key: 'limitless_growth',
-      icon: serviceIcons.limitless_growth,
+      icon: Cloud,
+      title: t('cloudSolutions'),
+      description: t('cloudSolutionsDesc'),
+      color: 'bg-purple-500'
     },
     {
-      key: 'investment_protection',
-      icon: serviceIcons.investment_protection,
-    },
+      icon: Users,
+      title: t('consulting'),
+      description: t('consultingDesc'),
+      color: 'bg-orange-500'
+    }
   ];
 
   return (
-    <section id="services" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
+    <section id="services" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            {t('services.title')}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('servicesTitle')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('services.subtitle')}
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            {t('servicesSubtitle')}
           </p>
         </div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service) => {
-            const IconComponent = service.icon;
+          {services.map((service, index) => {
+            const Icon = service.icon;
             return (
-              <div
-                key={service.key}
-                className="group bg-card border border-border rounded-2xl p-8 text-center hover-lift hover-glow transition-smooth"
-              >
-                <div className="w-16 h-16 bg-gradient-turquoise rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-smooth shadow-glow">
-                  <IconComponent className="w-8 h-8 text-white" />
-                </div>
+              <Card key={index} className="relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <CardHeader className="text-center pb-4">
+                  <div className={`w-16 h-16 ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600 dark:text-gray-400 text-center leading-relaxed">
+                    {service.description}
+                  </CardDescription>
+                </CardContent>
                 
-                <h3 className="text-xl font-semibold text-foreground mb-4">
-                  {t(`services.${service.key}.title`)}
-                </h3>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  {t(`services.${service.key}.description`)}
-                </p>
-              </div>
+                {/* Animated border */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg"></div>
+              </Card>
             );
           })}
-        </div>
-
-        <div className="text-center mt-12 space-y-4">
-          <p className="text-sm text-destructive">{t('services.warning')}</p>
-          <Button
-            size="lg"
-            className="bg-turquoise hover:bg-turquoise-dark text-white px-8 py-4 font-semibold hover-lift shadow-glow"
-          >
-            {t('services.cta')}
-          </Button>
-          <p className="text-muted-foreground">{t('services.closing')}</p>
         </div>
       </div>
     </section>
   );
 };
+
+export default Services;

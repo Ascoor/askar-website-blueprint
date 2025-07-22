@@ -1,82 +1,73 @@
+
 import React from 'react';
-import { Target, Eye, Award, Users } from 'lucide-react';
+import { Award, Target, Users, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export const About: React.FC = () => {
+const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { number: '100+', labelKey: 'about.stats.projects' },
-    { number: '50+', labelKey: 'about.stats.clients' },
-    { number: '5+', labelKey: 'about.stats.experience' },
-    { number: '24/7', labelKey: 'about.stats.support' },
+    { icon: Award, value: '5+', label: t('yearsExperience') },
+    { icon: Target, value: '100+', label: t('projectsCompleted') },
+    { icon: Users, value: '50+', label: t('happyClients') },
+    { icon: Zap, value: '15+', label: t('teamMembers') }
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="about" className="py-20 bg-white dark:bg-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
+          {/* Content */}
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-              {t('about.title')}
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              {t('aboutTitle')}
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              {t('about.description')}
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+              {t('aboutDesc')}
             </p>
 
-            {/* Mission & Vision */}
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-turquoise rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {t('about.mission').split(':')[0] || 'Mission'}
-                  </h3>
-                  <p className="text-muted-foreground">{t('about.mission')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-gold rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {t('about.vision').split(':')[0] || 'Vision'}
-                  </h3>
-                  <p className="text-muted-foreground">{t('about.vision')}</p>
-                </div>
-              </div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {stat.label}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Right Content - Stats */}
+          {/* Visual Element */}
           <div className="relative">
-            <div className="grid grid-cols-2 gap-8">
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="text-center bg-card border border-border rounded-2xl p-8 hover-lift transition-smooth"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-gradient-turquoise mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-muted-foreground font-medium">
-                    {t(stat.labelKey)}
-                  </div>
+            <div className="aspect-square bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl overflow-hidden relative">
+              {/* Floating elements */}
+              <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <div className="text-center text-white">
+                  <div className="text-6xl font-bold mb-2">5+</div>
+                  <div className="text-xl opacity-90">{t('yearsExperience')}</div>
                 </div>
-              ))}
+              </div>
+              
+              {/* Decorative circles */}
+              <div className="absolute top-4 right-4 w-20 h-20 bg-white/20 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-8 left-8 w-12 h-12 bg-white/30 rounded-full animate-pulse delay-1000"></div>
+              <div className="absolute top-1/2 left-4 w-16 h-16 bg-white/15 rounded-full animate-pulse delay-500"></div>
             </div>
-
-            {/* Background Elements */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-turquoise/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+export default About;

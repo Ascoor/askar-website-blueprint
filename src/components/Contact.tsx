@@ -1,172 +1,180 @@
+
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { toast } from '@/components/ui/sonner';
-import confetti from 'canvas-confetti';
+import { useToast } from '@/hooks/use-toast';
 
-export const Contact: React.FC = () => {
-  const { t, direction } = useLanguage();
+const Contact = () => {
+  const { t } = useLanguage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    company: '',
     message: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to API)
+    // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData);
-    toast.success(t('contact.success'), {
-      icon: <CheckCircle className="text-green-500" />,
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for your message. We'll get back to you soon.",
     });
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'info@ask-ar.net',
-      href: 'mailto:info@ask-ar.net'
+      title: t('email'),
+      content: 'info@askar.com',
+      color: 'bg-blue-500'
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      title: t('phone'),
+      content: '+1 (555) 123-4567',
+      color: 'bg-green-500'
     },
     {
       icon: MapPin,
-      label: 'Address',
-      value: 'Tech Hub, Innovation District',
-      href: '#'
+      title: t('address'),
+      content: '123 Business District, Tech City',
+      color: 'bg-purple-500'
+    },
+    {
+      icon: Clock,
+      title: t('officeHours'),
+      content: 'Mon - Fri: 9AM - 6PM',
+      color: 'bg-orange-500'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            {t('contact.title')}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('contactTitle')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('contact.subtitle')}
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            {t('contactSubtitle')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Input
-                  placeholder={t('contact.form.name')}
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-12 text-base"
-                  required
-                />
-              </div>
-              
-              <div>
-                <Input
-                  type="email"
-                  placeholder={t('contact.form.email')}
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-12 text-base"
-                  required
-                />
-              </div>
-              
-              <div>
-                <Input
-                  placeholder={t('contact.form.company')}
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="h-12 text-base"
-                />
-              </div>
-
-              <div>
-                <Input
-                  type="tel"
-                  placeholder={t('contact.form.phone')}
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="h-12 text-base"
-                />
-              </div>
-              
-              <div>
-                <Textarea
-                  placeholder={t('contact.form.message')}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="min-h-32 text-base resize-none"
-                  required
-                />
-              </div>
-              
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-turquoise hover:bg-turquoise-dark text-white py-4 text-lg font-semibold hover-lift"
-              >
-                {t('contact.form.submit')}
-                <Send className={`w-5 h-5 ${direction === 'rtl' ? 'rotate-180' : ''}`} />
-              </Button>
-            </form>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Info */}
+          <div className="lg:col-span-1">
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center space-x-4">
+                        <div className={`w-12 h-12 ${info.color} rounded-full flex items-center justify-center`}>
+                          <Icon className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">
+                            {info.title}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-400">
+                            {info.content}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-8">
-            {contactInfo.map((info, index) => {
-              const IconComponent = info.icon;
-              return (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-turquoise rounded-xl flex items-center justify-center flex-shrink-0">
-                    <IconComponent className="w-6 h-6 text-white" />
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <Card className="shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {t('sendMessage')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        {t('name')}
+                      </label>
+                      <Input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full"
+                        placeholder={t('name')}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        {t('email')}
+                      </label>
+                      <Input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full"
+                        placeholder={t('email')}
+                      />
+                    </div>
                   </div>
+                  
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">
-                      {info.label}
-                    </h3>
-                    {info.href !== '#' ? (
-                      <a
-                        href={info.href}
-                        className="text-muted-foreground hover:text-turquoise transition-smooth"
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p className="text-muted-foreground">{info.value}</p>
-                    )}
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {t('message')}
+                    </label>
+                    <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={6}
+                      className="w-full"
+                      placeholder={t('message')}
+                    />
                   </div>
-                </div>
-              );
-            })}
 
-            {/* Map Placeholder */}
-            <div className="mt-8 rounded-2xl overflow-hidden shadow-medium">
-              <div className="w-full h-64 bg-gradient-to-br from-turquoise/20 to-gold/20 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-turquoise mx-auto mb-4" />
-                  <p className="text-muted-foreground">Interactive Map</p>
-                </div>
-              </div>
-            </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+                  >
+                    <Send className="w-5 h-5 mr-2" />
+                    {t('sendMessage')}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+export default Contact;
