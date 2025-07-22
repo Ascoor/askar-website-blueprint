@@ -1,10 +1,11 @@
+  
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Logo } from '@/components/ui/Logo';
+import { Logo } from '@/components/ui/Logo'; // Assuming Logo is in the same directory
 
 export const Header: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -19,13 +20,13 @@ export const Header: React.FC = () => {
     { key: 'nav.contact', href: '#contact' },
   ];
 
-  return ( 
+  return (
     <header
       className={`
-        fixed-center top-0 w-full z-50 border-b border-white/10
+        fixed top-0 w-full z-50 border-b border-white/10
         bg-gradient-to-r
-        from-[#fafaf7] via-[#f4f3ed] to-[#e7dcc4]
-        dark:from-[#0d1117]/90 dark:via-[#1b1f23]/80 dark:to-[#a99d86]/30
+        from-white/70 via-blue-100 to-yellow-50
+        dark:from-gray-900/90 dark:via-blue-900/80 dark:to-yellow-800/40
         backdrop-blur-lg
         transition-all duration-500
         shadow-[0_4px_32px_0_rgba(0,0,0,0.10)]
@@ -47,28 +48,55 @@ export const Header: React.FC = () => {
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <Logo /> 
           </div>
-       
+      
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-white/90 dark:bg-gray-900/95 backdrop-blur-md">
-          <nav className="py-4 space-y-2">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
             {navigationItems.map((item) => (
               <a
                 key={item.key}
-                href={item.href} 
-                className="text-neutral-800 dark:text-gray-300 hover:text-[#b76e79] dark:hover:text-[#d4af37] transition-colors font-medium"
- 
+                href={item.href}
+                className="text-gray-800 dark:text-gray-200 hover:text-turquoise dark:hover:text-yellow-300 transition-colors font-medium"
               >
                 {t(item.key)}
               </a>
             ))}
           </nav>
-        </div>  
+
+          {/* Right Side */}
+          <div className="flex items-center space-x-4 rtl:space-x-reverse">
+            <ThemeSwitcher />
+            <LanguageSwitcher />
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-white/10 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg">
+            <nav className="py-4 space-y-2">
+              {navigationItems.map((item) => (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  className="block px-4 py-2 text-gray-800 dark:text-gray-100 hover:text-turquoise dark:hover:text-yellow-300 hover:bg-turquoise/10 dark:hover:bg-yellow-900/10 transition-colors rounded-md"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t(item.key)}
+                </a>
+              ))}
+            </nav>
+          </div>
         )}
       </div>
- 
-      )}
- 
     </header>
   );
 };
