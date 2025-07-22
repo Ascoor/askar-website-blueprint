@@ -111,7 +111,12 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('en');
+
+  const setLanguage = (lang: Language) => {
+    console.log('[language-change] new language:', lang);
+    setLanguageState(lang);
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key;
