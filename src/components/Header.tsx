@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
   return (
     <header
       className={`
-        fixed top-0 w-full z-50 border-b border-white/10
+        fixed-center top-0 w-full z-50 border-b border-white/10
         bg-gradient-to-r
         from-white/70 via-blue-100 to-yellow-50
         dark:from-gray-900/90 dark:via-blue-900/80 dark:to-yellow-800/40

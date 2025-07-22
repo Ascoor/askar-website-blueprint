@@ -6,7 +6,7 @@ export const Logo = () => {
   const { theme } = useTheme(); // 'dark' أو 'light'
 
   // حدد مسار الشعار حسب الوضع
-  const logoVariant = theme === 'dark' ? 'logo-dark.png' : 'logo-day.png';
+  const logoVariant = theme === 'dark' ? 'patren-wh.png' : 'patren-blue.png';
 
   return (
     <Link to="/" className="group flex items-center space-x-3 rtl:space-x-reverse">
@@ -19,7 +19,7 @@ export const Logo = () => {
         <img
           src={`/${logoVariant}`}
           alt="Ask-ar Logo"
-          className="w-21 h-12 object-contain select-none"
+          className="w-16  h-16 object-contain select-none"
           style={{ filter: "drop-shadow(0 4px 14px #06B6D499)" }}
           draggable={false}
         />
