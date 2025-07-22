@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const images = [
   '/hero1.png',
@@ -9,10 +11,11 @@ const images = [
   '/hero5.png'
 ];
 
-const transitionDuration = 1.4; // seconds
-const displayDuration = 5000; // milliseconds
+const transitionDuration = 2; // seconds
+const displayDuration = 7000; // milliseconds
 
 const HeroSlider: React.FC = () => {
+  const { t } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -30,7 +33,7 @@ const HeroSlider: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative h-[90vh] w-full overflow-hidden"
+      className="relative mt-16 h-[calc(100vh-4rem)] w-full overflow-hidden"
       onMouseEnter={pause}
       onMouseLeave={play}
       onTouchStart={pause}
@@ -47,6 +50,20 @@ const HeroSlider: React.FC = () => {
           transition={{ duration: transitionDuration, ease: 'easeInOut' }}
         />
       </AnimatePresence>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+
+      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('heroTitle')}</h1>
+        <p className="text-lg md:text-xl max-w-2xl mb-8">{t('heroSubtitle')}</p>
+        <Button
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          size="lg"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full shadow-lg"
+        >
+          {t('getStarted')}
+        </Button>
+      </div>
     </section>
   );
 };
