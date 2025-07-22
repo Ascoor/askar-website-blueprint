@@ -9,18 +9,12 @@ export const Logo = () => {
   const logoVariant = theme === 'dark' ? 'patren-wh.png' : 'patren-blue.png';
 
   return (
-    <Link to="/" className="group flex items-center space-x-3 rtl:space-x-reverse">
-      <span className="
-        flex items-center justify-center
-        rounded-2xl transition-all duration-300 ease-in-out
-        group-hover:scale-105 group-hover:shadow-lg
-        bg-transparent
-      ">
+    <Link to="/" className="flex items-center">
+      <span className="flex items-center justify-center rounded-2xl">
         <img
           src={`/${logoVariant}`}
           alt="Ask-ar Logo"
-          className="w-16  h-16 object-contain select-none"
-          style={{ filter: "drop-shadow(0 4px 14px #06B6D499)" }}
+          className="w-24 h-12 object-contain select-none drop-shadow-md"
           draggable={false}
         />
       </span>

@@ -11,25 +11,10 @@ export const ThemeSwitcher: React.FC = () => {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="relative w-10 h-10 rounded-full hover-lift transition-smooth hover:bg-primary/10"
+      className="w-10 h-10 rounded-full hover:bg-primary/10"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      <div className="relative w-5 h-5">
-        <Sun 
-          className={`absolute inset-0 transition-all duration-300 ${
-            theme === 'light' 
-              ? 'rotate-0 scale-100 opacity-100' 
-              : '-rotate-90 scale-0 opacity-0'
-          }`}
-        />
-        <Moon 
-          className={`absolute inset-0 transition-all duration-300 ${
-            theme === 'dark' 
-              ? 'rotate-0 scale-100 opacity-100' 
-              : 'rotate-90 scale-0 opacity-0'
-          }`}
-        />
-      </div>
+      {theme === 'light' ? <Sun size={18} /> : <Moon size={18} />}
     </Button>
   );
 };

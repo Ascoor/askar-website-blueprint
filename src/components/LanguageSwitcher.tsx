@@ -12,7 +12,7 @@ export const LanguageSwitcher: React.FC = () => {
         variant="ghost"
         size="sm"
         onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-        className="flex items-center gap-2 hover-lift text-foreground hover:text-turquoise transition-smooth"
+        className="flex items-center gap-2 text-foreground hover:text-turquoise"
       >
         <Languages size={18} />
         <span className="font-medium">
