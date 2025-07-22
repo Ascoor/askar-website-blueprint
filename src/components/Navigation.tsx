@@ -107,8 +107,10 @@ const Navigation = () => {
 
           {/* الليل/النهار + اللغة */}
           <div
-            className={`flex items-center gap-2 ${
-              language === "ar" ? "md:order-3 ml-auto" : "md:order-3 mr-auto"
+            className={`flex items-center gap-2 flex-1 justify-center ${
+              language === "ar"
+                ? "md:order-3 md:ml-auto md:flex-none md:justify-end"
+                : "md:order-3 md:mr-auto md:flex-none md:justify-end"
             }`}
           >
             <Button
@@ -135,7 +137,11 @@ const Navigation = () => {
           </div>
 
           {/* زر القائمة الجانبية في الموبايل */}
-          <div className="md:hidden flex items-center ml-2">
+          <div
+            className={`md:hidden flex items-center ${
+              language === "ar" ? "mr-2" : "ml-2"
+            }`}
+          >
             <Button
               variant="ghost"
               size="icon"
