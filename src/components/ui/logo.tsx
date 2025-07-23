@@ -17,7 +17,7 @@ export const Logo = ({ className = "", clickable = false }) => {
     setLogoSrc(getLogoSrc());
   }, [theme, language]);
 
-  const altTitle = language === "ar" ? "شعار الشركة" : "Company Logo";
+  const altTitle = language === "en" ? "Company Logo" : "شعار الشركة";
 
   return (
     <span
