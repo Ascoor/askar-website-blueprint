@@ -187,7 +187,7 @@ const HeroSlider: React.FC = () => {
       className="relative w-full overflow-hidden mt-6 flex items-center justify-center"
       style={{
         paddingTop: `${NAVBAR_HEIGHT}px`,
-        minHeight: `calc(115vh - ${NAVBAR_HEIGHT}px)`,
+        minHeight: `calc(145vh - ${NAVBAR_HEIGHT}px)`,
         maxHeight: '1024px',
       }}
     >
