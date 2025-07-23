@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { motion, AnimatePresence } from 'framer-motion';
+=======
+import { motion, AnimatePresence, easeInOut } from 'framer-motion';
+>>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
 import { useLanguage } from '@/contexts/LanguageContext';
 import clsx from 'clsx';
 
 const NAVBAR_HEIGHT = 64;
+<<<<<<< HEAD
 const DISPLAY_DURATION = 3000; // 3 seconds
 const MOBILE_MIN_HEIGHT = 500;
 
@@ -13,6 +18,12 @@ interface Slide {
 }
 
 const slides: Slide[] = [
+=======
+const DISPLAY_DURATION = 3000; // ms
+const MOBILE_MIN_HEIGHT = 500;
+
+const slides = [
+>>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
   {
     image: '/hero1.png',
     text: {
@@ -96,6 +107,31 @@ const slideVariants = [
     },
     exit: { opacity: 0, scale: 0.94, x: -30, y: -30, transition: { duration: 1.2, ease: 'easeInOut' } },
   },
+<<<<<<< HEAD
+=======
+  // 5. Zoom In from bottom
+  {
+    initial: { opacity: 0, scale: 1, x: 0, y: 40 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1, 1.08, 1.12, 1, 0.96],
+      x: [0, 0, 0, 0, 0],
+      y: [40, 10, 0, -10, -20],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.16, 0.58, 0.8, 1],
+        ease: easeInOut,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.96,
+      x: 0,
+      y: -40,
+      transition: { duration: 1.2, ease: easeInOut },
+    },
+  },
+>>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
 ];
 
 const HeroSlider: React.FC = () => {
@@ -122,11 +158,18 @@ const HeroSlider: React.FC = () => {
       className="relative w-full overflow-hidden flex items-center justify-center"
       style={{
         paddingTop: `${NAVBAR_HEIGHT}px`,
+<<<<<<< HEAD
         minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
         maxHeight: '1024px',
       }}
     >
       {/* Slides */}
+=======
+        minHeight: `calc(145vh - ${NAVBAR_HEIGHT}px)`,
+        maxHeight: '1024px',
+      }}
+    >
+>>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
       <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.img
@@ -146,7 +189,10 @@ const HeroSlider: React.FC = () => {
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 pointer-events-none"></div>
 
+<<<<<<< HEAD
       {/* Text overlay */}
+=======
+>>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
       <div className="relative z-20 flex h-full w-full items-center px-4 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
