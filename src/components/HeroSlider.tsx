@@ -13,6 +13,7 @@ const slides = [
     text: {
       en: 'Technology that leads. Future that inspires.',
       ar: 'تقنية تقود، ومستقبل يلهم.',
+      eg: 'تكنولوجيا بتفتح الطريق وبتلهم بكرة.',
     },
   },
   {
@@ -20,6 +21,7 @@ const slides = [
     text: {
       en: 'Where data flows, possibilities grow.',
       ar: 'حيث تتدفق البيانات، تنمو الفرص.',
+      eg: 'لما البيانات تتحرك، الفرص تكتر.',
     },
   },
   {
@@ -27,6 +29,7 @@ const slides = [
     text: {
       en: 'Your smart partner in digital transformation.',
       ar: 'شريكك الذكي في التحول الرقمي.',
+      eg: 'شريكك الشاطر في التحول الرقمي.',
     },
   },
   {
@@ -34,6 +37,7 @@ const slides = [
     text: {
       en: 'Securing progress with innovation and trust.',
       ar: 'نؤمن التقدم بالابتكار والثقة.',
+      eg: 'بنوفرلك تطور مضمون بالابتكار والثقة.',
     },
   },
   {
@@ -41,6 +45,7 @@ const slides = [
     text: {
       en: 'Experience seamless connectivity, everywhere.',
       ar: 'اختبر الاتصال الذكي… في كل مكان.',
+      eg: 'استمتع باتصال من غير حدود، في أي مكان.',
     },
   },
 ]
@@ -162,7 +167,7 @@ const HeroSlider: React.FC = () => {
   const { language } = useLanguage()
   const [index, setIndex] = useState(0)
 
-  const isRTL = language === 'ar'
+  const isRTL = language !== 'en'
   const side = index % 2 === 0 ? 'left' : 'right'
   const actualSide = isRTL ? (side === 'left' ? 'right' : 'left') : side
   const sign = actualSide === 'left' ? -1 : 1

@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'ar';
+export type Language = 'en' | 'ar' | 'eg';
 
 interface LanguageContextType {
   language: Language;
@@ -105,7 +105,56 @@ const translations = {
     // Footer
     allRightsReserved: 'جميع الحقوق محفوظة.',
     followUs: 'تابعنا',
-  }
+  },
+  eg: {
+    // Navigation
+    home: 'الرئيسية',
+    services: 'الخدمات',
+    about: 'عننا',
+    contact: 'اتصل بينا',
+
+    // Hero Section
+    heroTitle: 'حلول برمجية مبتكرة',
+    heroSubtitle: 'بنطوّرلك شغلك بأحدث التقنيات والبرمجيات المخصصة',
+    getStarted: 'يلا نبدأ',
+    learnMore: 'اعرف أكتر',
+
+    // Services
+    servicesTitle: 'خدماتنا',
+    servicesSubtitle: 'حلول برمجية متكاملة تناسب احتياجاتك',
+    webDev: 'تطوير مواقع',
+    webDevDesc: 'مواقع وتطبيقات ويب عصرية ومتجاوبة',
+    mobileDev: 'تطبيقات موبايل',
+    mobileDevDesc: 'تطبيقات أصلية ومشتركة لـ iOS وAndroid',
+    cloudSolutions: 'حلول سحابية',
+    cloudSolutionsDesc: 'بنية تحتية سحابية مرنة وآمنة',
+    consulting: 'استشارات تقنية',
+    consultingDesc: 'نصائح تقنية عملية لتحسين شغلك',
+
+    // About
+    aboutTitle: 'إحنا أسكار للحلول البرمجية',
+    aboutDesc:
+      'فريق محترف بيحوّل أفكارك لمنتجات رقمية قوية تساعد على نمو عملك.',
+    yearsExperience: 'سنين خبرة',
+    projectsCompleted: 'مشاريع مكتملة',
+    happyClients: 'عملاء مبسوطين',
+    teamMembers: 'أفراد الفريق',
+
+    // Contact
+    contactTitle: 'كلمنا',
+    contactSubtitle: 'كلّمنا في أي وقت، فريقنا معاك على طول!',
+    name: 'الاسم',
+    email: 'البريد الإلكتروني',
+    message: 'رسالتك',
+    sendMessage: 'ابعت الرسالة',
+    phone: 'التليفون',
+    address: 'العنوان',
+    officeHours: 'ساعات العمل',
+
+    // Footer
+    allRightsReserved: 'كل الحقوق محفوظة.',
+    followUs: 'تابعنا',
+  },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -122,9 +171,11 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return translations[language][key as keyof typeof translations['en']] || key;
   };
 
+  const isRTL = language !== 'en';
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      <div className={language === 'ar' ? 'rtl' : 'ltr'} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <div className={isRTL ? 'rtl' : 'ltr'} dir={isRTL ? 'rtl' : 'ltr'}>
         {children}
       </div>
     </LanguageContext.Provider>
