@@ -1,13 +1,54 @@
 import React, { useEffect, useState } from 'react'
+ 
 import { motion, AnimatePresence, easeInOut } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import clsx from 'clsx'
+ 
 
 const NAVBAR_HEIGHT = 64
-const DISPLAY_DURATION = 7500 // ms
+const DISPLAY_DURATION = 3000 // ms
 const MOBILE_MIN_HEIGHT = 500
 
 const slides = [
+ 
+  { image: '/hero1.png' },
+  { image: '/hero2.png' },
+  { image: '/hero3.png' },
+  { image: '/hero4.png' },
+  { image: '/hero5.png' },
+]
+
+const slideVariants = [
+  // 1. slow zoom-in from center
+  {
+    initial: { opacity: 0, scale: 1 },
+    animate: { opacity: 1, scale: 1.1, transition: { duration: DISPLAY_DURATION / 1000 } },
+    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.8 } },
+  },
+  // 2. fade-in with gentle zoom
+  {
+    initial: { opacity: 0, scale: 1 },
+    animate: { opacity: 1, scale: 1.05, transition: { duration: DISPLAY_DURATION / 1000 } },
+    exit: { opacity: 0, scale: 1.1, transition: { duration: 0.8 } },
+  },
+  // 3. slide in from right with light zoom
+  {
+    initial: { opacity: 0, x: 80, scale: 1 },
+    animate: { opacity: 1, x: 0, scale: 1.05, transition: { duration: DISPLAY_DURATION / 1000 } },
+    exit: { opacity: 0, x: -80, scale: 1.05, transition: { duration: 0.8 } },
+  },
+  // 4. subtle scale from center
+  {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1, transition: { duration: DISPLAY_DURATION / 1000 } },
+    exit: { opacity: 0, scale: 1.1, transition: { duration: 0.8 } },
+  },
+  // 5. rise from bottom with zoom out
+  {
+    initial: { opacity: 0, y: 60, scale: 1.05 },
+    animate: { opacity: 1, y: 0, scale: 1, transition: { duration: DISPLAY_DURATION / 1000 } },
+    exit: { opacity: 0, y: -60, scale: 0.95, transition: { duration: 0.8 } },
+ 
   {
     image: '/hero1.png',
     text: {
@@ -160,11 +201,14 @@ const slideVariants = [
       y: -40,
       transition: { duration: 1.2, ease: easeInOut },
     },
+ 
   },
 ]
 
 const HeroSlider: React.FC = () => {
+ 
   const { language } = useLanguage()
+ 
   const [index, setIndex] = useState(0)
 
   const isRTL = language !== 'en'
@@ -174,20 +218,23 @@ const HeroSlider: React.FC = () => {
   const fromX = 60 * sign
   const exitX = -60 * sign
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  useEffect(() => { 
+    const timer = setInterval(() => {
+ 
       setIndex(i => (i + 1) % slides.length)
     }, DISPLAY_DURATION)
-    return () => clearTimeout(timer)
-  }, [index])
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden mt-6 flex items-center justify-center"
+      className="relative w-full overflow-hidden flex items-center justify-center"
       style={{
         paddingTop: `${NAVBAR_HEIGHT}px`,
+ 
         minHeight: `calc(145vh - ${NAVBAR_HEIGHT}px)`,
+ 
         maxHeight: '1024px',
       }}
     >
@@ -212,6 +259,7 @@ const HeroSlider: React.FC = () => {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 pointer-events-none" />
 
+ 
       <div className="relative z-20 flex h-full w-full items-center px-4 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
@@ -232,6 +280,7 @@ const HeroSlider: React.FC = () => {
           </motion.div>
         </AnimatePresence>
       </div>
+ 
     </section>
   )
 }
