@@ -1,220 +1,78 @@
-import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { motion, AnimatePresence } from 'framer-motion';
-=======
-import { motion, AnimatePresence, easeInOut } from 'framer-motion';
->>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
-import { useLanguage } from '@/contexts/LanguageContext';
-import clsx from 'clsx';
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import clsx from 'clsx'
 
-const NAVBAR_HEIGHT = 64;
-<<<<<<< HEAD
-const DISPLAY_DURATION = 3000; // 3 seconds
-const MOBILE_MIN_HEIGHT = 500;
-
-interface Slide {
-  image: string;
-  text: { en: string; ar: string; eg: string };
-}
-
-const slides: Slide[] = [
-=======
-const DISPLAY_DURATION = 3000; // ms
-const MOBILE_MIN_HEIGHT = 500;
+const NAVBAR_HEIGHT = 64
+const SLIDE_DURATION = 5000 // 5 ثوانٍ بالمللي
+const MOBILE_MIN_HEIGHT = 500
 
 const slides = [
->>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
-  {
-    image: '/hero1.png',
-    text: {
-      en: 'Technology that leads. Future that inspires.',
-      ar: 'تقنية تقود، ومستقبل يلهم.',
-      eg: 'تكنولوجيا بتفتح الطريق وبتلهم بكرة.',
-    },
-  },
-  {
-    image: '/hero2.png',
-    text: {
-      en: 'Where data flows, possibilities grow.',
-      ar: 'حيث تتدفق البيانات، تنمو الفرص.',
-      eg: 'لما البيانات تتحرك، الفرص تكتر.',
-    },
-  },
-  {
-    image: '/hero3.png',
-    text: {
-      en: 'Your smart partner in digital transformation.',
-      ar: 'شريكك الذكي في التحول الرقمي.',
-      eg: 'شريكك الشاطر في التحول الرقمي.',
-    },
-  },
-  {
-    image: '/hero4.png',
-    text: {
-      en: 'Securing progress with innovation and trust.',
-      ar: 'نؤمن التقدم بالابتكار والثقة.',
-      eg: 'بنوفرلك تطور مضمون بالابتكار والثقة.',
-    },
-  },
-  {
-    image: '/hero5.png',
-    text: {
-      en: 'Experience seamless connectivity, everywhere.',
-      ar: 'اختبر الاتصال الذكي… في كل مكان.',
-      eg: 'استمتع باتصال من غير حدود، في أي مكان.',
-    },
-  },
-];
-
-const slideVariants = [
-  {
-    initial: { opacity: 0, scale: 1, x: 0, y: 0 },
-    animate: {
-      opacity: [0, 1, 1, 1, 0],
-      scale: [1, 1.08, 1.12, 1, 0.98],
-      transition: { duration: DISPLAY_DURATION / 1000, times: [0, 0.18, 0.55, 0.8, 1], ease: 'easeInOut' },
-    },
-    exit: { opacity: 0, scale: 0.98, transition: { duration: 1.2, ease: 'easeInOut' } },
-  },
-  {
-    initial: { opacity: 0, scale: 1.1, x: 20, y: 0 },
-    animate: {
-      opacity: [0, 1, 1, 1, 0],
-      scale: [1.1, 1.04, 1, 0.96, 0.93],
-      x: [20, 0, -10, -20, -30],
-      transition: { duration: DISPLAY_DURATION / 1000, times: [0, 0.15, 0.55, 0.8, 1], ease: 'easeInOut' },
-    },
-    exit: { opacity: 0, scale: 0.93, x: -40, transition: { duration: 1.2, ease: 'easeInOut' } },
-  },
-  {
-    initial: { opacity: 0, scale: 1, x: -40, y: 0 },
-    animate: {
-      opacity: [0, 1, 1, 1, 0],
-      scale: [1, 1.07, 1.12, 1, 0.97],
-      x: [-40, 0, 10, 0, 0],
-      transition: { duration: DISPLAY_DURATION / 1000, times: [0, 0.16, 0.58, 0.8, 1], ease: 'easeInOut' },
-    },
-    exit: { opacity: 0, scale: 0.97, x: 40, transition: { duration: 1.2, ease: 'easeInOut' } },
-  },
-  {
-    initial: { opacity: 0, scale: 1.1, x: 30, y: 20 },
-    animate: {
-      opacity: [0, 1, 1, 1, 0],
-      scale: [1.1, 1.05, 1, 0.97, 0.94],
-      x: [30, 10, 0, -10, -20],
-      y: [20, 10, 0, -10, -20],
-      transition: { duration: DISPLAY_DURATION / 1000, times: [0, 0.18, 0.55, 0.8, 1], ease: 'easeInOut' },
-    },
-    exit: { opacity: 0, scale: 0.94, x: -30, y: -30, transition: { duration: 1.2, ease: 'easeInOut' } },
-  },
-<<<<<<< HEAD
-=======
-  // 5. Zoom In from bottom
-  {
-    initial: { opacity: 0, scale: 1, x: 0, y: 40 },
-    show: {
-      opacity: [0, 1, 1, 1, 0],
-      scale: [1, 1.08, 1.12, 1, 0.96],
-      x: [0, 0, 0, 0, 0],
-      y: [40, 10, 0, -10, -20],
-      transition: {
-        duration: DISPLAY_DURATION / 1000,
-        times: [0, 0.16, 0.58, 0.8, 1],
-        ease: easeInOut,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.96,
-      x: 0,
-      y: -40,
-      transition: { duration: 1.2, ease: easeInOut },
-    },
-  },
->>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
-];
+  { image: '/hero1.png', text: { en: 'Leading-edge technology.', ar: 'تكنولوجيا متقدمة.' } },
+  { image: '/hero2.png', text: { en: 'Data that empowers growth.', ar: 'بيانات تُمكّن النمو.' } },
+  { image: '/hero3.png', text: { en: 'Smart transformation partner.', ar: 'شريك التحول الذكي.' } },
+  { image: '/hero4.png', text: { en: 'Innovate with confidence.', ar: 'ابتكار بثقة.' } },
+  { image: '/hero5.png', text: { en: 'Connect seamlessly everywhere.', ar: 'اتصل بكل سلاسة في كل مكان.' } },
+]
 
 const HeroSlider: React.FC = () => {
-  const { language } = useLanguage();
-  const [index, setIndex] = useState(0);
-
-  const isRTL = language !== 'en';
-  const side = index % 2 === 0 ? 'left' : 'right';
-  const actualSide = isRTL ? (side === 'left' ? 'right' : 'left') : side;
-  const sign = actualSide === 'left' ? -1 : 1;
-  const fromX = 60 * sign;
-  const exitX = -60 * sign;
+  const { language } = useLanguage()
+  const [index, setIndex] = useState(0)
+  const isRTL = language !== 'en'
+  const side = index % 2 === 0 ? 'left' : 'right'
+  const actualSide = isRTL ? (side === 'left' ? 'right' : 'left') : side
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
-    }, DISPLAY_DURATION);
-    return () => clearInterval(timer);
-  }, []);
+      setIndex(i => (i + 1) % slides.length)
+    }, SLIDE_DURATION)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden flex items-center justify-center"
+      className="relative w-full overflow-hidden"
       style={{
-        paddingTop: `${NAVBAR_HEIGHT}px`,
-<<<<<<< HEAD
+        paddingTop: NAVBAR_HEIGHT,
         minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-        maxHeight: '1024px',
       }}
     >
-      {/* Slides */}
-=======
-        minHeight: `calc(145vh - ${NAVBAR_HEIGHT}px)`,
-        maxHeight: '1024px',
-      }}
-    >
->>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
       <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.img
-            key={index}
+            key={`slide-${index}`}
             src={slides[index].image}
-            alt={`Slide ${index + 1}`}
+            alt=""
             className="absolute inset-0 w-full h-full object-cover"
-            variants={slideVariants[index % slideVariants.length]}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            style={{ minHeight: `${MOBILE_MIN_HEIGHT}px`, zIndex: 10 }}
+            initial={{ scale: 1 }}
+            animate={{
+              scale: [1, 1.05, 1],
+              transition: { duration: SLIDE_DURATION / 1000, ease: 'easeInOut' },
+            }}
+            exit={{ opacity: 0, transition: { duration: 0.8 } }}
+            style={{ minHeight: MOBILE_MIN_HEIGHT }}
           />
         </AnimatePresence>
       </div>
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 pointer-events-none"></div>
-
-<<<<<<< HEAD
-      {/* Text overlay */}
-=======
->>>>>>> 0626a7cd250ca6471a6c9a90d6bd9ce45db609bd
-      <div className="relative z-20 flex h-full w-full items-center px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className={clsx(
-              'absolute top-1/2 -translate-y-1/2 max-w-md md:max-w-lg text-white p-6 rounded-xl border border-white/30 backdrop-blur-md bg-white/20 shadow-lg',
-              isRTL ? 'text-right' : 'text-left',
-              actualSide === 'left' ? 'left-4 sm:left-16' : 'right-4 sm:right-16'
-            )}
-            initial={{ opacity: 0, x: fromX }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: exitX }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
-          >
-            <h2 className="font-heading font-bold text-2xl md:text-4xl">
-              {slides[index].text[language as 'en' | 'ar' | 'eg']}
-            </h2>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.h2
+          key={`text-${index}`}
+          className={clsx(
+            'absolute top-1/2 transform -translate-y-1/2 text-white text-3xl md:text-5xl font-bold tracking-tight',
+            actualSide === 'left' ? 'left-8' : 'right-8',
+            isRTL ? 'text-right' : 'text-left',
+          )}
+          initial={{ opacity: 0, x: actualSide === 'left' ? -80 : 80 }}
+          animate={{ opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
+          exit={{ opacity: 0, x: actualSide === 'left' ? 80 : -80, transition: { duration: 0.8, ease: 'easeInOut' } }}
+        >
+          {slides[index].text[language]}
+        </motion.h2>
+      </AnimatePresence>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSlider;
+export default HeroSlider
