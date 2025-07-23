@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence ,easeInOut} from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-
+ 
 const NAVBAR_HEIGHT = 64
-const TRANSITION_DURATION = 3.5 // Slower, smoother
-const DISPLAY_DURATION = 8000 // Slower change
+const DISPLAY_DURATION = 7500 // ms
 const MOBILE_MIN_HEIGHT = 500
 
 const images = [
@@ -15,21 +14,116 @@ const images = [
   '/hero5.png',
 ]
 
-// Alternate directions (slide in/out from left/right)
-const directions = [
-  { in: 100, out: -100 },
-  { in: -100, out: 100 },
+const slideVariants = [
+  // 1. Zoom In (center)
+  {
+    initial: { opacity: 0, scale: 1, x: 0, y: 0 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1, 1.08, 1.12, 1, 0.98],
+      x: [0, 0, 0, 0, 0],
+      y: [0, 0, 0, 0, 0],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.18, 0.55, 0.8, 1],
+        ease: easeInOut,
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.98, 
+      x: 0, 
+      y: 0, 
+      transition: { duration: 1.2, ease: easeInOut }
+    }
+  },
+  // 2. Zoom Out (bottom-right)
+  {
+    initial: { opacity: 0, scale: 1.10, x: 0, y: 0 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1.10, 1.04, 1, 0.96, 0.93],
+      x: [0, 0, 0, 0, 0],
+      y: [0, 0, 0, 0, 0],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.15, 0.55, 0.8, 1],
+        ease: easeInOut,
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.93, 
+      x: 0, 
+      y: 0, 
+      transition: { duration: 1.2, ease: easeInOut }
+    }
+  },
+  // ... وباقي الأنيميشن بنفس الطريقة
+  {
+    initial: { opacity: 0, scale: 1, x: -40, y: 0 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1, 1.03, 1.04, 1, 0.97],
+      x: [-40, 0, 20, 0, 0],
+      y: [0, 0, 0, 0, 0],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.15, 0.55, 0.8, 1],
+        ease: easeInOut,
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.97, 
+      x: 40, 
+      y: 0, 
+      transition: { duration: 1.2, ease: easeInOut }
+    }
+  },
+  // 4. Diagonal Move (Up-Right)
+  {
+    initial: { opacity: 0, scale: 1.01, x: 0, y: 30 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1.01, 1.07, 1.09, 1, 0.97],
+      x: [0, 0, 20, 0, 0],
+      y: [30, 0, -20, 0, 0],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.18, 0.55, 0.8, 1],
+        
+ease: easeInOut,
+      }
+    },
+    exit: { opacity: 0, scale: 0.97, x: 0, y: -20, transition: { duration: 1.2, ease: "easeInOut" } }
+  },
+  // 5. Zoom In + Slide Left
+  {
+    initial: { opacity: 0, scale: 1, x: 40, y: 0 },
+    show: {
+      opacity: [0, 1, 1, 1, 0],
+      scale: [1, 1.08, 1.12, 1, 0.96],
+      x: [40, 0, -20, 0, 0],
+      y: [0, 0, 0, 0, 0],
+      transition: {
+        duration: DISPLAY_DURATION / 1000,
+        times: [0, 0.16, 0.58, 0.8, 1],
+        
+ease: easeInOut,
+      }
+    },
+    exit: { opacity: 0, scale: 0.96, x: -40, y: 0, transition: { duration: 1.2, ease: "easeInOut" } }
+  }
 ]
 
 const HeroSlider: React.FC = () => {
   const { t } = useLanguage()
   const [index, setIndex] = useState(0)
-  const [directionIdx, setDirectionIdx] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIndex(i => (i + 1) % images.length)
-      setDirectionIdx(d => (d + 1) % directions.length)
     }, DISPLAY_DURATION)
     return () => clearTimeout(timer)
   }, [index])
@@ -44,31 +138,20 @@ const HeroSlider: React.FC = () => {
         maxHeight: '1024px',
       }}
     >
-      <div className="absolute inset-0 w-full h-full">
+   <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.img
             key={index}
             src={images[index]}
             alt={`Hero slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
-            initial={{
-              opacity: 0,
-              x: directions[directionIdx].in,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            exit={{
-              opacity: 0,
-              x: directions[directionIdx].out,
-            }}
-            transition={{
-              duration: TRANSITION_DURATION,
-              ease: 'easeInOut',
-            }}
+            variants={slideVariants[index % slideVariants.length]}
+            initial="initial"
+            animate="show"
+            exit="exit"
             style={{
               minHeight: `${MOBILE_MIN_HEIGHT}px`,
+              zIndex: 10,
             }}
           />
         </AnimatePresence>
@@ -86,7 +169,6 @@ const HeroSlider: React.FC = () => {
           >
             {t('heroTitle')}
           </motion.h1>
-
           <motion.p
             className="text-lg md:text-2xl mb-8 drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
