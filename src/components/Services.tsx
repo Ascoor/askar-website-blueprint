@@ -3,6 +3,7 @@ import React from 'react';
 import { Code, Smartphone, Cloud, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -50,24 +51,33 @@ const Services = () => {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Card key={index} className="relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-                <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 dark:text-gray-400 text-center leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-                
-                {/* Animated border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg"></div>
-              </Card>
+              <motion.div
+                key={index}
+                custom={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <Card className="relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                  <CardHeader className="text-center pb-4">
+                    <div className={`w-16 h-16 ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600 dark:text-gray-400 text-center leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+
+                  {/* Animated border */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg"></div>
+                </Card>
+              </motion.div>
             );
           })}
         </div>
