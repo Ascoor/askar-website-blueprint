@@ -34,7 +34,6 @@ const smoothScroll = (target: HTMLElement) => {
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
@@ -45,14 +44,7 @@ const Navigation = () => {
     { key: "contact", href: "#contact" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      console.log('[nav-scroll] position:', window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
 
   const activeId = useScrollSpy([
     "hero",
@@ -80,14 +72,7 @@ const Navigation = () => {
   return (
     <nav
       dir={isRTL ? "rtl" : "ltr"}
-      className={`
-        fixed top-0 w-full z-50 
-        transition-all duration-300
-        ${scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-elegant"
-          : "bg-background/90 backdrop-blur-sm"
-        }
-      `}
+      className="fixed top-0 w-full z-50 bg-transparent text-white"
       style={{ height: `${NAVBAR_HEIGHT}px` }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -104,10 +89,10 @@ const Navigation = () => {
                 key={item.key}
                 onClick={() => scrollToSection(item.href.slice(1))}
                 className={`
-                  transition-all duration-300 font-medium text-sm lg:text-base
+                  transition-all duration-300 font-medium text-sm lg:text-base text-white
                   ${activeId === item.href.slice(1)
-                    ? 'text-primary border-b-2 border-primary scale-105'
-                    : 'text-foreground hover:text-primary hover:scale-105'
+                    ? 'border-b-2 border-white scale-105'
+                    : 'opacity-80 hover:opacity-100'
                   }
                 `}
               >
@@ -122,7 +107,7 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full w-9 h-9"
+              className="rounded-full w-9 h-9 text-white"
             >
               {theme === "light" ? (
                 <Moon className="h-4 w-4" />
@@ -138,7 +123,7 @@ const Navigation = () => {
                 const next = order[(order.indexOf(language) + 1) % order.length];
                 setLanguage(next);
               }}
-              className="rounded-full text-xs lg:text-sm"
+              className="rounded-full text-xs lg:text-sm text-white"
             >
               <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
               {language === "en" ? "العربية" : language === "ar" ? "مصري" : "English"}
@@ -151,7 +136,7 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full w-9 h-9"
+              className="rounded-full w-9 h-9 text-white"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -170,10 +155,10 @@ const Navigation = () => {
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
                   className={`
-                    text-xl font-medium transition-all duration-300
+                    text-xl font-medium transition-all duration-300 text-white
                     ${activeId === item.href.slice(1)
-                      ? 'text-primary scale-110'
-                      : 'text-foreground hover:text-primary hover:scale-105'
+                      ? 'scale-110'
+                      : 'opacity-80 hover:opacity-100'
                     }
                   `}
                 >
