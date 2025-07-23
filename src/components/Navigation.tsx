@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import type { Language } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -74,9 +75,11 @@ const Navigation = () => {
     }
   };
 
+  const isRTL = language !== "en";
+
   return (
     <nav
-      dir={language === "ar" ? "rtl" : "ltr"}
+      dir={isRTL ? "rtl" : "ltr"}
       className={`
         fixed top-0 w-full z-50 
         transition-all duration-300
@@ -130,11 +133,15 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+              onClick={() => {
+                const order: Language[] = ["en", "ar", "eg"];
+                const next = order[(order.indexOf(language) + 1) % order.length];
+                setLanguage(next);
+              }}
               className="rounded-full text-xs lg:text-sm"
             >
               <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
-              {language === "en" ? "العربية" : "English"}
+              {language === "en" ? "العربية" : language === "ar" ? "مصري" : "English"}
             </Button>
           </div>
 
