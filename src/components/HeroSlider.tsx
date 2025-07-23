@@ -34,9 +34,6 @@ const HeroSlider: React.FC = () => {
     return () => clearTimeout(timer)
   }, [index])
 
-  // Key for animation: changes on every slide
-  const key = index
-
   return (
     <section
       id="hero"
@@ -48,9 +45,9 @@ const HeroSlider: React.FC = () => {
       }}
     >
       <div className="absolute inset-0 w-full h-full">
-        <AnimatePresence custom={directionIdx} mode="wait">
+        <AnimatePresence mode="wait">
           <motion.img
-            key={key}
+            key={index}
             src={images[index]}
             alt={`Hero slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
