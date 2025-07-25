@@ -25,6 +25,18 @@ export const eg = {
   consulting: 'استشارات تقنية',
   consultingDesc: 'نصائح تقنية عملية لتحسين شغلك',
 
+  // Enhanced Services
+  digitalInfrastructure: 'البنية التحتية الرقمية',
+  digitalInfrastructureDesc: 'استضافة سحابية قوية وخدمات مُدارة وبنية تحتية على مستوى الشركات',
+  aiCreativeProduction: 'الإنتاج الإبداعي بالذكاء الاصطناعي',
+  aiCreativeProductionDesc: 'إنشاء محتوى ذكي وسير عمل إبداعي أوتوماتيكي بأحدث تقنيات الـ AI',
+  virtualTours: 'جولات Matterport الافتراضية',
+  virtualToursDesc: 'جولات افتراضية ثلاثية الأبعاد وتجارب تفاعلية للشركات',
+  ordermeplatform: 'منصة OrdarMe',
+  ordermeplatformDesc: 'منصة تجارة إلكترونية اجتماعية كاملة تربط الشركات بالعملاء',
+  fortemonBranding: 'تصميم علامة Fortemont التجارية',
+  fortemonBrandingDesc: 'خدمات العلامة التجارية المهنية والهوية المؤسسية وتصميم ويب مذهل',
+
   // Projects
   projectsTitle: 'مشاريعنا',
   projectsSubtitle: 'أحدث قصص النجاح مع عملائنا',
@@ -57,6 +69,7 @@ export const eg = {
   // Footer
   allRightsReserved: 'كل الحقوق محفوظة.',
   followUs: 'تابعنا',
+  quickLinks: 'لينكات سريعة',
   
   // Common
   loading: 'بيحمل...',
@@ -65,6 +78,14 @@ export const eg = {
   close: 'قفل',
   open: 'افتح',
   menu: 'القايمة',
+  
+  // Enhanced CTAs
+  requestDemo: 'اطلب تجربة',
+  bookTour: 'احجز جولة افتراضية',
+  startProject: 'ابدأ مشروعك',
+  joinPartners: 'انضم لشركائنا',
+  exploreSolutions: 'استكشف الحلول',
+  contactSales: 'كلم المبيعات',
   
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبدع',

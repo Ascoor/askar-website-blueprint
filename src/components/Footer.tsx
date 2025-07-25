@@ -13,6 +13,13 @@ const Footer = () => {
     { icon: Mail, href: 'mailto:info@askar.com', label: 'Email' }
   ];
 
+  const quickLinks = [
+    { key: 'home' as const, href: 'hero' },
+    { key: 'services' as const, href: 'services' },
+    { key: 'about' as const, href: 'about' },
+    { key: 'contact' as const, href: 'contact' }
+  ];
+
   return (
     <footer className="bg-gray-900 dark:bg-black text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,20 +36,20 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('quickLinks')}</h4>
             <div className="space-y-2">
-              {['home', 'services', 'about', 'contact'].map((item) => (
+              {quickLinks.map((link) => (
                 <button
-                  key={item}
+                  key={link.key}
                   onClick={() => {
-                    const element = document.getElementById(item === 'home' ? 'hero' : item);
+                    const element = document.getElementById(link.href);
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
                   className="block text-gray-400 hover:text-white transition-colors duration-200"
                 >
-                  {t(item)}
+                  {t(link.key)}
                 </button>
               ))}
             </div>

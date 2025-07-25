@@ -25,6 +25,18 @@ export const en = {
   consulting: 'IT Consulting',
   consultingDesc: 'Strategic technology consulting to optimize your business processes',
 
+  // Enhanced Services
+  digitalInfrastructure: 'Digital Infrastructure',
+  digitalInfrastructureDesc: 'Robust cloud hosting, managed services, and enterprise-grade infrastructure solutions',
+  aiCreativeProduction: 'AI-Powered Creative Production',
+  aiCreativeProductionDesc: 'Intelligent content creation and automated creative workflows using cutting-edge AI',
+  virtualTours: 'Matterport Virtual Tours',
+  virtualToursDesc: 'Immersive 3D virtual tours and interactive spatial experiences for businesses',
+  ordermeplatform: 'OrdarMe Platform',
+  ordermeplatformDesc: 'Complete social e-commerce platform connecting businesses with customers',
+  fortemonBranding: 'Fortemont Brand Design',
+  fortemonBrandingDesc: 'Professional branding, corporate identity, and stunning web design services',
+
   // Projects
   projectsTitle: 'Our Projects',
   projectsSubtitle: 'Recent case studies from our clients',
@@ -57,6 +69,7 @@ export const en = {
   // Footer
   allRightsReserved: 'All rights reserved.',
   followUs: 'Follow Us',
+  quickLinks: 'Quick Links',
   
   // Common
   loading: 'Loading...',
@@ -65,6 +78,14 @@ export const en = {
   close: 'Close',
   open: 'Open',
   menu: 'Menu',
+  
+  // Enhanced CTAs
+  requestDemo: 'Request Demo',
+  bookTour: 'Book Virtual Tour',
+  startProject: 'Start Your Project',
+  joinPartners: 'Join Our Partners',
+  exploreSolutions: 'Explore Solutions',
+  contactSales: 'Contact Sales',
   
   // Meta
   siteTitle: 'Askar Software Solutions - Innovative Technology Partner',

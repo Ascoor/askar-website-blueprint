@@ -1,66 +1,24 @@
-
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence, easeInOut } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { cn } from '@/lib/utils';
 
 const NAVBAR_HEIGHT = 64;
-const SLIDE_DURATION = 8000; // 8 seconds
-const TEXT_APPEAR_AFTER = 4000; // Text appears after 4 seconds
-const MOBILE_MIN_HEIGHT = 500;
+const SLIDE_DURATION = 10000; // 10 ثواني
+const TEXT_APPEAR_AFTER = 6000; // النص يظهر بعد 6 ثواني
+const MOBILE_MIN_HEIGHT = 400;
 
-// Slide data with better typing
 interface SlideData {
   image: string;
-  text: {
-    en: string;
-    ar: string;
-    eg: string;
-  };
+  text: { en: string; ar: string; eg: string };
 }
-
 const slides: SlideData[] = [
-  { 
-    image: '/hero1.png', 
-    text: { 
-      en: 'Technology that leads.', 
-      ar: 'تقنية تقود.', 
-      eg: 'تقنية تقود.' 
-    } 
-  },
-  { 
-    image: '/hero2.png', 
-    text: { 
-      en: 'Data flows, growth follows.', 
-      ar: 'تدفق البيانات... ينمو.', 
-      eg: 'البيانات تتدفق... والنمو يتبع.' 
-    } 
-  },
-  { 
-    image: '/hero3.png', 
-    text: { 
-      en: 'Smart partner in transformation.', 
-      ar: 'شريك ذكي للتحول.', 
-      eg: 'شريك ذكي للتحول.' 
-    } 
-  },
-  { 
-    image: '/hero4.png', 
-    text: { 
-      en: 'Innovation with trust.', 
-      ar: 'ابتكار بثقة.', 
-      eg: 'ابتكار بثقة.' 
-    } 
-  },
-  { 
-    image: '/hero5.png', 
-    text: { 
-      en: 'Seamless connectivity everywhere.', 
-      ar: 'اتصال سلس في كل مكان.', 
-      eg: 'اتصال سلس في كل مكان.' 
-    } 
-  },
+  { image: '/hero1.png', text: { en: 'Technology that leads the future.', ar: 'تقنية تقود المستقبل.', eg: 'تقنية تقود المستقبل.' } },
+  { image: '/hero2.png', text: { en: 'Data flows, growth follows.', ar: 'تدفق البيانات، ينمو النجاح.', eg: 'البيانات تتدفق، والنمو يتبع.' } },
+  { image: '/hero3.png', text: { en: 'Smart partner in transformation.', ar: 'شريك ذكي في التحول.', eg: 'شريك ذكي في التحول.' } },
+  { image: '/hero4.png', text: { en: 'Innovation with trust.', ar: 'ابتكار بثقة.', eg: 'ابتكار بثقة.' } },
+  { image: '/hero5.png', text: { en: 'Seamless connectivity everywhere.', ar: 'اتصال سلس في كل مكان.', eg: 'اتصال سلس في كل مكان.' } },
 ];
 
 const HeroSlider: React.FC = () => {
@@ -68,82 +26,73 @@ const HeroSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showText, setShowText] = useState(false);
 
-  // Memoize current slide to prevent unnecessary re-renders
   const currentSlide = useMemo(() => slides[currentIndex], [currentIndex]);
-  
-  // Determine text position based on slide index and RTL
-  const textPosition = useMemo(() => {
-    const isLeft = currentIndex % 2 === 0;
-    return isRTL ? (isLeft ? 'right' : 'left') : (isLeft ? 'left' : 'right');
-  }, [currentIndex, isRTL]);
+  const nextSlide = useCallback(() => setCurrentIndex((prev) => (prev + 1) % slides.length), []);
 
-  // Auto-advance slides
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
-  }, []);
-
-  // Main timer effect
   useEffect(() => {
     setShowText(false);
-    
     const textTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
-    const hideTextTimer = setTimeout(() => setShowText(false), SLIDE_DURATION - 500);
     const slideTimer = setTimeout(nextSlide, SLIDE_DURATION);
-
     return () => {
       clearTimeout(textTimer);
-      clearTimeout(hideTextTimer);
       clearTimeout(slideTimer);
     };
   }, [currentIndex, nextSlide]);
 
-  // Improved animation variants with proper easing
+  // السيناريو السينمائي لعرض الشريحة: زوم إن ببطء + إضاءة مركزية متدرجة
   const imageVariants = {
-    enter: {
-      scale: 1,
-      opacity: 0,
-    },
+    initial: { scale: 1, opacity: 0, filter: 'brightness(0.7)' },
     animate: {
       scale: 1.08,
       opacity: 1,
-      transition: {
-        duration: SLIDE_DURATION / 1000,
-        ease: easeInOut,
-      },
+      filter: 'brightness(1.08)',
+      transition: { duration: 3.5, ease: 'easeOut' as const }
     },
     exit: {
+      scale: 1.13,
       opacity: 0,
-      transition: {
-        duration: 1,
-        ease: easeInOut,
-      },
-    },
+      filter: 'brightness(1.18) blur(10px)',
+      transition: { duration: 1.6, ease: 'easeInOut' as const }
+    }
   };
 
+  // ظهور النص كحروف متفرقة تتجمع (smoke in)، واختفاء كدخان يتبخر (smoke out)
   const textVariants = {
-    enter: {
+    initial: {
       opacity: 0,
-      x: textPosition === 'left' ? -80 : 80,
-      filter: 'blur(8px)',
+      letterSpacing: '1.2em',
+      filter: 'blur(28px) brightness(0.85)',
+      scale: 1.11,
+      y: 90,
     },
     animate: {
       opacity: 1,
-      x: 0,
-      filter: 'blur(0px)',
+      letterSpacing: '0.01em',
+      filter: 'blur(0px) brightness(1)',
+      scale: 1,
+      y: 0,
       transition: {
-        duration: 1.2,
-        ease: easeInOut,
-      },
+        opacity: { duration: 1.35, ease: 'anticipate' as const },
+        letterSpacing: { duration: 1.2, ease: 'anticipate' as const },
+        filter: { duration: 1.6, ease: 'anticipate' as const },
+        scale: { duration: 0.8, ease: 'anticipate' as const },
+        y: { duration: 1.1, ease: 'anticipate' as const },
+      }
     },
     exit: {
       opacity: 0,
-      x: textPosition === 'left' ? 80 : -80,
-      filter: 'blur(8px)',
+      letterSpacing: '1.6em',
+      filter: 'blur(30px) brightness(1.2) saturate(1.4)',
+      scale: 1.15,
+      y: -100,
       transition: {
-        duration: 1,
-        ease: easeInOut,
-      },
-    },
+        opacity: { duration: 1.3, ease: 'easeIn' as const },
+        letterSpacing: { duration: 1.3, ease: 'easeIn' as const },
+        filter: { duration: 1.2, ease: 'easeIn' as const },
+        scale: { duration: 0.7, ease: 'easeIn' as const },
+        y: { duration: 1.1, ease: 'easeIn' as const },
+      }
+    }
   };
 
   return (
@@ -153,19 +102,19 @@ const HeroSlider: React.FC = () => {
       style={{
         paddingTop: NAVBAR_HEIGHT,
         minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+        background: 'black'
       }}
     >
-      {/* Image Container */}
       <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.div
-            key={`slide-${currentIndex}`}
+            key={`slide-img-${currentIndex}`}
             variants={imageVariants}
-            initial="enter"
+            initial="initial"
             animate="animate"
             exit="exit"
             className="absolute inset-0 w-full h-full"
-            style={{ minHeight: MOBILE_MIN_HEIGHT }}
+            style={{ minHeight: MOBILE_MIN_HEIGHT, height: '100vh', width: '100vw' }}
           >
             <OptimizedImage
               src={currentSlide.image}
@@ -174,64 +123,68 @@ const HeroSlider: React.FC = () => {
               priority={currentIndex === 0}
               quality={90}
             />
+            {/* إضاءة مركزية بخلفية ناعمة (تدرج دائري) */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `
+                  radial-gradient(circle at 50% 53%,
+                    rgba(255,255,255,0.19) 0%,
+                    rgba(255,255,255,0.10) 32%,
+                    rgba(0,0,0,0.00) 84%,
+                    transparent 100%
+                  )
+                `,
+                mixBlendMode: 'screen'
+              }}
+            />
           </motion.div>
         </AnimatePresence>
-        
-        {/* Enhanced gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60" />
       </div>
-
-      {/* Text Overlay */}
+      {/* نص ديناميكي دخاني متدرج التجمع والتبخر وأحجام متجاوبة */}
       <AnimatePresence>
         {showText && (
           <motion.div
             key={`text-${currentIndex}-${language}`}
             variants={textVariants}
-            initial="enter"
+            initial="initial"
             animate="animate"
             exit="exit"
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 z-20',
-              'px-8 py-6 max-w-2xl',
-              textPosition === 'left' 
-                ? 'left-6 md:left-16 lg:left-24' 
-                : 'right-6 md:right-16 lg:right-24',
-              textPosition === 'left' ? 'text-left' : 'text-right'
+              'absolute left-1/2 top-1/2 z-20 px-2 py-2',
+              '-translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center select-none w-full'
             )}
+            style={{
+              maxWidth: '90vw',
+              width: '100%',
+            }}
           >
-            <div className="relative">
-              <h2 className={cn(
-                'text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
-                'font-bold text-white leading-tight',
-                'drop-shadow-2xl',
-                isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
-              )}>
-                {currentSlide.text[language]}
-              </h2>
-              
-              {/* Background blur effect */}
-              <div className="absolute inset-0 -z-10 bg-black/20 backdrop-blur-sm rounded-2xl border border-white/10" />
-            </div>
+            <h2 className={cn(
+              'font-bold leading-tight text-center transition-all duration-500 drop-shadow-[0_4px_60px_rgba(220,220,255,0.16)]',
+              isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
+            )}
+              style={{
+                color: 'white',
+                fontSize: 'clamp(2.3rem, 6vw, 5.8rem)', // أحجام مرنة حسب الشاشة
+                lineHeight: 1.13,
+                letterSpacing: 'inherit',
+                textShadow: '0 2px 38px #fff9, 0 0 14px #eaf4ff77, 0 0 2px #fff'
+              }}
+            >
+              {currentSlide.text[language]}
+            </h2>
+            {/* طبقة وميض/شفافية خلف النص */}
+            <div
+              className="absolute inset-0 -z-10 rounded-2xl"
+              style={{
+                background: 'rgba(255,255,255,0.10)',
+                boxShadow: '0 0 88px 30px #eaf4ff25, 0 2px 18px #fff2',
+                filter: 'blur(10px)'
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Slide indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={cn(
-              'w-3 h-3 rounded-full transition-all duration-300',
-              index === currentIndex
-                ? 'bg-white scale-125'
-                : 'bg-white/50 hover:bg-white/75'
-            )}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 };

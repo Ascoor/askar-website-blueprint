@@ -1,88 +1,126 @@
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence, easeInOut } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import clsx from 'clsx'
 
-import React from 'react';
-import { ChevronDown, Play, Code, Zap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
+const NAVBAR_HEIGHT = 64
+const SLIDE_DURATION = 10000 // 10 ثواني
+const TEXT_APPEAR_AFTER = 6000 // النص يظهر بعد 6 ثواني
+const TEXT_VISIBLE_TIME = 3000  // النص يبقى ظاهر 3 ثواني
+const MOBILE_MIN_HEIGHT = 500
 
-const Hero = () => {
-  const { t } = useLanguage();
+const slides = [
+  { image: '/hero1.png', text: { en: 'Technology that leads.', ar: 'تقنية تقود.' } },
+  { image: '/hero2.png', text: { en: 'Data flows, growth follows.', ar: 'تدفق البيانات... ينمو.' } },
+  { image: '/hero3.png', text: { en: 'Smart partner in transformation.', ar: 'شريك ذكي للتحول.' } },
+  { image: '/hero4.png', text: { en: 'Innovation with trust.', ar: 'ابتكار بثقة.' } },
+  { image: '/hero5.png', text: { en: 'Seamless connectivity everywhere.', ar: 'اتصال سلس في كل مكان.' } },
+]
 
-  const scrollToServices = () => {
-    const element = document.getElementById('services');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+export default function HeroSlider() {
+  const { language } = useLanguage()
+  const [index, setIndex] = useState(0)
+  const [showText, setShowText] = useState(false)
+  const isRTL = language !== 'en'
+  const slide = slides[index]
+  const textSide = isRTL ? (index % 2 ? 'left' : 'right') : (index % 2 ? 'right' : 'left')
+
+  // Main timing control
+  useEffect(() => {
+    setShowText(false)
+    const textTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER)
+    const hideTextTimer = setTimeout(() => setShowText(false), SLIDE_DURATION - 500)
+    const slideTimer = setTimeout(() => {
+      setIndex(i => (i + 1) % slides.length)
+    }, SLIDE_DURATION)
+
+    return () => {
+      clearTimeout(textTimer)
+      clearTimeout(hideTextTimer)
+      clearTimeout(slideTimer)
     }
-  };
+  }, [index])
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // Choose zoom effect: even = zoom in, odd = zoom out (always covers container)
+  const isZoomIn = index % 2 === 0
+  const imgVariants = isZoomIn
+    ? {
+        initial: { scale: 1, opacity: 0 },
+        animate: {
+          scale: 1.12, opacity: 1,
+          transition: { duration: SLIDE_DURATION / 1000, ease: easeInOut }
+        },
+        exit: { opacity: 0, transition: { duration: 1, ease: easeInOut } }
+      }
+    : {
+        initial: { scale: 1.12, opacity: 0 },
+        animate: {
+          scale: 1, opacity: 1,
+          transition: { duration: SLIDE_DURATION / 1000, ease: easeInOut }
+        },
+        exit: { opacity: 0, transition: { duration: 1, ease: easeInOut } }
+      }
+
+  // Text animation: magic fade/slide, alternates left/right, floats over with glow/shadow
+  const textMotion = {
+    initial: { opacity: 0, x: textSide === 'left' ? -60 : 60, filter: 'blur(4px)' },
+    animate: {
+      opacity: 1, x: 0, filter: 'blur(0px)',
+      transition: { duration: 1, ease: easeInOut }
+    },
+    exit: { opacity: 0, x: textSide === 'left' ? 60 : -60, filter: 'blur(10px)', transition: { duration: 1, ease: easeInOut } }
+  }
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse delay-2000"></div>
+    <section
+      id="hero"
+      className="relative w-full overflow-hidden"
+      style={{
+        paddingTop: NAVBAR_HEIGHT,
+        minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+      }}
+    >
+      <div className="absolute inset-0 w-full h-full">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={`slide-${index}`}
+            src={slide.image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+            style={{ minHeight: MOBILE_MIN_HEIGHT, zIndex: 10 }}
+            {...imgVariants}
+          />
+        </AnimatePresence>
+        {/* Glow gradient for overlay magic */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
-        <div className="text-center">
-          {/* Floating icons */}
-          <div className="flex justify-center mb-8 space-x-4">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full animate-bounce">
-              <Code className="h-6 w-6 text-blue-600" />
-            </div>
-            <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-full animate-bounce delay-300">
-              <Zap className="h-6 w-6 text-purple-600" />
-            </div>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in">
-            {t('heroTitle')}
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in delay-300">
-            {t('heroSubtitle')}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in delay-500">
-            <Button 
-              onClick={scrollToContact}
-              size="lg" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
-            >
-              {t('getStarted')}
-            </Button>
-            
-            <Button 
-              onClick={scrollToServices}
-              variant="outline" 
-              size="lg" 
-              className="px-8 py-3 text-lg font-semibold rounded-full hover:bg-gray-50 dark:hover:bg-gray-800 transform hover:-translate-y-1 transition-all duration-200"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              {t('learnMore')}
-            </Button>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="animate-bounce">
-            <button
-              onClick={scrollToServices}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
-            >
-              <ChevronDown className="h-8 w-8 mx-auto" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <AnimatePresence>
+        {showText && (
+          <motion.h2
+            key={`text-${index}`}
+            className={clsx(
+              'absolute top-1/2 -translate-y-1/2 px-6 py-3 text-3xl md:text-5xl lg:text-6xl font-bold',
+              'drop-shadow-xl shadow-black/60 rounded-3xl text-white select-none',
+              'backdrop-blur-sm bg-white/10',
+              textSide === 'left' ? 'left-6 md:left-20 text-left' : 'right-6 md:right-20 text-right',
+              isRTL ? 'font-[Tajawal] tracking-wide' : 'font-[Montserrat] tracking-tight'
+            )}
+            {...textMotion}
+            style={{
+              letterSpacing: isRTL ? '0.03em' : '0.01em',
+              lineHeight: 1.18,
+              border: '1.5px solid rgba(255,255,255,0.12)',
+              boxShadow: '0 4px 40px 0 rgba(15,40,100,0.15)',
+              textShadow: '0 4px 40px rgba(5,20,60,0.13),0 1px 2px #000c',
+              zIndex: 22,
+              fontWeight: 800
+            }}
+          >
+            {slide.text[language]}
+          </motion.h2>
+        )}
+      </AnimatePresence>
     </section>
-  );
-};
-
-export default Hero;
+  )
+}
