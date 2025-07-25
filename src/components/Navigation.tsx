@@ -126,7 +126,7 @@ const Navigation = () => {
               className="rounded-full text-xs lg:text-sm text-white"
             >
               <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
-              {language === "en" ? "العربية" : language === "ar" ? "مصري" : "English"}
+              {language === "en" ? "Ar" : language === "ar" ? "مصري" : "English"}
             </Button>
           </div>
 

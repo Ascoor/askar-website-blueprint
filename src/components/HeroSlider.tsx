@@ -1,156 +1,126 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
-import clsx from 'clsx';
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence, easeInOut } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import clsx from 'clsx'
 
-const NAVBAR_HEIGHT = 64;
-const DISPLAY_DURATION = 10000; // ms
-const CROSSFADE_DURATION = 2000; // ms
-const MOBILE_MIN_HEIGHT = 500;
+const NAVBAR_HEIGHT = 64
+const SLIDE_DURATION = 10000 // 10 ثواني
+const TEXT_APPEAR_AFTER = 6000 // النص يظهر بعد 6 ثواني
+const TEXT_VISIBLE_TIME = 3000  // النص يبقى ظاهر 3 ثواني
+const MOBILE_MIN_HEIGHT = 500
 
-interface Slide {
-  image: string;
-  text: { en: string; ar: string; eg: string };
-}
+const slides = [
+  { image: '/hero1.png', text: { en: 'Technology that leads.', ar: 'تقنية تقود.' } },
+  { image: '/hero2.png', text: { en: 'Data flows, growth follows.', ar: 'تدفق البيانات... ينمو.' } },
+  { image: '/hero3.png', text: { en: 'Smart partner in transformation.', ar: 'شريك ذكي للتحول.' } },
+  { image: '/hero4.png', text: { en: 'Innovation with trust.', ar: 'ابتكار بثقة.' } },
+  { image: '/hero5.png', text: { en: 'Seamless connectivity everywhere.', ar: 'اتصال سلس في كل مكان.' } },
+]
 
-const slides: Slide[] = [
-  {
-    image: '/hero1.png',
-    text: {
-      en: 'Technology that leads. Future that inspires.',
-      ar: 'تقنية تقود، ومستقبل يلهم.',
-      eg: 'تكنولوجيا بتفتح الطريق وبتلهم بكرة.',
-    },
-  },
-  {
-    image: '/hero2.png',
-    text: {
-      en: 'Where data flows, possibilities grow.',
-      ar: 'حيث تتدفق البيانات، تنمو الفرص.',
-      eg: 'لما البيانات تتحرك، الفرص تكتر.',
-    },
-  },
-  {
-    image: '/hero3.png',
-    text: {
-      en: 'Your smart partner in digital transformation.',
-      ar: 'شريكك الذكي في التحول الرقمي.',
-      eg: 'شريكك الشاطر في التحول الرقمي.',
-    },
-  },
-  {
-    image: '/hero4.png',
-    text: {
-      en: 'Securing progress with innovation and trust.',
-      ar: 'نؤمن التقدم بالابتكار والثقة.',
-      eg: 'بنوفرلك تطور مضمون بالابتكار والثقة.',
-    },
-  },
-  {
-    image: '/hero5.png',
-    text: {
-      en: 'Experience seamless connectivity, everywhere.',
-      ar: 'اختبر الاتصال الذكي… في كل مكان.',
-      eg: 'استمتع باتصال من غير حدود، في أي مكان.',
-    },
-  },
-];
+export default function HeroSlider() {
+  const { language } = useLanguage()
+  const [index, setIndex] = useState(0)
+  const [showText, setShowText] = useState(false)
+  const isRTL = language !== 'en'
+  const slide = slides[index]
+  const textSide = isRTL ? (index % 2 ? 'left' : 'right') : (index % 2 ? 'right' : 'left')
 
-const HeroSlider: React.FC = () => {
-  const { language } = useLanguage();
-  const [index, setIndex] = useState(0);
-  const isRTL = language !== 'en';
-  const directions = ['left', 'right', 'top', 'bottom'];
-  const direction = directions[index % directions.length];
-  const actualDirection = isRTL && (direction === 'left' || direction === 'right')
-    ? direction === 'left' ? 'right' : 'left'
-    : direction;
-
-  const from = {
-    left: { x: -80, y: 0 },
-    right: { x: 80, y: 0 },
-    top: { x: 0, y: -80 },
-    bottom: { x: 0, y: 80 },
-  }[actualDirection as 'left' | 'right' | 'top' | 'bottom'];
-  const exit = {
-    left: { x: 80, y: 0 },
-    right: { x: -80, y: 0 },
-    top: { x: 0, y: 80 },
-    bottom: { x: 0, y: -80 },
-  }[actualDirection as 'left' | 'right' | 'top' | 'bottom'];
-
+  // Main timing control
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
-    }, DISPLAY_DURATION - CROSSFADE_DURATION);
-    return () => clearInterval(timer);
-  }, []);
+    setShowText(false)
+    const textTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER)
+    const hideTextTimer = setTimeout(() => setShowText(false), SLIDE_DURATION - 500)
+    const slideTimer = setTimeout(() => {
+      setIndex(i => (i + 1) % slides.length)
+    }, SLIDE_DURATION)
+
+    return () => {
+      clearTimeout(textTimer)
+      clearTimeout(hideTextTimer)
+      clearTimeout(slideTimer)
+    }
+  }, [index])
+
+  // Choose zoom effect: even = zoom in, odd = zoom out (always covers container)
+  const isZoomIn = index % 2 === 0
+  const imgVariants = isZoomIn
+    ? {
+        initial: { scale: 1, opacity: 0 },
+        animate: {
+          scale: 1.12, opacity: 1,
+          transition: { duration: SLIDE_DURATION / 1000, ease: easeInOut }
+        },
+        exit: { opacity: 0, transition: { duration: 1, ease: easeInOut } }
+      }
+    : {
+        initial: { scale: 1.12, opacity: 0 },
+        animate: {
+          scale: 1, opacity: 1,
+          transition: { duration: SLIDE_DURATION / 1000, ease: easeInOut }
+        },
+        exit: { opacity: 0, transition: { duration: 1, ease: easeInOut } }
+      }
+
+  // Text animation: magic fade/slide, alternates left/right, floats over with glow/shadow
+  const textMotion = {
+    initial: { opacity: 0, x: textSide === 'left' ? -60 : 60, filter: 'blur(4px)' },
+    animate: {
+      opacity: 1, x: 0, filter: 'blur(0px)',
+      transition: { duration: 1, ease: easeInOut }
+    },
+    exit: { opacity: 0, x: textSide === 'left' ? 60 : -60, filter: 'blur(10px)', transition: { duration: 1, ease: easeInOut } }
+  }
 
   return (
     <section
       id="hero"
       className="relative w-full overflow-hidden"
       style={{
-        paddingTop: `${NAVBAR_HEIGHT}px`,
+        paddingTop: NAVBAR_HEIGHT,
         minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
       }}
     >
       <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.img
-            key={index}
-            src={slides[index].image}
+            key={`slide-${index}`}
+            src={slide.image}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0, scale: index % 2 === 0 ? 1 : 1.2, ...from }}
-            animate={{
-              opacity: 1,
-              scale: index % 2 === 0 ? 1.2 : 1,
-              x: 0,
-              y: 0,
-              transition: {
-                opacity: { duration: CROSSFADE_DURATION / 1000, ease: 'easeInOut' },
-                x: { duration: CROSSFADE_DURATION / 1000, ease: 'easeInOut' },
-                y: { duration: CROSSFADE_DURATION / 1000, ease: 'easeInOut' },
-                scale: { duration: DISPLAY_DURATION / 1000, ease: 'linear' },
-              },
-            }}
-            exit={{
-              opacity: 0,
-              scale: index % 2 === 0 ? 1.2 : 1,
-              ...exit,
-              transition: {
-                duration: CROSSFADE_DURATION / 1000,
-                ease: 'easeInOut',
-              },
-            }}
-            style={{ minHeight: `${MOBILE_MIN_HEIGHT}px`, zIndex: 10 }}
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+            style={{ minHeight: MOBILE_MIN_HEIGHT, zIndex: 10 }}
+            {...imgVariants}
           />
         </AnimatePresence>
+        {/* Glow gradient for overlay magic */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 pointer-events-none" />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 pointer-events-none"></div>
-      <div className="relative z-20 flex h-full w-full items-center px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
+      <AnimatePresence>
+        {showText && (
+          <motion.h2
+            key={`text-${index}`}
             className={clsx(
-              'absolute top-1/2 -translate-y-1/2 max-w-md md:max-w-lg text-white p-6 rounded-xl border border-white/30 backdrop-blur-md bg-white/20 shadow-lg',
-              isRTL ? 'text-right' : 'text-left',
-              actualDirection === 'left' ? 'left-4 sm:left-16' : actualDirection === 'right' ? 'right-4 sm:right-16' : 'left-1/2 -translate-x-1/2'
+              'absolute top-1/2 -translate-y-1/2 px-6 py-3 text-3xl md:text-5xl lg:text-6xl font-bold',
+              'drop-shadow-xl shadow-black/60 rounded-3xl text-white select-none',
+              'backdrop-blur-sm bg-white/10',
+              textSide === 'left' ? 'left-6 md:left-20 text-left' : 'right-6 md:right-20 text-right',
+              isRTL ? 'font-[Tajawal] tracking-wide' : 'font-[Montserrat] tracking-tight'
             )}
-            initial={{ opacity: 0, x: from.x, y: from.y }}
-            animate={{ opacity: 1, x: 0, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }}
-            exit={{ opacity: 0, x: exit.x, y: exit.y, transition: { duration: 0.7, ease: 'easeIn' } }}
+            {...textMotion}
+            style={{
+              letterSpacing: isRTL ? '0.03em' : '0.01em',
+              lineHeight: 1.18,
+              border: '1.5px solid rgba(255,255,255,0.12)',
+              boxShadow: '0 4px 40px 0 rgba(15,40,100,0.15)',
+              textShadow: '0 4px 40px rgba(5,20,60,0.13),0 1px 2px #000c',
+              zIndex: 22,
+              fontWeight: 800
+            }}
           >
-            <h2 className="font-heading font-bold text-2xl md:text-4xl">
-              {slides[index].text[language as 'en' | 'ar' | 'eg']}
-            </h2>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            {slide.text[language]}
+          </motion.h2>
+        )}
+      </AnimatePresence>
     </section>
-  );
-};
-
-export default HeroSlider;
+  )
+}
