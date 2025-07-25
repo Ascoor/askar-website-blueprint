@@ -5,11 +5,12 @@ import HeroSlider from '@/components/HeroSlider';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
 import About from '@/components/About';
+import CTA from '@/components/CTA';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -17,6 +18,7 @@ const Index = () => {
       <Services />
       <Projects />
       <About />
+      <CTA />
       <Contact />
       <Footer />
       <ScrollToTop />
