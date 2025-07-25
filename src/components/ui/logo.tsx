@@ -8,7 +8,7 @@ export const Logo = ({ className = "", clickable = false }) => {
   const { language } = useLanguage();
 
   const getLogoSrc = () => {
-    return theme === "dark" ? "/logo-dark-1.png" : "/logo-day-1.png";
+    return theme === "dark" ? "/logo.gif" : "/logo.gif";
   };
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc);
@@ -22,10 +22,16 @@ export const Logo = ({ className = "", clickable = false }) => {
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center",
+        "inline-flex items-center justify-center overflow-hidden rounded-full shadow-lg mt-2", // دائرية + ظل + إزاحة
         className
       )}
-      style={{ minHeight: 40, minWidth: 80 }}
+      style={{
+        width: 40,  // مربع فعليًا!
+        height: 40, // يمكنك تعديل القيمة حسب رغبتك
+        minHeight: 64,
+        minWidth: 60,
+        background: "#fff" // أو لون فاتح/شفاف كما تريد
+      }}
     >
       <img
         src={logoSrc}
@@ -33,9 +39,7 @@ export const Logo = ({ className = "", clickable = false }) => {
         title={altTitle}
         draggable={false}
         className={cn(
-          "object-contain select-none",
-          "h-8 w-auto xs:h-10 sm:h-12 md:h-14 lg:h-16",
-          "max-w-full",
+          "object-cover select-none transition-transform duration-300 hover:scale-105 w-full h-full",
           clickable && "cursor-pointer hover:opacity-90"
         )}
         onClick={clickable ? toggleTheme : undefined}
