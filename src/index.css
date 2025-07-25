@@ -157,6 +157,44 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* Modern cinematic gradient background */
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(at 20% 30%, hsla(221,83%,65%,0.45), transparent 60%),
+      radial-gradient(at 80% 70%, hsla(267,83%,70%,0.35), transparent 60%),
+      linear-gradient(120deg, hsl(221 83% 55%), hsl(221 83% 40%));
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.6;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(hsla(0,0%,100%,0.06) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    opacity: 0.3;
+  }
+
+  .dark body::before {
+    background:
+      radial-gradient(at 20% 30%, hsla(221,83%,50%,0.35), transparent 60%),
+      radial-gradient(at 80% 70%, hsla(267,83%,40%,0.25), transparent 60%),
+      linear-gradient(120deg, hsl(221 83% 25%), hsl(221 83% 10%));
+    opacity: 0.4;
   }
 
   /* Enhanced Typography Scale */
