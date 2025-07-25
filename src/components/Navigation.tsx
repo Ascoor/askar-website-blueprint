@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,12 +6,12 @@ import type { Language } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, easeOut, easeInOut } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const NAVBAR_HEIGHT = 64;
 
-// Smooth scroll utility with better easing
+// Smooth scroll
 const easeInOutQuart = (t: number) =>
   t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
@@ -40,39 +39,34 @@ const Navigation: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navItems = useMemo(() => [
-    { key: "home" as const, href: "#hero" },
-    { key: "services" as const, href: "#services" },
-    { key: "about" as const, href: "#about" },
-    { key: "projects" as const, href: "#projects" },
-    { key: "contact" as const, href: "#contact" },
-  ], []);
+  const navItems = useMemo(
+    () => [
+      { key: "home" as const, href: "#hero" },
+      { key: "services" as const, href: "#services" },
+      { key: "about" as const, href: "#about" },
+      { key: "projects" as const, href: "#projects" },
+      { key: "contact" as const, href: "#contact" },
+    ],
+    []
+  );
 
-  const activeId = useScrollSpy([
-    "hero",
-    "services",
-    "about", 
-    "projects",
-    "contact",
-  ], NAVBAR_HEIGHT + 50);
+  const activeId = useScrollSpy(
+    ["hero", "services", "about", "projects", "contact"],
+    NAVBAR_HEIGHT + 50
+  );
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      if (sectionId === 'hero') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        smoothScroll(element);
-      }
-      console.log(`[nav-scroll] to ${sectionId}`);
+      sectionId === "hero"
+        ? window.scrollTo({ top: 0, behavior: "smooth" })
+        : smoothScroll(element);
       setIsOpen(false);
     }
   }, []);
@@ -85,99 +79,85 @@ const Navigation: React.FC = () => {
 
   const getLanguageLabel = useCallback(() => {
     switch (language) {
-      case "en": return "Ar";
-      case "ar": return "مصري";
-      case "eg": return "English";
-      default: return "En";
+      case "en":
+        return "Ar";
+      case "ar":
+        return "مصري";
+      case "eg":
+        return "English";
+      default:
+        return "En";
     }
   }, [language]);
 
   const mobileMenuVariants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { 
-        duration: 0.3,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.3, ease: easeOut },
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       scale: 0.95,
-      transition: { 
-        duration: 0.2,
-        ease: "easeInOut"
-      }
-    }
-  };
+      transition: { duration: 0.2, ease: easeInOut },
+    },
+  } as const;
 
   const navClass = cn(
-    'fixed top-0 w-full transition-colors duration-500',
-    'z-30',
+    "fixed top-0 w-full z-30 transition-colors duration-500",
     scrolled
-      ? theme === 'light'
-        ? 'bg-gradient-to-b from-white via-blue-50 to-blue-100/80 text-gray-900 shadow-md backdrop-blur-xl'
-        : 'bg-gradient-to-b from-gray-900/80 via-sky-950/80 to-slate-800/80 text-white shadow-md backdrop-blur-xl'
-      : 'bg-transparent text-white'
+      ? theme === "light"
+        ? "bg-gradient-to-b from-white/90 via-gray-50/80 to-gray-100/50 text-gray-900 shadow-md backdrop-blur-xl"
+        : "bg-gradient-to-b from-black/70 via-gray-900/60 to-gray-800/60 text-white shadow-lg backdrop-blur-xl"
+      : "bg-transparent text-white"
   );
 
   return (
-    <nav dir={isRTL ? 'rtl' : 'ltr'} className={navClass} style={{ height: `${NAVBAR_HEIGHT}px` }}>
+    <nav dir={isRTL ? "rtl" : "ltr"} className={navClass} style={{ height: NAVBAR_HEIGHT }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <motion.div 
-            className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
             <Logo />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.key}
-                onClick={() => scrollToSection(item.href.slice(1))}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`
-                  transition-all duration-300 font-medium text-sm lg:text-base text-white relative
-                  ${activeId === item.href.slice(1)
-                    ? 'text-primary scale-105'
-                    : 'opacity-80 hover:opacity-100'
-                  }
-                `}
-              >
-                {t(item.key)}
-                {activeId === item.href.slice(1) && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  />
-                )}
-              </motion.button>
-            ))}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item) => {
+              const isActive = activeId === item.href.slice(1);
+              return (
+                <motion.button
+                  key={item.key}
+                  onClick={() => scrollToSection(item.href.slice(1))}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={cn(
+                    "relative font-semibold text-lg tracking-wide transition-all duration-300",
+                    isActive ? "text-white" : "text-gray-300 hover:text-white"
+                  )}
+                  style={{
+                    textShadow: isActive
+                      ? "0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6)"
+                      : "0 0 6px rgba(255,255,255,0.2)",
+                  }}
+                >
+                  {t(item.key)}
+                </motion.button>
+              );
+            })}
           </div>
 
-          {/* Theme and Language Controls */}
-          <div className="flex items-center gap-2">
+          {/* Theme & Language Controls */}
+          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
               className="rounded-full w-9 h-9 text-white hover:bg-white/10"
             >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
+              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
-            
             <Button
               variant="ghost"
               size="sm"
@@ -211,7 +191,7 @@ const Navigation: React.FC = () => {
               animate="visible"
               exit="exit"
               className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg flex items-center justify-center z-40"
-              style={{ top: `${NAVBAR_HEIGHT}px` }}
+              style={{ top: NAVBAR_HEIGHT }}
             >
               <div className="flex flex-col items-center space-y-8 py-8">
                 {navItems.map((item, index) => (
@@ -219,22 +199,15 @@ const Navigation: React.FC = () => {
                     key={item.key}
                     onClick={() => scrollToSection(item.href.slice(1))}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: 1, 
+                    animate={{
+                      opacity: 1,
                       y: 0,
-                      transition: { 
-                        delay: index * 0.1,
-                        duration: 0.3,
-                        ease: "easeOut"
-                      }
+                      transition: { delay: index * 0.1, duration: 0.3, ease: "easeOut" },
                     }}
-                    className={`
-                      text-xl font-medium transition-all duration-300 text-white
-                      ${activeId === item.href.slice(1)
-                        ? 'text-primary scale-110'
-                        : 'opacity-80 hover:opacity-100 hover:scale-105'
-                      }
-                    `}
+                    className="text-2xl font-semibold text-white"
+                    style={{
+                      textShadow: "0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
+                    }}
                   >
                     {t(item.key)}
                   </motion.button>

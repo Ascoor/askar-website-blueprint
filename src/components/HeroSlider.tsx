@@ -1,25 +1,26 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { OptimizedImage } from '@/components/ui/optimized-image';
-import { cn } from '@/lib/utils';
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { cn } from "@/lib/utils";
 
 const NAVBAR_HEIGHT = 64;
 const SLIDE_DURATION = 10000; // 10 seconds
-const TEXT_APPEAR_AFTER = SLIDE_DURATION - 4000; // text shows in last 4 seconds
+const TEXT_APPEAR_AFTER = SLIDE_DURATION - 5000; // last 5 sec
 const MOBILE_MIN_HEIGHT = 400;
-const CINEMATIC_EASING = [0.42, 0, 0.58, 1] as const;
+const EASING = [0.42, 0, 0.58, 1] as const;
 
 interface SlideData {
   image: string;
   text: { en: string; ar: string; eg: string };
 }
+
 const slides: SlideData[] = [
-  { image: '/hero1.png', text: { en: 'Technology that leads the future.', ar: 'تقنية تقود المستقبل.', eg: 'تقنية تقود المستقبل.' } },
-  { image: '/hero2.png', text: { en: 'Data flows, growth follows.', ar: 'تدفق البيانات، ينمو النجاح.', eg: 'البيانات تتدفق، والنمو يتبع.' } },
-  { image: '/hero3.png', text: { en: 'Smart partner in transformation.', ar: 'شريك ذكي في التحول.', eg: 'شريك ذكي في التحول.' } },
-  { image: '/hero4.png', text: { en: 'Innovation with trust.', ar: 'ابتكار بثقة.', eg: 'ابتكار بثقة.' } },
-  { image: '/hero5.png', text: { en: 'Seamless connectivity everywhere.', ar: 'اتصال سلس في كل مكان.', eg: 'اتصال سلس في كل مكان.' } },
+  { image: "/hero1.png", text: { en: "Technology that leads the future.", ar: "تقنية تقود المستقبل.", eg: "تقنية تقود المستقبل." } },
+  { image: "/hero2.png", text: { en: "Data flows, growth follows.", ar: "تدفق البيانات، ينمو النجاح.", eg: "البيانات تتدفق، والنمو يتبع." } },
+  { image: "/hero3.png", text: { en: "Smart partner in transformation.", ar: "شريك ذكي في التحول.", eg: "شريك ذكي في التحول." } },
+  { image: "/hero4.png", text: { en: "Innovation with trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
+  { image: "/hero5.png", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } }
 ];
 
 const HeroSlider: React.FC = () => {
@@ -28,70 +29,68 @@ const HeroSlider: React.FC = () => {
   const [showText, setShowText] = useState(false);
 
   const currentSlide = useMemo(() => slides[currentIndex], [currentIndex]);
-  const sideVariant = isRTL ? 'right' : 'left';
-  const textSide: TextSide = currentIndex % 2 === 0 ? 'center' : sideVariant;
   const nextSlide = useCallback(() => setCurrentIndex((prev) => (prev + 1) % slides.length), []);
 
   useEffect(() => {
     setShowText(false);
-    const showTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
+    const textTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
     const slideTimer = setTimeout(() => {
       setShowText(false);
       nextSlide();
     }, SLIDE_DURATION);
     return () => {
-      clearTimeout(showTimer);
+      clearTimeout(textTimer);
       clearTimeout(slideTimer);
     };
   }, [currentIndex, nextSlide]);
 
-  // السيناريو السينمائي لعرض الشريحة: زوم إن ببطء + إضاءة مركزية متدرجة
+  /** تحديد اتجاه الزوم لكل شريحة */
+  const isZoomIn = currentIndex % 2 === 0;
+
+  /** حركات الصور */
   const imageVariants: Variants = {
-    initial: { scale: 1, opacity: 0 },
+    initial: {
+      opacity: 0,
+      scale: isZoomIn ? 1 : 1.2,
+      rotateZ: isZoomIn ? -1.5 : 1.5,
+      rotateY: isZoomIn ? -8 : 8,
+      rotateX: isZoomIn ? 3 : -3
+    },
     animate: {
-      scale: 1.08,
       opacity: 1,
-      transition: { duration: SLIDE_DURATION / 1000, ease: CINEMATIC_EASING },
+      scale: isZoomIn ? 1.25 : 1, // تكبير مستمر أو تصغير مستمر
+      rotateZ: isZoomIn ? 2 : -2,
+      rotateY: 0,
+      rotateX: 0,
+      transition: {
+        duration: SLIDE_DURATION / 1000,
+        ease: EASING
+      }
     },
     exit: {
-      scale: 1.12,
-      opacity: 0,
-      transition: { duration: 1.6, ease: CINEMATIC_EASING },
-    },
+      opacity: 0, // فقط تقليل الشفافية بدون أي تغيير في الزوم
+      transition: {
+        duration: 1.5,
+        ease: EASING
+      }
+    }
   };
 
-  // ظهور النص كحروف متفرقة تتجمع (smoke in)، واختفاء كدخان يتبخر (smoke out)
-  type TextSide = 'center' | 'left' | 'right';
   const textVariants: Variants = {
-    initial: (side: TextSide) => ({
-      opacity: 0,
-      letterSpacing: '0.5em',
-      filter: 'blur(30px)',
-      y: 60,
-      x: side === 'center' ? 0 : side === 'left' ? -60 : 60,
-    }),
+    initial: { opacity: 0, y: 60, filter: "blur(20px)", letterSpacing: "0.3em" },
     animate: {
       opacity: 1,
-      letterSpacing: '0em',
-      filter: 'blur(0px)',
       y: 0,
-      x: 0,
-      transition: {
-        duration: 1.2,
-        ease: CINEMATIC_EASING,
-      },
+      filter: "blur(0px)",
+      letterSpacing: "0em",
+      transition: { duration: 1.2, ease: EASING }
     },
-    exit: (side: TextSide) => ({
+    exit: {
       opacity: 0,
-      letterSpacing: '0.5em',
-      filter: 'blur(30px)',
       y: -40,
-      x: side === 'center' ? 0 : side === 'left' ? 60 : -60,
-      transition: {
-        duration: 1,
-        ease: CINEMATIC_EASING,
-      },
-    }),
+      filter: "blur(20px)",
+      transition: { duration: 1, ease: EASING }
+    }
   };
 
   return (
@@ -100,10 +99,10 @@ const HeroSlider: React.FC = () => {
       className="relative w-full overflow-hidden"
       style={{
         paddingTop: NAVBAR_HEIGHT,
-        minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+        minHeight: `calc(140vh - ${NAVBAR_HEIGHT}px)`
       }}
     >
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full perspective-[1200px]">
         <AnimatePresence mode="sync">
           <motion.div
             key={`slide-img-${currentIndex}`}
@@ -111,7 +110,7 @@ const HeroSlider: React.FC = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 w-full h-full overflow-hidden"
+            className="absolute inset-0 w-full h-full"
             style={{ minHeight: MOBILE_MIN_HEIGHT }}
           >
             <OptimizedImage
@@ -121,62 +120,34 @@ const HeroSlider: React.FC = () => {
               priority={currentIndex === 0}
               quality={90}
             />
-            {/* إضاءة مركزية بخلفية ناعمة (تدرج دائري) */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  'radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 40%, transparent 80%)',
-                mixBlendMode: 'screen',
-              }}
-            />
           </motion.div>
         </AnimatePresence>
       </div>
-      {/* Dynamic smoke text */}
+
+      {/* النص */}
       <AnimatePresence>
         {showText && (
           <motion.div
             key={`text-${currentIndex}-${language}`}
             variants={textVariants}
-            custom={textSide}
             initial="initial"
             animate="animate"
             exit="exit"
-            className={cn(
-              'absolute top-1/2 z-20 flex flex-col select-none px-2 py-2',
-              textSide === 'center'
-                ? 'left-1/2 -translate-x-1/2 text-center'
-                : textSide === 'left'
-                  ? 'left-4 md:left-24 text-left'
-                  : 'right-4 md:right-24 text-right',
-              '-translate-y-1/2'
-            )}
-            style={{ maxWidth: '90vw', width: '100%' }}
+            className="absolute top-1/2 z-20 text-center px-4 w-full -translate-y-1/2"
           >
             <h2
               className={cn(
-                'font-bold italic leading-tight text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]',
-                isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
+                "font-bold italic text-white",
+                isRTL ? "font-[Tajawal]" : "font-[Montserrat]"
               )}
-              aria-label={currentSlide.text[language]}
               style={{
-                fontSize: 'clamp(1.8rem, 6vw, 4.8rem)',
-                lineHeight: 1.1,
-                textShadow: '0 2px 38px #000a'
+                fontSize: "clamp(1.4rem, 4vw, 3.6rem)",
+                lineHeight: 1.2,
+                textShadow: "0 2px 40px rgba(255,255,255,0.6)"
               }}
             >
               {currentSlide.text[language]}
             </h2>
-            {/* طبقة وميض/شفافية خلف النص */}
-            <div
-              className="absolute inset-0 -z-10 rounded-2xl"
-              style={{
-                background: 'rgba(255,255,255,0.1)',
-                boxShadow: '0 0 88px 30px rgba(255,255,255,0.15)',
-                filter: 'blur(10px)'
-              }}
-            />
           </motion.div>
         )}
       </AnimatePresence>
