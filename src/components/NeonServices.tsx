@@ -14,30 +14,48 @@ interface Service {
 const services: Service[] = [
   {
     image: '/hero1.png',
-    name: { en: 'Hadathah Advertising', ar: 'حداثة' },
+    name: { en: 'Web Apps & SaaS Solutions', ar: 'تطبيقات الويب وحلول SaaS' },
     description: {
-      en: 'A creative campaign for a renowned advertising company.',
-      ar: 'أحد الأعمال الإبداعية لشركة عريقة في مجال الدعاية والإعلان'
+      en: 'Scalable web platforms and SaaS products engineered for global reach.',
+      ar: 'منصات ويب ومنتجات SaaS قابلة للتوسع ومصممة للوصول العالمي.'
     },
-    link: 'app-hadatha/'
+    link: '#'
   },
   {
     image: '/hero2.png',
-    name: { en: 'Mobile Web App', ar: 'تطبيق الموبايل' },
+    name: { en: 'Mobile Applications', ar: 'تطبيقات الجوال' },
     description: {
-      en: 'Web applications that bring customers closer to your brand.',
-      ar: 'تطبيقات الويب أصبحت هي أفضل الحلول للإقتراب من العملاء بشكل ملموس'
+      en: 'Elegant native and cross‑platform apps that put your brand in every pocket.',
+      ar: 'تطبيقات أصلية وعبر المنصات تضع علامتك في متناول الجميع.'
     },
-    link: 'app/'
+    link: '#'
   },
   {
     image: '/hero3.png',
-    name: { en: 'Control Dashboard', ar: 'لوحة التحكم' },
+    name: { en: 'Custom Dashboards & Analytics', ar: 'لوحات التحكم والتحليلات المخصصة' },
     description: {
-      en: 'Simple, dynamic dashboards for a smooth user experience.',
-      ar: 'نضمن للعملاء لوحات تحكم بسيطة وسهلة وديناميكية لضمان تجربة مستخدم سهلة'
+      en: 'Interactive dashboards turning raw data into actionable insights.',
+      ar: 'لوحات تحكم تفاعلية تحول البيانات الخام إلى رؤى عملية.'
     },
-    link: 'dash/'
+    link: '#'
+  },
+  {
+    image: '/hero4.png',
+    name: { en: 'Branding & Digital Marketing', ar: 'العلامة التجارية والتسويق الرقمي' },
+    description: {
+      en: 'Strategic branding and digital campaigns that ignite engagement.',
+      ar: 'حملات رقمية واستراتيجيات هوية تشعل التفاعل مع علامتك.'
+    },
+    link: '#'
+  },
+  {
+    image: '/hero5.png',
+    name: { en: 'Creative Content & AI Solutions', ar: 'المحتوى الإبداعي وحلول الذكاء الاصطناعي' },
+    description: {
+      en: 'AI-powered content creation delivering modern stories and experiences.',
+      ar: 'إنشاء محتوى مدعوم بالذكاء الاصطناعي يقدم قصصاً وتجارب عصرية.'
+    },
+    link: '#'
   }
 ];
 
@@ -58,8 +76,12 @@ const NeonServices: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
-    <section id="services" dir={isRTL ? 'rtl' : 'ltr'} className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden">
-      {/* Subtle background circles */}
+    <section
+      id="services"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
+    >
+      {/* Background Effects */}
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
 
@@ -72,12 +94,12 @@ const NeonServices: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-            {language === 'ar' ? 'من أعمالنا' : 'Our Projects'}
+            {language === 'ar' ? 'خدماتنا المتميزة' : 'Our Expert Services'}
           </h2>
           <p className="max-w-2xl mx-auto text-lg opacity-80">
             {language === 'ar'
-              ? 'مختارات من مشاريعنا التقنية المميزة التي نفخر بها.'
-              : 'A selection of our standout technology projects.'}
+              ? 'نطور حلولاً برمجية متكاملة ونبتكر تجارب رقمية تنقل أعمالك إلى المستقبل.'
+              : 'We craft complete digital solutions that move your business toward the future.'}
           </p>
         </motion.div>
 
@@ -112,7 +134,11 @@ const NeonServices: React.FC = () => {
               </p>
               <Button variant="secondary" className="mt-auto group inline-flex">
                 {language === 'ar' ? 'اعرف المزيد' : 'See Details'}
-                <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 mr-2' : 'ml-2'}`} />
+                <ArrowRight
+                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                    isRTL ? 'rotate-180 mr-2' : 'ml-2'
+                  }`}
+                />
               </Button>
             </motion.div>
           ))}
