@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -8,6 +8,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -36,6 +37,16 @@ const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navItems = useMemo(() => [
     { key: "home" as const, href: "#hero" },
@@ -101,12 +112,18 @@ const Navigation: React.FC = () => {
     }
   };
 
+  const navClass = cn(
+    'fixed top-0 w-full transition-colors duration-500',
+    'z-30',
+    scrolled
+      ? theme === 'light'
+        ? 'bg-gradient-to-b from-white via-blue-50 to-blue-100/80 text-gray-900 shadow-md backdrop-blur-xl'
+        : 'bg-gradient-to-b from-gray-900/80 via-sky-950/80 to-slate-800/80 text-white shadow-md backdrop-blur-xl'
+      : 'bg-transparent text-white'
+  );
+
   return (
-    <nav
-      dir={isRTL ? "rtl" : "ltr"}
-      className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md text-white border-b border-white/10"
-      style={{ height: `${NAVBAR_HEIGHT}px` }}
-    >
+    <nav dir={isRTL ? 'rtl' : 'ltr'} className={navClass} style={{ height: `${NAVBAR_HEIGHT}px` }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
