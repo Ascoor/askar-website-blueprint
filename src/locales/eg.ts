@@ -78,6 +78,11 @@ export const eg = {
   close: 'قفل',
   open: 'افتح',
   menu: 'القايمة',
+
+  // Greetings
+  goodMorning: 'صباح الفل',
+  goodAfternoon: 'مساء الخير',
+  goodEvening: 'مساء النور',
   
   // Enhanced CTAs
   requestDemo: 'اطلب تجربة',
