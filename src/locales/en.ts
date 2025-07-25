@@ -78,6 +78,11 @@ export const en = {
   close: 'Close',
   open: 'Open',
   menu: 'Menu',
+
+  // Greetings
+  goodMorning: 'Good Morning',
+  goodAfternoon: 'Good Afternoon',
+  goodEvening: 'Good Evening',
   
   // Enhanced CTAs
   requestDemo: 'Request Demo',

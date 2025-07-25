@@ -79,6 +79,11 @@ export const ar = {
   open: 'فتح',
   menu: 'القائمة',
 
+  // Greetings
+  goodMorning: 'صباح الخير',
+  goodAfternoon: 'مساء الخير',
+  goodEvening: 'مساء الخير',
+
   // Enhanced CTAs
   requestDemo: 'طلب عرض تجريبي',
   bookTour: 'احجز جولة افتراضية',
