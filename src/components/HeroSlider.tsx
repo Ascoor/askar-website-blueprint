@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { cn } from '@/lib/utils';
 
 const NAVBAR_HEIGHT = 64;
-const SLIDE_DURATION = 10000; // 10 ثواني
-const TEXT_APPEAR_AFTER = 6000; // النص يظهر بعد 6 ثواني
+const SLIDE_DURATION = 10000; // 10 seconds
+const TEXT_APPEAR_AFTER = 6000; // text shows after 6 seconds
+const TEXT_DISAPPEAR_AT = SLIDE_DURATION - 2000; // hide 2 seconds before slide ends
 const MOBILE_MIN_HEIGHT = 400;
+const CINEMATIC_EASING = [0.42, 0, 0.58, 1] as const;
 
 interface SlideData {
   image: string;
@@ -31,68 +33,59 @@ const HeroSlider: React.FC = () => {
 
   useEffect(() => {
     setShowText(false);
-    const textTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
+    const showTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
+    const hideTimer = setTimeout(() => setShowText(false), TEXT_DISAPPEAR_AT);
     const slideTimer = setTimeout(nextSlide, SLIDE_DURATION);
     return () => {
-      clearTimeout(textTimer);
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
       clearTimeout(slideTimer);
     };
   }, [currentIndex, nextSlide]);
 
   // السيناريو السينمائي لعرض الشريحة: زوم إن ببطء + إضاءة مركزية متدرجة
-  const imageVariants = {
-    initial: { scale: 1, opacity: 0, filter: 'brightness(0.7)' },
+  const imageVariants: Variants = {
+    initial: { scale: 1, opacity: 0 },
     animate: {
-      scale: 1.08,
+      scale: 1.13,
       opacity: 1,
-      filter: 'brightness(1.08)',
-      transition: { duration: 3.5, ease: 'easeOut' as const }
+      transition: { duration: SLIDE_DURATION / 1000, ease: CINEMATIC_EASING },
     },
     exit: {
-      scale: 1.13,
+      scale: 1.18,
       opacity: 0,
-      filter: 'brightness(1.18) blur(10px)',
-      transition: { duration: 1.6, ease: 'easeInOut' as const }
-    }
+      transition: { duration: 1.6, ease: CINEMATIC_EASING },
+    },
   };
 
   // ظهور النص كحروف متفرقة تتجمع (smoke in)، واختفاء كدخان يتبخر (smoke out)
-  const textVariants = {
+  const textVariants: Variants = {
     initial: {
       opacity: 0,
-      letterSpacing: '1.2em',
-      filter: 'blur(28px) brightness(0.85)',
-      scale: 1.11,
-      y: 90,
+      letterSpacing: '0.5em',
+      filter: 'blur(30px)',
+      y: 80,
     },
     animate: {
       opacity: 1,
-      letterSpacing: '0.01em',
-      filter: 'blur(0px) brightness(1)',
-      scale: 1,
+      letterSpacing: '0em',
+      filter: 'blur(0px)',
       y: 0,
       transition: {
-        opacity: { duration: 1.35, ease: 'anticipate' as const },
-        letterSpacing: { duration: 1.2, ease: 'anticipate' as const },
-        filter: { duration: 1.6, ease: 'anticipate' as const },
-        scale: { duration: 0.8, ease: 'anticipate' as const },
-        y: { duration: 1.1, ease: 'anticipate' as const },
-      }
+        duration: 1.4,
+        ease: CINEMATIC_EASING,
+      },
     },
     exit: {
       opacity: 0,
-      letterSpacing: '1.6em',
-      filter: 'blur(30px) brightness(1.2) saturate(1.4)',
-      scale: 1.15,
-      y: -100,
+      letterSpacing: '0.6em',
+      filter: 'blur(30px)',
+      y: -80,
       transition: {
-        opacity: { duration: 1.3, ease: 'easeIn' as const },
-        letterSpacing: { duration: 1.3, ease: 'easeIn' as const },
-        filter: { duration: 1.2, ease: 'easeIn' as const },
-        scale: { duration: 0.7, ease: 'easeIn' as const },
-        y: { duration: 1.1, ease: 'easeIn' as const },
-      }
-    }
+        duration: 1.2,
+        ease: CINEMATIC_EASING,
+      },
+    },
   };
 
   return (
@@ -102,19 +95,18 @@ const HeroSlider: React.FC = () => {
       style={{
         paddingTop: NAVBAR_HEIGHT,
         minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-        background: 'black'
       }}
     >
       <div className="absolute inset-0 w-full h-full">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           <motion.div
             key={`slide-img-${currentIndex}`}
             variants={imageVariants}
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 w-full h-full"
-            style={{ minHeight: MOBILE_MIN_HEIGHT, height: '100vh', width: '100vw' }}
+            className="absolute inset-0 w-full h-full overflow-hidden"
+            style={{ minHeight: MOBILE_MIN_HEIGHT }}
           >
             <OptimizedImage
               src={currentSlide.image}
@@ -127,21 +119,15 @@ const HeroSlider: React.FC = () => {
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: `
-                  radial-gradient(circle at 50% 53%,
-                    rgba(255,255,255,0.19) 0%,
-                    rgba(255,255,255,0.10) 32%,
-                    rgba(0,0,0,0.00) 84%,
-                    transparent 100%
-                  )
-                `,
-                mixBlendMode: 'screen'
+                background:
+                  'radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 40%, transparent 80%)',
+                mixBlendMode: 'screen',
               }}
             />
           </motion.div>
         </AnimatePresence>
       </div>
-      {/* نص ديناميكي دخاني متدرج التجمع والتبخر وأحجام متجاوبة */}
+      {/* Dynamic smoke text */}
       <AnimatePresence>
         {showText && (
           <motion.div
@@ -151,24 +137,20 @@ const HeroSlider: React.FC = () => {
             animate="animate"
             exit="exit"
             className={cn(
-              'absolute left-1/2 top-1/2 z-20 px-2 py-2',
-              '-translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center select-none w-full'
+              'absolute left-1/2 top-1/2 z-20 flex flex-col items-center text-center select-none w-full',
+              '-translate-x-1/2 -translate-y-1/2 px-2 py-2'
             )}
-            style={{
-              maxWidth: '90vw',
-              width: '100%',
-            }}
+            style={{ maxWidth: '90vw', width: '100%' }}
           >
             <h2 className={cn(
-              'font-bold leading-tight text-center transition-all duration-500 drop-shadow-[0_4px_60px_rgba(220,220,255,0.16)]',
+              'font-bold leading-tight text-center text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]',
               isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
             )}
+              aria-label={currentSlide.text[language]}
               style={{
-                color: 'white',
-                fontSize: 'clamp(2.3rem, 6vw, 5.8rem)', // أحجام مرنة حسب الشاشة
-                lineHeight: 1.13,
-                letterSpacing: 'inherit',
-                textShadow: '0 2px 38px #fff9, 0 0 14px #eaf4ff77, 0 0 2px #fff'
+                fontSize: 'clamp(2.3rem, 7vw, 5.7rem)',
+                lineHeight: 1.1,
+                textShadow: '0 2px 38px #000a'
               }}
             >
               {currentSlide.text[language]}
@@ -177,8 +159,8 @@ const HeroSlider: React.FC = () => {
             <div
               className="absolute inset-0 -z-10 rounded-2xl"
               style={{
-                background: 'rgba(255,255,255,0.10)',
-                boxShadow: '0 0 88px 30px #eaf4ff25, 0 2px 18px #fff2',
+                background: 'rgba(255,255,255,0.1)',
+                boxShadow: '0 0 88px 30px rgba(255,255,255,0.15)',
                 filter: 'blur(10px)'
               }}
             />
