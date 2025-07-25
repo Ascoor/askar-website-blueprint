@@ -76,8 +76,12 @@ const NeonServices: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
-    <section id="services" dir={isRTL ? 'rtl' : 'ltr'} className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden">
-      {/* Subtle background circles */}
+    <section
+      id="services"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
+    >
+      {/* Background Effects */}
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
 
@@ -130,7 +134,11 @@ const NeonServices: React.FC = () => {
               </p>
               <Button variant="secondary" className="mt-auto group inline-flex">
                 {language === 'ar' ? 'اعرف المزيد' : 'See Details'}
-                <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 mr-2' : 'ml-2'}`} />
+                <ArrowRight
+                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                    isRTL ? 'rotate-180 mr-2' : 'ml-2'
+                  }`}
+                />
               </Button>
             </motion.div>
           ))}
