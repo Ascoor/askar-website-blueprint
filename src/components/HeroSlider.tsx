@@ -6,8 +6,7 @@ import { cn } from '@/lib/utils';
 
 const NAVBAR_HEIGHT = 64;
 const SLIDE_DURATION = 10000; // 10 seconds
-const TEXT_APPEAR_AFTER = 6000; // text shows after 6 seconds
-const TEXT_DISAPPEAR_AT = SLIDE_DURATION - 2000; // hide 2 seconds before slide ends
+const TEXT_APPEAR_AFTER = SLIDE_DURATION - 4000; // text shows in last 4 seconds
 const MOBILE_MIN_HEIGHT = 400;
 const CINEMATIC_EASING = [0.42, 0, 0.58, 1] as const;
 
@@ -29,16 +28,19 @@ const HeroSlider: React.FC = () => {
   const [showText, setShowText] = useState(false);
 
   const currentSlide = useMemo(() => slides[currentIndex], [currentIndex]);
+  const sideVariant = isRTL ? 'right' : 'left';
+  const textSide: TextSide = currentIndex % 2 === 0 ? 'center' : sideVariant;
   const nextSlide = useCallback(() => setCurrentIndex((prev) => (prev + 1) % slides.length), []);
 
   useEffect(() => {
     setShowText(false);
     const showTimer = setTimeout(() => setShowText(true), TEXT_APPEAR_AFTER);
-    const hideTimer = setTimeout(() => setShowText(false), TEXT_DISAPPEAR_AT);
-    const slideTimer = setTimeout(nextSlide, SLIDE_DURATION);
+    const slideTimer = setTimeout(() => {
+      setShowText(false);
+      nextSlide();
+    }, SLIDE_DURATION);
     return () => {
       clearTimeout(showTimer);
-      clearTimeout(hideTimer);
       clearTimeout(slideTimer);
     };
   }, [currentIndex, nextSlide]);
@@ -47,45 +49,49 @@ const HeroSlider: React.FC = () => {
   const imageVariants: Variants = {
     initial: { scale: 1, opacity: 0 },
     animate: {
-      scale: 1.13,
+      scale: 1.08,
       opacity: 1,
       transition: { duration: SLIDE_DURATION / 1000, ease: CINEMATIC_EASING },
     },
     exit: {
-      scale: 1.18,
+      scale: 1.12,
       opacity: 0,
       transition: { duration: 1.6, ease: CINEMATIC_EASING },
     },
   };
 
   // ظهور النص كحروف متفرقة تتجمع (smoke in)، واختفاء كدخان يتبخر (smoke out)
+  type TextSide = 'center' | 'left' | 'right';
   const textVariants: Variants = {
-    initial: {
+    initial: (side: TextSide) => ({
       opacity: 0,
       letterSpacing: '0.5em',
       filter: 'blur(30px)',
-      y: 80,
-    },
+      y: 60,
+      x: side === 'center' ? 0 : side === 'left' ? -60 : 60,
+    }),
     animate: {
       opacity: 1,
       letterSpacing: '0em',
       filter: 'blur(0px)',
       y: 0,
-      transition: {
-        duration: 1.4,
-        ease: CINEMATIC_EASING,
-      },
-    },
-    exit: {
-      opacity: 0,
-      letterSpacing: '0.6em',
-      filter: 'blur(30px)',
-      y: -80,
+      x: 0,
       transition: {
         duration: 1.2,
         ease: CINEMATIC_EASING,
       },
     },
+    exit: (side: TextSide) => ({
+      opacity: 0,
+      letterSpacing: '0.5em',
+      filter: 'blur(30px)',
+      y: -40,
+      x: side === 'center' ? 0 : side === 'left' ? 60 : -60,
+      transition: {
+        duration: 1,
+        ease: CINEMATIC_EASING,
+      },
+    }),
   };
 
   return (
@@ -133,22 +139,29 @@ const HeroSlider: React.FC = () => {
           <motion.div
             key={`text-${currentIndex}-${language}`}
             variants={textVariants}
+            custom={textSide}
             initial="initial"
             animate="animate"
             exit="exit"
             className={cn(
-              'absolute left-1/2 top-1/2 z-20 flex flex-col items-center text-center select-none w-full',
-              '-translate-x-1/2 -translate-y-1/2 px-2 py-2'
+              'absolute top-1/2 z-20 flex flex-col select-none px-2 py-2',
+              textSide === 'center'
+                ? 'left-1/2 -translate-x-1/2 text-center'
+                : textSide === 'left'
+                  ? 'left-4 md:left-24 text-left'
+                  : 'right-4 md:right-24 text-right',
+              '-translate-y-1/2'
             )}
             style={{ maxWidth: '90vw', width: '100%' }}
           >
-            <h2 className={cn(
-              'font-bold leading-tight text-center text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]',
-              isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
-            )}
+            <h2
+              className={cn(
+                'font-bold italic leading-tight text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]',
+                isRTL ? 'font-[Tajawal]' : 'font-[Montserrat]'
+              )}
               aria-label={currentSlide.text[language]}
               style={{
-                fontSize: 'clamp(2.3rem, 7vw, 5.7rem)',
+                fontSize: 'clamp(1.8rem, 6vw, 4.8rem)',
                 lineHeight: 1.1,
                 textShadow: '0 2px 38px #000a'
               }}

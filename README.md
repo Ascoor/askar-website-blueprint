@@ -37,6 +37,21 @@ npm run dev
 - الخطوط من [Google Fonts](https://fonts.google.com/).
 - الأيقونات من [Lucide](https://lucide.dev/).
 
+## تحميل الخطوط / Font Loading
+
+تم تضمين أوزان مائلة حقيقية لخطوط **Montserrat** (للإنجليزية) و **Tajawal** (للعربية) من خلال Google Fonts لتجنب إنشاء مائل وهمي.
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,700&family=Tajawal:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+```
+
+يمكن بعدها استخدام الخطوط في المكونات:
+
+```tsx
+<h2 className="font-bold italic font-[Montserrat]">English Headline</h2>
+<h2 className="font-bold italic font-[Tajawal]">عنوان بالعربية</h2>
+```
+
 ## فلسفة التصميم
 
 يركز التصميم على البساطة والوضوح مع لمسات حركية خفيفة لتعزيز تجربة المستخدم دون التأثير على الأداء. تم اختيار ألوان زرقاء داكنة مع تدرجات ذهبية لإضفاء طابع تقني فاخر يتناسب مع الهوية العربية الحديثة.
