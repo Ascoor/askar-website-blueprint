@@ -12,7 +12,8 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguageState] = useState<Language>('en');
+  // Default language Arabic with RTL direction
+  const [language, setLanguageState] = useState<Language>('ar');
 
   const setLanguage = (lang: Language) => {
     console.log('[language-change] new language:', lang);
