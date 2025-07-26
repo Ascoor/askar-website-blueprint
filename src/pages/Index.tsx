@@ -8,7 +8,7 @@ import About from '@/components/About';
 import CTA from '@/components/CTA';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
+import BackToTopButton from '@/components/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index: React.FC = () => {
@@ -39,7 +39,7 @@ const Index: React.FC = () => {
         <Contact />
       </main>
       <Footer />
-      <ScrollToTop />
+      <BackToTopButton />
     </div>
   );
 };

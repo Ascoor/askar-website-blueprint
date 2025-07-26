@@ -133,12 +133,16 @@ const Navigation: React.FC = () => {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
-      <nav
-      aria-label="Main navigation"
-      dir={isRTL ? "rtl" : "ltr"}
-      className={navClass}
-      style={{ height: NAVBAR_HEIGHT }}
-    >   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+      <motion.nav
+        aria-label="Main navigation"
+        dir={isRTL ? "rtl" : "ltr"}
+        className={navClass}
+        style={{ height: NAVBAR_HEIGHT }}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
@@ -150,20 +154,15 @@ const Navigation: React.FC = () => {
             {navItems.map((item) => {
               const isActive = activeId === item.href.slice(1);
               return (
-               <motion.button
+                <motion.button
                   key={item.key}
                   onClick={() => handleNavItemClick(item)}
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
-                    "relative font-semibold text-lg tracking-wide transition-all duration-300",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    "nav-link font-semibold text-lg tracking-wide",
+                    isActive ? "text-foreground neon-active" : "text-muted-foreground hover:text-foreground"
                   )}
-                  style={{
-                    textShadow: isActive
-                      ? "0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6)"
-                      : "0 0 6px rgba(255,255,255,0.2)",
-                  }}
                 >
                   {t(item.key)}
                 </motion.button>
@@ -216,30 +215,36 @@ const Navigation: React.FC = () => {
               style={{ top: NAVBAR_HEIGHT }}
             >
               <div className="flex flex-col items-center space-y-8 py-8">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.key}
-                    onClick={() => handleNavItemClick(item)}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      transition: { delay: index * 0.1, duration: 0.3, ease: "easeOut" },
-                    }}
-                    className="text-2xl font-semibold text-foreground"
-                    style={{
-                      textShadow: "0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                    }}
-                  >
-                    {t(item.key)}
-                  </motion.button>
-                ))}
+                {navItems.map((item, index) => {
+                  const isActive = activeId === item.href.slice(1);
+                  return (
+                    <motion.button
+                      key={item.key}
+                      onClick={() => handleNavItemClick(item)}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        transition: { delay: index * 0.1, duration: 0.3, ease: "easeOut" },
+                      }}
+                      className={cn(
+                        "text-2xl font-semibold",
+                        isActive ? "neon-active" : ""
+                      )}
+                      style={{
+                        textShadow: "0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
+                      }}
+                    >
+                      {t(item.key)}
+                    </motion.button>
+                  );
+                })}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
     </>
   );
 };
