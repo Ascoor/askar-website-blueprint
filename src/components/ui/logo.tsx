@@ -22,15 +22,14 @@ export const Logo = ({ className = "", clickable = false }) => {
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center overflow-hidden rounded-full shadow-lg mt-2", // دائرية + ظل + إزاحة
+        "inline-flex items-center justify-center overflow-hidden rounded-full shadow-lg mt-2 bg-background",
         className
       )}
       style={{
-        width: 40,  // مربع فعليًا!
+        width: 40, // مربع فعليًا!
         height: 40, // يمكنك تعديل القيمة حسب رغبتك
         minHeight: 64,
         minWidth: 60,
-        background: "#fff" // أو لون فاتح/شفاف كما تريد
       }}
     >
       <img

@@ -15,7 +15,7 @@ const NotFound = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -39,10 +39,10 @@ const NotFound = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1], delay: 0.4 }}
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             {t('notFound')}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
             {t('notFoundDesc')}
           </p>
         </motion.div>

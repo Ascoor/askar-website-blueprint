@@ -38,7 +38,7 @@ const ScrollToTop = () => {
     <button
       onClick={scrollToTop}
       aria-label={language !== 'en' ? 'العودة للأعلى' : 'Back to top'}
-      className={`fixed bottom-6 ${language !== 'en' ? 'left-6' : 'right-6'} z-40 p-3 rounded-full bg-primary text-white shadow-premium transition-opacity duration-300 hover:bg-primary-hover focus:outline-none ${
+      className={`fixed bottom-6 ${language !== 'en' ? 'left-6' : 'right-6'} z-40 p-3 rounded-full bg-primary text-primary-foreground shadow-premium transition-opacity duration-300 hover:bg-primary-hover focus:outline-none ${
         visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >

@@ -20,12 +20,12 @@ const SiteContact: React.FC = () => {
   const [name, email, message] = siteData.contact.fields;
 
   return (
-    <section id="contact" className="py-16 bg-gray-50 dark:bg-gray-900" dir="rtl">
+    <section id="contact" className="py-16 bg-muted" dir="rtl">
       <div className="max-w-2xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">تواصل معنا</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-foreground">تواصل معنا</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
               {name}
             </label>
             <Input
@@ -38,7 +38,7 @@ const SiteContact: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
               {email}
             </label>
             <Input
@@ -52,7 +52,7 @@ const SiteContact: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
               {message}
             </label>
             <Textarea
@@ -65,7 +65,7 @@ const SiteContact: React.FC = () => {
               required
             />
           </div>
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+          <Button type="submit" className="w-full bg-primary hover:bg-primary-hover text-primary-foreground">
             {siteData.contact.button}
           </Button>
         </form>

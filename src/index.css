@@ -83,6 +83,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 221 83% 53%;
+
+    /* Footer Colors */
+    --footer: 240 5% 10%;
+    --footer-foreground: 0 0% 98%;
   }
 
   .dark {
@@ -136,6 +140,9 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 221 83% 53%;
+
+    --footer: 240 3.7% 5%;
+    --footer-foreground: 0 0% 98%;
   }
 }
 
