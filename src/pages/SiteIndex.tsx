@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
 import Portfolio from '@/components/sections/Portfolio';
 import Services from '@/components/sections/Services';
+import Solutions from '@/components/sections/Solutions';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
 import Navigation from '@/components/layout/Navigation';
@@ -36,6 +37,7 @@ const SiteIndex: React.FC = () => {
         <HeroSlider />
         <Portfolio />
         <Services />
+        <Solutions />
         <Contact />
       </main>
       <Footer />

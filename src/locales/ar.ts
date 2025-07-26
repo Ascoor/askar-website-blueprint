@@ -37,6 +37,10 @@ export const ar = {
   fortemonBranding: 'تصميم علامة Fortemont التجارية',
   fortemonBrandingDesc: 'خدمات العلامة التجارية المهنية والهوية المؤسسية وتصميم الويب المذهل',
 
+  // Solutions Section
+  solutionsTitle: 'حلولنا',
+  solutionsSubtitle: 'حلول تقنية مخصصة لكل مجال',
+
   // Projects
   projectsTitle: 'مشاريعنا',
   projectsSubtitle: 'دراسات حالة حديثة من عملائنا',
@@ -105,4 +109,7 @@ export const ar = {
   ctaTitle: 'مستعد لتحويل عملك؟',
   ctaDesc: 'دعنا نناقش مشروعك وننشئ شيئاً رائعاً معاً.',
   ctaButton: 'ابدأ مشروعك',
+
+  // Accessibility
+  skipToContent: 'تجاوز إلى المحتوى'
 } as const;
