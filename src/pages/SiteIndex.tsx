@@ -21,6 +21,14 @@ const SiteIndex: React.FC = () => {
       <Helmet>
         <title>{t('siteTitle')}</title>
         <meta name="description" content={t('siteDescription')} />
+        <link rel="canonical" href="https://askarsolutions.com/" />
+        <meta property="og:title" content={t('siteTitle')} />
+        <meta property="og:description" content={t('siteDescription')} />
+        <meta property="og:url" content="https://askarsolutions.com/" />
+        <meta
+          property="og:image"
+          content="https://lovable.dev/opengraph-image-p98pqg.png"
+        />
       </Helmet>
 
       {/* Skip Link for Accessibility */}

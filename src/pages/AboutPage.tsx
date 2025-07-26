@@ -16,6 +16,17 @@ const AboutPage: React.FC = () => {
       <Helmet>
         <title>{`${t('aboutTitle')} - ${t('siteTitle')}`}</title>
         <meta name="description" content={t('aboutDesc')} />
+        <link rel="canonical" href="https://askarsolutions.com/about" />
+        <meta
+          property="og:title"
+          content={`${t('aboutTitle')} - ${t('siteTitle')}`}
+        />
+        <meta property="og:description" content={t('aboutDesc')} />
+        <meta property="og:url" content="https://askarsolutions.com/about" />
+        <meta
+          property="og:image"
+          content="https://lovable.dev/opengraph-image-p98pqg.png"
+        />
       </Helmet>
 
       <a
