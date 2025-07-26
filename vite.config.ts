@@ -24,7 +24,7 @@ function generateSitemapPlugin() {
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'development'
   const csp =
-    "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self';"
+    "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
   
   return {
     // Server config only applies in development

@@ -3,22 +3,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faLaptopCode,
-  faMobileAlt,
-  faChartLine,
-  faBullhorn,
-  faCloud
-} from '@fortawesome/free-solid-svg-icons';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface Service {
   name: { en: string; ar: string };
   description: { en: string; ar: string };
   image: string;
   link: string;
-  icon: IconDefinition;
 }
 
 const services: Service[] = [
@@ -29,8 +19,7 @@ const services: Service[] = [
       en: 'Scalable web platforms and SaaS products engineered for global reach.',
       ar: 'منصات ويب ومنتجات SaaS قابلة للتوسع ومصممة للوصول العالمي.'
     },
-    link: '#',
-    icon: faLaptopCode
+    link: '#'
   },
   {
     image: '/hero2.png',
@@ -39,8 +28,7 @@ const services: Service[] = [
       en: 'Elegant native and cross‑platform apps that put your brand in every pocket.',
       ar: 'تطبيقات أصلية وعبر المنصات تضع علامتك في متناول الجميع.'
     },
-    link: '#',
-    icon: faMobileAlt
+    link: '#'
   },
   {
     image: '/hero3.png',
@@ -49,8 +37,7 @@ const services: Service[] = [
       en: 'Interactive dashboards turning raw data into actionable insights.',
       ar: 'لوحات تحكم تفاعلية تحول البيانات الخام إلى رؤى عملية.'
     },
-    link: '#',
-    icon: faChartLine
+    link: '#'
   },
   {
     image: '/hero4.png',
@@ -59,8 +46,7 @@ const services: Service[] = [
       en: 'Strategic branding and digital campaigns that ignite engagement.',
       ar: 'حملات رقمية واستراتيجيات هوية تشعل التفاعل مع علامتك.'
     },
-    link: '#',
-    icon: faBullhorn
+    link: '#'
   },
   {
     image: '/hero5.png',
@@ -69,8 +55,7 @@ const services: Service[] = [
       en: 'AI-powered content creation delivering modern stories and experiences.',
       ar: 'إنشاء محتوى مدعوم بالذكاء الاصطناعي يقدم قصصاً وتجارب عصرية.'
     },
-    link: '#',
-    icon: faCloud
+    link: '#'
   }
 ];
 
@@ -134,17 +119,16 @@ const Services: React.FC = () => {
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
                   <img
-                  src={service.image}
+                  src={service.image} 
                   width="352"
                   height="176"
-                  decoding="async"
+                  decoding="async" 
                   alt={service.name.en}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
               </div>
-              <FontAwesomeIcon icon={service.icon} className="text-cyan-300 mb-3" size="2x" />
               <h3 className="text-2xl font-semibold mb-2">
                 {language === 'ar' ? service.name.ar : service.name.en}
               </h3>
