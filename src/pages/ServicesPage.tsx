@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
-import NeonServices from '@/components/NeonServices';
+import Services from '@/components/Services';
 import CTA from '@/components/CTA';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -28,7 +28,7 @@ const ServicesPage: React.FC = () => {
 
       <Navigation />
       <main id="main-content">
-        <NeonServices />
+        <Services />
         <CTA />
         <Contact />
       </main>
