@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Navigation from '@/components/Navigation';
-import Portfolio from '@/components/Portfolio';
-import CTA from '@/components/CTA';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import BackToTopButton from '@/components/BackToTopButton';
+import Navigation from '@/components/layout/Navigation';
+import Portfolio from '@/components/sections/Portfolio';
+import CTA from '@/components/sections/CTA';
+import Contact from '@/components/sections/Contact';
+import Footer from '@/components/layout/Footer';
+import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const PortfolioPage: React.FC = () => {
