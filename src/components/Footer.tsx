@@ -3,7 +3,7 @@ import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
 
   const socialLinks = [
     { icon: Github, href: '#', label: 'GitHub' },
@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-footer text-footer-foreground py-12">
+    <footer dir={isRTL ? 'rtl' : 'ltr'} className="bg-footer text-footer-foreground py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
