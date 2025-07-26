@@ -113,7 +113,7 @@ const HeroSlider: React.FC = () => {
             className="absolute inset-0 w-full h-full"
             style={{ minHeight: MOBILE_MIN_HEIGHT }}
           >
-            <OptimizedImage
+             <OptimizedImage
               src={currentSlide.image}
               alt={currentSlide.text[language]}
               className="w-full h-full object-cover select-none"
@@ -137,7 +137,7 @@ const HeroSlider: React.FC = () => {
           >
             <h2
               className={cn(
-                "font-bold italic text-white",
+                "font-bold italic text-primary-foreground",
                 isRTL ? "font-[Tajawal]" : "font-[Montserrat]"
               )}
               style={{
