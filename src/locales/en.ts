@@ -37,6 +37,10 @@ export const en = {
   fortemonBranding: 'Fortemont Brand Design',
   fortemonBrandingDesc: 'Professional branding, corporate identity, and stunning web design services',
 
+  // Solutions Section
+  solutionsTitle: 'Our Solutions',
+  solutionsSubtitle: 'Tailored technology solutions for every industry',
+
   // Projects
   projectsTitle: 'Our Projects',
   projectsSubtitle: 'Recent case studies from our clients',
@@ -105,4 +109,7 @@ export const en = {
   ctaTitle: 'Ready to Transform Your Business?',
   ctaDesc: 'Let\'s discuss your project and create something amazing together.',
   ctaButton: 'Start Your Project',
+
+  // Accessibility
+  skipToContent: 'Skip to content'
 } as const;
