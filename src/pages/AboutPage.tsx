@@ -29,12 +29,7 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      <a
-        href="#main-content"
-        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
-      >
-        {t('skipToContent')}
-      </a>
+ 
 
       <Navigation />
       <main id="main-content">

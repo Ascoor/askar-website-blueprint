@@ -112,6 +112,9 @@ const Portfolio: React.FC = () => {
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
                 <img
+                     width="352"
+                  height="176"
+                  decoding="async"
                   src={project.image}
                   alt={project.name.en}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

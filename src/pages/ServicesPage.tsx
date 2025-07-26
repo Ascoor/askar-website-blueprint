@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import Seo from '@/components/ui/Seo';
 import Navigation from '@/components/Navigation';
 import Services from '@/components/Services';
 import CTA from '@/components/CTA';
@@ -13,29 +13,13 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div id="main" className="min-h-screen">
-      <Helmet>
-        <title>{`${t('servicesTitle')} - ${t('siteTitle')}`}</title>
-        <meta name="description" content={t('servicesSubtitle')} />
-        <link rel="canonical" href="https://askarsolutions.com/services" />
-        <meta
-          property="og:title"
-          content={`${t('servicesTitle')} - ${t('siteTitle')}`}
-        />
-        <meta property="og:description" content={t('servicesSubtitle')} />
-        <meta property="og:url" content="https://askarsolutions.com/services" />
-        <meta
-          property="og:image"
-          content="https://lovable.dev/opengraph-image-p98pqg.png"
-        />
-      </Helmet>
+      <Seo
+        title={`${t('servicesTitle')} - ${t('siteTitle')}`}
+        description={t('servicesSubtitle')}
+        canonical="https://askarsolutions.com/services"
+        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
+      />
 
-      {/* Skip Link for Accessibility */}
-      <a
-        href="#main-content"
-        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
-      >
-        {t('skipToContent')}
-      </a>
 
       <Navigation />
       <main id="main-content">

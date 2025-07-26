@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import Seo from '@/components/ui/Seo';
 import Navigation from '@/components/Navigation';
 import HeroSlider from '@/components/HeroSlider';
 import Services from '@/components/Services';
@@ -16,7 +16,12 @@ const Index: React.FC = () => {
 
   return (
     <div id="main" className="min-h-screen">
-      <Helmet>
+      <Seo
+        title={t('siteTitle')}
+        description={t('siteDescription')}
+        canonical="https://askarsolutions.com/demo"
+        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
+      /> 
         <title>{t('siteTitle')}</title>
         <meta name="description" content={t('siteDescription')} />
         <link rel="canonical" href="https://askarsolutions.com/demo" />
@@ -26,16 +31,9 @@ const Index: React.FC = () => {
         <meta
           property="og:image"
           content="https://lovable.dev/opengraph-image-p98pqg.png"
-        />
-      </Helmet>
+        /> 
 
-      {/* Skip Link for Accessibility */}
-      <a
-        href="#main-content"
-        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
-      >
-        {t('skipToContent')}
-      </a>
+
 
       <Navigation />
       <main id="main-content">

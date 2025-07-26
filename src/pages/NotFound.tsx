@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import Seo from '@/components/ui/Seo';
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,25 +19,13 @@ const NotFound = () => {
       id="main"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900"
     >
-      <Helmet>
-        <title>{`404 - ${t('siteTitle')}`}</title>
-        <meta name="description" content={t('notFoundDesc')} />
-        <link rel="canonical" href="https://askarsolutions.com/404" />
-        <meta property="og:title" content={`404 - ${t('siteTitle')}`} />
-        <meta property="og:description" content={t('notFoundDesc')} />
-        <meta property="og:url" content="https://askarsolutions.com/404" />
-        <meta
-          property="og:image"
-          content="https://lovable.dev/opengraph-image-p98pqg.png"
-        />
-      </Helmet>
+      <Seo
+        title={`404 - ${t('siteTitle')}`}
+        description={t('notFoundDesc')}
+        canonical="https://askarsolutions.com/404"
+        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
+      />
 
-      <a
-        href="#main-content"
-        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
-      >
-        {t('skipToContent')}
-      </a>
 
       <motion.div
         id="main-content"

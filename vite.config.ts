@@ -2,6 +2,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { VitePWA } from "vite-plugin-pwa";
 import { promises as fs } from "fs";
 import { componentTagger } from "lovable-tagger";
 
@@ -56,6 +57,22 @@ export default defineConfig(({ mode }) => {
     // Only include development plugins in development mode
     plugins: [
       react(),
+       VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.svg', 'favicon.png', 'apple-touch-icon.png'],
+        manifest: {
+          name: 'Askar Solutions',
+          short_name: 'Askar',
+          start_url: '/',
+          display: 'standalone',
+          background_color: '#ffffff',
+          theme_color: '#3b82f6',
+          icons: [
+            { src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+            { src: '/pwa-512x512.png', sizes: '512x512', type: 'image/png' }
+          ],
+        },
+      }),
       // Only include componentTagger in development
       ...(isDev ? [componentTagger()] : []),
       generateSitemapPlugin(),

@@ -118,8 +118,11 @@ const Services: React.FC = () => {
               className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
-                <img
-                  src={service.image}
+                  <img
+                  src={service.image} 
+                  width="352"
+                  height="176"
+                  decoding="async" 
                   alt={service.name.en}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"

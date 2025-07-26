@@ -78,7 +78,7 @@ export const ar = {
   close: 'إغلاق',
   open: 'فتح',
   menu: 'القائمة',
-
+ 
   // Greetings
   goodMorning: 'صباح الخير',
   goodAfternoon: 'مساء الخير',
