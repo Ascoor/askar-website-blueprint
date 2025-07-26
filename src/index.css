@@ -461,3 +461,13 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Initial loader styles */
+#initial-loader {
+  @apply fixed inset-0 w-full h-full flex items-center justify-center z-[9999] transition-opacity duration-500;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+.loader-spinner {
+  @apply w-[50px] h-[50px] border-4 border-white border-t-transparent rounded-full animate-spin;
+}
+

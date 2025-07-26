@@ -22,21 +22,31 @@ function generateSitemapPlugin() {
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const isDev = mode === 'development';
+  const isDev = mode === 'development'
+  const csp =
+    "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
   
   return {
     // Server config only applies in development
-    server: isDev ? {
-        host: "localhost", // أو "127.0.0.1"
-  port: 8080,
-      hmr: {
-        port: 8080,
-        host: "localhost",
-        protocol: 'ws'
-      },
-      strictPort: false,
-      cors: true
-    } : {},
+    server: isDev
+      ? {
+          host: 'localhost',
+          port: 8080,
+          hmr: {
+            port: 8080,
+            host: 'localhost',
+            protocol: 'ws',
+          },
+          strictPort: false,
+          cors: true,
+          headers: {
+            'Content-Security-Policy': csp,
+            'X-Frame-Options': 'DENY',
+            'X-Content-Type-Options': 'nosniff',
+            'Referrer-Policy': 'strict-origin-when-cross-origin',
+          },
+        }
+      : {},
     
     // Build configuration for production
     build: {
