@@ -63,7 +63,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-const ProjectsSection: React.FC = () => {
+const Portfolio: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
@@ -145,4 +145,4 @@ const ProjectsSection: React.FC = () => {
   );
 };
 
-export default ProjectsSection;
+export default Portfolio;

@@ -2,8 +2,8 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSlider from '@/components/HeroSlider';
-import NeonServices from '@/components/NeonServices';
-import Projects from '@/components/Projects';
+import Services from '@/components/Services';
+import Portfolio from '@/components/Portfolio';
 import About from '@/components/About';
 import CTA from '@/components/CTA';
 import Contact from '@/components/Contact';
@@ -15,8 +15,8 @@ const Index: React.FC = () => {
     <div className="min-h-screen">
       <Navigation />
       <HeroSlider />
-      <NeonServices />
-      <Projects />
+      <Services />
+      <Portfolio />
       <About />
       <CTA />
       <Contact />

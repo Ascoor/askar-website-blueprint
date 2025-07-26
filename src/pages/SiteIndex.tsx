@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import HeroSlider from '@/components/HeroSlider';
-import SitePortfolio from '@/components/SitePortfolio';
-import SiteServices from '@/components/SiteServices';
-import SiteContact from '@/components/SiteContact';
-import SiteFooter from '@/components/SiteFooter';
+import Portfolio from '@/components/Portfolio';
+import Services from '@/components/Services';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 
 const SiteIndex: React.FC = () => {
@@ -16,10 +16,10 @@ const SiteIndex: React.FC = () => {
     <div className="font-sans">
       <Navigation />
       <HeroSlider />
-      <SitePortfolio />
-      <SiteServices />
-      <SiteContact />
-      <SiteFooter />
+      <Portfolio />
+      <Services />
+      <Contact />
+      <Footer />
     </div>
   );
 };
