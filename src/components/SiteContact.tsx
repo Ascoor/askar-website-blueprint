@@ -25,13 +25,45 @@ const SiteContact: React.FC = () => {
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">تواصل معنا</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Input name="name" value={form.name} onChange={handleChange} placeholder={name} required />
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {name}
+            </label>
+            <Input
+              id="name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder={name}
+              required
+            />
           </div>
           <div>
-            <Input type="email" name="email" value={form.email} onChange={handleChange} placeholder={email} required />
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {email}
+            </label>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder={email}
+              required
+            />
           </div>
           <div>
-            <Textarea name="message" value={form.message} onChange={handleChange} placeholder={message} rows={5} required />
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {message}
+            </label>
+            <Textarea
+              id="message"
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder={message}
+              rows={5}
+              required
+            />
           </div>
           <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
             {siteData.contact.button}
