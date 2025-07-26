@@ -1,5 +1,5 @@
 import React from 'react';
-import Seo from '@/components/ui/Seo';
+import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
 import Portfolio from '@/components/Portfolio';
 import CTA from '@/components/CTA';
@@ -13,14 +13,18 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <div id="main" className="min-h-screen">
-      <Seo
-        title={`${t('projectsTitle')} - ${t('siteTitle')}`}
-        description={t('projectsSubtitle')}
-        canonical="https://askarsolutions.com/portfolio"
-        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
-      />
+      <Helmet>
+        <title>{`${t('projectsTitle')} - ${t('siteTitle')}`}</title>
+        <meta name="description" content={t('projectsSubtitle')} />
+      </Helmet>
 
       {/* Skip link for accessibility */}
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
 
       <Navigation />
       <main id="main-content">

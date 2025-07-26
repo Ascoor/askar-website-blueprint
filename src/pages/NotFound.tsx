@@ -1,5 +1,5 @@
 import React from 'react';
-import Seo from '@/components/ui/Seo';
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,13 +19,17 @@ const NotFound = () => {
       id="main"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900"
     >
-      <Seo
-        title={`404 - ${t('siteTitle')}`}
-        description={t('notFoundDesc')}
-        canonical="https://askarsolutions.com/404"
-        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
-      />
+      <Helmet>
+        <title>{`404 - ${t('siteTitle')}`}</title>
+        <meta name="description" content={t('notFoundDesc')} />
+      </Helmet>
 
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
 
       <motion.div
         id="main-content"

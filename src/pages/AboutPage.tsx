@@ -16,20 +16,14 @@ const AboutPage: React.FC = () => {
       <Helmet>
         <title>{`${t('aboutTitle')} - ${t('siteTitle')}`}</title>
         <meta name="description" content={t('aboutDesc')} />
-        <link rel="canonical" href="https://askarsolutions.com/about" />
-        <meta
-          property="og:title"
-          content={`${t('aboutTitle')} - ${t('siteTitle')}`}
-        />
-        <meta property="og:description" content={t('aboutDesc')} />
-        <meta property="og:url" content="https://askarsolutions.com/about" />
-        <meta
-          property="og:image"
-          content="https://lovable.dev/opengraph-image-p98pqg.png"
-        />
       </Helmet>
 
- 
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
 
       <Navigation />
       <main id="main-content">

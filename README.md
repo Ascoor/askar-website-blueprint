@@ -59,11 +59,3 @@ npm run dev
 تستخدم الأيقونات النظيفة من مكتبة **Lucide** وتظهر بوضوح في كلا النمطين.
 تمت مراجعة قيم الألوان لضمان تباين مريح يواكب الأسلوب العصري.
 
-
-## Recent Improvements
-
-- Added reusable `<Seo>` component for consistent meta tags
-- Implemented skip link for improved accessibility
-- Enabled TypeScript strict mode
-- Added security headers and preload links in `index.html`
-- Integrated PWA support via `vite-plugin-pwa`

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Seo from '@/components/ui/Seo';
+import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
 import Portfolio from '@/components/Portfolio';
 import Services from '@/components/Services';
@@ -18,13 +18,18 @@ const SiteIndex: React.FC = () => {
 
   return (
     <div id="main" className="font-sans">
-      <Seo
-        title={t('siteTitle')}
-        description={t('siteDescription')}
-        canonical="https://askarsolutions.com/"
-        ogImage="https://lovable.dev/opengraph-image-p98pqg.png"
-      />
+      <Helmet>
+        <title>{t('siteTitle')}</title>
+        <meta name="description" content={t('siteDescription')} />
+      </Helmet>
 
+      {/* Skip Link for Accessibility */}
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
 
       <Navigation />
       <main id="main-content">
