@@ -1,69 +1,29 @@
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
-interface Service {
-  name: { en: string; ar: string };
-  description: { en: string; ar: string };
+interface Project {
+  name: string;
+  description: string;
+  href: string;
   image: string;
-  link: string;
 }
 
-const services: Service[] = [
-  {
-    image: '/hero1.png',
-    name: { en: 'Web Apps & SaaS Solutions', ar: 'تطبيقات الويب وحلول SaaS' },
-    description: {
-      en: 'Scalable web platforms and SaaS products engineered for global reach.',
-      ar: 'منصات ويب ومنتجات SaaS قابلة للتوسع ومصممة للوصول العالمي.'
-    },
-    link: '#'
-  },
-  {
-    image: '/hero2.png',
-    name: { en: 'Mobile Applications', ar: 'تطبيقات الجوال' },
-    description: {
-      en: 'Elegant native and cross‑platform apps that put your brand in every pocket.',
-      ar: 'تطبيقات أصلية وعبر المنصات تضع علامتك في متناول الجميع.'
-    },
-    link: '#'
-  },
-  {
-    image: '/hero3.png',
-    name: { en: 'Custom Dashboards & Analytics', ar: 'لوحات التحكم والتحليلات المخصصة' },
-    description: {
-      en: 'Interactive dashboards turning raw data into actionable insights.',
-      ar: 'لوحات تحكم تفاعلية تحول البيانات الخام إلى رؤى عملية.'
-    },
-    link: '#'
-  },
-  {
-    image: '/hero4.png',
-    name: { en: 'Branding & Digital Marketing', ar: 'العلامة التجارية والتسويق الرقمي' },
-    description: {
-      en: 'Strategic branding and digital campaigns that ignite engagement.',
-      ar: 'حملات رقمية واستراتيجيات هوية تشعل التفاعل مع علامتك.'
-    },
-    link: '#'
-  },
-  {
-    image: '/hero5.png',
-    name: { en: 'Creative Content & AI Solutions', ar: 'المحتوى الإبداعي وحلول الذكاء الاصطناعي' },
-    description: {
-      en: 'AI-powered content creation delivering modern stories and experiences.',
-      ar: 'إنشاء محتوى مدعوم بالذكاء الاصطناعي يقدم قصصاً وتجارب عصرية.'
-    },
-    link: '#'
-  }
+const projects: Project[] = [
+  { name: 'حداثة', description: 'أحد الأعمال الإبداعية لشركة عريقة...', href: 'app-hadatha/', image: '/images/projects/hadathah.webp' },
+  { name: 'عقارك', description: 'عقارك واجهتك...', href: 'aqark/', image: '/images/projects/aqark.webp' },
+  { name: 'Bellalife', description: 'واجهة قوية...', href: 'bellalife/', image: '/images/projects/bella.jpg' },
+  { name: 'Dashboard', description: 'نظام إدارة مبتكر...', href: 'dashboard/', image: '/images/projects/dashboard.webp' },
+  { name: 'Technogym', description: 'حلول تقنية متقدمة...', href: 'technogym/', image: '/images/projects/tecnogym.webp' }
 ];
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
   }
 };
 
@@ -79,66 +39,66 @@ const Services: React.FC = () => {
     <section
       id="services"
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
+      className="relative py-20 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white"
     >
-      {/* Background Effects */}
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+      <div className="relative max-w-7xl mx-auto px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center text-4xl md:text-5xl font-bold mb-12 font-heading relative inline-block"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-            {language === 'ar' ? 'خدماتنا المتميزة' : 'Our Expert Services'}
-          </h2>
-          <p className="max-w-2xl mx-auto text-lg opacity-80">
-            {language === 'ar'
-              ? 'نطور حلولاً برمجية متكاملة ونبتكر تجارب رقمية تنقل أعمالك إلى المستقبل.'
-              : 'We craft complete digital solutions that move your business toward the future.'}
-          </p>
-        </motion.div>
+          {language === 'ar' ? 'منتجاتنا' : 'Our Products'}
+          <motion.span
+            aria-hidden="true"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="absolute left-0 -bottom-1 h-1 w-full origin-left bg-[#3fffB5]"
+          />
+        </motion.h2>
 
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {services.map((service, idx) => (
+          {projects.map((project, idx) => (
             <motion.div
-              key={idx}
+              key={project.href}
               variants={item}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              className="relative group rounded-xl border border-white/20 bg-white/10 backdrop-blur-lg p-6 flex flex-col overflow-hidden transition-shadow duration-300 card-neon"
             >
-              <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
+              <div className="relative h-40 mb-4 overflow-hidden rounded-lg">
                 <img
-                  src={service.image}
-                  alt={service.name.en}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  src={project.image}
+                  alt={project.name}
                   loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
+                <div className="waves">
+                  <div className="wave" />
+                  <div className="wave" />
+                  <div className="wave" />
+                </div>
               </div>
-              <h3 className="text-2xl font-semibold mb-2">
-                {language === 'ar' ? service.name.ar : service.name.en}
-              </h3>
-              <p className="mb-4 opacity-90 leading-relaxed text-sm">
-                {language === 'ar' ? service.description.ar : service.description.en}
-              </p>
-              <Button variant="secondary" className="mt-auto group inline-flex">
-                {language === 'ar' ? 'اعرف المزيد' : 'See Details'}
-                <ArrowRight
-                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
-                    isRTL ? 'rotate-180 mr-2' : 'ml-2'
-                  }`}
-                />
+              <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
+              <p className="text-sm opacity-90 mb-4 flex-1">{project.description}</p>
+              <Button asChild variant="secondary" className="group mt-auto inline-flex">
+                <a href={project.href} aria-label={language === 'ar' ? `تفاصيل ${project.name}` : `View ${project.name}`}>
+                  {language === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                  <ArrowRight
+                    className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 mr-2' : 'ml-2'}`}
+                  />
+                </a>
               </Button>
             </motion.div>
           ))}
