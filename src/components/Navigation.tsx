@@ -114,7 +114,12 @@ const Navigation: React.FC = () => {
   );
 
   return (
-    <nav dir={isRTL ? "rtl" : "ltr"} className={navClass} style={{ height: NAVBAR_HEIGHT }}>
+    <nav
+      aria-label="Main navigation"
+      dir={isRTL ? "rtl" : "ltr"}
+      className={navClass}
+      style={{ height: NAVBAR_HEIGHT }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
@@ -151,6 +156,8 @@ const Navigation: React.FC = () => {
           {/* Theme & Language Controls */}
           <div className="flex items-center gap-3">
             <Button
+              aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+              aria-pressed={theme === "dark"}
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
@@ -159,6 +166,7 @@ const Navigation: React.FC = () => {
               {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
             <Button
+              aria-label="Change language"
               variant="ghost"
               size="sm"
               onClick={handleLanguageChange}
@@ -172,6 +180,9 @@ const Navigation: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <Button
+              aria-label="Toggle navigation menu"
+              aria-controls="mobile-navigation"
+              aria-expanded={isOpen}
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
@@ -186,6 +197,7 @@ const Navigation: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              id="mobile-navigation"
               variants={mobileMenuVariants}
               initial="hidden"
               animate="visible"

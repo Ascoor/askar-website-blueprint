@@ -12,7 +12,11 @@ const SiteNavbar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow z-50" dir="rtl">
+    <nav
+      aria-label="Main navigation"
+      className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow z-50"
+      dir="rtl"
+    >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         <div className="flex items-center gap-2">
           <img src={siteInfo.logo} alt={siteInfo.title} className="h-8 w-auto" />
