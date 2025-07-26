@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface Service {
   name: { en: string; ar: string };
@@ -13,7 +14,7 @@ interface Service {
 
 const services: Service[] = [
   {
-    image: '/hero1.png',
+    image: '/hero1.webp',
     name: { en: 'Web Apps & SaaS Solutions', ar: 'تطبيقات الويب وحلول SaaS' },
     description: {
       en: 'Scalable web platforms and SaaS products engineered for global reach.',
@@ -22,7 +23,7 @@ const services: Service[] = [
     link: '#'
   },
   {
-    image: '/hero2.png',
+    image: '/hero2.webp',
     name: { en: 'Mobile Applications', ar: 'تطبيقات الجوال' },
     description: {
       en: 'Elegant native and cross‑platform apps that put your brand in every pocket.',
@@ -31,7 +32,7 @@ const services: Service[] = [
     link: '#'
   },
   {
-    image: '/hero3.png',
+    image: '/hero3.webp',
     name: { en: 'Custom Dashboards & Analytics', ar: 'لوحات التحكم والتحليلات المخصصة' },
     description: {
       en: 'Interactive dashboards turning raw data into actionable insights.',
@@ -40,7 +41,7 @@ const services: Service[] = [
     link: '#'
   },
   {
-    image: '/hero4.png',
+    image: '/hero4.webp',
     name: { en: 'Branding & Digital Marketing', ar: 'العلامة التجارية والتسويق الرقمي' },
     description: {
       en: 'Strategic branding and digital campaigns that ignite engagement.',
@@ -49,7 +50,7 @@ const services: Service[] = [
     link: '#'
   },
   {
-    image: '/hero5.png',
+    image: '/hero5.webp',
     name: { en: 'Creative Content & AI Solutions', ar: 'المحتوى الإبداعي وحلول الذكاء الاصطناعي' },
     description: {
       en: 'AI-powered content creation delivering modern stories and experiences.',
@@ -74,32 +75,26 @@ const item = {
 
 const NeonServices: React.FC = () => {
   const { language, isRTL } = useLanguage();
-
   return (
-    <section
-      id="services"
-      dir={isRTL ? 'rtl' : 'ltr'}
-      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
-    >
-      {/* Background Effects */}
-      <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-16 bg-gray-900 text-white" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="max-w-7xl mx-auto px-4">
+ 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          variants={item}
+          className="text-cyan-400 mb-2"
         >
+          <h2 className="text-2xl font-semibold uppercase tracking-wider">
+            {language === 'ar' ? 'خدماتنا' : 'Our Services'}
+          </h2>
+        </motion.div>
+        <motion.div variants={item}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
             {language === 'ar' ? 'خدماتنا المتميزة' : 'Our Expert Services'}
           </h2>
           <p className="max-w-2xl mx-auto text-lg opacity-80">
             {language === 'ar'
-              ? 'نطور حلولاً برمجية متكاملة ونبتكر تجارب رقمية تنقل أعمالك إلى المستقبل.'
-              : 'We craft complete digital solutions that move your business toward the future.'}
+            ? 'نطور حلولاً برمجية متكاملة ونبتكر تجارب رقمية تنقل أعمالك إلى المستقبل.'
+            : 'We craft complete digital solutions that move your business toward the future.'}
           </p>
         </motion.div>
 
@@ -118,11 +113,10 @@ const NeonServices: React.FC = () => {
               className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
-                <img
+                <OptimizedImage
                   src={service.image}
-                  alt={service.name.en}
+                  alt={`${service.name.en} - ${service.description.en}`}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
               </div>
@@ -147,5 +141,3 @@ const NeonServices: React.FC = () => {
     </section>
   );
 };
-
-export default NeonServices;

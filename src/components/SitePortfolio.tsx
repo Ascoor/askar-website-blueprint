@@ -1,6 +1,7 @@
 import React from 'react';
 import { siteData } from '@/data/data';
 import { motion } from 'framer-motion';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const SitePortfolio: React.FC = () => {
   return (
@@ -16,7 +17,11 @@ const SitePortfolio: React.FC = () => {
               href={item.link}
               className="block bg-white dark:bg-gray-800 shadow rounded overflow-hidden"
             >
-              <img src={item.image} alt={item.title} className="w-full h-48 object-cover" loading="lazy" />
+              <OptimizedImage
+                src={item.image}
+                alt={`${item.title} - ${item.description}`}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">{item.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">{item.description}</p>
