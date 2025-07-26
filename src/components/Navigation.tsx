@@ -90,7 +90,7 @@ const Navigation = () => {
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
                   className={`
-                    relative font-medium text-sm lg:text-base transition-all duration-300
+                    relative font-medium text-sm lg:text-base  ml-6 transition-all duration-300
                     ${activeId === item.href.slice(1)
                       ? "text-green-400 neon-glow"
                       : "opacity-80 hover:opacity-100"}
