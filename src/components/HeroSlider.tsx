@@ -137,7 +137,7 @@ const HeroSlider: React.FC = () => {
           >
             <h2
               className={cn(
-                "font-bold italic text-white",
+                "font-bold italic text-primary-foreground",
                 isRTL ? "font-[Tajawal]" : "font-[Montserrat]"
               )}
               style={{

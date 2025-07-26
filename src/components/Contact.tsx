@@ -40,36 +40,36 @@ const Contact = () => {
       icon: Mail,
       title: t('email'),
       content: 'info@askar.com',
-      color: 'bg-blue-500'
+      color: 'bg-primary'
     },
     {
       icon: Phone,
       title: t('phone'),
       content: '+1 (555) 123-4567',
-      color: 'bg-green-500'
+      color: 'bg-success'
     },
     {
       icon: MapPin,
       title: t('address'),
       content: '123 Business District, Tech City',
-      color: 'bg-purple-500'
+      color: 'bg-accent'
     },
     {
       icon: Clock,
       title: t('officeHours'),
       content: 'Mon - Fri: 9AM - 6PM',
-      color: 'bg-orange-500'
+      color: 'bg-warning'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="contact" className="py-20 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {t('contactTitle')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             {t('contactSubtitle')}
           </p>
         </div>
@@ -85,13 +85,13 @@ const Contact = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <div className={`w-12 h-12 ${info.color} rounded-full flex items-center justify-center`}>
-                          <Icon className="h-6 w-6 text-white" />
+                          <Icon className="h-6 w-6 text-primary-foreground" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
+                          <h3 className="font-semibold text-foreground">
                             {info.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-400">
+                          <p className="text-muted-foreground">
                             {info.content}
                           </p>
                         </div>
@@ -107,7 +107,7 @@ const Contact = () => {
           <div className="lg:col-span-2">
             <Card className="shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                <CardTitle className="text-2xl font-bold text-foreground">
                   {t('sendMessage')}
                 </CardTitle>
               </CardHeader>
@@ -115,7 +115,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-muted-foreground mb-2">
                         {t('name')}
                       </label>
                       <Input
@@ -129,7 +129,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-muted-foreground mb-2">
                         {t('email')}
                       </label>
                       <Input
@@ -145,7 +145,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-muted-foreground mb-2">
                       {t('message')}
                     </label>
                     <Textarea
@@ -162,7 +162,7 @@ const Contact = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+                    className="w-full bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
                   >
                     <Send className="w-5 h-5 mr-2" />
                     {t('sendMessage')}

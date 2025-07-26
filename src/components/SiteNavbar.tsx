@@ -12,7 +12,7 @@ const SiteNavbar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow z-50" dir="rtl">
+    <nav className="fixed top-0 w-full bg-background shadow z-50" dir="rtl">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         <div className="flex items-center gap-2">
           <img src={siteInfo.logo} alt={siteInfo.title} className="h-8 w-auto" />
@@ -23,7 +23,7 @@ const SiteNavbar: React.FC = () => {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="text-gray-700 dark:text-gray-200 hover:text-blue-500 transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               {item.label}
             </button>

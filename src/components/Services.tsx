@@ -79,11 +79,11 @@ const NeonServices: React.FC = () => {
     <section
       id="services"
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
+      className="relative py-20 bg-gradient-to-br from-primary via-primary-hover to-primary text-primary-foreground overflow-hidden"
     >
       {/* Background Effects */}
-      <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+      <div className="absolute -top-32 -left-32 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 right-0 w-72 h-72 bg-accent/20 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -115,7 +115,7 @@ const NeonServices: React.FC = () => {
               key={idx}
               variants={item}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
+              className="group bg-card/10 backdrop-blur-md border border-border/20 rounded-2xl p-6 shadow-lg overflow-hidden"
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
                 <img
@@ -124,7 +124,7 @@ const NeonServices: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
+                <div className="absolute inset-0 rounded-xl border border-primary/30 group-hover:border-primary/50 transition-colors" />
               </div>
               <h3 className="text-2xl font-semibold mb-2">
                 {language === 'ar' ? service.name.ar : service.name.en}
