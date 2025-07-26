@@ -8,6 +8,7 @@ import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { motion, AnimatePresence, easeOut, easeInOut } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -37,6 +38,8 @@ const Navigation: React.FC = () => {
   const { language, setLanguage, t, isRTL } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -47,11 +50,11 @@ const Navigation: React.FC = () => {
 
   const navItems = useMemo(
     () => [
-      { key: "home" as const, href: "#hero" },
-      { key: "services" as const, href: "#services" },
-      { key: "about" as const, href: "#about" },
-      { key: "projects" as const, href: "#projects" },
-      { key: "contact" as const, href: "#contact" },
+      { key: "home" as const, href: "#hero", path: "/" },
+      { key: "services" as const, href: "#services", path: "/services" },
+      { key: "about" as const, href: "#about", path: "/about" },
+      { key: "projects" as const, href: "#projects", path: "/portfolio" },
+      { key: "contact" as const, href: "#contact", path: "/#contact" },
     ],
     []
   );
@@ -70,6 +73,19 @@ const Navigation: React.FC = () => {
       setIsOpen(false);
     }
   }, []);
+
+  const handleNavItemClick = useCallback(
+    (item: { href: string; path: string }) => {
+      const basePath = item.path.split("#")[0];
+      if (location.pathname === basePath) {
+        scrollToSection(item.href.slice(1));
+      } else {
+        navigate(item.path);
+        setIsOpen(false);
+      }
+    },
+    [location.pathname, navigate, scrollToSection]
+  );
 
   const handleLanguageChange = useCallback(() => {
     const order: Language[] = ["en", "ar", "eg"];
@@ -134,7 +150,7 @@ const Navigation: React.FC = () => {
               return (
                <motion.button
                   key={item.key}
-                  onClick={() => scrollToSection(item.href.slice(1))}
+                  onClick={() => handleNavItemClick(item)}
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
@@ -201,7 +217,7 @@ const Navigation: React.FC = () => {
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.key}
-                    onClick={() => scrollToSection(item.href.slice(1))}
+                    onClick={() => handleNavItemClick(item)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: 1,
