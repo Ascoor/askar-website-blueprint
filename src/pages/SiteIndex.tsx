@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import SiteNavbar from '@/components/SiteNavbar';
 import HeroSlider from '@/components/HeroSlider';
 import SitePortfolio from '@/components/SitePortfolio';
 import SiteServices from '@/components/SiteServices';

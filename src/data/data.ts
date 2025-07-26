@@ -4,12 +4,6 @@ export const siteData = {
     logo: "/images/logo-sm4.png",
     copyright: "© حقوق النشر 2024 لشركة Ask-ar.net. جميع الحقوق محفوظة."
   },
-  navbar: [
-    { id: "hero", label: "الرئيسية" },
-    { id: "portfolio", label: "أعمالنا" },
-    { id: "services", label: "خدمات" },
-    { id: "contact", label: "تواصل معنا" }
-  ],
   portfolio: [
     {
       title: "حداثة",
