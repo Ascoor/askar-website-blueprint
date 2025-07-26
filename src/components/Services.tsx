@@ -1,168 +1,151 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Cloud, 
-  Brain, 
-  Zap, 
-  Shield, 
-  ArrowRight, 
-  CheckCircle,
-  Code,
-  Smartphone,
-  Database,
-  Globe
-} from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-const Services = () => {
-  const { t, isRTL } = useLanguage();
+interface Service {
+  name: { en: string; ar: string };
+  description: { en: string; ar: string };
+  image: string;
+  link: string;
+}
 
-  const services = [
-    {
-      icon: Cloud,
-      key: 'cloudSolutions',
-      features: ['cloudFeature1', 'cloudFeature2', 'cloudFeature3']
+const services: Service[] = [
+  {
+    image: '/hero1.png',
+    name: { en: 'Web Apps & SaaS Solutions', ar: 'تطبيقات الويب وحلول SaaS' },
+    description: {
+      en: 'Scalable web platforms and SaaS products engineered for global reach.',
+      ar: 'منصات ويب ومنتجات SaaS قابلة للتوسع ومصممة للوصول العالمي.'
     },
-    {
-      icon: Brain,
-      key: 'aiSolutions',
-      features: ['aiFeature1', 'aiFeature2', 'aiFeature3']
+    link: '#'
+  },
+  {
+    image: '/hero2.png',
+    name: { en: 'Mobile Applications', ar: 'تطبيقات الجوال' },
+    description: {
+      en: 'Elegant native and cross‑platform apps that put your brand in every pocket.',
+      ar: 'تطبيقات أصلية وعبر المنصات تضع علامتك في متناول الجميع.'
     },
-    {
-      icon: Code,
-      key: 'customDevelopment',
-      features: ['devFeature1', 'devFeature2', 'devFeature3']
+    link: '#'
+  },
+  {
+    image: '/hero3.png',
+    name: { en: 'Custom Dashboards & Analytics', ar: 'لوحات التحكم والتحليلات المخصصة' },
+    description: {
+      en: 'Interactive dashboards turning raw data into actionable insights.',
+      ar: 'لوحات تحكم تفاعلية تحول البيانات الخام إلى رؤى عملية.'
     },
-    {
-      icon: Smartphone,
-      key: 'mobileApps',
-      features: ['mobileFeature1', 'mobileFeature2', 'mobileFeature3']
+    link: '#'
+  },
+  {
+    image: '/hero4.png',
+    name: { en: 'Branding & Digital Marketing', ar: 'العلامة التجارية والتسويق الرقمي' },
+    description: {
+      en: 'Strategic branding and digital campaigns that ignite engagement.',
+      ar: 'حملات رقمية واستراتيجيات هوية تشعل التفاعل مع علامتك.'
     },
-    {
-      icon: Database,
-      key: 'dataAnalytics',
-      features: ['dataFeature1', 'dataFeature2', 'dataFeature3']
+    link: '#'
+  },
+  {
+    image: '/hero5.png',
+    name: { en: 'Creative Content & AI Solutions', ar: 'المحتوى الإبداعي وحلول الذكاء الاصطناعي' },
+    description: {
+      en: 'AI-powered content creation delivering modern stories and experiences.',
+      ar: 'إنشاء محتوى مدعوم بالذكاء الاصطناعي يقدم قصصاً وتجارب عصرية.'
     },
-    {
-      icon: Globe,
-      key: 'webSolutions',
-      features: ['webFeature1', 'webFeature2', 'webFeature3']
-    }
-  ];
+    link: '#'
+  }
+];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.1,
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
+  }
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0 }
+};
 
-  const whileHover = {
-    y: -10,
-    scale: 1.02,
-    transition: { 
-      duration: 0.3,
-      ease: "easeOut"
-    }
-  };
+const NeonServices: React.FC = () => {
+  const { language, isRTL } = useLanguage();
 
   return (
-    <section id="services" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="services"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="relative py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden"
+    >
+      {/* Background Effects */}
+      <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-            {t('servicesTitle')}
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
+            {language === 'ar' ? 'خدماتنا المتميزة' : 'Our Expert Services'}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('servicesSubtitle')}
+          <p className="max-w-2xl mx-auto text-lg opacity-80">
+            {language === 'ar'
+              ? 'نطور حلولاً برمجية متكاملة ونبتكر تجارب رقمية تنقل أعمالك إلى المستقبل.'
+              : 'We craft complete digital solutions that move your business toward the future.'}
           </p>
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
-          whileInView="visible"
+          whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.key}
-                variants={itemVariants}
-                whileHover={whileHover}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
-                    <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {t(service.key)}
-                  </h3>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {t(`${service.key}Desc`)}
-                </p>
-                
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      {t(feature)}
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button
-                  variant="outline"
-                  className="w-full group"
-                  onClick={() => {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  {t('learnMore')}
-                  <ArrowRight className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180' : ''}`} />
-                </Button>
-              </motion.div>
-            );
-          })}
+          {services.map((service, idx) => (
+            <motion.div
+              key={idx}
+              variants={item}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
+            >
+              <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
+                <img
+                  src={service.image}
+                  alt={service.name.en}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">
+                {language === 'ar' ? service.name.ar : service.name.en}
+              </h3>
+              <p className="mb-4 opacity-90 leading-relaxed text-sm">
+                {language === 'ar' ? service.description.ar : service.description.en}
+              </p>
+              <Button variant="secondary" className="mt-auto group inline-flex">
+                {language === 'ar' ? 'اعرف المزيد' : 'See Details'}
+                <ArrowRight
+                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                    isRTL ? 'rotate-180 mr-2' : 'ml-2'
+                  }`}
+                />
+              </Button>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Services;
+export default NeonServices;

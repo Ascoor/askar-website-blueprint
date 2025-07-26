@@ -99,7 +99,7 @@ const HeroSlider: React.FC = () => {
       className="relative w-full overflow-hidden"
       style={{
         paddingTop: NAVBAR_HEIGHT,
-        minHeight: `calc(140vh - ${NAVBAR_HEIGHT}px)`
+        minHeight: `calc(110vh - ${NAVBAR_HEIGHT}px)`
       }}
     >
       <div className="absolute inset-0 w-full h-full perspective-[1200px]">

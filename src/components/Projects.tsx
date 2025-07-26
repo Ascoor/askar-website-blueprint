@@ -1,86 +1,148 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
+interface Project {
+  name: { en: string; ar: string };
+  description: { en: string; ar: string };
+  image: string;
+  link: string;
+}
+
+const projects: Project[] = [
+  {
+    image: '/hero1.png',
+    name: { en: 'Hadathah Advertising', ar: 'مشروع حداثة' },
+    description: {
+      en: 'A creative campaign for a renowned advertising company.',
+      ar: 'حملة إبداعية لشركة رائدة في الدعاية والإعلان'
+    },
+    link: '/projects/hadathah'
+  },
+  {
+    image: '/hero2.png',
+    name: { en: 'Mobile Web App', ar: 'تطبيق ويب للموبايل' },
+    description: {
+      en: 'Bringing your brand closer to your customers through mobile.',
+      ar: 'نقرب علامتك التجارية إلى عملائك عبر تطبيقات الموبايل'
+    },
+    link: '/projects/mobile-app'
+  },
+  {
+    image: '/hero3.png',
+    name: { en: 'Control Dashboard', ar: 'لوحة تحكم متقدمة' },
+    description: {
+      en: 'Dynamic dashboards for real-time analytics and smooth UX.',
+      ar: 'لوحات تحكم تفاعلية لتحليلات آنية وتجربة مستخدم سلسة'
+    },
+    link: '/projects/dashboard'
+  },
+  {
+    image: '/hero4.png',
+    name: { en: 'AI Assistant Platform', ar: 'منصة المساعد الذكي' },
+    description: {
+      en: 'An AI-powered assistant platform with smart automation features.',
+      ar: 'منصة مدعومة بالذكاء الاصطناعي توفر أتمتة ذكية للمهام'
+    },
+    link: '/projects/ai-assistant'
+  }
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.2 },
-  }),
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
+  }
 };
 
-const Projects: React.FC = () => {
-  const { t } = useLanguage();
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0 }
+};
 
-  const projects = [
-    {
-      image: '/hero3.png',
-      title: t('project1Title'),
-      description: t('project1Desc'),
-    },
-    {
-      image: '/hero4.png',
-      title: t('project2Title'),
-      description: t('project2Desc'),
-    },
-    {
-      image: '/hero5.png',
-      title: t('project3Title'),
-      description: t('project3Desc'),
-    },
-  ];
+const ProjectsSection: React.FC = () => {
+  const { language, isRTL } = useLanguage();
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('projectsTitle')}
+    <section
+      id="projects"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="relative py-20 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white overflow-hidden"
+    >
+      {/* خلفية ديكورية */}
+      <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* العنوان */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
+            {language === 'ar' ? 'من أعمالنا' : 'Our Projects'}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            {t('projectsSubtitle')}
+          <p className="max-w-2xl mx-auto text-lg opacity-80">
+            {language === 'ar'
+              ? 'مختارات من مشاريعنا التقنية المميزة التي نفخر بها.'
+              : 'A selection of our standout technology projects.'}
           </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+        </motion.div>
+
+        {/* المشاريع */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {projects.map((project, idx) => (
             <motion.div
-              key={index}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              key={idx}
+              variants={item}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
             >
-              <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-2xl font-semibold text-gray-900 dark:text-white">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">
-                    {project.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
+                <img
+                  src={project.image}
+                  alt={project.name.en}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 rounded-xl border border-cyan-400/30 group-hover:border-cyan-300/70 transition-colors" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">
+                {language === 'ar' ? project.name.ar : project.name.en}
+              </h3>
+              <p className="mb-4 opacity-90 leading-relaxed text-sm">
+                {language === 'ar' ? project.description.ar : project.description.en}
+              </p>
+              <Button
+                variant="secondary"
+                className="mt-auto group inline-flex"
+                onClick={() => (window.location.href = project.link)}
+              >
+                {language === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                <ArrowRight
+                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                    isRTL ? 'rotate-180 mr-2' : 'ml-2'
+                  }`}
+                />
+              </Button>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Projects;
+export default ProjectsSection;

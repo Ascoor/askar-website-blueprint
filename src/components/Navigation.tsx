@@ -134,13 +134,11 @@ const Navigation: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   className={cn(
                     "relative font-semibold text-lg tracking-wide transition-all duration-300",
-                    isActive
-                      ? "text-[#53cfeb]"
-                      : "text-white hover:text-[#53cfeb]"
+                    isActive ? "text-white" : "text-gray-300 hover:text-white"
                   )}
                   style={{
                     textShadow: isActive
-                      ? "0 0 12px rgba(83,207,235,0.8), 0 0 24px rgba(83,207,235,0.6)"
+                      ? "0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6)"
                       : "0 0 6px rgba(255,255,255,0.2)",
                   }}
                 >
@@ -206,7 +204,7 @@ const Navigation: React.FC = () => {
                       y: 0,
                       transition: { delay: index * 0.1, duration: 0.3, ease: "easeOut" },
                     }}
-                    className="text-2xl font-semibold text-white hover:text-[#53cfeb]"
+                    className="text-2xl font-semibold text-white"
                     style={{
                       textShadow: "0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
                     }}

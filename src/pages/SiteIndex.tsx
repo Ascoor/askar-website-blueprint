@@ -5,6 +5,7 @@ import SitePortfolio from '@/components/SitePortfolio';
 import SiteServices from '@/components/SiteServices';
 import SiteContact from '@/components/SiteContact';
 import SiteFooter from '@/components/SiteFooter';
+import Navigation from '@/components/Navigation';
 
 const SiteIndex: React.FC = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const SiteIndex: React.FC = () => {
 
   return (
     <div className="font-sans">
-      <SiteNavbar />
+      <Navigation />
       <HeroSlider />
       <SitePortfolio />
       <SiteServices />
