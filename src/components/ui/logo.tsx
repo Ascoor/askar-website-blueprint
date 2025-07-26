@@ -8,7 +8,7 @@ export const Logo = ({ className = "", clickable = false }) => {
   const { language } = useLanguage();
 
   const getLogoSrc = () => {
-    return theme === "dark" ? "/logo.gif" : "/logo.gif";
+    return theme === "dark" ? "/logo-dark.png" : "/logo-day.png";
   };
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc);
