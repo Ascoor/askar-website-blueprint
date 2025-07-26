@@ -67,4 +67,3 @@ npm run dev
 - Enabled TypeScript strict mode
 - Added security headers and preload links in `index.html`
 - Integrated PWA support via `vite-plugin-pwa`
-لمزيد من التفاصيل حول خطوات التهيئة والبنية، راجع [docs/ask-ar-blueprint.md](docs/ask-ar-blueprint.md).
