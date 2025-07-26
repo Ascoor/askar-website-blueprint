@@ -1,18 +1,16 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Menu, X, Sun, Moon, Globe, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Logo } from "@/components/ui/logo";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { motion, AnimatePresence, easeOut, easeInOut } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useLocation, useNavigate } from "react-router-dom";
 
+// Navbar height for scroll calculations
 const NAVBAR_HEIGHT = 64;
 
-// Smooth scroll
+// Smooth scrolling easing function
 const easeInOutQuart = (t: number) =>
   t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
@@ -33,218 +31,150 @@ const smoothScroll = (target: HTMLElement) => {
   requestAnimationFrame(scroll);
 };
 
-const Navigation: React.FC = () => {
+type NavKey = "home" | "services" | "about" | "contact";
+
+const navItems: { key: NavKey; href: string }[] = [
+  { key: "home", href: "#hero" },
+  { key: "services", href: "#services" },
+  { key: "about", href: "#about" },
+  { key: "contact", href: "#contact" },
+];
+
+const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { language, setLanguage, t, isRTL } = useLanguage();
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+
+  const activeId = useScrollSpy(["hero", "services", "about", "contact"], NAVBAR_HEIGHT + 50);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      if (sectionId === "hero") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        smoothScroll(element);
+      }
+      setIsOpen(false);
+    }
+  };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
+    const onScroll = () => {
+      setShowTopBtn(window.scrollY > 300);
+    };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navItems = useMemo(
-    () => [
-      { key: "home" as const, href: "#hero", path: "/" },
-      { key: "services" as const, href: "#services", path: "/services" },
-      { key: "about" as const, href: "#about", path: "/about" },
-      { key: "projects" as const, href: "#projects", path: "/portfolio" },
-      { key: "contact" as const, href: "#contact", path: "/#contact" },
-    ],
-    []
-  );
-
-  const activeId = useScrollSpy(
-    ["hero", "services", "about", "projects", "contact"],
-    NAVBAR_HEIGHT + 50
-  );
-
-  const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      sectionId === "hero"
-        ? window.scrollTo({ top: 0, behavior: "smooth" })
-        : smoothScroll(element);
-      setIsOpen(false);
-    }
-  }, []);
-
-  const handleNavItemClick = useCallback(
-    (item: { href: string; path: string }) => {
-      const basePath = item.path.split("#")[0];
-      if (location.pathname === basePath) {
-        scrollToSection(item.href.slice(1));
-      } else {
-        navigate(item.path);
-        setIsOpen(false);
-      }
-    },
-    [location.pathname, navigate, scrollToSection]
-  );
-
-  const handleLanguageChange = useCallback(() => {
-    const order: Language[] = ["en", "ar", "eg"];
-    const next = order[(order.indexOf(language) + 1) % order.length];
-    setLanguage(next);
-  }, [language, setLanguage]);
-
-  const getLanguageLabel = useCallback(() => {
-    switch (language) {
-      case "en":
-        return "Ar";
-      case "ar":
-        return "En";
-      case "eg":
-        return "English";
-      default:
-        return "En";
-    }
-  }, [language]);
-
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3, ease: easeOut },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      transition: { duration: 0.2, ease: easeInOut },
-    },
-  } as const;
-
- const navClass = cn(
-    "fixed top-0 w-full z-30 transition-colors duration-500",
-    scrolled
-      ? theme === "light"
-        ? "bg-background/90 text-foreground shadow-md backdrop-blur-xl"
-        : "bg-background/80 text-foreground shadow-lg backdrop-blur-xl"
-      : "bg-transparent text-foreground"
-  );
-
+  const isRTL = language !== "en";
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
-      <motion.nav
-        aria-label="Main navigation"
+      {/* Navigation Bar */}
+      <nav
         dir={isRTL ? "rtl" : "ltr"}
-        className={navClass}
-        style={{ height: NAVBAR_HEIGHT }}
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        className="fixed top-0 w-full z-50 backdrop-blur-md bg-black/30 dark:bg-black/50 text-white shadow-sm transition-all"
+        style={{ height: `${NAVBAR_HEIGHT}px` }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo */}
-          <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+          <div className="flex items-center justify-between h-full">
+            {/* Logo */}
             <Logo />
-          </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => {
-              const isActive = activeId === item.href.slice(1);
-              return (
-                <motion.button
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-6">
+              {navItems.map((item) => (
+                <button
                   key={item.key}
-                  onClick={() => handleNavItemClick(item)}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={cn(
-                    "nav-link font-semibold text-lg tracking-wide",
-                    isActive ? "text-foreground neon-active" : "text-muted-foreground hover:text-foreground"
-                  )}
+                  onClick={() => scrollToSection(item.href.slice(1))}
+                  className={`
+                    relative font-medium text-sm lg:text-base transition-all duration-300
+                    ${activeId === item.href.slice(1)
+                      ? "text-green-400 neon-glow"
+                      : "opacity-80 hover:opacity-100"}
+                  `}
                 >
                   {t(item.key)}
-                </motion.button>
-              );
-            })}
+                </button>
+              ))}
+            </div>
+
+            {/* Theme & Language Switch */}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full w-9 h-9 text-white"
+              >
+                {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  const order: Language[] = ["en", "ar", "eg"];
+                  const next = order[(order.indexOf(language) + 1) % order.length];
+                  setLanguage(next);
+                }}
+                className="rounded-full text-xs lg:text-sm text-white"
+              >
+                <Globe className="h-4 w-4 mr-2" />
+                {language === "en" ? "العربية" : language === "ar" ? "مصري" : "English"}
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="rounded-full w-9 h-9 text-white"
+              >
+                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
           </div>
 
-          {/* Theme & Language Controls */}
- <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full w-9 h-9 text-foreground hover:bg-foreground/10"
-            >
-              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLanguageChange}
-              className="rounded-full text-xs lg:text-sm text-foreground hover:bg-foreground/10"
-            >
-              <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
-              {getLanguageLabel()}
-            </Button>
-          </div>
-   {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full w-9 h-9 text-foreground hover:bg-foreground/10"
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
+          {/* Mobile Navigation */}
           {isOpen && (
-            <motion.div
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="md:hidden fixed inset-0 bg-foreground/95 backdrop-blur-lg flex items-center justify-center z-40"
-              style={{ top: NAVBAR_HEIGHT }}
+            <div
+              className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-40"
+              style={{ top: `${NAVBAR_HEIGHT}px` }}
             >
               <div className="flex flex-col items-center space-y-8 py-8">
-                {navItems.map((item, index) => {
-                  const isActive = activeId === item.href.slice(1);
-                  return (
-                    <motion.button
-                      key={item.key}
-                      onClick={() => handleNavItemClick(item)}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: { delay: index * 0.1, duration: 0.3, ease: "easeOut" },
-                      }}
-                      className={cn(
-                        "text-2xl font-semibold",
-                        isActive ? "neon-active" : ""
-                      )}
-                      style={{
-                        textShadow: "0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                      }}
-                    >
-                      {t(item.key)}
-                    </motion.button>
-                  );
-                })}
+                {navItems.map((item) => (
+                  <button
+                    key={item.key}
+                    onClick={() => scrollToSection(item.href.slice(1))}
+                    className={`text-xl font-medium transition-all duration-300 ${
+                      activeId === item.href.slice(1)
+                        ? "text-green-400 neon-glow"
+                        : "opacity-80 hover:opacity-100"
+                    }`}
+                  >
+                    {t(item.key)}
+                  </button>
+                ))}
               </div>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
-      </div>
-    </motion.nav>
+        </div>
+      </nav>
+
+      {/* Back to Top Button */}
+      {showTopBtn && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-5 right-5 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-400 transition-all duration-300"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
     </>
   );
 };
