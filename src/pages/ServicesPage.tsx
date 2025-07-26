@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 
 const ServicesPage: React.FC = () => (
-  <div className="min-h-screen">
+  <div id="main" className="min-h-screen">
     <Navigation />
     <NeonServices />
     <CTA />

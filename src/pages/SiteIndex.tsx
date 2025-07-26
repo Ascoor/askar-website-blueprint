@@ -13,7 +13,7 @@ const SiteIndex: React.FC = () => {
   }, []);
 
   return (
-    <div className="font-sans">
+    <div id="main" className="font-sans">
       <Navigation />
       <HeroSlider />
       <SitePortfolio />

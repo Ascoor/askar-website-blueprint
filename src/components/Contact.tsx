@@ -16,23 +16,36 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [errors, setErrors] = useState<{name?: string; email?: string; message?: string}>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Email is invalid';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
+      return;
+    }
+
     console.log('Form submitted:', formData);
     toast({
       title: "Message Sent!",
       description: "Thank you for your message. We'll get back to you soon.",
     });
     setFormData({ name: '', email: '', message: '' });
+    setErrors({});
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const contactInfo = [
@@ -124,9 +137,16 @@ const Contact = () => {
                          value={formData.name}
                          onChange={handleInputChange}
                          required
+                         aria-invalid={!!errors.name}
+                         aria-describedby={errors.name ? 'name-error' : undefined}
                          className="w-full"
                          placeholder={t('name')}
                        />
+                       {errors.name && (
+                         <p id="name-error" className="mt-1 text-sm text-red-600">
+                           {errors.name}
+                         </p>
+                       )}
                      </div>
                      <div>
                        <label className="block text-sm font-medium text-muted-foreground mb-2">
@@ -138,9 +158,16 @@ const Contact = () => {
                          value={formData.email}
                          onChange={handleInputChange}
                          required
+                         aria-invalid={!!errors.email}
+                         aria-describedby={errors.email ? 'email-error' : undefined}
                          className="w-full"
                          placeholder={t('email')}
                        />
+                       {errors.email && (
+                         <p id="email-error" className="mt-1 text-sm text-red-600">
+                           {errors.email}
+                         </p>
+                       )}
                      </div>
                    </div>
                    
@@ -153,11 +180,18 @@ const Contact = () => {
                        value={formData.message}
                        onChange={handleInputChange}
                        required
+                       aria-invalid={!!errors.message}
+                       aria-describedby={errors.message ? 'message-error' : undefined}
                        rows={6}
                        className="w-full"
                        placeholder={t('message')}
                      />
-                   </div>
+                     {errors.message && (
+                       <p id="message-error" className="mt-1 text-sm text-red-600">
+                         {errors.message}
+                       </p>
+                     )}
+                  </div>
  
                    <Button
                      type="submit"

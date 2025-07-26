@@ -12,7 +12,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div id="main" className="min-h-screen">
       <Navigation />
       <HeroSlider />
       <NeonServices />
