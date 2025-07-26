@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
-import Portfolio from '@/components/Portfolio';
-import Services from '@/components/Services';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
+import Portfolio from '@/components/sections/Portfolio';
+import Services from '@/components/sections/Services';
+import Contact from '@/components/sections/Contact';
+import Footer from '@/components/layout/Footer';
+import Navigation from '@/components/layout/Navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const SiteIndex: React.FC = () => {
