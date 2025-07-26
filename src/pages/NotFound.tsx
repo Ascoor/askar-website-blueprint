@@ -22,6 +22,14 @@ const NotFound = () => {
       <Helmet>
         <title>{`404 - ${t('siteTitle')}`}</title>
         <meta name="description" content={t('notFoundDesc')} />
+        <link rel="canonical" href="https://askarsolutions.com/404" />
+        <meta property="og:title" content={`404 - ${t('siteTitle')}`} />
+        <meta property="og:description" content={t('notFoundDesc')} />
+        <meta property="og:url" content="https://askarsolutions.com/404" />
+        <meta
+          property="og:image"
+          content="https://lovable.dev/opengraph-image-p98pqg.png"
+        />
       </Helmet>
 
       <a
