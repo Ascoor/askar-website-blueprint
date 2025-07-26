@@ -82,7 +82,7 @@ const Navigation: React.FC = () => {
       case "en":
         return "Ar";
       case "ar":
-        return "مصري";
+        return "En";
       case "eg":
         return "English";
       default:
