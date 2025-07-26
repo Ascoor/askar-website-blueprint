@@ -10,22 +10,34 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const SiteIndex: React.FC = () => {
   const { t } = useLanguage();
+
   useEffect(() => {
     document.documentElement.lang = 'ar';
     document.documentElement.dir = 'rtl';
   }, []);
 
   return (
-    <div className="font-sans">
+    <div id="main" className="font-sans">
       <Helmet>
         <title>{t('siteTitle')}</title>
         <meta name="description" content={t('siteDescription')} />
       </Helmet>
+
+      {/* Skip Link for Accessibility */}
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
+
       <Navigation />
-      <HeroSlider />
-      <SitePortfolio />
-      <SiteServices />
-      <SiteContact />
+      <main id="main-content">
+        <HeroSlider />
+        <SitePortfolio />
+        <SiteServices />
+        <SiteContact />
+      </main>
       <SiteFooter />
     </div>
   );

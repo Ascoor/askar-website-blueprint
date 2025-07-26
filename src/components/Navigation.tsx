@@ -131,7 +131,9 @@ const Navigation: React.FC = () => {
 
 
   return (
-     <nav
+    <>
+      <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
+      <nav
       aria-label="Main navigation"
       dir={isRTL ? "rtl" : "ltr"}
       className={navClass}
@@ -238,6 +240,7 @@ const Navigation: React.FC = () => {
         </AnimatePresence>
       </div>
     </nav>
+    </>
   );
 };
 

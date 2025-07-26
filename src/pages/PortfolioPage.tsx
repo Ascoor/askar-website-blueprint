@@ -10,16 +10,28 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const PortfolioPage: React.FC = () => {
   const { t } = useLanguage();
+
   return (
-    <div className="min-h-screen">
+    <div id="main" className="min-h-screen">
       <Helmet>
         <title>{`${t('projectsTitle')} - ${t('siteTitle')}`}</title>
         <meta name="description" content={t('projectsSubtitle')} />
       </Helmet>
+
+      {/* Skip link for accessibility */}
+      <a
+        href="#main-content"
+        className="skip-link absolute left-2 top-2 bg-primary text-white p-2 rounded focus:block focus:z-50"
+      >
+        {t('skipToContent')}
+      </a>
+
       <Navigation />
-      <Projects />
-      <CTA />
-      <Contact />
+      <main id="main-content">
+        <Projects />
+        <CTA />
+        <Contact />
+      </main>
       <Footer />
       <ScrollToTop />
     </div>
