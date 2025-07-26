@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
-import Projects from '@/components/Projects';
+import Portfolio from '@/components/Portfolio';
 import CTA from '@/components/CTA';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -28,7 +28,7 @@ const PortfolioPage: React.FC = () => {
 
       <Navigation />
       <main id="main-content">
-        <Projects />
+        <Portfolio />
         <CTA />
         <Contact />
       </main>
