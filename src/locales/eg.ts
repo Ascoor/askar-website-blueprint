@@ -95,6 +95,14 @@ export const eg = {
   joinPartners: 'انضم لشركائنا',
   exploreSolutions: 'استكشف الحلول',
   contactSales: 'كلم المبيعات',
+
+  // Technologies & Partners
+  technologiesTitle: 'التقنيات والشركاء',
+  technologiesSubtitle: 'الأدوات والشركاء اللي بيشغلوا حلولنا',
+
+  // FAQ Section
+  faqTitle: 'أسئلة متكررة',
+  faqSubtitle: 'إجابات على الأسئلة المشهورة عن خدماتنا',
   
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبدع',

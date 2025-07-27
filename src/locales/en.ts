@@ -95,6 +95,14 @@ export const en = {
   joinPartners: 'Join Our Partners',
   exploreSolutions: 'Explore Solutions',
   contactSales: 'Contact Sales',
+
+  // Technologies & Partners
+  technologiesTitle: 'Technologies & Partners',
+  technologiesSubtitle: 'The tools and collaborators powering our solutions',
+
+  // FAQ Section
+  faqTitle: 'Frequently Asked Questions',
+  faqSubtitle: 'Answers to common questions about our services',
   
   // Meta
   siteTitle: 'Askar Software Solutions - Innovative Technology Partner',

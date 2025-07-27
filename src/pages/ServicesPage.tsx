@@ -5,7 +5,7 @@ import ServicesSection from '@/components/sections/Services';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCirc  le, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
   const { t } = useLanguage();

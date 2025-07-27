@@ -6,6 +6,8 @@ import Services from '@/components/sections/Services';
 import Solutions from '@/components/sections/Solutions';
 import Portfolio from '@/components/sections/Portfolio';
 import About from '@/components/sections/About';
+import Technologies from '@/components/sections/Technologies';
+import FAQ from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
@@ -39,6 +41,8 @@ const Index: React.FC = () => {
         <Solutions />
         <Portfolio />
         <About />
+        <Technologies />
+        <FAQ />
         <CTA />
         <Contact />
       </main>
