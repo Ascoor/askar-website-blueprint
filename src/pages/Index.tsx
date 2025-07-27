@@ -11,6 +11,7 @@ import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Status from '@/components/ui/status';
 
 const Index: React.FC = () => {
   const { t } = useLanguage();
@@ -33,6 +34,7 @@ const Index: React.FC = () => {
       <Navigation />
       <main id="main-content">
         <HeroSlider />
+        <Status />
         <Services />
         <Solutions />
         <Portfolio />

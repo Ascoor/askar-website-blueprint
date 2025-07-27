@@ -16,11 +16,11 @@ interface SlideData {
 }
 
 const slides: SlideData[] = [
-  { image: "/hero1.webp", text: { en: "Technology that leads the future.", ar: "تقنية تقود المستقبل.", eg: "تقنية تقود المستقبل." } },
-  { image: "/hero2.webp", text: { en: "Data flows, growth follows.", ar: "تدفق البيانات، ينمو النجاح.", eg: "البيانات تتدفق، والنمو يتبع." } },
-  { image: "/hero3.webp", text: { en: "Smart partner in transformation.", ar: "شريك ذكي في التحول.", eg: "شريك ذكي في التحول." } },
-  { image: "/hero4.webp", text: { en: "Innovation with trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
-  { image: "/hero5.webp", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } }
+  { image: "/hero-1.png", text: { en: "Technology that leads the future.", ar: "تقنية تقود المستقبل.", eg: "تقنية تقود المستقبل." } },
+  { image: "/hero-2.png", text: { en: "Data flows, growth follows.", ar: "تدفق البيانات، ينمو النجاح.", eg: "البيانات تتدفق، والنمو يتبع." } },
+  { image: "/hero-3.png", text: { en: "Smart partner in transformation.", ar: "شريك ذكي في التحول.", eg: "شريك ذكي في التحول." } },
+  { image: "/hero-4.png", text: { en: "Innovation with trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
+  { image: "/hero-5.png", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } }
 ];
 
 const HeroSlider: React.FC = () => {
@@ -99,7 +99,7 @@ const HeroSlider: React.FC = () => {
       className="relative w-full overflow-hidden"
       style={{
         paddingTop: NAVBAR_HEIGHT,
-        minHeight: `calc(110vh - ${NAVBAR_HEIGHT}px)`
+        minHeight: `calc(120vh - ${NAVBAR_HEIGHT}px)`
       }}
     >
       <div className="absolute inset-0 w-full h-full perspective-[1200px]">

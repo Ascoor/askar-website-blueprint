@@ -8,6 +8,7 @@ import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
 import Navigation from '@/components/layout/Navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Status from '@/components/ui/status';
 
 const SiteIndex: React.FC = () => {
   const { t } = useLanguage();
@@ -35,6 +36,7 @@ const SiteIndex: React.FC = () => {
       <Navigation />
       <main id="main-content">
         <HeroSlider />
+        <Status />
         <Portfolio />
         <Services />
         <Solutions />

@@ -25,18 +25,16 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
-          <div className="flex flex-col items-start">
-            <Logo className="mb-4" />
-            <h3 className="text-2xl font-bold mb-4">
-              Askar <span className="text-primary">Solutions</span>
-            </h3>
+          <div className="flex flex-col items-center ">
+           <Logo size="footer-lg" />
             <p className="text-muted-foreground leading-relaxed">
               {t('aboutDesc')}
             </p>
           </div>
+          <div>
+ 
 
           {/* Quick Links */}
-          <div>
             <h4 className="text-lg font-semibold mb-4">{t('quickLinks')}</h4>
             <div className="space-y-2">
               {quickLinks.map((link) => (
