@@ -96,6 +96,14 @@ export const ar = {
   exploreSolutions: 'استكشف الحلول',
   contactSales: 'اتصل بالمبيعات',
 
+  // Technologies & Partners
+  technologiesTitle: 'التقنيات والشركاء',
+  technologiesSubtitle: 'الأدوات والشركاء الذين يدعمون حلولنا',
+
+  // FAQ Section
+  faqTitle: 'الأسئلة الشائعة',
+  faqSubtitle: 'إجابات على الأسئلة المتكررة حول خدماتنا',
+
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبتكر',
   siteDescription: 'شركة رائدة في تطوير البرمجيات تقدم حلول ويب وموبايل وسحابية متطورة. حول عملك مع خدماتنا التقنية المتخصصة.',

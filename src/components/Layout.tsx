@@ -1,23 +1,18 @@
-
-+import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext'; 
+import React from 'react';
+import Navigation from './layout/Navigation';
 import Footer from './layout/Footer';
-import Navigation from './la+
-ug `yout/Navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { dir } = useLanguage();
-
+  const { isRTL } = useLanguage();
   return (
-    <div className="min-h-screen flex flex-col" dir={dir}>
+    <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       <Navigation />
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );
