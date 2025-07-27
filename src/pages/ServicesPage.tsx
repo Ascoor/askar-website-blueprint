@@ -5,9 +5,9 @@ import ServicesSection from '@/components/sections/Services';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCirc  le, ArrowRight } from 'lucide-react';
 
-const Services: React.FC = () => {
+const ServicesPage: React.FC = () => {
   const { t } = useLanguage();
 
   const serviceDetails = [
@@ -158,4 +158,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services;
+export default ServicesPage;
