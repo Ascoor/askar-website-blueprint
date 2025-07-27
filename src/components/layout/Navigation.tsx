@@ -81,7 +81,7 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
             {/* Logo */}
-            <Logo />
+            <Logo clickable className="cursor-pointer" />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
@@ -92,7 +92,7 @@ const Navigation = () => {
                   className={`
                     relative font-medium text-sm lg:text-base  ml-6 transition-all duration-300
                     ${activeId === item.href.slice(1)
-                      ? "text-green-400 neon-glow"
+                      ? "text-primary neon-glow"
                       : "opacity-80 hover:opacity-100"}
                   `}
                 >
@@ -152,7 +152,7 @@ const Navigation = () => {
                     onClick={() => scrollToSection(item.href.slice(1))}
                     className={`text-xl font-medium transition-all duration-300 ${
                       activeId === item.href.slice(1)
-                        ? "text-green-400 neon-glow"
+                        ? "text-primary neon-glow"
                         : "opacity-80 hover:opacity-100"
                     }`}
                   >
@@ -169,7 +169,7 @@ const Navigation = () => {
       {showTopBtn && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-5 right-5 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-400 transition-all duration-300"
+          className="fixed bottom-5 right-5 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary-hover transition-all duration-300"
           aria-label="Back to top"
         >
           <ArrowUp className="h-5 w-5" />

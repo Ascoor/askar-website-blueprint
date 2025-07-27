@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Logo } from '@/components/ui/logo';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -20,11 +21,12 @@ const Footer = () => {
   ];
 
   return (
-    <footer dir={isRTL ? 'rtl' : 'ltr'} className="bg-footer text-footer-foreground py-12">
+    <footer dir={isRTL ? 'rtl' : 'ltr'} className="bg-background text-foreground py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
-          <div>
+          <div className="flex flex-col items-start">
+            <Logo className="mb-4" />
             <h3 className="text-2xl font-bold mb-4">
               Askar <span className="text-primary">Solutions</span>
             </h3>
