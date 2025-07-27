@@ -24,6 +24,8 @@ export const ar = {
   cloudSolutionsDesc: 'بنية تحتية سحابية قابلة للتوسع وحلول نشر متقدمة',
   consulting: 'استشارات تقنية المعلومات',
   consultingDesc: 'استشارات تقنية استراتيجية لتحسين عمليات أعمالك',
+  softwareSolutions: 'حلول برمجية',
+  softwareSolutionsDesc: 'برمجيات مخصصة لتبسيط العمليات وزيادة الإنتاجية',
 
   // Enhanced Services
   digitalInfrastructure: 'البنية التحتية الرقمية',

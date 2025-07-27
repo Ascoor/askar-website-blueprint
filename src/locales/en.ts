@@ -24,6 +24,8 @@ export const en = {
   cloudSolutionsDesc: 'Scalable cloud infrastructure and deployment solutions',
   consulting: 'IT Consulting',
   consultingDesc: 'Strategic technology consulting to optimize your business processes',
+  softwareSolutions: 'Software Solutions',
+  softwareSolutionsDesc: 'Custom software to streamline operations and boost productivity',
 
   // Enhanced Services
   digitalInfrastructure: 'Digital Infrastructure',

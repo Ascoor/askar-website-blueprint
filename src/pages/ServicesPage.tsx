@@ -12,8 +12,8 @@ const ServicesPage: React.FC = () => {
 
   const serviceDetails = [
     {
-      title: t('services.web.title'),
-      description: t('services.web.description'),
+      title: t('webDev'),
+      description: t('webDevDesc'),
       features: [
         'تصميم متجاوب لجميع الأجهزة',
         'تحسين محركات البحث SEO',
@@ -24,8 +24,8 @@ const ServicesPage: React.FC = () => {
       color: 'from-blue-500 to-cyan-500',
     },
     {
-      title: t('services.mobile.title'),
-      description: t('services.mobile.description'),
+      title: t('mobileDev'),
+      description: t('mobileDevDesc'),
       features: [
         'تطبيقات iOS و Android الأصلية',
         'تطبيقات متعددة المنصات',
@@ -36,8 +36,8 @@ const ServicesPage: React.FC = () => {
       color: 'from-purple-500 to-pink-500',
     },
     {
-      title: t('services.software.title'),
-      description: t('services.software.description'),
+      title: t('softwareSolutions'),
+      description: t('softwareSolutionsDesc'),
       features: [
         'أنظمة إدارة مخصصة',
         'حلول أتمتة العمليات',
@@ -61,10 +61,10 @@ const ServicesPage: React.FC = () => {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              {t('services.title')}
+              {t('servicesTitle')}
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
-              {t('services.subtitle')}
+              {t('servicesSubtitle')}
             </p>
           </motion.div>
         </div>
