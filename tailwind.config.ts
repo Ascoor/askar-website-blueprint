@@ -52,7 +52,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 
-				// Brand primary colors
+				// Lunar Night Brand System
 				primary: {
 					DEFAULT: 'hsl(var(--brand-primary))',
 					foreground: 'hsl(var(--brand-primary-foreground))',
@@ -66,13 +66,14 @@ export default {
 					glow: 'hsl(var(--brand-secondary-glow))',
 				},
 
-				// Brand color palette
-                                'brand-primary': 'hsl(var(--brand-primary))',
-                                'brand-secondary': 'hsl(var(--brand-secondary))',
-                                'brand-surface-dark': 'hsl(var(--brand-surface-dark))',
-                                'brand-surface-light': 'hsl(var(--brand-surface-light))',
-                                'brand-glow': 'hsl(var(--brand-glow))',
-                                'brand-light': 'hsl(var(--brand-light))',
+				// Lunar Night Color Palette
+				'brand-primary': 'hsl(var(--brand-primary))',
+				'brand-secondary': 'hsl(var(--brand-secondary))',
+				'brand-surface-dark': 'hsl(var(--brand-surface-dark))',
+				'brand-surface-light': 'hsl(var(--brand-surface-light))',
+				'brand-glow': 'hsl(var(--brand-glow))',
+				'text-base': 'hsl(var(--text-base))',
+				'text-muted': 'hsl(var(--text-muted))',
 
 				// Glass effects
 				'glass-bg': 'hsl(var(--glass-bg))',
@@ -126,20 +127,19 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
-                        borderRadius: {
-                                'none': '0',
-                                'sm': '0.5rem',
-                                'md': '0.75rem',
-                                'lg': '1rem',
-                                'xl': '1.25rem',
-                                '2xl': '1.5rem',
-                                '3xl': '2rem',
-                                'glass': '1.5rem',
-                                'card': '1rem',
-                                'modal': '2rem',
-                                'pill': '2rem',
-                                'button': '0.75rem',
-                        },
+			borderRadius: {
+				'none': '0',
+				'sm': '0.5rem',
+				'md': '0.75rem',
+				'lg': '1rem',
+				'xl': '1rem',      // Lunar standard
+				'2xl': '1.5rem',
+				'3xl': '2rem',     // Modal radius
+				'glass': '1rem',   // Glass cards
+				'card': '1rem',
+				'modal': '2rem',   // Large modals
+				'button': '1rem',  // Button radius
+			},
                         spacing: {
                                 'xs': '4px',
                                 'sm': '8px',
@@ -160,13 +160,15 @@ export default {
 				'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
 				'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
 				'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-				'elegant': '0 4px 20px -2px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.06)',
-				'premium': '0 8px 30px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -4px rgba(0, 0, 0, 0.1)',
-				'glow': '0 0 20px hsl(var(--brand-secondary) / 0.3)',
-				'glow-lg': '0 0 40px hsl(var(--brand-secondary) / 0.4)',
+				
+				// Lunar Night Shadow System
+				'lunar': '0 4px 20px -2px rgba(10, 26, 47, 0.15), 0 2px 8px -2px rgba(10, 26, 47, 0.1)',
+				'lunar-lg': '0 8px 30px -4px rgba(10, 26, 47, 0.2), 0 4px 12px -4px rgba(10, 26, 47, 0.15)',
+				'glow': '0 0 20px hsl(var(--brand-glow) / 0.3)',
+				'glow-lg': '0 0 40px hsl(var(--brand-glow) / 0.4)',
 				'glow-primary': '0 0 30px hsl(var(--brand-primary) / 0.2)',
-				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.1)',
-				'neon': '0 0 5px hsl(var(--brand-secondary)), 0 0 20px hsl(var(--brand-secondary)), 0 0 35px hsl(var(--brand-secondary))',
+				'glass': '0 8px 32px 0 rgba(30, 42, 59, 0.1)',
+				'neon': '0 0 5px hsl(var(--brand-glow)), 0 0 20px hsl(var(--brand-glow)), 0 0 35px hsl(var(--brand-glow))',
 			},
 			backdropBlur: {
 				'glass': '16px',

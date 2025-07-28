@@ -9,47 +9,50 @@
 /* 🎯 Askar Software Solutions - Complete Brand Design System */
 @layer base {
   :root {
-    /* ============= BRAND FOUNDATION ============= */
-    /* Core Brand Colors - Light Theme */
-    --brand-primary: 214 65% 11%;        /* #0A1A2F - Deep moonlit navy */
-    --brand-primary-foreground: 0 0% 100%; /* White on navy */
-    --brand-primary-hover: 214 65% 16%;   /* Slightly lighter */
-    --brand-primary-glow: 214 65% 11% / 0.3; /* Navy glow */
+    /* ============= LUNAR NIGHT DESIGN SYSTEM ============= */
+    /* Core Brand Colors - Lunar Night Theme */
+    --brand-primary: 214 65% 11%;          /* #0A1A2F - Deep moonlit navy */
+    --brand-primary-foreground: 0 0% 98%;  /* Near white on navy */
+    --brand-primary-hover: 214 65% 16%;    /* Slightly lighter navy */
+    --brand-primary-glow: 214 65% 11% / 0.3; /* Navy glow effect */
 
-    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky blue */
-    --brand-secondary-foreground: 0 0% 100%;
-    --brand-secondary-hover: 201 86% 65%;
-    --brand-secondary-glow: 201 86% 58% / 0.4;
+    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky blue accent */
+    --brand-secondary-foreground: 0 0% 100%; /* White on sky blue */
+    --brand-secondary-hover: 201 86% 65%;  /* Lighter sky blue */
+    --brand-secondary-glow: 201 86% 58% / 0.4; /* Sky blue glow */
 
     --brand-surface-dark: 220 29% 6%;      /* #0B0E14 - Dark backdrop */
-    --brand-surface-light: 215 33% 17%;    /* #1E2A3B - Glass card */
-    --brand-glow: 199 100% 68%;            /* #5DCBFF - Neon glow */
-    --brand-light: 236 239 243;            /* #ECF0F3 - Light background */
+    --brand-surface-light: 215 33% 17%;    /* #1E2A3B - Glass card surface */
+    --brand-glow: 199 100% 68%;            /* #5DCBFF - Neon text glow */
+    
+    /* Lunar Night Text Colors */
+    --text-base: 214 100% 91%;             /* #D6E9FF - Soft luminous white-blue */
+    --text-muted: 208 21% 70%;             /* #A2B3C2 - Desaturated labels */
 
     /* Glass & Effects */
-    --glass-bg: 255 255 255 / 0.05;       /* Ultra-light glass */
-    --glass-border: 255 255 255 / 0.1;    /* Glass border */
+    --glass-bg: 255 255 255 / 0.05;       /* Ultra-light glass overlay */
+    --glass-border: 255 255 255 / 0.1;    /* Subtle glass border */
 
-    /* ============= SEMANTIC TOKENS ============= */
-    --background: var(--brand-light);
-    --foreground: 210 40% 8%;              /* Dark navy text */
+    /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
+    --background: 214 100% 97%;            /* Very light blue-white */
+    --foreground: var(--brand-primary);    /* Deep navy text */
     
     --card: 0 0% 100%;                     /* Pure white cards */
-    --card-foreground: 210 40% 8%;
+    --card-foreground: var(--brand-primary);
     
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 8%;
+    --popover-foreground: var(--brand-primary);
     
-    --muted: 210 40% 94%;                  /* Light muted areas */
-    --muted-foreground: 215 16% 47%;       /* Muted text */
+    --muted: 214 32% 94%;                  /* Light muted surfaces */
+    --muted-foreground: var(--text-muted); /* Use lunar muted text */
     
-    --accent: var(--brand-secondary);      /* Use sky blue as accent */
+    --accent: var(--brand-secondary);      /* Sky blue accent */
     --accent-foreground: var(--brand-secondary-foreground);
     --accent-hover: var(--brand-secondary-hover);
     
-    --border: 214 32% 91%;                 /* Light borders */
-    --input: 214 32% 91%;                  /* Input borders */
-    --ring: var(--brand-glow);             /* Focus rings use neon glow */
+    --border: 214 32% 88%;                 /* Soft borders */
+    --input: 214 32% 88%;                  /* Input borders */
+    --ring: var(--brand-glow);             /* Neon focus rings */
     
     /* Status Colors */
     --success: 142 76% 36%;                /* Green */
@@ -77,22 +80,22 @@
   }
 
   .dark {
-    /* ============= DARK THEME OVERRIDES ============= */
-    --background: var(--brand-surface-dark);       /* Dark background */
-    --foreground: 0 0% 98%;                /* Light text */
+    /* ============= LUNAR NIGHT - DARK MODE DOMINANCE ============= */
+    --background: var(--brand-surface-dark);       /* Deep dark backdrop */
+    --foreground: var(--text-base);                /* Luminous white-blue text */
     
-    --card: var(--brand-surface-light);    /* Glass card background */
-    --card-foreground: 0 0% 98%;
+    --card: var(--brand-surface-light);            /* Glass card surface */
+    --card-foreground: var(--text-base);
     
     --popover: var(--brand-surface-light);
-    --popover-foreground: 0 0% 98%;
+    --popover-foreground: var(--text-base);
     
-    --muted: 215 28% 17%;                  /* Dark muted areas */
-    --muted-foreground: 208 21% 70%;       /* Desaturated labels */
+    --muted: var(--brand-surface-light);           /* Dark glass surfaces */
+    --muted-foreground: var(--text-muted);         /* Desaturated lunar text */
     
-    --border: 215 28% 17%;                 /* Dark borders */
-    --input: 215 28% 17%;
-    --ring: var(--brand-glow);             /* Neon focus ring */
+    --border: 215 28% 20%;                         /* Subtle dark borders */
+    --input: 215 28% 20%;
+    --ring: var(--brand-glow);                     /* Neon glow focus rings */
     
     /* Dark Mode Status Colors */
     --success: 142 71% 45%;
@@ -145,8 +148,8 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.15), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.1), transparent 70%),
+      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.08), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.06), transparent 70%),
       linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     background-attachment: fixed;
     background-size: cover;
@@ -167,8 +170,9 @@
 
   .dark body::before {
     background:
-      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.08), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.05), transparent 70%),
+      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.12), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(var(--brand-glow) / 0.08), transparent 70%),
+      radial-gradient(at 60% 50%, hsl(var(--brand-primary) / 0.04), transparent 80%),
       linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     opacity: 1;
   }
