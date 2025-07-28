@@ -9,33 +9,35 @@
 /* 🎯 Askar Software Solutions - Complete Brand Design System */
 @layer base {
   :root {
-    /* ============= LUNAR NIGHT DESIGN SYSTEM ============= */
-    /* Core Brand Colors - Lunar Night Theme */
-    --brand-primary: 214 65% 11%;          /* #0A1A2F - Deep moonlit navy */
-    --brand-primary-foreground: 0 0% 98%;  /* Near white on navy */
-    --brand-primary-hover: 214 65% 16%;    /* Slightly lighter navy */
-    --brand-primary-glow: 214 65% 11% / 0.3; /* Navy glow effect */
+    /* ============= SPRING THEME - LIGHT MODE DESIGN SYSTEM ============= */
+    /* Core Brand Colors - Spring Theme */
+    --brand-primary: 201 86% 58%;          /* #36B3F5 - Sky blue accent */
+    --brand-primary-foreground: 0 0% 100%; /* White on sky blue */
+    --brand-primary-hover: 201 86% 65%;    /* Lighter sky blue */
+    --brand-primary-glow: 201 86% 58% / 0.3; /* Sky blue glow */
 
-    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky blue accent */
-    --brand-secondary-foreground: 0 0% 100%; /* White on sky blue */
-    --brand-secondary-hover: 201 86% 65%;  /* Lighter sky blue */
-    --brand-secondary-glow: 201 86% 58% / 0.4; /* Sky blue glow */
+    --brand-secondary: 199 100% 73%;       /* #81D4FA - Light aqua */
+    --brand-secondary-foreground: 214 65% 11%; /* Navy on aqua */
+    --brand-secondary-hover: 199 100% 78%; /* Lighter aqua */
+    --brand-secondary-glow: 199 100% 73% / 0.4; /* Aqua glow */
 
-    --brand-surface-dark: 220 29% 6%;      /* #0B0E14 - Dark backdrop */
-    --brand-surface-light: 215 33% 17%;    /* #1E2A3B - Glass card surface */
-    --brand-glow: 199 100% 68%;            /* #5DCBFF - Neon text glow */
+    --brand-accent: 207 90% 25%;           /* #004C7C - Ocean blue for titles */
+    --brand-accent-foreground: 0 0% 100%;  /* White on ocean blue */
+    --brand-accent-hover: 207 90% 30%;     /* Lighter ocean blue */
     
-    /* Lunar Night Text Colors */
-    --text-base: 214 100% 91%;             /* #D6E9FF - Soft luminous white-blue */
-    --text-muted: 208 21% 70%;             /* #A2B3C2 - Desaturated labels */
+    /* Spring Theme Text Colors */
+    --text-base: 214 65% 11%;              /* #0A1A2F - High contrast navy */
+    --text-muted: 207 20% 45%;             /* Muted navy for labels */
+    --text-title: 207 90% 25%;             /* #004C7C - Bold section titles */
 
-    /* Glass & Effects */
-    --glass-bg: 255 255 255 / 0.05;       /* Ultra-light glass overlay */
-    --glass-border: 255 255 255 / 0.1;    /* Subtle glass border */
+    /* Spring Glass & Effects */
+    --glass-bg: 199 100% 97% / 0.6;        /* Soft spring glass */
+    --glass-border: 201 86% 58% / 0.2;     /* Sky blue glass border */
+    --spring-glow: 201 86% 58% / 0.4;      /* Soft spring glow */
 
     /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
-    --background: 214 100% 97%;            /* Very light blue-white */
-    --foreground: var(--brand-primary);    /* Deep navy text */
+    --background: 210 40% 95%;             /* #ECF0F3 - Soft spring base */
+    --foreground: var(--text-base);        /* High contrast navy text */
     
     --card: 0 0% 100%;                     /* Pure white cards */
     --card-foreground: var(--brand-primary);
@@ -43,16 +45,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: var(--brand-primary);
     
-    --muted: 214 32% 94%;                  /* Light muted surfaces */
-    --muted-foreground: var(--text-muted); /* Use lunar muted text */
+    --muted: 199 100% 96%;                 /* Soft spring muted surfaces */
+    --muted-foreground: var(--text-muted); /* Spring muted text */
     
-    --accent: var(--brand-secondary);      /* Sky blue accent */
+    --accent: var(--brand-secondary);      /* Light aqua accent */
     --accent-foreground: var(--brand-secondary-foreground);
     --accent-hover: var(--brand-secondary-hover);
     
-    --border: 214 32% 88%;                 /* Soft borders */
-    --input: 214 32% 88%;                  /* Input borders */
-    --ring: var(--brand-glow);             /* Neon focus rings */
+    --border: 199 50% 85%;                 /* Soft aqua borders */
+    --input: 199 50% 88%;                  /* Light input borders */
+    --ring: var(--spring-glow);            /* Spring glow focus rings */
     
     /* Status Colors */
     --success: 142 76% 36%;                /* Green */
@@ -147,10 +149,15 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
+    /* Spring Theme Gradient: ECF0F3 → DFF6FF → CDEFFC */
     background:
-      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.08), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.06), transparent 70%),
-      linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
+      radial-gradient(at 25% 25%, hsl(199 100% 94%) 0%, transparent 50%),
+      radial-gradient(at 75% 75%, hsl(199 100% 88%) 0%, transparent 50%),
+      linear-gradient(135deg, 
+        hsl(210 40% 95%) 0%,     /* #ECF0F3 */
+        hsl(199 100% 94%) 35%,   /* #DFF6FF */
+        hsl(199 100% 90%) 100%   /* #CDEFFC */
+      );
     background-attachment: fixed;
     background-size: cover;
     opacity: 1;
@@ -290,13 +297,31 @@
     opacity: 0;
   }
 
-  /* Utility Classes */
-  .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  /* Spring Theme Utility Classes */
+  .glass-spring {
+    @apply bg-glass-bg backdrop-blur-lg border border-glass-border;
   }
 
-  .dark .glass {
+  .dark .glass-spring {
     @apply bg-black/20 backdrop-blur-lg border border-white/10;
+  }
+
+  .spring-glow {
+    box-shadow: 0 0 20px hsl(var(--spring-glow)), 0 0 40px hsl(var(--spring-glow) / 0.2);
+  }
+
+  .spring-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover;
+    @apply rounded-xl transition-all duration-300;
+    @apply ring-1 ring-transparent hover:ring-spring-glow;
+    @apply shadow-md hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .spring-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50;
+    @apply rounded-xl shadow-elegant hover:shadow-premium;
+    @apply ring-1 ring-transparent hover:ring-border/30;
+    @apply transition-all duration-300;
   }
 
   .gradient-primary {
