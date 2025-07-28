@@ -1,6 +1,6 @@
 # Custom Loader Components
 
-This project includes two new React components for more imaginative loading states.
+This project includes several React components for more imaginative loading states.
 
 ## MatrixLoader
 
@@ -21,3 +21,13 @@ import { CodeOrbitLoader } from '@/components/ui/code-orbit-loader';
 ```
 
 CodeOrbitLoader displays two dashed rings spinning in opposite directions around a `</>` symbol.
+
+## AskLoader
+
+```tsx
+import { AskLoader } from '@/components/ui/ask-loader';
+
+<AskLoader className="w-32 h-32" />
+```
+
+AskLoader animates the company initials "ASK" with lines being drawn sequentially on a dark background.
