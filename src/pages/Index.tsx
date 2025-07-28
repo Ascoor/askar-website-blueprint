@@ -30,15 +30,7 @@ const Index: React.FC = () => {
       <Navigation />
       <main id="main-content">
         <HeroSlider />
-        <Status />
-        <Services />
-        <Solutions />
-        <Portfolio />
-        <About />
-        <Technologies />
-        <FAQ />
-        <CTA />
-        <Contact />
+ 
       </main>
       <Footer />
       <BackToTopButton />
