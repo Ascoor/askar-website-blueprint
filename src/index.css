@@ -11,19 +11,20 @@
   :root {
     /* ============= BRAND FOUNDATION ============= */
     /* Core Brand Colors - Light Theme */
-    --brand-primary: 212 100% 18%;        /* #002F5D - Navy Blue */
-    --brand-primary-foreground: 0 0% 100%; /* White text on navy */
-    --brand-primary-hover: 212 100% 25%;   /* Lighter navy on hover */
-    --brand-primary-glow: 212 100% 18% / 0.3; /* Navy glow effect */
+    --brand-primary: 214 65% 11%;        /* #0A1A2F - Deep moonlit navy */
+    --brand-primary-foreground: 0 0% 100%; /* White on navy */
+    --brand-primary-hover: 214 65% 16%;   /* Slightly lighter */
+    --brand-primary-glow: 214 65% 11% / 0.3; /* Navy glow */
 
-    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky Blue */
-    --brand-secondary-foreground: 0 0% 100%; /* White text on sky blue */
-    --brand-secondary-hover: 201 86% 65%;   /* Lighter sky blue */
-    --brand-secondary-glow: 201 86% 58% / 0.4; /* Sky blue glow */
+    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky blue */
+    --brand-secondary-foreground: 0 0% 100%;
+    --brand-secondary-hover: 201 86% 65%;
+    --brand-secondary-glow: 201 86% 58% / 0.4;
 
-    --brand-amber: 38 92% 50%;             /* #FF9800 - Accent Light */
-    --brand-dark: 215 28% 8%;              /* #0B0E14 - Dark Background */
-    --brand-light: 236 239 243;            /* #ECF0F3 - Light Background */
+    --brand-surface-dark: 220 29% 6%;      /* #0B0E14 - Dark backdrop */
+    --brand-surface-light: 215 33% 17%;    /* #1E2A3B - Glass card */
+    --brand-glow: 199 100% 68%;            /* #5DCBFF - Neon glow */
+    --brand-light: 236 239 243;            /* #ECF0F3 - Light background */
 
     /* Glass & Effects */
     --glass-bg: 255 255 255 / 0.05;       /* Ultra-light glass */
@@ -48,14 +49,14 @@
     
     --border: 214 32% 91%;                 /* Light borders */
     --input: 214 32% 91%;                  /* Input borders */
-    --ring: var(--brand-primary);          /* Focus rings use navy */
+    --ring: var(--brand-glow);             /* Focus rings use neon glow */
     
     /* Status Colors */
     --success: 142 76% 36%;                /* Green */
     --success-foreground: 0 0% 98%;
     
-    --warning: var(--brand-amber);         /* Use brand amber */
-    --warning-foreground: 0 0% 98%;
+    --warning: 201 86% 58%;                /* Use sky blue as warning */
+    --warning-foreground: 0 0% 100%;
     
     --info: var(--brand-secondary);        /* Use sky blue */
     --info-foreground: 0 0% 98%;
@@ -77,21 +78,21 @@
 
   .dark {
     /* ============= DARK THEME OVERRIDES ============= */
-    --background: var(--brand-dark);       /* Dark background */
+    --background: var(--brand-surface-dark);       /* Dark background */
     --foreground: 0 0% 98%;                /* Light text */
     
-    --card: 220 13% 18%;                   /* Dark cards with blue tint */
+    --card: var(--brand-surface-light);    /* Glass card background */
     --card-foreground: 0 0% 98%;
     
-    --popover: 220 13% 18%;
+    --popover: var(--brand-surface-light);
     --popover-foreground: 0 0% 98%;
     
     --muted: 215 28% 17%;                  /* Dark muted areas */
-    --muted-foreground: 217 10% 64%;       /* Light muted text */
+    --muted-foreground: 208 21% 70%;       /* Desaturated labels */
     
     --border: 215 28% 17%;                 /* Dark borders */
     --input: 215 28% 17%;
-    --ring: var(--brand-secondary);        /* Sky blue focus rings in dark */
+    --ring: var(--brand-glow);             /* Neon focus ring */
     
     /* Dark Mode Status Colors */
     --success: 142 71% 45%;
@@ -144,8 +145,8 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(at 20% 30%, hsl(201 86% 58% / 0.15), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(212 100% 18% / 0.1), transparent 70%),
+      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.15), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.1), transparent 70%),
       linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     background-attachment: fixed;
     background-size: cover;
@@ -161,13 +162,13 @@
     background-image: radial-gradient(hsla(0,0%,100%,0.06) 1px, transparent 0);
     background-size: 3px 3px;
     mix-blend-mode: overlay;
-    opacity: 0.3;
+    opacity: 0.05;
   }
 
   .dark body::before {
     background:
-      radial-gradient(at 20% 30%, hsl(201 86% 58% / 0.08), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(212 100% 30% / 0.05), transparent 70%),
+      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.08), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(var(--brand-primary) / 0.05), transparent 70%),
       linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     opacity: 1;
   }
@@ -181,13 +182,17 @@
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 700;
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl md:text-5xl;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 600;
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
   }
 
   h3 {
