@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Navigation from '@/components/layout/Navigation';
 import HeroSlider from '@/components/HeroSlider';
+import LunarHero from '@/components/sections/LunarHero';
 import Services from '@/components/sections/Services';
 import Solutions from '@/components/sections/Solutions';
 import Portfolio from '@/components/sections/Portfolio';
@@ -30,6 +31,7 @@ const Index: React.FC = () => {
       <Navigation />
       <main id="main-content">
         <HeroSlider />
+        <LunarHero />
         <Status />
         <Services />
         <Solutions />
