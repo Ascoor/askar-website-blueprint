@@ -67,13 +67,17 @@ export default {
 				},
 
 				// Lunar Night Color Palette
-				'brand-primary': 'hsl(var(--brand-primary))',
-				'brand-secondary': 'hsl(var(--brand-secondary))',
-				'brand-surface-dark': 'hsl(var(--brand-surface-dark))',
-				'brand-surface-light': 'hsl(var(--brand-surface-light))',
-				'brand-glow': 'hsl(var(--brand-glow))',
-				'text-base': 'hsl(var(--text-base))',
-				'text-muted': 'hsl(var(--text-muted))',
+                                // Semantic brand tokens
+                                'brand-bg': 'hsl(var(--brand-bg))',
+                                'brand-surface': 'hsl(var(--brand-surface))',
+                                'brand-primary': 'hsl(var(--brand-primary))',
+                                'brand-accent': 'hsl(var(--brand-accent))',
+                                'brand-secondary': 'hsl(var(--brand-secondary))',
+                                'brand-surface-dark': 'hsl(var(--brand-surface-dark))',
+                                'brand-surface-light': 'hsl(var(--brand-surface-light))',
+                                'brand-glow': 'hsl(var(--brand-glow))',
+                                'text-base': 'hsl(var(--text-base))',
+                                'text-muted': 'hsl(var(--text-muted))',
 
 				// Glass effects
 				'glass-bg': 'hsl(var(--glass-bg))',

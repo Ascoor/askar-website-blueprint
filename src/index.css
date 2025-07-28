@@ -21,6 +21,13 @@
     --brand-secondary-hover: 199 100% 78%; /* Lighter aqua */
     --brand-secondary-glow: 199 100% 73% / 0.4; /* Aqua glow */
 
+    /* Semantic Brand Tokens */
+    --brand-bg: 210 40% 95%;          /* Soft spring background */
+    --brand-surface: 0 0% 100%;       /* Default card surface */
+    --brand-surface-dark: 220 28% 8%; /* Dark background */
+    --brand-surface-light: 0 0% 100%; /* Light surface */
+    --brand-glow: 201 86% 58%;        /* Primary glow base */
+
     --brand-accent: 207 90% 25%;           /* #004C7C - Ocean blue for titles */
     --brand-accent-foreground: 0 0% 100%;  /* White on ocean blue */
     --brand-accent-hover: 207 90% 30%;     /* Lighter ocean blue */
@@ -36,7 +43,7 @@
     --spring-glow: 201 86% 58% / 0.4;      /* Soft spring glow */
 
     /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
-    --background: 210 40% 95%;             /* #ECF0F3 - Soft spring base */
+    --background: var(--brand-bg);
     --foreground: var(--text-base);        /* High contrast navy text */
     
     --card: 0 0% 100%;                     /* Pure white cards */
@@ -83,8 +90,12 @@
 
   .dark {
     /* ============= LUNAR NIGHT - DARK MODE DOMINANCE ============= */
-    --background: var(--brand-surface-dark);       /* Deep dark backdrop */
-    --foreground: var(--text-base);                /* Luminous white-blue text */
+    --brand-bg: 220 28% 8%;               /* #0B0E14 */
+    --brand-surface: 218 16% 18%;         /* glass panels */
+    --brand-surface-light: 218 16% 22%;   /* lighter cards */
+    --brand-surface-dark: 220 28% 8%;     /* dark base */
+    --background: var(--brand-bg);
+    --foreground: var(--text-base);
     
     --card: var(--brand-surface-light);            /* Glass card surface */
     --card-foreground: var(--text-base);
