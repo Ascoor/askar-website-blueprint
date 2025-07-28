@@ -1,139 +1,116 @@
-/* Load fonts with italic variants to avoid faux styles */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap');
+/* Load Askar Brand Fonts - Futuristic Tech Theme */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Cairo+Play:wght@400;500;600;700;800;900&family=Tajawal:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Import Google Fonts for better typography */
 
-/* Askar Software Solutions Brand Colors */
+/* 🎯 Askar Software Solutions - Complete Brand Design System */
 @layer base {
   :root {
-    /* Brand Light Theme */
-    --background: 236 239 243;  /* #ECF0F3 */
-    --foreground: 217 66% 13.9%;
+    /* ============= BRAND FOUNDATION ============= */
+    /* Core Brand Colors - Light Theme */
+    --brand-primary: 212 100% 18%;        /* #002F5D - Navy Blue */
+    --brand-primary-foreground: 0 0% 100%; /* White text on navy */
+    --brand-primary-hover: 212 100% 25%;   /* Lighter navy on hover */
+    --brand-primary-glow: 212 100% 18% / 0.3; /* Navy glow effect */
 
-    /* Card & Popover */
-    --card: 0 0% 100%;
-    --card-foreground: 217 66% 13.9%;
+    --brand-secondary: 201 86% 58%;        /* #36B3F5 - Sky Blue */
+    --brand-secondary-foreground: 0 0% 100%; /* White text on sky blue */
+    --brand-secondary-hover: 201 86% 65%;   /* Lighter sky blue */
+    --brand-secondary-glow: 201 86% 58% / 0.4; /* Sky blue glow */
+
+    --brand-amber: 38 92% 50%;             /* #FF9800 - Accent Light */
+    --brand-dark: 215 28% 8%;              /* #0B0E14 - Dark Background */
+    --brand-light: 236 239 243;            /* #ECF0F3 - Light Background */
+
+    /* Glass & Effects */
+    --glass-bg: 255 255 255 / 0.05;       /* Ultra-light glass */
+    --glass-border: 255 255 255 / 0.1;    /* Glass border */
+
+    /* ============= SEMANTIC TOKENS ============= */
+    --background: var(--brand-light);
+    --foreground: 210 40% 8%;              /* Dark navy text */
+    
+    --card: 0 0% 100%;                     /* Pure white cards */
+    --card-foreground: 210 40% 8%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 217 66% 13.9%;
-
-    /* Primary Brand Navy */
-    --primary: 212 100% 18%;    /* #002F5D */
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 212 100% 25%;
-
-    /* Secondary Brand Blue */
-    --secondary: 201 86% 58%;   /* #36B3F5 */
-    --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 201 86% 65%;
-
-    --muted: 210 40% 94%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 201 86% 58%;      /* #36B3F5 */
-    --accent-foreground: 0 0% 100%;
-    --accent-hover: 201 86% 65%;
-
-    /* Warning / Destructive */
-    --destructive: 0 84% 60%;
+    --popover-foreground: 210 40% 8%;
+    
+    --muted: 210 40% 94%;                  /* Light muted areas */
+    --muted-foreground: 215 16% 47%;       /* Muted text */
+    
+    --accent: var(--brand-secondary);      /* Use sky blue as accent */
+    --accent-foreground: var(--brand-secondary-foreground);
+    --accent-hover: var(--brand-secondary-hover);
+    
+    --border: 214 32% 91%;                 /* Light borders */
+    --input: 214 32% 91%;                  /* Input borders */
+    --ring: var(--brand-primary);          /* Focus rings use navy */
+    
+    /* Status Colors */
+    --success: 142 76% 36%;                /* Green */
+    --success-foreground: 0 0% 98%;
+    
+    --warning: var(--brand-amber);         /* Use brand amber */
+    --warning-foreground: 0 0% 98%;
+    
+    --info: var(--brand-secondary);        /* Use sky blue */
+    --info-foreground: 0 0% 98%;
+    
+    --destructive: 0 84% 60%;              /* Red */
     --destructive-foreground: 0 0% 98%;
     --destructive-hover: 0 84% 55%;
 
-    /* Borders & Ring */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 212 100% 18%;
-    
-    /* Success Colors */
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 98%;
-    
-    /* Warning Colors */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 98%;
-    
-    /* Info Colors */
-    --info: 201 86% 58%;
-    --info-foreground: 0 0% 98%;
-    
-    /* Enhanced Radius System */
-    --radius: 0.75rem;
-    --radius-sm: 0.5rem;
-    --radius-lg: 1rem;
-    
-    /* Professional Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
-    /* Enhanced Sidebar System */
+    /* Sidebar System */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary: var(--brand-primary);
+    --sidebar-primary-foreground: var(--brand-primary-foreground);
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-ring: var(--brand-secondary);
   }
 
   .dark {
-    /* Brand Dark Theme */
-    --background: 215 28% 8%;   /* #0B0E14 */
-    --foreground: 0 0% 98%;
-
-    --card: 220 13% 18%;
+    /* ============= DARK THEME OVERRIDES ============= */
+    --background: var(--brand-dark);       /* Dark background */
+    --foreground: 0 0% 98%;                /* Light text */
+    
+    --card: 220 13% 18%;                   /* Dark cards with blue tint */
     --card-foreground: 0 0% 98%;
-
+    
     --popover: 220 13% 18%;
     --popover-foreground: 0 0% 98%;
-
-    /* Primary Brand Navy (lighter in dark mode) */
-    --primary: 201 86% 58%;     /* #36B3F5 */
-    --primary-foreground: 0 0% 9%;
-    --primary-hover: 201 86% 65%;
-
-    /* Secondary Brand Blue */
-    --secondary: 212 100% 25%;  /* Lighter navy */
-    --secondary-foreground: 0 0% 98%;
-    --secondary-hover: 212 100% 30%;
-
-    --muted: 215 28% 17%;
-    --muted-foreground: 217 10% 64%;
-
-    --accent: 201 86% 58%;      /* #36B3F5 */
-    --accent-foreground: 0 0% 9%;
-    --accent-hover: 201 86% 65%;
-
+    
+    --muted: 215 28% 17%;                  /* Dark muted areas */
+    --muted-foreground: 217 10% 64%;       /* Light muted text */
+    
+    --border: 215 28% 17%;                 /* Dark borders */
+    --input: 215 28% 17%;
+    --ring: var(--brand-secondary);        /* Sky blue focus rings in dark */
+    
+    /* Dark Mode Status Colors */
+    --success: 142 71% 45%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
     --destructive-hover: 0 63% 36%;
 
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 201 86% 58%;
-    
-    --success: 142 71% 45%;
-    --success-foreground: 0 0% 98%;
-    
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 98%;
-    
-    --info: 201 86% 58%;
-    --info-foreground: 0 0% 98%;
-    
+    /* Dark Glass Effects */
+    --glass-bg: 0 0% 100% / 0.02;         /* Very subtle white overlay */
+    --glass-border: 0 0% 100% / 0.05;     /* Subtle white border */
+
+    /* Dark Sidebar */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary: var(--brand-secondary);
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-ring: var(--brand-secondary);
   }
 }
 
