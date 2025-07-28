@@ -65,7 +65,7 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
     return (
       <div className={cn('relative overflow-hidden', className)}>
         {placeholder === 'blur' && !isLoaded && (
-          <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
+          <div className="absolute inset-0 bg-muted animate-pulse dark:bg-muted" />
         )}
         
         <img
@@ -85,8 +85,8 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
         />
         
         {hasError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-            <div className="text-gray-400 dark:text-gray-600 text-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <div className="text-muted-foreground text-sm">
               Image failed to load
             </div>
           </div>
