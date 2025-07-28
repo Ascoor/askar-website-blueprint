@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
-const NAVBAR_HEIGHT = 64;
+const NAVBAR_HEIGHT = 72;
 const SLIDE_DURATION = 10000; // 10 seconds
 const TEXT_APPEAR_AFTER = SLIDE_DURATION - 5000; // last 5 sec
 const MOBILE_MIN_HEIGHT = 400;

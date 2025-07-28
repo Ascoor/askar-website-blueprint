@@ -6,45 +6,45 @@
 
 /* Import Google Fonts for better typography */
 
-/* Enhanced Design System - Enterprise Grade Color Palette */
+/* Askar Software Solutions Brand Colors */
 @layer base {
   :root {
-    /* Neon Tech Palette */
-    --background: 204 100% 98%;
+    /* Brand Light Theme */
+    --background: 236 239 243;  /* #ECF0F3 */
     --foreground: 217 66% 13.9%;
 
     /* Card & Popover */
-    --card: 204 100% 98%;
+    --card: 0 0% 100%;
     --card-foreground: 217 66% 13.9%;
-    --popover: 204 100% 98%;
+    --popover: 0 0% 100%;
     --popover-foreground: 217 66% 13.9%;
 
-    /* Primary Neon */
-    --primary: 188 100% 57.3%;
-    --primary-foreground: 204 100% 98%;
-    --primary-hover: 204.8 93.2% 54.1%;
+    /* Primary Brand Navy */
+    --primary: 212 100% 18%;    /* #002F5D */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 212 100% 25%;
 
-    /* Secondary & Accent */
-    --secondary: 246.5 100% 74.7%;
-    --secondary-foreground: 217 66% 13.9%;
-    --secondary-hover: 246.5 100% 70%;
+    /* Secondary Brand Blue */
+    --secondary: 201 86% 58%;   /* #36B3F5 */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 201 86% 65%;
 
-    --muted: 207.8 27.5% 70.8%;
-    --muted-foreground: 217 66% 13.9%;
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 185.2 100% 66.3%;
-    --accent-foreground: 217 66% 13.9%;
-    --accent-hover: 185.2 100% 72%;
+    --accent: 201 86% 58%;      /* #36B3F5 */
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 201 86% 65%;
 
     /* Warning / Destructive */
-    --destructive: 28.8 100% 64.5%;
-    --destructive-foreground: 217 66% 13.9%;
-    --destructive-hover: 28.8 100% 50%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --destructive-hover: 0 84% 55%;
 
     /* Borders & Ring */
-    --border: 207.8 27.5% 70.8%;
-    --input: 207.8 27.5% 70.8%;
-    --ring: 188 100% 57.3%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 212 100% 18%;
     
     /* Success Colors */
     --success: 142 76% 36%;
@@ -55,7 +55,7 @@
     --warning-foreground: 0 0% 98%;
     
     /* Info Colors */
-    --info: 199 89% 48%;
+    --info: 201 86% 58%;
     --info-foreground: 0 0% 98%;
     
     /* Enhanced Radius System */
@@ -82,38 +82,40 @@
   }
 
   .dark {
-    /* Dark Neon Theme */
-    --background: 217 66% 13.9%;
-    --foreground: 204 100% 98%;
+    /* Brand Dark Theme */
+    --background: 215 28% 8%;   /* #0B0E14 */
+    --foreground: 0 0% 98%;
 
-    --card: 213.9 54.8% 16.5%;
-    --card-foreground: 204 100% 98%;
+    --card: 220 13% 18%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 217 66% 13.9%;
-    --popover-foreground: 204 100% 98%;
+    --popover: 220 13% 18%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 188 100% 57.3%;
-    --primary-foreground: 204 100% 98%;
-    --primary-hover: 204.8 93.2% 54.1%;
+    /* Primary Brand Navy (lighter in dark mode) */
+    --primary: 201 86% 58%;     /* #36B3F5 */
+    --primary-foreground: 0 0% 9%;
+    --primary-hover: 201 86% 65%;
 
-    --secondary: 246.5 100% 74.7%;
-    --secondary-foreground: 217 66% 13.9%;
-    --secondary-hover: 246.5 100% 70%;
+    /* Secondary Brand Blue */
+    --secondary: 212 100% 25%;  /* Lighter navy */
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 212 100% 30%;
 
-    --muted: 213.9 54.8% 16.5%;
-    --muted-foreground: 207.8 27.5% 70.8%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 64%;
 
-    --accent: 185.2 100% 66.3%;
-    --accent-foreground: 217 66% 13.9%;
-    --accent-hover: 185.2 100% 72%;
+    --accent: 201 86% 58%;      /* #36B3F5 */
+    --accent-foreground: 0 0% 9%;
+    --accent-hover: 201 86% 65%;
 
-    --destructive: 28.8 100% 50%;
-    --destructive-foreground: 204 100% 98%;
-    --destructive-hover: 28.8 100% 60%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --destructive-hover: 0 63% 36%;
 
-    --border: 213.9 54.8% 16.5%;
-    --input: 213.9 54.8% 16.5%;
-    --ring: 188 100% 57.3%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 201 86% 58%;
     
     --success: 142 71% 45%;
     --success-foreground: 0 0% 98%;
@@ -121,7 +123,7 @@
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 98%;
     
-    --info: 199 89% 48%;
+    --info: 201 86% 58%;
     --info-foreground: 0 0% 98%;
     
     --sidebar-background: 240 5.9% 10%;
@@ -165,12 +167,12 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(at 20% 30%, hsla(221,83%,65%,0.45), transparent 60%),
-      radial-gradient(at 80% 70%, hsla(267,83%,70%,0.35), transparent 60%),
-      linear-gradient(120deg, hsl(221 83% 55%), hsl(221 83% 40%));
+      radial-gradient(at 20% 30%, hsl(201 86% 58% / 0.15), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(212 100% 18% / 0.1), transparent 70%),
+      linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     background-attachment: fixed;
     background-size: cover;
-    opacity: 0.6;
+    opacity: 1;
   }
 
   body::after {
@@ -187,10 +189,10 @@
 
   .dark body::before {
     background:
-      radial-gradient(at 20% 30%, hsla(221,83%,50%,0.35), transparent 60%),
-      radial-gradient(at 80% 70%, hsla(267,83%,40%,0.25), transparent 60%),
-      linear-gradient(120deg, hsl(221 83% 25%), hsl(221 83% 10%));
-    opacity: 0.4;
+      radial-gradient(at 20% 30%, hsl(201 86% 58% / 0.08), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(212 100% 30% / 0.05), transparent 70%),
+      linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
+    opacity: 1;
   }
 
   /* Enhanced Typography Scale */
