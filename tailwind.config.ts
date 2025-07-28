@@ -25,11 +25,11 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				sans: ['Inter', 'Tajawal', 'system-ui', '-apple-system', 'sans-serif'],
-				heading: ['Outfit', 'Space Grotesk', 'Cairo Play', 'Tajawal', 'sans-serif'],
-				mono: ['JetBrains Mono', 'Fira Code', 'Monaco', 'monospace'],
-				arabic: ['Cairo Play', 'Tajawal', 'Amiri', 'sans-serif'],
+                        fontFamily: {
+                                sans: ['Inter', 'Cairo Play', 'system-ui', '-apple-system', 'sans-serif'],
+                                heading: ['Space Grotesk', 'Outfit', 'Cairo Play', 'sans-serif'],
+                                mono: ['JetBrains Mono', 'Fira Code', 'Monaco', 'monospace'],
+                                arabic: ['Cairo Play', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['clamp(0.75rem, 2vw, 0.875rem)', { lineHeight: '1.4' }],
@@ -67,11 +67,12 @@ export default {
 				},
 
 				// Brand color palette
-				'brand-primary': 'hsl(var(--brand-primary))',
-				'brand-secondary': 'hsl(var(--brand-secondary))',
-				'brand-amber': 'hsl(var(--brand-amber))',
-				'brand-dark': 'hsl(var(--brand-dark))',
-				'brand-light': 'hsl(var(--brand-light))',
+                                'brand-primary': 'hsl(var(--brand-primary))',
+                                'brand-secondary': 'hsl(var(--brand-secondary))',
+                                'brand-surface-dark': 'hsl(var(--brand-surface-dark))',
+                                'brand-surface-light': 'hsl(var(--brand-surface-light))',
+                                'brand-glow': 'hsl(var(--brand-glow))',
+                                'brand-light': 'hsl(var(--brand-light))',
 
 				// Glass effects
 				'glass-bg': 'hsl(var(--glass-bg))',
@@ -134,8 +135,8 @@ export default {
                                 '2xl': '1.5rem',
                                 '3xl': '2rem',
                                 'glass': '1.5rem',
-                                'card': '0.75rem',
-                                'modal': '1.25rem',
+                                'card': '1rem',
+                                'modal': '2rem',
                                 'pill': '2rem',
                                 'button': '0.75rem',
                         },
