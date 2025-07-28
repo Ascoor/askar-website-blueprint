@@ -53,10 +53,10 @@ const NotFound = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1], delay: 0.4 }}
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             {t('notFound')}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
             {t('notFoundDesc')}
           </p>
         </motion.div>
