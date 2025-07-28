@@ -31,3 +31,27 @@ import { AskLoader } from '@/components/ui/ask-loader';
 ```
 
 AskLoader animates the company initials "ASK" with lines being drawn sequentially on a dark background.
+
+## Preloader
+
+```tsx
+import { Preloader } from '@/components/ui/preloader';
+
+<Preloader />
+```
+
+Preloader acts as the main page loader. It reveals each letter of "ASK" with neon line animations, then pulses once before fading out.
+
+**Usage:** Place the component near the root of your app (e.g. in `Layout.tsx`) and hide your content until `onComplete` fires.
+
+```tsx
+const Layout = ({ children }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div>
+      {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
+      <main className={loaded ? '' : 'invisible'}>{children}</main>
+    </div>
+  );
+};
+```
