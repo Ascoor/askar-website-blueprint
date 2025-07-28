@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
 import Portfolio from '@/components/sections/Portfolio';
+import Index from './Index';
 import Services from '@/components/sections/Services';
 import Solutions from '@/components/sections/Solutions';
 import Contact from '@/components/sections/Contact';
@@ -35,12 +36,7 @@ const SiteIndex: React.FC = () => {
 
       <Navigation />
       <main id="main-content">
-        <HeroSlider />
-        <Status />
-        <Portfolio />
-        <Services />
-        <Solutions />
-        <Contact />
+ <Index />
       </main>
       <Footer />
     </div>

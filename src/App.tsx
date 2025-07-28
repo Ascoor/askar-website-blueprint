@@ -14,6 +14,7 @@ import PortfolioPage from "./pages/PortfolioPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import NotFound from "./pages/NotFound";
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
