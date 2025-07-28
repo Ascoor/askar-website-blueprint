@@ -103,7 +103,7 @@ const Navigation: React.FC = () => {
   return (
     <nav
       dir={isRTL ? "rtl" : "ltr"}
-      className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md text-white border-b border-white/10"
+      className="fixed top-0 w-full z-50  text-white border-b border-white/10"
       style={{ height: `${NAVBAR_HEIGHT}px` }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
