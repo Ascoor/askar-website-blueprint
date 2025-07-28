@@ -199,8 +199,8 @@ const PortfolioPage: React.FC<PortfolioSectionProps> = ({ isArabic }) => {
               onClick={() => setActiveFilter(filter.key)}
               className={`${
                 activeFilter === filter.key 
-                  ? 'bg-gradient-primary text-white shadow-glow-primary' 
-                  : 'glass-card border-white/10 hover:bg-white/5'
+                  ? 'bg-gradient-primary text-primary-foreground shadow-glow-primary'
+                  : 'glass-card border-glass-border hover:bg-glass-bg/50'
               } transition-all duration-300`}
             >
               <Filter className="w-4 h-4 mr-2" />
@@ -227,7 +227,7 @@ const PortfolioPage: React.FC<PortfolioSectionProps> = ({ isArabic }) => {
                 onHoverStart={() => setHoveredProject(project.id)}
                 onHoverEnd={() => setHoveredProject(null)}
               >
-                <Card className="glass-card border-white/10 overflow-hidden group cursor-pointer hover:shadow-glow-primary transition-all duration-500">
+                <Card className="glass-card border-glass-border overflow-hidden group cursor-pointer hover:shadow-glow-primary transition-all duration-500">
                   {/* Project Image */}
                   <div className="relative overflow-hidden">
                     <img 
@@ -239,11 +239,11 @@ const PortfolioPage: React.FC<PortfolioSectionProps> = ({ isArabic }) => {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="flex space-x-4">
-                        <Button size="sm" variant="outline" className="glass text-white border-white/30">
+                        <Button size="sm" variant="outline" className="glass text-primary-foreground border-glass-border">
                           <Eye className="w-4 h-4 mr-2" />
                           {isArabic ? 'معاينة' : 'Preview'}
                         </Button>
-                        <Button size="sm" variant="outline" className="glass text-white border-white/30">
+                        <Button size="sm" variant="outline" className="glass text-primary-foreground border-glass-border">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           {isArabic ? 'زيارة' : 'Visit'}
                         </Button>
@@ -252,7 +252,7 @@ const PortfolioPage: React.FC<PortfolioSectionProps> = ({ isArabic }) => {
 
                     {/* Year Badge */}
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-gradient-primary text-white shadow-glow-primary">
+                      <Badge className="bg-gradient-primary text-primary-foreground shadow-glow-primary">
                         {project.year}
                       </Badge>
                     </div>
@@ -294,7 +294,7 @@ const PortfolioPage: React.FC<PortfolioSectionProps> = ({ isArabic }) => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <Button size="lg" className="bg-gradient-primary text-white shadow-glow-primary hover:shadow-glow-accent transition-all duration-300">
+          <Button size="lg" className="bg-gradient-primary text-primary-foreground shadow-glow-primary hover:shadow-glow-accent transition-all duration-300">
             {isArabic ? 'عرض المزيد من الأعمال' : 'View More Projects'}
           </Button>
         </motion.div>
