@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const NAVBAR_HEIGHT = 72;
 const SLIDE_DURATION = 10000; // 10 seconds
-const TEXT_APPEAR_AFTER = SLIDE_DURATION - 5000; // last 5 sec
+const TEXT_APPEAR_AFTER = SLIDE_DURATION - 5000; // text appears after 5 sec
 const MOBILE_MIN_HEIGHT = 400;
 const EASING = [0.42, 0, 0.58, 1] as const;
 
@@ -29,7 +29,10 @@ const HeroSlider: React.FC = () => {
   const [showText, setShowText] = useState(false);
 
   const currentSlide = useMemo(() => slides[currentIndex], [currentIndex]);
-  const nextSlide = useCallback(() => setCurrentIndex((prev) => (prev + 1) % slides.length), []);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  }, []);
 
   useEffect(() => {
     setShowText(false);
@@ -44,33 +47,27 @@ const HeroSlider: React.FC = () => {
     };
   }, [currentIndex, nextSlide]);
 
-  /** تحديد اتجاه الزوم لكل شريحة */
-  const isZoomIn = currentIndex % 2 === 0;
-
-  /** حركات الصور */
   const imageVariants: Variants = {
     initial: {
       opacity: 0,
-      scale: isZoomIn ? 1 : 1.2,
-      rotateZ: isZoomIn ? -1.5 : 1.5,
-      rotateY: isZoomIn ? -8 : 8,
-      rotateX: isZoomIn ? 3 : -3
+      scale: 1.05,
+      filter: "blur(8px)"
     },
     animate: {
       opacity: 1,
-      scale: isZoomIn ? 1.25 : 1, // تكبير مستمر أو تصغير مستمر
-      rotateZ: isZoomIn ? 2 : -2,
-      rotateY: 0,
-      rotateX: 0,
+      scale: 1.12,
+      filter: "blur(0px)",
       transition: {
         duration: SLIDE_DURATION / 1000,
         ease: EASING
       }
     },
     exit: {
-      opacity: 0, // فقط تقليل الشفافية بدون أي تغيير في الزوم
+      opacity: 0,
+      scale: 1.02,
+      filter: "blur(10px)",
       transition: {
-        duration: 1.5,
+        duration: 1.2,
         ease: EASING
       }
     }
@@ -96,35 +93,35 @@ const HeroSlider: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden bg-[#0B0E14] text-white"
       style={{
         paddingTop: NAVBAR_HEIGHT,
         minHeight: `calc(120vh - ${NAVBAR_HEIGHT}px)`
       }}
     >
       <div className="absolute inset-0 w-full h-full perspective-[1200px]">
-        <AnimatePresence mode="sync">
+        <AnimatePresence mode="wait">
           <motion.div
             key={`slide-img-${currentIndex}`}
             variants={imageVariants}
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full z-0"
             style={{ minHeight: MOBILE_MIN_HEIGHT }}
           >
-             <OptimizedImage
+            <OptimizedImage
               src={currentSlide.image}
               alt={currentSlide.text[language]}
               className="w-full h-full object-cover select-none"
               priority={currentIndex === 0}
               quality={90}
             />
+            <div className="absolute inset-0 bg-black/40" />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* النص */}
       <AnimatePresence>
         {showText && (
           <motion.div

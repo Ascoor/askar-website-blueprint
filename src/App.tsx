@@ -13,6 +13,7 @@ import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout";
 
 
 const queryClient = new QueryClient();
@@ -24,16 +25,17 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<SiteIndex />} />
-              <Route path="/demo" element={<Index />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/portfolio" element={<PortfolioPage isArabic={false} />} />
-              <Route path="/solutions" element={<SolutionsPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+          <BrowserRouter>  
+<Routes>
+  <Route path="/" element={<Layout><SiteIndex /></Layout>} />
+  <Route path="/demo" element={<Layout><Index /></Layout>} />
+  <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
+  <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+  <Route path="/portfolio" element={<Layout><PortfolioPage isArabic={false} /></Layout>} />
+  <Route path="/solutions" element={<Layout><SolutionsPage /></Layout>} />
+  <Route path="*" element={<Layout><NotFound /></Layout>} />
+</Routes>
+
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>
