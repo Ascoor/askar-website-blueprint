@@ -24,6 +24,8 @@ export const eg = {
   cloudSolutionsDesc: 'بنية تحتية سحابية مرنة وآمنة',
   consulting: 'استشارات تقنية',
   consultingDesc: 'نصائح تقنية عملية لتحسين شغلك',
+  softwareSolutions: 'حلول برمجيات',
+  softwareSolutionsDesc: 'برمجيات مخصوصة تسهّل شغلك وتزوّد الإنتاجية',
 
   // Enhanced Services
   digitalInfrastructure: 'البنية التحتية الرقمية',
