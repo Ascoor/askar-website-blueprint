@@ -20,7 +20,12 @@ const slides: SlideData[] = [
   { image: "/hero-2.png", text: { en: "Data flows, growth follows.", ar: "تدفق البيانات، ينمو النجاح.", eg: "البيانات تتدفق، والنمو يتبع." } },
   { image: "/hero-3.png", text: { en: "Smart partner in transformation.", ar: "شريك ذكي في التحول.", eg: "شريك ذكي في التحول." } },
   { image: "/hero-4.png", text: { en: "Innovation with trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
-  { image: "/hero-5.png", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } }
+  { image: "/hero-5.png", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } },
+  { image: "/hero-6.png", text: { en: "Empowering your digital journey.", ar: "تمكين رحلتك الرقمية.", eg: "تمكين رحلتك الرقمية." } },
+  { image: "/hero-7.png", text: { en: "Your partner in digital transformation.", ar: "شريكك في التحول الرقمي.", eg: "شريكك في التحول الرقمي." } },
+  { image: "/hero-8.png", text: { en: "Leading the way in innovation.", ar: "قيادة الطريق في الابتكار.", eg: "قيادة الطريق في الابتكار." } },
+  { image: "/hero-9.png", text: { en: "Transforming ideas into reality.", ar: "تحويل الأفكار إلى واقع.", eg: "تحويل الأفكار إلى واقع." } },
+  { image: "/hero-10.png", text: { en: "Empowering your digital future.", ar: "تمكين مستقبلك الرقمي.", eg: "تمكين مستقبلك الرقمي." } }
 ];
 
 const HeroSlider: React.FC = () => {
