@@ -106,6 +106,24 @@ export const ar = {
   faqTitle: 'الأسئلة الشائعة',
   faqSubtitle: 'إجابات على الأسئلة المتكررة حول خدماتنا',
 
+  // Careers Section
+  careers: 'الوظائف',
+  careersTitle: 'انضم إلى فريقنا',
+  careersSubtitle: 'فرص مميزة للنمو معنا.',
+  applyNow: 'قدّم الآن',
+
+  // Documentation Section
+  docsTitle: 'التوثيق',
+  docsSubtitle: 'أدلة وواجهات برمجة التطبيقات للبناء على منصتنا',
+
+  // Blog Section
+  blogTitle: 'المدونة',
+  blogSubtitle: 'أفكار وتحديثات من فريقنا',
+
+  // Partners Section
+  partnersTitle: 'بوابة الشركاء',
+  partnersSubtitle: 'تعاون ونمو مشترك',
+
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبتكر',
   siteDescription: 'شركة رائدة في تطوير البرمجيات تقدم حلول ويب وموبايل وسحابية متطورة. حول عملك مع خدماتنا التقنية المتخصصة.',

@@ -39,7 +39,7 @@ const Services: React.FC = () => {
     <section
       id="services"
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="relative py-20 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white"
+      className="relative py-20 overflow-hidden bg-brand-bg text-foreground dark:bg-brand-bg"
     >
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
@@ -75,7 +75,7 @@ const Services: React.FC = () => {
               key={project.href}
               variants={item}
               whileHover={{ scale: 1.02 }}
-              className="relative group rounded-xl border border-white/20 bg-white/10 backdrop-blur-lg p-6 flex flex-col overflow-hidden transition-shadow duration-300 card-neon"
+              className="relative group rounded-xl border border-glass-border bg-glass-bg backdrop-blur-lg p-6 flex flex-col overflow-hidden transition-shadow duration-300 card-neon"
             >
               <div className="relative h-40 mb-4 overflow-hidden rounded-lg">
                 <img

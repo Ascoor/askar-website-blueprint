@@ -108,7 +108,7 @@ const Portfolio: React.FC = () => {
               key={idx}
               variants={item}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-lg overflow-hidden"
+              className="group bg-glass-bg backdrop-blur-md border border-glass-border rounded-2xl p-6 shadow-lg overflow-hidden"
             >
               <div className="relative mb-4 h-44 overflow-hidden rounded-xl">
                 <img

@@ -105,6 +105,24 @@ export const en = {
   // FAQ Section
   faqTitle: 'Frequently Asked Questions',
   faqSubtitle: 'Answers to common questions about our services',
+
+  // Careers Section
+  careers: 'Careers',
+  careersTitle: 'Join Our Team',
+  careersSubtitle: 'Exciting opportunities to grow with us.',
+  applyNow: 'Apply Now',
+
+  // Documentation Section
+  docsTitle: 'Documentation',
+  docsSubtitle: 'Guides and API references to build with our platform',
+
+  // Blog Section
+  blogTitle: 'Blog',
+  blogSubtitle: 'Insights and updates from our team',
+
+  // Partners Section
+  partnersTitle: 'Partner Portal',
+  partnersSubtitle: 'Collaborate and grow together',
   
   // Meta
   siteTitle: 'Askar Software Solutions - Innovative Technology Partner',

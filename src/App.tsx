@@ -12,7 +12,13 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import SolutionsPage from "./pages/SolutionsPage";
+import CareersPage from "./pages/CareersPage";
+import DocsPage from "./pages/DocsPage";
+import BlogPage from "./pages/BlogPage";
+import PartnersPage from "./pages/PartnersPage";
 import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout";
+
 
 const queryClient = new QueryClient();
 
@@ -23,16 +29,21 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<SiteIndex />} />
-              <Route path="/demo" element={<Index />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/portfolio" element={<PortfolioPage />} />
-              <Route path="/solutions" element={<SolutionsPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+          <BrowserRouter>  
+<Routes>
+  <Route path="/" element={<Layout><SiteIndex /></Layout>} />
+  <Route path="/demo" element={<Layout><Index /></Layout>} />
+  <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
+  <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+  <Route path="/portfolio" element={<Layout><PortfolioPage isArabic={false} /></Layout>} />
+  <Route path="/solutions" element={<Layout><SolutionsPage /></Layout>} />
+  <Route path="/careers" element={<Layout><CareersPage /></Layout>} />
+  <Route path="/docs" element={<Layout><DocsPage /></Layout>} />
+  <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+  <Route path="/partners" element={<Layout><PartnersPage /></Layout>} />
+  <Route path="*" element={<Layout><NotFound /></Layout>} />
+</Routes>
+
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>

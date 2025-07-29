@@ -1,137 +1,133 @@
-/* Load fonts with italic variants to avoid faux styles */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap');
+/* Load Askar Brand Fonts - Futuristic Tech Theme */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Cairo+Play:wght@400;500;600;700;800;900&family=Tajawal:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Import Google Fonts for better typography */
 
-/* Enhanced Design System - Enterprise Grade Color Palette */
+/* 🎯 Askar Software Solutions - Complete Brand Design System */
 @layer base {
   :root {
-    /* Neon Tech Palette */
-    --background: 204 100% 98%;
-    --foreground: 217 66% 13.9%;
+    /* ============= SPRING THEME - LIGHT MODE DESIGN SYSTEM ============= */
+    /* Core Brand Colors - Spring Theme */
+    --brand-primary: 201 86% 58%;          /* #36B3F5 - Sky blue accent */
+    --brand-primary-foreground: 0 0% 100%; /* White on sky blue */
+    --brand-primary-hover: 201 86% 65%;    /* Lighter sky blue */
+    --brand-primary-glow: 201 86% 58% / 0.3; /* Sky blue glow */
 
-    /* Card & Popover */
-    --card: 204 100% 98%;
-    --card-foreground: 217 66% 13.9%;
-    --popover: 204 100% 98%;
-    --popover-foreground: 217 66% 13.9%;
+    --brand-secondary: 199 100% 73%;       /* #81D4FA - Light aqua */
+    --brand-secondary-foreground: 214 65% 11%; /* Navy on aqua */
+    --brand-secondary-hover: 199 100% 78%; /* Lighter aqua */
+    --brand-secondary-glow: 199 100% 73% / 0.4; /* Aqua glow */
 
-    /* Primary Neon */
-    --primary: 188 100% 57.3%;
-    --primary-foreground: 204 100% 98%;
-    --primary-hover: 204.8 93.2% 54.1%;
+    /* Semantic Brand Tokens */
+    --brand-bg: 210 40% 95%;          /* Soft spring background */
+    --brand-surface: 0 0% 100%;       /* Default card surface */
+    --brand-surface-dark: 220 28% 8%; /* Dark background */
+    --brand-surface-light: 0 0% 100%; /* Light surface */
+    --brand-glow: 201 86% 58%;        /* Primary glow base */
 
-    /* Secondary & Accent */
-    --secondary: 246.5 100% 74.7%;
-    --secondary-foreground: 217 66% 13.9%;
-    --secondary-hover: 246.5 100% 70%;
-
-    --muted: 207.8 27.5% 70.8%;
-    --muted-foreground: 217 66% 13.9%;
-
-    --accent: 185.2 100% 66.3%;
-    --accent-foreground: 217 66% 13.9%;
-    --accent-hover: 185.2 100% 72%;
-
-    /* Warning / Destructive */
-    --destructive: 28.8 100% 64.5%;
-    --destructive-foreground: 217 66% 13.9%;
-    --destructive-hover: 28.8 100% 50%;
-
-    /* Borders & Ring */
-    --border: 207.8 27.5% 70.8%;
-    --input: 207.8 27.5% 70.8%;
-    --ring: 188 100% 57.3%;
+    --brand-accent: 207 90% 25%;           /* #004C7C - Ocean blue for titles */
+    --brand-accent-foreground: 0 0% 100%;  /* White on ocean blue */
+    --brand-accent-hover: 207 90% 30%;     /* Lighter ocean blue */
     
-    /* Success Colors */
-    --success: 142 76% 36%;
+    /* Spring Theme Text Colors */
+    --text-base: 214 65% 11%;              /* #0A1A2F - High contrast navy */
+    --text-muted: 207 20% 45%;             /* Muted navy for labels */
+    --text-title: 207 90% 25%;             /* #004C7C - Bold section titles */
+
+    /* Spring Glass & Effects */
+    --glass-bg: 199 100% 97% / 0.6;        /* Soft spring glass */
+    --glass-border: 201 86% 58% / 0.2;     /* Sky blue glass border */
+    --spring-glow: 201 86% 58% / 0.4;      /* Soft spring glow */
+
+    /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
+    --background: var(--brand-bg);
+    --foreground: var(--text-base);        /* High contrast navy text */
+    
+    --card: 0 0% 100%;                     /* Pure white cards */
+    --card-foreground: var(--brand-primary);
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--brand-primary);
+    
+    --muted: 199 100% 96%;                 /* Soft spring muted surfaces */
+    --muted-foreground: var(--text-muted); /* Spring muted text */
+    
+    --accent: var(--brand-secondary);      /* Light aqua accent */
+    --accent-foreground: var(--brand-secondary-foreground);
+    --accent-hover: var(--brand-secondary-hover);
+    
+    --border: 199 50% 85%;                 /* Soft aqua borders */
+    --input: 199 50% 88%;                  /* Light input borders */
+    --ring: var(--spring-glow);            /* Spring glow focus rings */
+    
+    /* Status Colors */
+    --success: 142 76% 36%;                /* Green */
     --success-foreground: 0 0% 98%;
     
-    /* Warning Colors */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 98%;
+    --warning: 201 86% 58%;                /* Use sky blue as warning */
+    --warning-foreground: 0 0% 100%;
     
-    /* Info Colors */
-    --info: 199 89% 48%;
+    --info: var(--brand-secondary);        /* Use sky blue */
     --info-foreground: 0 0% 98%;
     
-    /* Enhanced Radius System */
-    --radius: 0.75rem;
-    --radius-sm: 0.5rem;
-    --radius-lg: 1rem;
-    
-    /* Professional Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
-    /* Enhanced Sidebar System */
+    --destructive: 0 84% 60%;              /* Red */
+    --destructive-foreground: 0 0% 98%;
+    --destructive-hover: 0 84% 55%;
+
+    /* Sidebar System */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary: var(--brand-primary);
+    --sidebar-primary-foreground: var(--brand-primary-foreground);
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-ring: var(--brand-secondary);
   }
 
   .dark {
-    /* Dark Neon Theme */
-    --background: 217 66% 13.9%;
-    --foreground: 204 100% 98%;
-
-    --card: 213.9 54.8% 16.5%;
-    --card-foreground: 204 100% 98%;
-
-    --popover: 217 66% 13.9%;
-    --popover-foreground: 204 100% 98%;
-
-    --primary: 188 100% 57.3%;
-    --primary-foreground: 204 100% 98%;
-    --primary-hover: 204.8 93.2% 54.1%;
-
-    --secondary: 246.5 100% 74.7%;
-    --secondary-foreground: 217 66% 13.9%;
-    --secondary-hover: 246.5 100% 70%;
-
-    --muted: 213.9 54.8% 16.5%;
-    --muted-foreground: 207.8 27.5% 70.8%;
-
-    --accent: 185.2 100% 66.3%;
-    --accent-foreground: 217 66% 13.9%;
-    --accent-hover: 185.2 100% 72%;
-
-    --destructive: 28.8 100% 50%;
-    --destructive-foreground: 204 100% 98%;
-    --destructive-hover: 28.8 100% 60%;
-
-    --border: 213.9 54.8% 16.5%;
-    --input: 213.9 54.8% 16.5%;
-    --ring: 188 100% 57.3%;
+    /* ============= LUNAR NIGHT - DARK MODE DOMINANCE ============= */
+    --brand-bg: 220 28% 8%;               /* #0B0E14 */
+    --brand-surface: 218 16% 18%;         /* glass panels */
+    --brand-surface-light: 218 16% 22%;   /* lighter cards */
+    --brand-surface-dark: 220 28% 8%;     /* dark base */
+    --background: var(--brand-bg);
+    --foreground: var(--text-base);
     
+    --card: var(--brand-surface-light);            /* Glass card surface */
+    --card-foreground: var(--text-base);
+    
+    --popover: var(--brand-surface-light);
+    --popover-foreground: var(--text-base);
+    
+    --muted: var(--brand-surface-light);           /* Dark glass surfaces */
+    --muted-foreground: var(--text-muted);         /* Desaturated lunar text */
+    
+    --border: 215 28% 20%;                         /* Subtle dark borders */
+    --input: 215 28% 20%;
+    --ring: var(--brand-glow);                     /* Neon glow focus rings */
+    
+    /* Dark Mode Status Colors */
     --success: 142 71% 45%;
-    --success-foreground: 0 0% 98%;
-    
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 98%;
-    
-    --info: 199 89% 48%;
-    --info-foreground: 0 0% 98%;
-    
+    --destructive: 0 63% 31%;
+    --destructive-hover: 0 63% 36%;
+
+    /* Dark Glass Effects */
+    --glass-bg: 0 0% 100% / 0.02;         /* Very subtle white overlay */
+    --glass-border: 0 0% 100% / 0.05;     /* Subtle white border */
+
+    /* Dark Sidebar */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary: var(--brand-secondary);
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-ring: var(--brand-secondary);
   }
 }
 
@@ -164,13 +160,18 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
+    /* Spring Theme Gradient: ECF0F3 → DFF6FF → CDEFFC */
     background:
-      radial-gradient(at 20% 30%, hsla(221,83%,65%,0.45), transparent 60%),
-      radial-gradient(at 80% 70%, hsla(267,83%,70%,0.35), transparent 60%),
-      linear-gradient(120deg, hsl(221 83% 55%), hsl(221 83% 40%));
+      radial-gradient(at 25% 25%, hsl(199 100% 94%) 0%, transparent 50%),
+      radial-gradient(at 75% 75%, hsl(199 100% 88%) 0%, transparent 50%),
+      linear-gradient(135deg, 
+        hsl(210 40% 95%) 0%,     /* #ECF0F3 */
+        hsl(199 100% 94%) 35%,   /* #DFF6FF */
+        hsl(199 100% 90%) 100%   /* #CDEFFC */
+      );
     background-attachment: fixed;
     background-size: cover;
-    opacity: 0.6;
+    opacity: 1;
   }
 
   body::after {
@@ -182,15 +183,16 @@
     background-image: radial-gradient(hsla(0,0%,100%,0.06) 1px, transparent 0);
     background-size: 3px 3px;
     mix-blend-mode: overlay;
-    opacity: 0.3;
+    opacity: 0.05;
   }
 
   .dark body::before {
     background:
-      radial-gradient(at 20% 30%, hsla(221,83%,50%,0.35), transparent 60%),
-      radial-gradient(at 80% 70%, hsla(267,83%,40%,0.25), transparent 60%),
-      linear-gradient(120deg, hsl(221 83% 25%), hsl(221 83% 10%));
-    opacity: 0.4;
+      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.12), transparent 70%),
+      radial-gradient(at 80% 70%, hsl(var(--brand-glow) / 0.08), transparent 70%),
+      radial-gradient(at 60% 50%, hsl(var(--brand-primary) / 0.04), transparent 80%),
+      linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
+    opacity: 1;
   }
 
   /* Enhanced Typography Scale */
@@ -202,13 +204,17 @@
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 700;
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl md:text-5xl;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 600;
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
   }
 
   h3 {
@@ -302,13 +308,31 @@
     opacity: 0;
   }
 
-  /* Utility Classes */
-  .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  /* Spring Theme Utility Classes */
+  .glass-spring {
+    @apply bg-glass-bg backdrop-blur-lg border border-glass-border;
   }
 
-  .dark .glass {
+  .dark .glass-spring {
     @apply bg-black/20 backdrop-blur-lg border border-white/10;
+  }
+
+  .spring-glow {
+    box-shadow: 0 0 20px hsl(var(--spring-glow)), 0 0 40px hsl(var(--spring-glow) / 0.2);
+  }
+
+  .spring-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover;
+    @apply rounded-xl transition-all duration-300;
+    @apply ring-1 ring-transparent hover:ring-spring-glow;
+    @apply shadow-md hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .spring-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50;
+    @apply rounded-xl shadow-elegant hover:shadow-premium;
+    @apply ring-1 ring-transparent hover:ring-border/30;
+    @apply transition-all duration-300;
   }
 
   .gradient-primary {
