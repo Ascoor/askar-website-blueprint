@@ -103,6 +103,24 @@ export const eg = {
   // FAQ Section
   faqTitle: 'أسئلة متكررة',
   faqSubtitle: 'إجابات على الأسئلة المشهورة عن خدماتنا',
+
+  // Careers Section
+  careers: 'وظائف',
+  careersTitle: 'انضم لفريقنا',
+  careersSubtitle: 'فرص مميزة تكبر معنا.',
+  applyNow: 'قدّم دلوقتي',
+
+  // Documentation Section
+  docsTitle: 'التوثيق',
+  docsSubtitle: 'دليل ومرجع API عشان تبني على منصتنا',
+
+  // Blog Section
+  blogTitle: 'المدونة',
+  blogSubtitle: 'أخبار وتحديثات من فريقنا',
+
+  // Partners Section
+  partnersTitle: 'بوابة الشركاء',
+  partnersSubtitle: 'تعاون ونمو سوا',
   
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبدع',

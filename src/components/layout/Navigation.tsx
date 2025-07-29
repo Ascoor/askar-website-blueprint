@@ -117,9 +117,11 @@ const Navigation: React.FC = () => {
                   className={cn(
                     "relative px-4 py-2 mx-1 text-sm lg:text-base font-medium rounded-lg",
                     "transition-all duration-300 ease-out",
-                    isScrolled 
+                    isScrolled
                       ? "text-foreground hover:text-primary"
-                      : "text-white hover:text-primary",
+                      : theme === "light"
+                        ? "text-white hover:text-primary"
+                        : "text-foreground hover:text-primary",
                     isActive && "text-primary"
                   )}
                 >
@@ -130,9 +132,11 @@ const Navigation: React.FC = () => {
                       layoutId="activeIndicator"
                       className={cn(
                         "absolute inset-0 rounded-lg",
-                        isScrolled 
-                          ? "bg-primary/10 border border-primary/20" 
-                          : "bg-white/10 border border-white/20"
+                        isScrolled
+                          ? "bg-primary/10 border border-primary/20"
+                          : theme === "light"
+                            ? "bg-white/10 border border-white/20"
+                            : "bg-foreground/10 border border-foreground/20"
                       )}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                     />
@@ -140,9 +144,11 @@ const Navigation: React.FC = () => {
                   
                   <div className={cn(
                     "absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300",
-                    isScrolled 
-                      ? "hover:bg-primary/5 hover:opacity-100" 
-                      : "hover:bg-white/5 hover:opacity-100"
+                    isScrolled
+                      ? "hover:bg-primary/5 hover:opacity-100"
+                      : theme === "light"
+                        ? "hover:bg-white/5 hover:opacity-100"
+                        : "hover:bg-foreground/5 hover:opacity-100"
                   )} />
                 </motion.button>
               );
@@ -159,9 +165,11 @@ const Navigation: React.FC = () => {
                 onClick={toggleTheme}
                 className={cn(
                   "rounded-full w-10 h-10 transition-colors duration-300",
-                  isScrolled 
-                    ? "text-foreground hover:bg-primary/10 hover:text-primary" 
-                    : "text-white hover:bg-white/10"
+                  isScrolled
+                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
+                    : theme === "light"
+                      ? "text-white hover:bg-white/10"
+                      : "text-foreground hover:bg-foreground/10"
                 )}
               >
                 {theme === "light" ? (
@@ -180,9 +188,11 @@ const Navigation: React.FC = () => {
                 onClick={handleLanguageChange}
                 className={cn(
                   "rounded-full text-xs lg:text-sm font-medium transition-colors duration-300",
-                  isScrolled 
-                    ? "text-foreground hover:bg-primary/10 hover:text-primary" 
-                    : "text-white hover:bg-white/10"
+                  isScrolled
+                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
+                    : theme === "light"
+                      ? "text-white hover:bg-white/10"
+                      : "text-foreground hover:bg-foreground/10"
                 )}
               >
                 <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
@@ -199,9 +209,11 @@ const Navigation: React.FC = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className={cn(
                     "rounded-full w-10 h-10 transition-colors duration-300",
-                    isScrolled 
-                      ? "text-foreground hover:bg-primary/10" 
-                      : "text-white hover:bg-white/10"
+                    isScrolled
+                      ? "text-foreground hover:bg-primary/10"
+                      : theme === "light"
+                        ? "text-white hover:bg-white/10"
+                        : "text-foreground hover:bg-foreground/10"
                   )}
                 >
                   <AnimatePresence mode="wait">
