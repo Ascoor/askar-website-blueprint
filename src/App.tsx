@@ -12,6 +12,10 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import SolutionsPage from "./pages/SolutionsPage";
+import CareersPage from "./pages/CareersPage";
+import DocsPage from "./pages/DocsPage";
+import BlogPage from "./pages/BlogPage";
+import PartnersPage from "./pages/PartnersPage";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
@@ -33,6 +37,10 @@ const App = () => (
   <Route path="/about" element={<Layout><AboutPage /></Layout>} />
   <Route path="/portfolio" element={<Layout><PortfolioPage isArabic={false} /></Layout>} />
   <Route path="/solutions" element={<Layout><SolutionsPage /></Layout>} />
+  <Route path="/careers" element={<Layout><CareersPage /></Layout>} />
+  <Route path="/docs" element={<Layout><DocsPage /></Layout>} />
+  <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+  <Route path="/partners" element={<Layout><PartnersPage /></Layout>} />
   <Route path="*" element={<Layout><NotFound /></Layout>} />
 </Routes>
 
