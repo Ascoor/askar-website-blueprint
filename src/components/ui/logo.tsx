@@ -1,63 +1,67 @@
-import { useEffect, useState } from "react";
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
-import { cn } from "@/lib/utils";
+  import { useEffect, useState } from "react";
+  import { useLanguage } from '@/contexts/LanguageContext';
+  import { useTheme } from '@/contexts/ThemeContext';
+  import { cn } from "@/lib/utils";
 
-const sizeMap = {
-  "navbar-sm": { w: 32, h: 32 },
-  "navbar-lg": { w: 48, h: 48 },
-  "footer-sm": { w: 36, h: 36 },
-  "footer-lg": { w: 126, h: 126 },
-};
-
-export const Logo = ({
-  className = "",
-  clickable = false,
-  size = "navbar-sm", // الافتراضي صغير للنافبار
-}) => {
-  const { theme, toggleTheme } = useTheme();
-  const { language } = useLanguage();
-
-  const getLogoSrc = () => {
-    return theme === "dark" ? "/logo.gif" : "/logo.gif";
+  const sizeMap = {
+    "navbar-sm": { w: 48, h: 48 },
+    "navbar-lg": { w: 96, h: 96 },
+    "footer-sm": { w: 72, h: 72 },
+    "footer-lg": { w: 180, h: 180 },
   };
+  export const Logo = ({
+    className = "",
+    clickable = false,
+    size = "navbar-sm",
+    forceDay = false, // جديد
+  }) => {
+    const { theme, toggleTheme } = useTheme();
+    const { language } = useLanguage();
 
-  const [logoSrc, setLogoSrc] = useState(getLogoSrc);
+    // إذا كان forceDay = true، اجبر الشعار على وضع النهار
+    const getLogoSrc = () => {
+      if (forceDay) return "/logo-dark.png";
+      return theme === "dark" ? "/logo-dark.png" : "/logo-day.png";
+    };
 
-  useEffect(() => {
-    setLogoSrc(getLogoSrc());
-  }, [theme, language]);
+    const [logoSrc, setLogoSrc] = useState(getLogoSrc);
 
-  const altTitle = language === "en" ? "Company Logo" : "شعار الشركة";
+    useEffect(() => {
+      setLogoSrc(getLogoSrc());
+    }, [theme, language, forceDay]); // أضف forceDay
 
-  // حجم الشعار حسب size
-  const { w, h } = sizeMap[size] || sizeMap["navbar-sm"];
+    const altTitle = language === "en" ? "Company Logo" : "شعار الشركة";
+    const { w, h } = sizeMap[size] || sizeMap["navbar-sm"];
 
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center justify-center overflow-hidden rounded-full shadow-lg mt-2",
-        className
-      )}
-      style={{
-        width: w,
-        height: h,
-        minWidth: w,
-        minHeight: h,
-        background: "#fff",
-      }}
-    >
-      <img
-        src={logoSrc}
-        alt={altTitle}
-        title={altTitle}
-        draggable={false}
-        className={cn(
-          "object-cover select-none transition-transform duration-300 hover:scale-105 w-full h-full",
-          clickable && "cursor-pointer hover:opacity-90"
-        )}
-        onClick={clickable ? toggleTheme : undefined}
-      />
-    </span>
-  );
-};
+    return (
+      <span
+        className={cn("inline-flex items-center justify-center", className)}
+        style={{
+          width: w,
+          height: h,
+          minWidth: w,
+          minHeight: h,
+          background: "transparent",
+          borderRadius: 0,
+          boxShadow: "none",
+          padding: 0,
+        }}
+      >
+        <img
+          src={logoSrc}
+          alt={altTitle}
+          title={altTitle}
+          draggable={false}
+          className={cn(
+            "object-contain select-none transition-transform duration-300 hover:scale-105 w-full h-full",
+            clickable && "cursor-pointer hover:opacity-90"
+          )}
+          onClick={clickable ? toggleTheme : undefined}
+          style={{
+            borderRadius: 0,
+            background: "transparent",
+          }}
+        />
+      </span>
+    );
+  };

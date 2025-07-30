@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -10,14 +10,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const NAVBAR_HEIGHT = 72;
-const SCROLL_THRESHOLD = 80;
+const SCROLL_THRESHOLD = 10; // اعتبر فوق 10px ليس Hero
 
-const Navigation: React.FC = () => {
+// ألوان مشعة (قمري)
+const lunarWhite = "#e6ecfa";
+const lunarActive = "#fafdff";
+const darkNavText = "#b8c3d6";
+const darkNavActive = "#eaf3ff";
+
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHero, setIsHero] = useState(true);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
+  // تحديث حالة isHero حسب scroll
+  useEffect(() => {
+    const handleScroll = () => setIsHero(window.scrollY < SCROLL_THRESHOLD);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // عناصر التنقل
   const navItems = useMemo(() => [
     { key: "home" as const, href: "#hero", label: t("home") },
     { key: "services" as const, href: "#services", label: t("services") },
@@ -30,32 +44,12 @@ const Navigation: React.FC = () => {
     "hero", "services", "about", "projects", "contact"
   ], NAVBAR_HEIGHT + 50);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = sectionId === 'hero' ? 0 : NAVBAR_HEIGHT;
-      const top = sectionId === 'hero' ? 0 : element.getBoundingClientRect().top + window.scrollY - offset;
-      
-      window.scrollTo({ top, behavior: 'smooth' });
-      setIsOpen(false);
-    }
-  }, []);
-
+  // منطق تغيير اللغة
   const handleLanguageChange = useCallback(() => {
     const order: Language[] = ["en", "ar", "eg"];
     const next = order[(order.indexOf(language) + 1) % order.length];
     setLanguage(next);
   }, [language, setLanguage]);
-
   const getLanguageLabel = useCallback(() => {
     switch (language) {
       case "en": return "عربي";
@@ -65,28 +59,39 @@ const Navigation: React.FC = () => {
     }
   }, [language]);
 
+  // دالة لتحديد لون النص (مشع في الأعلى/مناسب للأسفل)
+  const getNavTextColor = (isActive: boolean) => {
+    if (isHero) return isActive ? lunarActive : lunarWhite;
+    if (theme === "light") return ""; // استخدم tailwind الافتراضي
+    return isActive ? darkNavActive : darkNavText;
+  };
+
+  // متغيرات قائمة الموبايل
   const mobileMenuVariants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.3 }
-    },
-    exit: { 
-      opacity: 0, 
-      scale: 0.95,
-      transition: { duration: 0.2 }
-    }
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 }},
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 }},
   };
+
+  // تحكم في التنقل السلس
+  const scrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = sectionId === 'hero' ? 0 : NAVBAR_HEIGHT;
+      const top = sectionId === 'hero' ? 0 : element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  }, []);
 
   return (
     <motion.nav
       dir={isRTL ? "rtl" : "ltr"}
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-500 ease-out",
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/50" 
-          : "bg-transparent"
+        isHero 
+          ? "bg-transparent"
+          : "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/50"
       )}
       style={{ height: `${NAVBAR_HEIGHT}px` }}
       initial={{ y: -100 }}
@@ -95,16 +100,15 @@ const Navigation: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
-          {/* Logo */}
+          {/* الشعار */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
           >
-            <Logo size="navbar-lg" />
+            <Logo size="navbar-lg" forceDay={isHero} />
           </motion.div>
-
-          {/* Desktop Navigation */}
+          {/* قائمة الديسكتوب */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
               const isActive = activeId === item.href.slice(1);
@@ -112,64 +116,39 @@ const Navigation: React.FC = () => {
                 <motion.button
                   key={item.key}
                   onClick={() => scrollToSection(item.href.slice(1))}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    color: getNavTextColor(isActive),
+                    textShadow: isHero ? "0 0 9px #b7c6e3a0" : "none",
+                    fontWeight: isActive ? 700 : 500,
+                  }}
                   className={cn(
                     "relative px-4 py-2 mx-1 text-sm lg:text-base font-medium rounded-lg",
                     "transition-all duration-300 ease-out",
-                    isScrolled
-                      ? "text-foreground hover:text-primary"
-                      : theme === "light"
-                        ? "text-white hover:text-primary"
-                        : "text-foreground hover:text-primary",
-                    isActive && "text-primary"
+                    isActive && "border-b-2 border-primary",
+                    !isHero && theme === "light" && !isActive && "text-foreground hover:text-primary"
                   )}
                 >
                   <span className="relative z-10">{item.label}</span>
-                  
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className={cn(
-                        "absolute inset-0 rounded-lg",
-                        isScrolled
-                          ? "bg-primary/10 border border-primary/20"
-                          : theme === "light"
-                            ? "bg-white/10 border border-white/20"
-                            : "bg-foreground/10 border border-foreground/20"
-                      )}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    />
-                  )}
-                  
-                  <div className={cn(
-                    "absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300",
-                    isScrolled
-                      ? "hover:bg-primary/5 hover:opacity-100"
-                      : theme === "light"
-                        ? "hover:bg-white/5 hover:opacity-100"
-                        : "hover:bg-foreground/5 hover:opacity-100"
-                  )} />
                 </motion.button>
               );
             })}
           </div>
-
-          {/* Controls */}
+          {/* أدوات التحكم */}
           <div className="flex items-center gap-2">
-            {/* Theme Toggle */}
+            {/* الوضع الليلي/النهاري */}
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
+                style={{
+                  color: getNavTextColor(false),
+                  filter: isHero ? "drop-shadow(0 0 8px #e6ecfa70)" : "none",
+                }}
                 className={cn(
-                  "rounded-full w-10 h-10 transition-colors duration-300",
-                  isScrolled
-                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
-                    : theme === "light"
-                      ? "text-white hover:bg-white/10"
-                      : "text-foreground hover:bg-foreground/10"
+                  "rounded-full w-10 h-10 transition-colors duration-300"
                 )}
               >
                 {theme === "light" ? (
@@ -179,42 +158,37 @@ const Navigation: React.FC = () => {
                 )}
               </Button>
             </motion.div>
-            
-            {/* Language Toggle */}
+            {/* زر اللغة */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleLanguageChange}
+                style={{
+                  color: getNavTextColor(false),
+                  filter: isHero ? "drop-shadow(0 0 7px #e6ecfa70)" : "none",
+                  fontWeight: 600,
+                }}
                 className={cn(
-                  "rounded-full text-xs lg:text-sm font-medium transition-colors duration-300",
-                  isScrolled
-                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
-                    : theme === "light"
-                      ? "text-white hover:bg-white/10"
-                      : "text-foreground hover:bg-foreground/10"
+                  "rounded-full text-xs lg:text-sm font-medium transition-colors duration-300"
                 )}
               >
                 <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
                 {getLanguageLabel()}
               </Button>
             </motion.div>
-
-            {/* Mobile Menu Button */}
+            {/* زر الموبايل */}
             <div className="md:hidden">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(!isOpen)}
-                  className={cn(
-                    "rounded-full w-10 h-10 transition-colors duration-300",
-                    isScrolled
-                      ? "text-foreground hover:bg-primary/10"
-                      : theme === "light"
-                        ? "text-white hover:bg-white/10"
-                        : "text-foreground hover:bg-foreground/10"
-                  )}
+                  style={{
+                    color: getNavTextColor(false),
+                    filter: isHero ? "drop-shadow(0 0 8px #e6ecfa80)" : "none"
+                  }}
+                  className={cn("rounded-full w-10 h-10 transition-colors duration-300")}
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -232,8 +206,7 @@ const Navigation: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
+        {/* قائمة الموبايل */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -255,20 +228,21 @@ const Navigation: React.FC = () => {
                       animate={{ 
                         opacity: 1, 
                         y: 0,
-                        transition: { 
-                          delay: index * 0.1,
-                          duration: 0.3,
-                          ease: "easeOut"
-                        }
+                        transition: { delay: index * 0.09, duration: 0.29, ease: "easeOut" }
                       }}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
+                      style={{
+                        color: getNavTextColor(isActive),
+                        textShadow: isHero ? "0 0 9px #e6ecfa60" : "none",
+                        fontWeight: isActive ? 700 : 600
+                      }}
                       className={cn(
                         "relative text-2xl font-semibold transition-all duration-300",
                         "px-8 py-4 rounded-xl",
                         isActive 
                           ? "text-primary bg-primary/10 border border-primary/20" 
-                          : "text-foreground hover:text-primary hover:bg-primary/5"
+                          : "hover:text-primary hover:bg-primary/5"
                       )}
                     >
                       {item.label}
@@ -282,6 +256,4 @@ const Navigation: React.FC = () => {
       </div>
     </motion.nav>
   );
-};
-
-export default Navigation;
+}
