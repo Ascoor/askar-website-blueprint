@@ -15,7 +15,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
   return (
     <section className="h-screen w-full py-20 relative flex md:flex-row flex-col justify-center items-center gap-10 bg-gray-900 dark:bg-black">
-      <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#0f172a] to-[#1e293b] dark:bg-gradient-to-br from-[#1e293b] to-[#0f172a] flex items-center justify-center">
+      <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#030c2e] to-[#020816] dark:bg-gradient-to-br from-[#1e293b] to-[#0f172a] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-full h-full flex justify-center items-center">
             {/* Spinner colors for day and night */}

@@ -13,24 +13,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoader(false);
-    }, 4000); // يمكن تغيير المدة وفقًا للوقت المطلوب للـ Preloader
-
+    const timer = setTimeout(() => setShowLoader(false), 4000);
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
-      {showLoader && <Preloader onComplete={() => setShowLoader(false)} />}
-      {/* Navigation will be hidden until loader completes */}
-      {!showLoader && <Navigation />}
-      <main className={showLoader ? 'invisible' : ''}>
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
+return (
+  <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
+    {showLoader ? (
+      <Preloader onComplete={() => setShowLoader(false)} />
+    ) : (
+      <>
+        <Navigation />
+        <main>
+          {children}
+        </main>
+        <Footer />
+      </>
+    )}
+  </div>
+);
+
 };
 
 export default Layout;

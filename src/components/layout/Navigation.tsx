@@ -53,7 +53,7 @@ export default function Navigation() {
   const getLanguageLabel = useCallback(() => {
     switch (language) {
       case "en": return "عربي";
-      case "ar": return "مصري";
+      case "ar": return "EN";
       case "eg": return "English";
       default: return "En";
     }

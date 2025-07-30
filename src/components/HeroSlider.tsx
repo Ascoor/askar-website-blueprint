@@ -1,66 +1,294 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
- 
-const SLIDES = [ 
-  { image: "/hero-1.png", text: { en: "Tech that moves you forward.", ar: "تقنية تدفعك للأمام.", eg: "تقنية تدفعك للأمام." } },
-  { image: "/hero-2.png", text: { en: "Stay ahead with our tech.", ar: "ابقى متقدم بتقنيتنا.", eg: "ابقى متقدم بتقنيتنا." } },
-  { image: "/hero-3.png", text: { en: "Data that powers growth.", ar: "بيانات تقود النمو.", eg: "بيانات تقود النمو." } },
-  { image: "/hero-4.png", text: { en: "Smart solutions, smart future.", ar: "حلول ذكية، مستقبل ذكي.", eg: "حلول ذكية، مستقبل ذكي." } },
-  { image: "/hero-5.png", text: { en: "Innovation you can trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
-  { image: "/hero-6.png", text: { en: "Seamless connectivity, always.", ar: "اتصال سلس، دائمًا.", eg: "اتصال سلس، دائمًا." } },
-  { image: "/hero-7.png", text: { en: "Tech that shapes your future.", ar: "تقنية تشكل مستقبلك.", eg: "تقنية تشكل مستقبلك." } },
-  { image: "/hero-8.png", text: { en: "Stay connected, stay ahead.", ar: "ابقى متصل، ابقى متقدم.", eg: "ابقى متصل، ابقى متقدم." } },
-  { image: "/hero-9.png", text: { en: "Fresh start with cutting-edge tech.", ar: "بداية جديدة بتقنية متطورة.", eg: "بداية جديدة بتقنية متطورة." } },
-  { image: "/hero-10.png", text: { en: "Simplifying your world with tech.", ar: "نبسط لك الدنيا بتقنية.", eg: "نبسط لك الدنيا بتقنية." } },
-  { image: "/hero-11.png", text: { en: "Tech that puts you ahead.", ar: "تقنية تجيبك أولًا.", eg: "تقنية تجيبك أولًا." } },
-  { image: "/hero-12.png", text: { en: "Everything’s easy with our tech.", ar: "كل شيء سهل بتقنيتنا.", eg: "كل شيء سهل بتقنيتنا." } }
+import { useLanguage } from "@/contexts/LanguageContext";
+  
+const SLIDES = [
+  {
+    image: "/hero-1.png",
+    text: {
+      en: "Limitless Innovation.",
+      ar: "ابتكار بلا حدود.",
+      eg: "الابتكار ملوش آخر."
+    },
+    subtitle: {
+      en: "Push beyond the possible.",
+      ar: "اكسر حدود الممكن.",
+      eg: "خلي الحلم حقيقة."
+    }
+  },
+  {
+    image: "/hero-2.png",
+    text: {
+      en: "Your Digital Power.",
+      ar: "قوتك الرقمية.",
+      eg: "قوتك الرقمية بإيدك."
+    },
+    subtitle: {
+      en: "Own your digital world.",
+      ar: "امتلك عالمك الرقمي.",
+      eg: "عيش عالمك بطريقتك."
+    }
+  },
+  {
+    image: "/hero-3.png",
+    text: {
+      en: "Ideas That Grow.",
+      ar: "أفكار تنمو.",
+      eg: "فكرة تكبر وتغيّر."
+    },
+    subtitle: {
+      en: "Tomorrow starts now.",
+      ar: "المستقبل يبدأ الآن.",
+      eg: "بكرة بيبدأ دلوقتي."
+    }
+  },
+  {
+    image: "/hero-4.png",
+    text: {
+      en: "Smart. Simple. Infinite.",
+      ar: "ذكي. بسيط. لا نهائي.",
+      eg: "ذكاء وسهولة مالهمش نهاية."
+    },
+    subtitle: {
+      en: "No limits, just possibilities.",
+      ar: "لا حدود، فقط إمكانيات.",
+      eg: "إمكانياتك ملهاش آخر."
+    }
+  },
+  {
+    image: "/hero-5.png",
+    text: {
+      en: "Meet Tomorrow Today.",
+      ar: "قابل بكرة النهاردة.",
+      eg: "بكرة عندك دلوقتي."
+    },
+    subtitle: {
+      en: "Step ahead. Always.",
+      ar: "خطوة للأمام… دايمًا.",
+      eg: "دايمًا سابق بخطوة."
+    }
+  },
+  {
+    image: "/hero-6.png",
+    text: {
+      en: "Dream Digital.",
+      ar: "احلم رقمي.",
+      eg: "احلمها رقمية."
+    },
+    subtitle: {
+      en: "We build your vision.",
+      ar: "نبني رؤيتك.",
+      eg: "حلمك على أرض الواقع."
+    }
+  },
+  {
+    image: "/hero-7.png",
+    text: {
+      en: "Inspire. Invent. Impact.",
+      ar: "ألهم، ابتكر، غيّر.",
+      eg: "ألهم وابتكر وسيب بصمتك."
+    },
+    subtitle: {
+      en: "Your impact begins here.",
+      ar: "أثرك يبدأ من هنا.",
+      eg: "أثرك يبدأ من عندنا."
+    }
+  },
+  {
+    image: "/hero-8.png",
+    text: {
+      en: "Empower Your Journey.",
+      ar: "قوّي رحلتك.",
+      eg: "رحلتك أقوى معانا."
+    },
+    subtitle: {
+      en: "Together, we go further.",
+      ar: "معًا نصل أبعد.",
+      eg: "مع بعض نوصل لأبعد."
+    }
+  },
+  {
+    image: "/hero-9.png",
+    text: {
+      en: "Open New Worlds.",
+      ar: "افتح عوالم جديدة.",
+      eg: "عالم جديد بين إيديك."
+    },
+    subtitle: {
+      en: "Endless doors to explore.",
+      ar: "أبواب بلا نهاية.",
+      eg: "فرص مابتخلصش."
+    }
+  },
+  {
+    image: "/hero-10.png",
+    text: {
+      en: "Make It Real.",
+      ar: "حوّلها لواقع.",
+      eg: "خليها حقيقة."
+    },
+    subtitle: {
+      en: "Tech that delivers dreams.",
+      ar: "تقنية تحقق الأحلام.",
+      eg: "حلمك بيكبر مع تقنيتنا."
+    }
+  },
+  {
+    image: "/hero-11.png",
+    text: {
+      en: "Digital Redefined.",
+      ar: "رقمي بشكل جديد.",
+      eg: "الرقمي ليه معنى تاني."
+    },
+    subtitle: {
+      en: "Excellence is our standard.",
+      ar: "التميّز هو الأساس.",
+      eg: "التميّز على أصوله."
+    }
+  },
+  {
+    image: "/hero-12.png",
+    text: {
+      en: "Your Vision, Our Code.",
+      ar: "رؤيتك، كودنا.",
+      eg: "رؤيتك، برمجتنا."
+    },
+    subtitle: {
+      en: "Let’s build the future.",
+      ar: "نبني المستقبل سويًا.",
+      eg: "نكتب بكرة مع بعض."
+    }
+  }
 ];
-// مدة عرض الشريحة (مثلاً 15 ثانية = 15000 مللي ثانية)
-const SLIDE_DURATION = 15000; // غيّر الرقم حسب ما تحب (من 10 إلى 20 ثانية... إلخ)
-const FADE_DURATION = 1.6; // زمن التدرج في الدخول والخروج بالثواني (يُفضل يكون قصير نسبيًا)
 
-export default function HeroSlider() {
+const SLIDE_DURATION = 10000;
+const FADE_DURATION = 1.6;
+
+export default function HeroSlider({ lang = "en" }) {
   const [active, setActive] = useState(0);
-
-  // زوم إن للشريحة الزوجية - زوم أوت للفردية (حسب رغبتك)
-  const getZoomType = (i) => (i % 2 === 0 ? "out" : "in");
+  const [showText, setShowText] = useState(false);
+  const { language } = useLanguage();
+  const isRTL = language === "ar" || language === "eg";
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setShowText(false);
+    const textIn = setTimeout(() => setShowText(true), SLIDE_DURATION / 2.2);
+    const textOut = setTimeout(() => setShowText(false), SLIDE_DURATION - 200);
+    const nextSlide = setTimeout(() => {
       setActive((i) => (i + 1) % SLIDES.length);
     }, SLIDE_DURATION);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(textIn);
+      clearTimeout(textOut);
+      clearTimeout(nextSlide);
+    };
   }, [active]);
 
+  // Variants بدون transition بداخلهم
+  const textParentVariants = {
+    initial: { opacity: 0, y: 40, filter: "blur(15px)", scale: 0.98 },
+    animate: { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 },
+    exit: { opacity: 0, y: 30, scale: 1.05, filter: "blur(10px)" }
+  };
+  const textChildVariants = {
+    initial: { opacity: 0, x: isRTL ? 120 : -120, scale: 0.94, filter: "blur(14px)" },
+    animate: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, x: isRTL ? -35 : 35, scale: 1.08, filter: "blur(10px)" }
+  };
+
   return (
-    <div className="relative w-full h-[100vh] overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={active}
-          src={SLIDES[active].image}
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={{
-            opacity: 0,
-            // لو زوم أوت: ابدأ مكبر (1.16) ثم صغر
-            // لو زوم إن: ابدأ طبيعي ثم كبر
-            scale: getZoomType(active) === "out" ? 1.16 : 1,
-          }}
-          animate={{
-            opacity: 1,
-            scale: getZoomType(active) === "out" ? 1 : 1.16,
-            transition: {
-              opacity: { duration: FADE_DURATION, ease: "easeInOut" },
-              scale: { duration: SLIDE_DURATION / 1000, ease: "linear" },
-            },
-          }}
-          exit={{
-            opacity: 0,
-            transition: { duration: FADE_DURATION, ease: "easeInOut" },
-          }}
-          style={{ minHeight: 500 }}
-        />
-      </AnimatePresence>
+    <div className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-br from-[#030c2e] to-[#020816]">
+      <div className={`flex w-full h-full ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
+        <div className="relative w-full h-full flex items-center justify-center" style={{ transform: "translateY(12px)" }}>
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={active}
+              src={SLIDES[active].image}
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{
+                opacity: 0,
+                scale: (active % 2 === 0) ? 1.16 : 1,
+              }}
+              animate={{
+                opacity: 1,
+                scale: (active % 2 === 0) ? 1 : 1.16,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              transition={{
+                opacity: { duration: FADE_DURATION, ease: "easeInOut" },
+                scale: { duration: SLIDE_DURATION / 1000, ease: "linear" }
+              }}
+              style={{ minHeight: 500 }}
+            />
+          </AnimatePresence>
+          <div
+            className={`
+              absolute z-20
+              ${isRTL ? "right-8" : "left-8"}
+              bottom-10
+              max-w-xl w-[90vw]
+              flex flex-col items-start pointer-events-none
+            `}
+            dir={isRTL ? "rtl" : "ltr"}
+          >
+            <AnimatePresence>
+              {showText && (
+                <motion.div
+                  key={active + language}
+                  variants={textParentVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="flex flex-col items-start w-full"
+                  transition={{
+                    duration: 1.0,
+                    staggerChildren: 0.22,
+                  }}
+                >
+                  <motion.h1
+                    variants={textChildVariants}
+                    className={`
+                      text-white/90 
+                      text-xl sm:text-3xl md:text-5xl 
+                      font-black 
+                      drop-shadow-[0_3px_20px_rgba(64,168,255,0.30)]
+                      tracking-tight mb-2 animate-pulse
+                      ${isRTL ? "text-right" : "text-left"}
+                    `}
+                    transition={{
+                      duration: 1.1,
+                      type: "spring"
+                    }}
+                  >
+                    {SLIDES[active].text[language]}
+                  </motion.h1>
+                  <motion.p
+                    variants={textChildVariants}
+                    className={`
+                      text-white/70
+                      text-base sm:text-xl md:text-2xl
+                      font-medium 
+                      tracking-wide
+                      drop-shadow
+                      ${isRTL ? "text-right" : "text-left"}
+                    `}
+                    transition={{
+                      duration: 1.1,
+                      type: "spring"
+                    }}
+                  >
+                    {SLIDES[active].subtitle[language]}
+                  </motion.p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10 pointer-events-none select-none z-[2]" />
+        </div>
+      </div>
     </div>
   );
 }
