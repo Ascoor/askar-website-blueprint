@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './layout/Navigation';
 import Footer from './layout/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Preloader from './ui/preloader';
+import Preloader from './ui/Preloader';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,12 +10,24 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isRTL } = useLanguage();
-  const [showLoader, setShowLoader] = React.useState(true);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 4000); // يمكن تغيير المدة وفقًا للوقت المطلوب للـ Preloader
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {showLoader && <Preloader onComplete={() => setShowLoader(false)} />}
-      <Navigation />
-      <main className={showLoader ? 'flex-1 invisible' : 'flex-1'}>{children}</main>
+      {/* Navigation will be hidden until loader completes */}
+      {!showLoader && <Navigation />}
+      <main className={showLoader ? 'invisible' : ''}>
+        {children}
+      </main>
       <Footer />
     </div>
   );

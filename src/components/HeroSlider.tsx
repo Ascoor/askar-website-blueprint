@@ -16,16 +16,18 @@ interface SlideData {
 }
 
 const slides: SlideData[] = [
-  { image: "/hero-1.png", text: { en: "Technology that leads the future.", ar: "تقنية تقود المستقبل.", eg: "تقنية تقود المستقبل." } },
-  { image: "/hero-2.png", text: { en: "Data flows, growth follows.", ar: "تدفق البيانات، ينمو النجاح.", eg: "البيانات تتدفق، والنمو يتبع." } },
-  { image: "/hero-3.png", text: { en: "Smart partner in transformation.", ar: "شريك ذكي في التحول.", eg: "شريك ذكي في التحول." } },
-  { image: "/hero-4.png", text: { en: "Innovation with trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
-  { image: "/hero-5.png", text: { en: "Seamless connectivity everywhere.", ar: "اتصال سلس في كل مكان.", eg: "اتصال سلس في كل مكان." } },
-  { image: "/hero-6.png", text: { en: "Empowering your digital journey.", ar: "تمكين رحلتك الرقمية.", eg: "تمكين رحلتك الرقمية." } },
-  { image: "/hero-7.png", text: { en: "Your partner in digital transformation.", ar: "شريكك في التحول الرقمي.", eg: "شريكك في التحول الرقمي." } },
-  { image: "/hero-8.png", text: { en: "Leading the way in innovation.", ar: "قيادة الطريق في الابتكار.", eg: "قيادة الطريق في الابتكار." } },
-  { image: "/hero-9.png", text: { en: "Transforming ideas into reality.", ar: "تحويل الأفكار إلى واقع.", eg: "تحويل الأفكار إلى واقع." } },
-  { image: "/hero-10.png", text: { en: "Empowering your digital future.", ar: "تمكين مستقبلك الرقمي.", eg: "تمكين مستقبلك الرقمي." } }
+  { image: "/hero-1.png", text: { en: "Tech that moves you forward.", ar: "تقنية تدفعك للأمام.", eg: "تقنية تدفعك للأمام." } },
+  { image: "/hero-2.png", text: { en: "Stay ahead with our tech.", ar: "ابقى متقدم بتقنيتنا.", eg: "ابقى متقدم بتقنيتنا." } },
+  { image: "/hero-3.png", text: { en: "Data that powers growth.", ar: "بيانات تقود النمو.", eg: "بيانات تقود النمو." } },
+  { image: "/hero-4.png", text: { en: "Smart solutions, smart future.", ar: "حلول ذكية، مستقبل ذكي.", eg: "حلول ذكية، مستقبل ذكي." } },
+  { image: "/hero-5.png", text: { en: "Innovation you can trust.", ar: "ابتكار بثقة.", eg: "ابتكار بثقة." } },
+  { image: "/hero-6.png", text: { en: "Seamless connectivity, always.", ar: "اتصال سلس، دائمًا.", eg: "اتصال سلس، دائمًا." } },
+  { image: "/hero-7.png", text: { en: "Tech that shapes your future.", ar: "تقنية تشكل مستقبلك.", eg: "تقنية تشكل مستقبلك." } },
+  { image: "/hero-8.png", text: { en: "Stay connected, stay ahead.", ar: "ابقى متصل، ابقى متقدم.", eg: "ابقى متصل، ابقى متقدم." } },
+  { image: "/hero-9.png", text: { en: "Fresh start with cutting-edge tech.", ar: "بداية جديدة بتقنية متطورة.", eg: "بداية جديدة بتقنية متطورة." } },
+  { image: "/hero-10.png", text: { en: "Simplifying your world with tech.", ar: "نبسط لك الدنيا بتقنية.", eg: "نبسط لك الدنيا بتقنية." } },
+  { image: "/hero-11.png", text: { en: "Tech that puts you ahead.", ar: "تقنية تجيبك أولًا.", eg: "تقنية تجيبك أولًا." } },
+  { image: "/hero-12.png", text: { en: "Everything’s easy with our tech.", ar: "كل شيء سهل بتقنيتنا.", eg: "كل شيء سهل بتقنيتنا." } }
 ];
 
 const HeroSlider: React.FC = () => {
