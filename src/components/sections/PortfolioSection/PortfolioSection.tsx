@@ -63,7 +63,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-const Portfolio: React.FC = () => {
+const PortfolioSection: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
@@ -76,7 +76,7 @@ const Portfolio: React.FC = () => {
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container relative">
         {/* العنوان */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -145,4 +145,4 @@ const Portfolio: React.FC = () => {
   );
 };
 
-export default Portfolio;
+export default PortfolioSection;

@@ -46,12 +46,12 @@ const items: FAQItem[] = [
   },
 ];
 
-const FAQ: React.FC = () => {
+const FAQSection: React.FC = () => {
   const { language, t } = useLanguage();
 
   return (
     <section id="faq" className="py-20 bg-muted">
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="container max-w-5xl">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
           {t('faqTitle')}
         </h2>
@@ -75,4 +75,4 @@ const FAQ: React.FC = () => {
   );
 };
 
-export default FAQ;
+export default FAQSection;

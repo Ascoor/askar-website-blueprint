@@ -2,7 +2,7 @@ import React from 'react';
 import { Award, Target, Users, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const About = () => {
+const AboutSection = () => {
   const { t } = useLanguage();
 
   const stats = [
@@ -14,7 +14,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div>
@@ -69,4 +69,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutSection;
