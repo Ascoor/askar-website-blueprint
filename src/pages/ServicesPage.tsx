@@ -12,8 +12,10 @@ const ServicesPage: React.FC = () => {
 
   const serviceDetails = [
     {
+ 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
+ 
       features: [
         'تصميم متجاوب لجميع الأجهزة',
         'تحسين محركات البحث SEO',
@@ -24,8 +26,10 @@ const ServicesPage: React.FC = () => {
       color: 'from-blue-500 to-cyan-500',
     },
     {
+ 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
+ 
       features: [
         'تطبيقات iOS و Android الأصلية',
         'تطبيقات متعددة المنصات',
@@ -36,8 +40,10 @@ const ServicesPage: React.FC = () => {
       color: 'from-purple-500 to-pink-500',
     },
     {
+ 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
+ 
       features: [
         'أنظمة إدارة مخصصة',
         'حلول أتمتة العمليات',
