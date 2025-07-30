@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Navigation from '@/components/layout/Navigation';
-import About from '@/components/sections/About';
-import CTA from '@/components/sections/CTA';
-import Contact from '@/components/sections/Contact';
+import AboutSection from '@/components/sections/AboutSection/AboutSection';
+import CTASection from '@/components/sections/CTASection/CTASection';
+import ContactSection from '@/components/sections/ContactSection/ContactSection';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -27,9 +27,9 @@ const AboutPage: React.FC = () => {
 
       <Navigation />
       <main id="main-content">
-        <About />
-        <CTA />
-        <Contact />
+        <AboutSection />
+        <CTASection />
+        <ContactSection />
       </main>
       <Footer />
       <BackToTopButton />

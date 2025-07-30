@@ -1,15 +1,15 @@
 import React from 'react';
 import HeroSlider from '@/components/HeroSlider';
-import LunarHero from '@/components/sections/LunarHero';
+import LunarHeroSection from '@/components/sections/LunarHeroSection/LunarHeroSection';
 import SocialProofSection from './SocialProofSection';
-import Services from '@/components/sections/Services';
-import Solutions from '@/components/sections/Solutions';
-import Portfolio from '@/components/sections/Portfolio';
-import About from '@/components/sections/About';
-import Technologies from '@/components/sections/Technologies';
-import FAQ from '@/components/sections/FAQ';
-import CTA from '@/components/sections/CTA';
-import Contact from '@/components/sections/Contact';
+import ServicesSection from '@/components/sections/ServicesSection/ServicesSection';
+import SolutionsSection from '@/components/sections/SolutionsSection/SolutionsSection';
+import PortfolioSection from '@/components/sections/PortfolioSection/PortfolioSection';
+import AboutSection from '@/components/sections/AboutSection/AboutSection';
+import TechnologiesSection from '@/components/sections/TechnologiesSection/TechnologiesSection';
+import FAQSection from '@/components/sections/FAQSection/FAQSection';
+import CTASection from '@/components/sections/CTASection/CTASection';
+import ContactSection from '@/components/sections/ContactSection/ContactSection';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Status from '@/components/ui/status';
@@ -21,16 +21,16 @@ const Index: React.FC = () => {
     <main id="main-content" className="min-h-screen font-sans">
       <HeroSlider />
       <SocialProofSection isArabic={false} />
-      <LunarHero />
+      <LunarHeroSection />
       <Status />
-      <Services />
-      <Solutions />
-      <Portfolio />
-      <About />
-      <Technologies />
-      <FAQ />
-      <CTA />
-      <Contact />
+      <ServicesSection />
+      <SolutionsSection />
+      <PortfolioSection />
+      <AboutSection />
+      <TechnologiesSection />
+      <FAQSection />
+      <CTASection />
+      <ContactSection />
       <BackToTopButton />
     </main>
   );

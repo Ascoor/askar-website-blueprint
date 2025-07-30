@@ -8,7 +8,7 @@ interface Tech {
   icon: React.ElementType;
 }
 
-const Technologies: React.FC = () => {
+const TechnologiesSection: React.FC = () => {
   const { t } = useLanguage();
 
   const techs: Tech[] = [
@@ -22,7 +22,7 @@ const Technologies: React.FC = () => {
 
   return (
     <section id="technologies" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="container text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           {t('technologiesTitle')}
         </h2>
@@ -51,4 +51,4 @@ const Technologies: React.FC = () => {
   );
 };
 
-export default Technologies;
+export default TechnologiesSection;

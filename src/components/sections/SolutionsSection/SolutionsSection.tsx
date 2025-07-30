@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const Solutions: React.FC = () => {
+const SolutionsSection: React.FC = () => {
   const { t } = useLanguage();
 
   const items = [
@@ -29,7 +29,7 @@ const Solutions: React.FC = () => {
 
   return (
     <section id="solutions" className="py-20 bg-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
           {t('solutionsTitle')}
         </h2>
@@ -49,5 +49,5 @@ const Solutions: React.FC = () => {
   );
 };
 
-export default Solutions;
+export default SolutionsSection;
 

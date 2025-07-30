@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
-const CTA: React.FC = () => {
+const CTASection: React.FC = () => {
   const { t, isRTL } = useLanguage();
 
   const scrollToContact = () => {
@@ -23,7 +23,7 @@ const CTA: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-foreground/5 rounded-full blur-3xl animate-pulse delay-2000" />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="container max-w-4xl text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -67,4 +67,4 @@ const CTA: React.FC = () => {
   );
 };
 
-export default CTA; 
+export default CTASection; 

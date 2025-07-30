@@ -1,7 +1,7 @@
 import React from 'react';
 import PenguinMascot from '@/components/ui/PenguinMascot';
 
-const LunarHero: React.FC = () => {
+const LunarHeroSection: React.FC = () => {
   return (
     <section className="relative pt-20 pb-20 text-center overflow-hidden bg-midnight text-moonWhite">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary via-transparent to-brand-secondary/20" />
@@ -16,4 +16,4 @@ const LunarHero: React.FC = () => {
   );
 };
 
-export default LunarHero;
+export default LunarHeroSection;

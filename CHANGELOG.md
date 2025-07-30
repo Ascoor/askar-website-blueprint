@@ -3,6 +3,14 @@
 
 All notable changes to the Askar Software Solutions website will be documented in this file.
 
+## [2.1.0] - 2024-02-15
+
+### ♻️ Sections Refactor
+- Moved all section components into dedicated folders
+- Unified container layout and design tokens
+- Removed unused console logging
+- Updated imports to new paths
+
 ## [2.0.0] - 2024-01-25
 
 ### 🎬 Major Hero Slider Overhaul

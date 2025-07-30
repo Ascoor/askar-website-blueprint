@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 
-const Contact = () => {
+const ContactSection = () => {
   const { t, isRTL } = useLanguage();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -19,7 +19,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
     toast({
       title: "Message Sent!",
       description: "Thank you for your message. We'll get back to you soon.",
@@ -65,7 +64,7 @@ const Contact = () => {
 
   return (
     <section id="contact" dir={isRTL ? 'rtl' : 'ltr'} className="py-20 bg-surface dark:bg-darkSurface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {t('contactTitle')}
@@ -195,4 +194,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactSection;
