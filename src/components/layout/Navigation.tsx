@@ -89,9 +89,9 @@ export default function Navigation() {
       dir={isRTL ? "rtl" : "ltr"}
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-500 ease-out",
-        isHero 
+        isHero
           ? "bg-transparent"
-          : "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/50"
+          : "bg-background dark:bg-midnight/95 backdrop-blur-xl shadow-lg border-b border-border/50"
       )}
       style={{ height: `${NAVBAR_HEIGHT}px` }}
       initial={{ y: -100 }}
@@ -214,7 +214,7 @@ export default function Navigation() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="md:hidden fixed inset-0 bg-background/98 backdrop-blur-xl z-40"
+              className="md:hidden fixed inset-0 bg-background dark:bg-midnight/98 backdrop-blur-xl z-40"
               style={{ top: `${NAVBAR_HEIGHT}px` }}
             >
               <div className="flex flex-col items-center justify-center min-h-full py-8 space-y-8">
