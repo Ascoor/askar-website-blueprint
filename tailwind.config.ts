@@ -44,27 +44,42 @@ export default {
 				'6xl': ['clamp(3.75rem, 10vw, 5rem)', { lineHeight: '1' }],
 				'7xl': ['clamp(4.5rem, 12vw, 6rem)', { lineHeight: '1' }],
 			},
-			colors: {
-				// Base semantic tokens
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+                        colors: {
+                                // Base semantic tokens
+                                border: 'hsl(var(--border))',
+                                input: 'hsl(var(--input))',
+                                ring: 'hsl(var(--ring))',
+                                background: 'hsl(var(--background))',
+                                foreground: '#0e1528',
 
-				// Lunar Night Brand System
-				primary: {
-					DEFAULT: 'hsl(var(--brand-primary))',
-					foreground: 'hsl(var(--brand-primary-foreground))',
-					hover: 'hsl(var(--brand-primary-hover))',
-					glow: 'hsl(var(--brand-primary-glow))',
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--brand-secondary))',
-					foreground: 'hsl(var(--brand-secondary-foreground))',
-					hover: 'hsl(var(--brand-secondary-hover))',
-					glow: 'hsl(var(--brand-secondary-glow))',
-				},
+                                // Ask-ar brand palette
+                                primary: '#23d3fb',
+                                accent: '#72d7ff',
+                                moonWhite: '#e6ecfa',
+                                surface: '#f7fafe',
+                                card: '#f2f5fc',
+                                muted: '#e6ebf5',
+                                background: '#f8fbff',
+                                midnight: '#0e1528',
+                                darkSurface: '#23263a',
+                                darkMuted: '#18233b',
+                                darkCard: '#222b3d',
+                                darkText: '#b8c3d6',
+                                darkActive: '#eaf3ff',
+
+                                // Lunar Night Brand System
+                                primary: {
+                                        DEFAULT: '#23d3fb',
+                                        foreground: '#ffffff',
+                                        hover: '#72d7ff',
+                                        glow: '#72d7ff',
+                                },
+                                secondary: {
+                                        DEFAULT: '#72d7ff',
+                                        foreground: '#ffffff',
+                                        hover: '#8ee4ff',
+                                        glow: '#72d7ff',
+                                },
 
 				// Lunar Night Color Palette
                                 // Semantic brand tokens
@@ -84,52 +99,52 @@ export default {
 				'glass-border': 'hsl(var(--glass-border))',
 
 				// Status colors
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))',
-					hover: 'hsl(var(--destructive-hover))',
-				},
-				success: {
-					DEFAULT: 'hsl(var(--success))',
-					foreground: 'hsl(var(--success-foreground))',
-				},
-				warning: {
-					DEFAULT: 'hsl(var(--warning))',
-					foreground: 'hsl(var(--warning-foreground))',
-				},
-				info: {
-					DEFAULT: 'hsl(var(--info))',
-					foreground: 'hsl(var(--info-foreground))',
-				},
+                                destructive: {
+                                        DEFAULT: '#e5484d',
+                                        foreground: '#ffffff',
+                                        hover: '#dc2626',
+                                },
+                                success: {
+                                        DEFAULT: '#22c55e',
+                                        foreground: '#ffffff',
+                                },
+                                warning: {
+                                        DEFAULT: '#facc15',
+                                        foreground: '#1f2937',
+                                },
+                                info: {
+                                        DEFAULT: '#38bdf8',
+                                        foreground: '#ffffff',
+                                },
 
 				// UI elements
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-					hover: 'hsl(var(--accent-hover))',
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+                                muted: {
+                                        DEFAULT: '#e6ebf5',
+                                        foreground: '#64748b'
+                                },
+                                accent: {
+                                        DEFAULT: '#23d3fb',
+                                        foreground: '#ffffff',
+                                        hover: '#72d7ff',
+                                },
+                                popover: {
+                                        DEFAULT: '#f7fafe',
+                                        foreground: '#0e1528'
+                                },
+                                card: {
+                                        DEFAULT: '#f2f5fc',
+                                        foreground: '#0e1528'
+                                },
+                                sidebar: {
+                                        DEFAULT: '#f8fbff',
+                                        foreground: '#0e1528',
+                                        primary: '#23d3fb',
+                                        'primary-foreground': '#ffffff',
+                                        accent: '#72d7ff',
+                                        'accent-foreground': '#0e1528',
+                                        border: '#e6ebf5',
+                                        ring: '#23d3fb'
+                                }
 			},
 			borderRadius: {
 				'none': '0',
