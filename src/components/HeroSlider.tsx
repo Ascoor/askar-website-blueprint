@@ -101,6 +101,7 @@ export default function HeroSlider({ lang = "en" }) {
           <motion.img
             key={"prev" + prev}
             src={SLIDES[prev].image}
+            alt={SLIDES[prev].text[language]}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{
               opacity: 1,
@@ -132,6 +133,7 @@ export default function HeroSlider({ lang = "en" }) {
         <motion.img
           key={"active" + active}
           src={SLIDES[active].image}
+          alt={SLIDES[active].text[language]}
           className="absolute inset-0 w-full h-full object-cover"
           initial={{
             opacity: 0,

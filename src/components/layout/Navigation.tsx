@@ -150,6 +150,7 @@ export default function Navigation() {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
+                aria-label={theme === "light" ? "Enable dark mode" : "Enable light mode"}
                 style={{
                   color: getNavTextColor(false),
                   filter: getGlow(),
@@ -191,6 +192,9 @@ export default function Navigation() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(!isOpen)}
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-menu"
                   style={{
                     color: getNavTextColor(false),
                     filter: getGlow(),
@@ -221,6 +225,7 @@ export default function Navigation() {
               initial="hidden"
               animate="visible"
               exit="exit"
+              id="mobile-menu"
               className="md:hidden fixed inset-0 bg-background dark:bg-midnight/98 backdrop-blur-xl z-40"
               style={{ top: `${NAVBAR_HEIGHT}px` }}
             >
