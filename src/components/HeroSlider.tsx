@@ -199,7 +199,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <div className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-br from-[#030c2e] to-[#020816]">
+    <div className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-br from-[var(--hero-gradient-from)] to-[var(--hero-gradient-to)]">
       {/* Slide Image */}
 <AnimatePresence mode="wait">
   <motion.img
@@ -270,7 +270,7 @@ export default function HeroSlider() {
                   text-white/90 
                   text-xl sm:text-3xl md:text-5xl 
                   font-black 
-                  drop-shadow-[0_3px_20px_rgba(64,168,255,0.30)]
+                  drop-shadow-[0_3px_20px_hsl(var(--brand-glow)/0.3)]
                   tracking-tight mb-2
                   animate-pulse
                   ${isRTL ? "text-right" : "text-left"}
