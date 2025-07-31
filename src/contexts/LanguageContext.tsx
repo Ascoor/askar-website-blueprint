@@ -16,7 +16,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>('ar');
 
   const setLanguage = (lang: Language) => {
-    console.log('[language-change] new language:', lang);
     setLanguageState(lang);
     
     // Update document direction

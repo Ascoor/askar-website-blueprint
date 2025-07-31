@@ -14,7 +14,6 @@ export const useScrollSpy = (sectionIds: string[], offset = 0) => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
             if (id) {
-              console.log('[scroll-spy] active section:', id); // signature log
               setActiveId(id);
             }
           }
