@@ -12,11 +12,11 @@ import { cn } from "@/lib/utils";
 const NAVBAR_HEIGHT = 72;
 const SCROLL_THRESHOLD = 10; // اعتبر فوق 10px ليس Hero
 
-// ألوان مشعة (قمري)
-const lunarWhite = "#e6ecfa";
-const lunarActive = "#fafdff";
-const darkNavText = "#b8c3d6";
-const darkNavActive = "#eaf3ff";
+// Theme tokens
+const NAV_LIGHT = "var(--nav-text-light)";
+const NAV_LIGHT_ACTIVE = "var(--nav-active-light)";
+const NAV_DARK = "var(--nav-text-dark)";
+const NAV_DARK_ACTIVE = "var(--nav-active-dark)";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,9 +61,16 @@ export default function Navigation() {
 
   // دالة لتحديد لون النص (مشع في الأعلى/مناسب للأسفل)
   const getNavTextColor = (isActive: boolean) => {
-    if (isHero) return isActive ? lunarActive : lunarWhite;
-    if (theme === "light") return ""; // استخدم tailwind الافتراضي
-    return isActive ? darkNavActive : darkNavText;
+    if (isHero) return isActive ? NAV_LIGHT_ACTIVE : NAV_LIGHT;
+    if (theme === "light") return ""; // tailwind default
+    return isActive ? NAV_DARK_ACTIVE : NAV_DARK;
+  };
+
+  const getGlow = () => {
+    if (!isHero) return "none";
+    return theme === "light"
+      ? `drop-shadow(0 0 8px var(--nav-light-glow))`
+      : `drop-shadow(0 0 8px var(--nav-dark-glow))`;
   };
 
   // متغيرات قائمة الموبايل
@@ -120,7 +127,7 @@ export default function Navigation() {
                   whileTap={{ scale: 0.97 }}
                   style={{
                     color: getNavTextColor(isActive),
-                    textShadow: isHero ? "0 0 9px #b7c6e3a0" : "none",
+                    textShadow: isHero ? `0 0 9px var(--nav-shadow)` : "none",
                     fontWeight: isActive ? 700 : 500,
                   }}
                   className={cn(
@@ -145,7 +152,7 @@ export default function Navigation() {
                 onClick={toggleTheme}
                 style={{
                   color: getNavTextColor(false),
-                  filter: isHero ? "drop-shadow(0 0 8px #e6ecfa70)" : "none",
+                  filter: getGlow(),
                 }}
                 className={cn(
                   "rounded-full w-10 h-10 transition-colors duration-300"
@@ -166,7 +173,7 @@ export default function Navigation() {
                 onClick={handleLanguageChange}
                 style={{
                   color: getNavTextColor(false),
-                  filter: isHero ? "drop-shadow(0 0 7px #e6ecfa70)" : "none",
+                  filter: getGlow(),
                   fontWeight: 600,
                 }}
                 className={cn(
@@ -186,7 +193,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(!isOpen)}
                   style={{
                     color: getNavTextColor(false),
-                    filter: isHero ? "drop-shadow(0 0 8px #e6ecfa80)" : "none"
+                    filter: getGlow(),
                   }}
                   className={cn("rounded-full w-10 h-10 transition-colors duration-300")}
                 >
@@ -234,8 +241,8 @@ export default function Navigation() {
                       whileTap={{ scale: 0.95 }}
                       style={{
                         color: getNavTextColor(isActive),
-                        textShadow: isHero ? "0 0 9px #e6ecfa60" : "none",
-                        fontWeight: isActive ? 700 : 600
+                        textShadow: isHero ? `0 0 9px var(--nav-shadow-soft)` : "none",
+                        fontWeight: isActive ? 700 : 600,
                       }}
                       className={cn(
                         "relative text-2xl font-semibold transition-all duration-300",
