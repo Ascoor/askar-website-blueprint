@@ -42,6 +42,27 @@
     --glass-border: 201 86% 58% / 0.2;     /* Sky blue glass border */
     --spring-glow: 201 86% 58% / 0.4;      /* Soft spring glow */
 
+    /* Navigation System */
+    --nav-text-light: #e6ecfa;             /* Light nav text */
+    --nav-active-light: #fafdff;           /* Active link on hero */
+    --nav-light-glow: #e6ecfa70;           /* Glow for icons */
+    --nav-text-dark: #b8c3d6;              /* Dark mode nav text */
+    --nav-active-dark: #eaf3ff;            /* Dark mode active link */
+    --nav-dark-glow: #e6ecfa80;            /* Dark mode glow */
+    --nav-shadow: #b7c6e3a0;               /* Light text shadow */
+    --nav-shadow-soft: #e6ecfa60;          /* Softer shadow for mobile */
+
+    /* Hero Background */
+    --hero-gradient-from: #030c2e;
+    --hero-gradient-to: #020816;
+    --accent-glow: #3fffb5;
+    --spinner-dark-1: #004C7C;
+    --spinner-dark-2: #0066CC;
+    --spinner-dark-3: #2C3E50;
+    --spinner-dark-4: #3498DB;
+    --spinner-dark-5: #2980B9;
+    --spinner-dark-6: #1ABC9C;
+
     /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
     --background: var(--brand-bg);
     --foreground: var(--text-base);        /* High contrast navy text */
@@ -118,6 +139,11 @@
     /* Dark Glass Effects */
     --glass-bg: 0 0% 100% / 0.02;         /* Very subtle white overlay */
     --glass-border: 0 0% 100% / 0.05;     /* Subtle white border */
+
+    /* Navigation Dark overrides (reuse same values) */
+
+    --hero-gradient-dark-from: #1e293b;
+    --hero-gradient-dark-to: #0f172a;
 
     /* Dark Sidebar */
     --sidebar-background: 240 5.9% 10%;

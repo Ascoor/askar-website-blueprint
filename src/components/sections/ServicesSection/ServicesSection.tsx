@@ -59,7 +59,7 @@ const ServicesSection: React.FC = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-0 -bottom-1 h-1 w-full origin-left bg-[#3fffB5]"
+            className="absolute left-0 -bottom-1 h-1 w-full origin-left bg-[var(--accent-glow)]"
           />
         </motion.h2>
 

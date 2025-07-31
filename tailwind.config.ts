@@ -96,7 +96,15 @@ export default {
 
 				// Glass effects
 				'glass-bg': 'hsl(var(--glass-bg))',
-				'glass-border': 'hsl(var(--glass-border))',
+        'glass-border': 'hsl(var(--glass-border))',
+
+        // Navigation colors
+        'nav-light': 'var(--nav-text-light)',
+        'nav-light-active': 'var(--nav-active-light)',
+        'nav-dark': 'var(--nav-text-dark)',
+        'nav-dark-active': 'var(--nav-active-dark)',
+        'hero-from': 'var(--hero-gradient-from)',
+        'hero-to': 'var(--hero-gradient-to)',
 
 				// Status colors
                                 destructive: {
