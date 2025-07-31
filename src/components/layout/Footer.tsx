@@ -40,6 +40,8 @@ const Footer = () => {
               {quickLinks.map((link) => (
                 <button
                   key={link.key}
+                  type="button"
+                  aria-label={t(link.key)}
                   onClick={() => {
                     const element = document.getElementById(link.href);
                     if (element) {
