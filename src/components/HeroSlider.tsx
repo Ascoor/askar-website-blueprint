@@ -58,9 +58,10 @@
     } 
 
   ];
-const SLIDE_DURATION = 10000;         // 10 ثواني
-const TRANSITION_DURATION = 1.6;      // زمن التدرج بين الشرائح
-const BLEND_DURATION = 1400;          // ms الدمج بين الشرائح (crossfade)
+  
+const SLIDE_DURATION = 10000;
+const FADE_DURATION = 1.7;      // مدة التلاشي والتداخل (ثواني)
+const BLEND_DURATION = 1400;    // ms
 
 export default function HeroSlider({ lang = "en" }) {
   const [active, setActive] = useState(0);
@@ -69,15 +70,14 @@ export default function HeroSlider({ lang = "en" }) {
   const { language } = useLanguage();
   const isRTL = language === "ar" || language === "eg";
 
-  // Auto-slide logic
   useEffect(() => {
     setShowText(false);
-    const textIn = setTimeout(() => setShowText(true), SLIDE_DURATION / 2.4);
+    const textIn = setTimeout(() => setShowText(true), SLIDE_DURATION / 2.6);
     const textOut = setTimeout(() => setShowText(false), SLIDE_DURATION - BLEND_DURATION + 400);
     const nextSlide = setTimeout(() => {
       setPrev(active);
       setActive((i) => (i + 1) % SLIDES.length);
-      setTimeout(() => setPrev(null), BLEND_DURATION * 0.96); // Remove prev after blend
+      setTimeout(() => setPrev(null), BLEND_DURATION);
     }, SLIDE_DURATION);
 
     return () => {
@@ -87,10 +87,23 @@ export default function HeroSlider({ lang = "en" }) {
     };
   }, [active, language]);
 
-  // Get motion scale for each state
-  const getCurrentScaleInit = (idx) => (idx % 2 === 0 ? 1.16 : 1.18); // فردية: زوم إن، زوجية: زوم أوت
-  const getCurrentScaleEnd = (idx) => 1;                              // تنتهي عند 1
-  const getPrevScaleExit = (idx) => (idx % 2 === 0 ? 1.05 : 1.24);    // تأثير خروج مختلف حسب زوجية الشريحة
+  // --- منطق الزوم للشرائح
+  // الشرائح الفردية: زوم إن فقط
+  // الشرائح الزوجية: زوم أوت فقط
+  function getScaleFor(activeIndex: number, phase: "init" | "anim" | "exit") {
+    if (activeIndex % 2 === 0) {
+      // فردية: Zoom In
+      if (phase === "init") return 1.01;  // تبدأ شبه عادية
+      if (phase === "anim") return 1.16;  // تقترب ببطء (Zoom In)
+      if (phase === "exit") return 1.18;  // عند الخروج تكون وصلت زوم إن أقصى
+    } else {
+      // زوجية: Zoom Out
+      if (phase === "init") return 1.19;  // تبدأ مكبرة
+      if (phase === "anim") return 1.05;  // تصغر ببطء (Zoom Out)
+      if (phase === "exit") return 1.03;  // عند الخروج تكون صغرت للحد المناسب
+    }
+    return 1;
+  }
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-br from-[#030c2e] to-[#020816]">
@@ -105,19 +118,24 @@ export default function HeroSlider({ lang = "en" }) {
             className="absolute inset-0 w-full h-full object-cover"
             initial={{
               opacity: 1,
-              scale: getCurrentScaleEnd(prev),
-              filter: "blur(0px)"
+              scale: getScaleFor(prev, "anim"),
+              filter: "blur(0px)",
+              y: 60
+
             }}
             animate={{
               opacity: 0,
-              scale: getPrevScaleExit(prev),
-              filter: "blur(16px)"
+              scale: getScaleFor(prev, "exit"),
+              filter: "blur(14px)",
+              y: 60
             }}
-            exit={{}}
+            exit={{
+              y: 60
+            }}
             transition={{
-              opacity: { duration: TRANSITION_DURATION, ease: "easeInOut" },
-              scale: { duration: TRANSITION_DURATION, ease: "linear" },
-              filter: { duration: TRANSITION_DURATION * 0.7, ease: "easeInOut" }
+              opacity: { duration: FADE_DURATION, ease: "easeInOut" },
+              scale: { duration: FADE_DURATION, ease: "linear" },
+              filter: { duration: FADE_DURATION * 0.9, ease: "easeInOut" }
             }}
             style={{
               minHeight: 500,
@@ -128,7 +146,7 @@ export default function HeroSlider({ lang = "en" }) {
         )}
       </AnimatePresence>
 
-      {/* صورة الشريحة الحالية (دخول تدريجي) */}
+      {/* صورة الشريحة الحالية (دخول تدريجي مع زوم مناسب) */}
       <AnimatePresence mode="wait">
         <motion.img
           key={"active" + active}
@@ -137,19 +155,24 @@ export default function HeroSlider({ lang = "en" }) {
           className="absolute inset-0 w-full h-full object-cover"
           initial={{
             opacity: 0,
-            scale: getCurrentScaleInit(active),
-            filter: "blur(16px)"
+            scale: getScaleFor(active, "init"),
+            filter: "blur(18px)",
+            y: 60
           }}
           animate={{
             opacity: 1,
-            scale: getCurrentScaleEnd(active),
-            filter: "blur(0px)"
+            scale: getScaleFor(active, "anim"),
+            filter: "blur(0px)",
+            y: 60
           }}
-          exit={{}}
+          exit={{
+            y:60
+          }}
           transition={{
-            opacity: { duration: TRANSITION_DURATION + 0.2, ease: "easeInOut" },
+            opacity: { duration: FADE_DURATION + 0.16, ease: "easeInOut" },
             scale: { duration: SLIDE_DURATION / 1000, ease: "linear" },
-            filter: { duration: TRANSITION_DURATION * 0.9, ease: "easeInOut" }
+            filter: { duration: FADE_DURATION * 1.0, ease: "easeInOut" },
+    
           }}
           style={{
             minHeight: 500,
