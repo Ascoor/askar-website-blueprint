@@ -46,7 +46,7 @@ const BackToTopButton: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
-          className={`fixed bottom-6 ${language !== 'en' ? 'left-6' : 'right-6'} z-40 p-3 rounded-full bg-background/80 backdrop-blur-md text-foreground shadow-elegant hover:bg-background/90 focus:outline-none`}
+          className={`fixed bottom-6 ${language !== 'en' ? 'left-6' : 'right-6'} z-40 p-3 rounded-full bg-background/80 backdrop-blur-md text-foreground shadow-elegant hover:bg-background/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
         >
           <ChevronUp className="w-5 h-5" />
         </motion.button>

@@ -18,25 +18,25 @@ const stats = [
     icon: Users,
     valueKey: 'stats.projects',
     value: '500+',
-    color: 'text-blue-600',
+    color: 'text-primary',
   },
   {
     icon: Star,
     valueKey: 'stats.clients',
     value: '300+',
-    color: 'text-green-600',
+    color: 'text-accent',
   },
   {
     icon: Clock,
     valueKey: 'stats.experience',
     value: '10+',
-    color: 'text-purple-600',
+    color: 'text-success',
   },
   {
     icon: Award,
     valueKey: 'stats.team',
     value: '50+',
-    color: 'text-orange-600',
+    color: 'text-warning',
   },
 ];
 
@@ -70,7 +70,7 @@ const Status = () => (
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold text-foreground mb-2"
+                    className="text-4xl font-bold text-foreground mb-2"
                   >
                     {stat.value}
                   </motion.div>
