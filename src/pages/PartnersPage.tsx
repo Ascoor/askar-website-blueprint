@@ -1,12 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { useQuery } from '@tanstack/react-query';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { fetchPartners, type Partner } from '@/lib/cms';
 
 const PartnersPage: React.FC = () => {
   const { t } = useLanguage();
+  const { data, isLoading, error } = useQuery<Partner[]>({
+    queryKey: ['partners'],
+    queryFn: fetchPartners,
+  });
   return (
     <div id="main" className="min-h-screen">
       <Helmet>
@@ -29,6 +35,22 @@ const PartnersPage: React.FC = () => {
         <p className="text-lg text-muted-foreground mb-8">
           {t('partnersSubtitle')}
         </p>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Failed to load partners</p>}
+        {data && (
+          <ul className="space-y-4 mt-8">
+            {data.map((partner) => (
+              <li key={partner.id} className="text-left">
+                <h2 className="text-2xl font-semibold text-foreground">
+                  {partner.name}
+                </h2>
+                {partner.description && (
+                  <p className="text-muted-foreground">{partner.description}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </main>
       <Footer />
       <BackToTopButton />

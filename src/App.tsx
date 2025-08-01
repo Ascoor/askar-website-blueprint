@@ -17,6 +17,9 @@ const CareersPage = lazy(() => import("./pages/CareersPage"));
 const DocsPage = lazy(() => import("./pages/DocsPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const PartnersPage = lazy(() => import("./pages/PartnersPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const CareerPostPage = lazy(() => import("./pages/CareerPostPage"));
+const PartnerPage = lazy(() => import("./pages/PartnerPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 import Layout from "./components/Layout";
 
@@ -46,9 +49,12 @@ const App = () => (
   <Route path="/portfolio" element={<Layout><PortfolioPage isArabic={false} /></Layout>} />
   <Route path="/solutions" element={<Layout><SolutionsPage /></Layout>} />
   <Route path="/careers" element={<Layout><CareersPage /></Layout>} />
+  <Route path="/careers/:id" element={<Layout><CareerPostPage /></Layout>} />
   <Route path="/docs" element={<Layout><DocsPage /></Layout>} />
   <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+  <Route path="/blog/:id" element={<Layout><BlogPostPage /></Layout>} />
   <Route path="/partners" element={<Layout><PartnersPage /></Layout>} />
+  <Route path="/partners/:id" element={<Layout><PartnerPage /></Layout>} />
   <Route path="*" element={<Layout><NotFound /></Layout>} />
 </Routes>
             </Suspense>
