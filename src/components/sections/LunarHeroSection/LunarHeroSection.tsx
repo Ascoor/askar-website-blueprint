@@ -10,7 +10,7 @@ const translations = {
     subtitle: 'Crafting elegant solutions under the calm of the lunar night.',
   },
   ar: {
-    title: 'أسكار للبرمجيات',
+    title: 'أصنع وأبتكر تطبيقك',
     subtitle: 'نبتكر حلولاً برمجية مميزة تحت هدوء الليل القمري.',
   },
 } as const;
@@ -67,9 +67,6 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
       <p className="text-base mb-8 animate-fade-in-up delay-100 max-w-xl mx-auto">
         {subtitle ?? content.subtitle}
       </p>
-      {showMascot && (
-        <PenguinMascot className="animate-float mx-auto w-32 md:w-48" />
-      )}
     </section>
   );
 };
