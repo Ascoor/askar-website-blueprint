@@ -7,7 +7,7 @@ This project includes several React components for more imaginative loading stat
 ```tsx
 import { MatrixLoader } from '@/components/ui/matrix-loader';
 
-<MatrixLoader className="h-6" />
+<MatrixLoader className="h-6" />;
 ```
 
 MatrixLoader renders five vertical bars that scale up and down in sequence, evoking digital code rain.
@@ -17,7 +17,7 @@ MatrixLoader renders five vertical bars that scale up and down in sequence, evok
 ```tsx
 import { CodeOrbitLoader } from '@/components/ui/code-orbit-loader';
 
-<CodeOrbitLoader className="w-16 h-16" />
+<CodeOrbitLoader className="w-16 h-16" />;
 ```
 
 CodeOrbitLoader displays two dashed rings spinning in opposite directions around a `</>` symbol.
@@ -27,7 +27,7 @@ CodeOrbitLoader displays two dashed rings spinning in opposite directions around
 ```tsx
 import { AskLoader } from '@/components/ui/ask-loader';
 
-<AskLoader className="w-32 h-32" />
+<AskLoader className="w-32 h-32" />;
 ```
 
 AskLoader animates the company initials "ASK" with lines being drawn sequentially on a dark background.
@@ -37,7 +37,7 @@ AskLoader animates the company initials "ASK" with lines being drawn sequentiall
 ```tsx
 import { Preloader } from '@/components/ui/preloader';
 
-<Preloader />
+<Preloader />;
 ```
 
 Preloader acts as the main page loader. It reveals each letter of "ASK" with neon line animations, then pulses once before fading out.

@@ -2,9 +2,9 @@ name: Security Audit
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   npm-audit:
@@ -18,4 +18,3 @@ jobs:
         run: npm ci
       - name: Run npm audit
         run: npm audit || true
-

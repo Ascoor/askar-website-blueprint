@@ -12,10 +12,9 @@ const ServicesPage: React.FC = () => {
 
   const serviceDetails = [
     {
- 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
- 
+
       features: [
         'تصميم متجاوب لجميع الأجهزة',
         'تحسين محركات البحث SEO',
@@ -26,10 +25,9 @@ const ServicesPage: React.FC = () => {
       color: 'from-blue-500 to-cyan-500',
     },
     {
- 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
- 
+
       features: [
         'تطبيقات iOS و Android الأصلية',
         'تطبيقات متعددة المنصات',
@@ -40,10 +38,9 @@ const ServicesPage: React.FC = () => {
       color: 'from-purple-500 to-pink-500',
     },
     {
- 
       title: t('servicesTitle'),
       description: t('servicesSubtitle'),
- 
+
       features: [
         'أنظمة إدارة مخصصة',
         'حلول أتمتة العمليات',
@@ -125,19 +122,24 @@ const ServicesPage: React.FC = () => {
                       <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                         {service.description}
                       </p>
-                      
+
                       <div className="space-y-4 mb-8">
                         {service.features.map((feature, featureIndex) => (
                           <motion.div
                             key={featureIndex}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: featureIndex * 0.1 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: featureIndex * 0.1,
+                            }}
                             viewport={{ once: true }}
                             className="flex items-center space-x-3"
                           >
                             <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                            <span className="text-muted-foreground">{feature}</span>
+                            <span className="text-muted-foreground">
+                              {feature}
+                            </span>
                           </motion.div>
                         ))}
                       </div>
@@ -151,7 +153,9 @@ const ServicesPage: React.FC = () => {
                 </div>
 
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                  <div className={`w-full h-96 bg-gradient-to-br ${service.color} rounded-2xl shadow-xl`}>
+                  <div
+                    className={`w-full h-96 bg-gradient-to-br ${service.color} rounded-2xl shadow-xl`}
+                  >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl" />
                   </div>
                 </div>

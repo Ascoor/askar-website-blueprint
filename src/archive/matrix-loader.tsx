@@ -1,5 +1,5 @@
-import React from "react";
-import { cn } from "@/lib/utils";
+import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface MatrixLoaderProps {
   className?: string;
@@ -11,7 +11,7 @@ export interface MatrixLoaderProps {
  */
 export const MatrixLoader: React.FC<MatrixLoaderProps> = ({ className }) => {
   return (
-    <div className={cn("flex items-end gap-1", className)}>
+    <div className={cn('flex items-end gap-1', className)}>
       {Array.from({ length: 5 }).map((_, i) => (
         <span
           key={i}

@@ -17,22 +17,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return () => clearTimeout(timer);
   }, []);
 
-return (
-  <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
-    {showLoader ? (
-      <Preloader onComplete={() => setShowLoader(false)} />
-    ) : (
-      <>
-        <Navigation />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </>
-    )}
-  </div>
-);
-
+  return (
+    <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
+      {showLoader ? (
+        <Preloader onComplete={() => setShowLoader(false)} />
+      ) : (
+        <>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Layout;

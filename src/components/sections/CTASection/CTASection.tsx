@@ -33,11 +33,11 @@ const CTASection: React.FC = () => {
           <div className="flex justify-center mb-6">
             <Sparkles className="h-12 w-12 text-warning animate-pulse" />
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             {t('ctaTitle')}
           </h2>
-          
+
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto leading-relaxed">
             {t('ctaDesc')}
           </p>
@@ -67,4 +67,4 @@ const CTASection: React.FC = () => {
   );
 };
 
-export default CTASection; 
+export default CTASection;

@@ -53,15 +53,12 @@ import { translations } from '@/locales';
 
 export const availableLocales = Object.keys(translations);
 
-await i18next
-  .use(initReactI18next)
-  .init({
-    resources: translations,
-    lng: 'en',
-    fallbackLng: 'en',
-    interpolation: { escapeValue: false },
-  });
+await i18next.use(initReactI18next).init({
+  resources: translations,
+  lng: 'en',
+  fallbackLng: 'en',
+  interpolation: { escapeValue: false },
+});
 ```
 
 This setup loads locale data from the existing files in `src/locales` and can be extended to fetch translations on demand.
-

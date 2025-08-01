@@ -1,17 +1,17 @@
-import React from "react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cn } from "@/lib/utils";
-import PenguinMascot from "@/components/ui/PenguinMascot";
+import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cn } from '@/lib/utils';
+import PenguinMascot from '@/components/ui/PenguinMascot';
 
 const translations = {
   en: {
-    title: "Askar Software Solutions",
-    subtitle: "Crafting elegant solutions under the calm of the lunar night.",
+    title: 'Askar Software Solutions',
+    subtitle: 'Crafting elegant solutions under the calm of the lunar night.',
   },
   ar: {
-    title: "أسكار للبرمجيات",
-    subtitle: "نبتكر حلولاً برمجية مميزة تحت هدوء الليل القمري.",
+    title: 'أسكار للبرمجيات',
+    subtitle: 'نبتكر حلولاً برمجية مميزة تحت هدوء الليل القمري.',
   },
 } as const;
 
@@ -21,14 +21,14 @@ export interface LunarHeroSectionProps {
   title?: string;
   subtitle?: string;
   showMascot?: boolean;
-  alignText?: "left" | "center" | "right";
+  alignText?: 'left' | 'center' | 'right';
 }
 
 const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
   title,
   subtitle,
   showMascot = true,
-  alignText = "center",
+  alignText = 'center',
 }) => {
   const { theme } = useTheme();
   const { language } = useLanguage();
@@ -39,13 +39,13 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
     <section
       id="hero"
       className={cn(
-        "relative pt-20 pb-20 overflow-hidden transition-colors duration-500",
-        alignText === "center" && "text-center",
-        alignText === "left" && "text-left",
-        alignText === "right" && "text-right",
-        theme === "dark"
-          ? "bg-midnight text-moonWhite"
-          : "bg-brand-bg text-foreground",
+        'relative pt-20 pb-20 overflow-hidden transition-colors duration-500',
+        alignText === 'center' && 'text-center',
+        alignText === 'left' && 'text-left',
+        alignText === 'right' && 'text-right',
+        theme === 'dark'
+          ? 'bg-midnight text-moonWhite'
+          : 'bg-brand-bg text-foreground',
       )}
     >
       <div

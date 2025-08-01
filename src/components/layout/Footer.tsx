@@ -10,31 +10,32 @@ const Footer = () => {
     { icon: Github, href: '#', label: 'GitHub' },
     { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:info@askar.com', label: 'Email' }
+    { icon: Mail, href: 'mailto:info@askar.com', label: 'Email' },
   ];
 
   const quickLinks = [
     { key: 'home' as const, href: 'hero' },
     { key: 'services' as const, href: 'services' },
     { key: 'about' as const, href: 'about' },
-    { key: 'contact' as const, href: 'contact' }
+    { key: 'contact' as const, href: 'contact' },
   ];
 
   return (
-    <footer dir={isRTL ? 'rtl' : 'ltr'} className="bg-background dark:bg-midnight text-foreground dark:text-darkText py-12">
+    <footer
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="bg-background dark:bg-midnight text-foreground dark:text-darkText py-12"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
           <div className="flex flex-col items-center ">
-           <Logo size="footer-lg" />
+            <Logo size="footer-lg" />
             <p className="text-muted-foreground leading-relaxed">
               {t('aboutDesc')}
             </p>
           </div>
           <div>
- 
-
-          {/* Quick Links */}
+            {/* Quick Links */}
             <h4 className="text-lg font-semibold mb-4">{t('quickLinks')}</h4>
             <div className="space-y-2">
               {quickLinks.map((link) => (

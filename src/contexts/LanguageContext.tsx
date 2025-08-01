@@ -1,5 +1,10 @@
-
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import i18n from '@/lib/i18n';
 import { useTranslation } from 'react-i18next';
 import { type Language, type TranslationKey } from '@/locales';
@@ -11,7 +16,9 @@ interface LanguageContextType {
   isRTL: boolean;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   // Default language Arabic with RTL direction
@@ -24,7 +31,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    
+
     // Update document direction
     const isRTL = lang !== 'en';
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
@@ -36,7 +43,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const isRTL = language !== 'en';
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t: translate, isRTL }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, t: translate, isRTL }}
+    >
       <div className={isRTL ? 'rtl' : 'ltr'} dir={isRTL ? 'rtl' : 'ltr'}>
         {children}
       </div>

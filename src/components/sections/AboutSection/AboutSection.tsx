@@ -9,7 +9,7 @@ const AboutSection = () => {
     { icon: Award, value: '5+', label: t('yearsExperience') },
     { icon: Target, value: '100+', label: t('projectsCompleted') },
     { icon: Users, value: '50+', label: t('happyClients') },
-    { icon: Zap, value: '15+', label: t('teamMembers') }
+    { icon: Zap, value: '15+', label: t('teamMembers') },
   ];
 
   return (
@@ -30,7 +30,10 @@ const AboutSection = () => {
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={index} className="text-center p-6 bg-muted rounded-lg hover:shadow-lg transition-shadow duration-300">
+                  <div
+                    key={index}
+                    className="text-center p-6 bg-muted rounded-lg hover:shadow-lg transition-shadow duration-300"
+                  >
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3">
                       <Icon className="h-6 w-6 text-primary-foreground" />
                     </div>
@@ -53,10 +56,12 @@ const AboutSection = () => {
               <div className="absolute inset-4 bg-foreground/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
                 <div className="text-center text-primary-foreground">
                   <div className="text-6xl font-bold mb-2">5+</div>
-                  <div className="text-xl opacity-90">{t('yearsExperience')}</div>
+                  <div className="text-xl opacity-90">
+                    {t('yearsExperience')}
+                  </div>
                 </div>
               </div>
-              
+
               {/* Decorative circles */}
               <div className="absolute top-4 right-4 w-20 h-20 bg-foreground/20 rounded-full animate-pulse"></div>
               <div className="absolute bottom-8 left-8 w-12 h-12 bg-foreground/30 rounded-full animate-pulse delay-1000"></div>

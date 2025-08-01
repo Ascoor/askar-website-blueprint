@@ -13,14 +13,18 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
+      title: 'Message Sent!',
       description: "Thank you for your message. We'll get back to you soon.",
     });
     setFormData({ name: '', email: '', message: '' });
@@ -28,11 +32,11 @@ const ContactSection = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    setErrors(prev => ({ ...prev, [name]: '' }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const contactInfo = [
@@ -40,30 +44,34 @@ const ContactSection = () => {
       icon: Mail,
       title: t('email'),
       content: 'info@askar.com',
-      color: 'bg-primary'
+      color: 'bg-primary',
     },
     {
       icon: Phone,
       title: t('phone'),
       content: '+1 (555) 123-4567',
-      color: 'bg-success'
+      color: 'bg-success',
     },
     {
       icon: MapPin,
       title: t('address'),
       content: '123 Business District, Tech City',
-      color: 'bg-accent'
+      color: 'bg-accent',
     },
     {
       icon: Clock,
       title: t('officeHours'),
       content: 'Mon - Fri: 9AM - 6PM',
-      color: 'bg-warning'
-    }
+      color: 'bg-warning',
+    },
   ];
 
   return (
-    <section id="contact" dir={isRTL ? 'rtl' : 'ltr'} className="py-20 bg-surface dark:bg-darkSurface">
+    <section
+      id="contact"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className="py-20 bg-surface dark:bg-darkSurface"
+    >
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -81,15 +89,24 @@ const ContactSection = () => {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                  <Card
+                    key={index}
+                    className="hover:shadow-lg transition-shadow duration-300"
+                  >
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className={`w-12 h-12 ${info.color} rounded-full flex items-center justify-center`}>
+                        <div
+                          className={`w-12 h-12 ${info.color} rounded-full flex items-center justify-center`}
+                        >
                           <Icon className="h-6 w-6 text-primary-foreground" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{info.title}</h3>
-                          <p className="text-muted-foreground">{info.content}</p>
+                          <h3 className="font-semibold text-foreground">
+                            {info.title}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {info.content}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -121,12 +138,17 @@ const ContactSection = () => {
                         onChange={handleInputChange}
                         required
                         aria-invalid={!!errors.name}
-                        aria-describedby={errors.name ? 'name-error' : undefined}
+                        aria-describedby={
+                          errors.name ? 'name-error' : undefined
+                        }
                         className="w-full"
                         placeholder={t('name')}
                       />
                       {errors.name && (
-                        <p id="name-error" className="mt-1 text-sm text-red-600">
+                        <p
+                          id="name-error"
+                          className="mt-1 text-sm text-red-600"
+                        >
                           {errors.name}
                         </p>
                       )}
@@ -142,12 +164,17 @@ const ContactSection = () => {
                         onChange={handleInputChange}
                         required
                         aria-invalid={!!errors.email}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
+                        aria-describedby={
+                          errors.email ? 'email-error' : undefined
+                        }
                         className="w-full"
                         placeholder={t('email')}
                       />
                       {errors.email && (
-                        <p id="email-error" className="mt-1 text-sm text-red-600">
+                        <p
+                          id="email-error"
+                          className="mt-1 text-sm text-red-600"
+                        >
                           {errors.email}
                         </p>
                       )}
@@ -164,13 +191,18 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       required
                       aria-invalid={!!errors.message}
-                      aria-describedby={errors.message ? 'message-error' : undefined}
+                      aria-describedby={
+                        errors.message ? 'message-error' : undefined
+                      }
                       rows={6}
                       className="w-full"
                       placeholder={t('message')}
                     />
                     {errors.message && (
-                      <p id="message-error" className="mt-1 text-sm text-red-600">
+                      <p
+                        id="message-error"
+                        className="mt-1 text-sm text-red-600"
+                      >
                         {errors.message}
                       </p>
                     )}

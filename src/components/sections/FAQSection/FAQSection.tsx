@@ -1,5 +1,10 @@
 import React from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FAQItem {
@@ -60,7 +65,11 @@ const FAQSection: React.FC = () => {
         </p>
         <Accordion type="single" collapsible className="space-y-4">
           {items.map((item, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`} className="border border-border rounded-lg">
+            <AccordionItem
+              key={idx}
+              value={`item-${idx}`}
+              className="border border-border rounded-lg"
+            >
               <AccordionTrigger className="px-4">
                 {item.question[language]}
               </AccordionTrigger>

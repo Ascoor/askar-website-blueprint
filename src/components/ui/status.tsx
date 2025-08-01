@@ -14,10 +14,30 @@ const t = (key: string) => {
 };
 
 const stats = [
-  { icon: Users, valueKey: 'stats.projects', value: '500+', color: 'text-blue-600' },
-  { icon: Star, valueKey: 'stats.clients', value: '300+', color: 'text-green-600' },
-  { icon: Clock, valueKey: 'stats.experience', value: '10+', color: 'text-purple-600' },
-  { icon: Award, valueKey: 'stats.team', value: '50+', color: 'text-orange-600' },
+  {
+    icon: Users,
+    valueKey: 'stats.projects',
+    value: '500+',
+    color: 'text-blue-600',
+  },
+  {
+    icon: Star,
+    valueKey: 'stats.clients',
+    value: '300+',
+    color: 'text-green-600',
+  },
+  {
+    icon: Clock,
+    valueKey: 'stats.experience',
+    value: '10+',
+    color: 'text-purple-600',
+  },
+  {
+    icon: Award,
+    valueKey: 'stats.team',
+    value: '50+',
+    color: 'text-orange-600',
+  },
 ];
 
 const Status = () => (

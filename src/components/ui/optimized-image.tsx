@@ -1,8 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
-interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface OptimizedImageProps
+  extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   className?: string;
@@ -13,18 +13,24 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   onError?: () => void;
 }
 
-export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageProps>(
-  ({ 
-    src, 
-    alt, 
-    className, 
-    priority = false, 
-    quality = 75,
-    placeholder = 'empty',
-    onLoad,
-    onError,
-    ...props 
-  }, ref) => {
+export const OptimizedImage = React.forwardRef<
+  HTMLImageElement,
+  OptimizedImageProps
+>(
+  (
+    {
+      src,
+      alt,
+      className,
+      priority = false,
+      quality = 75,
+      placeholder = 'empty',
+      onLoad,
+      onError,
+      ...props
+    },
+    ref,
+  ) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [isInView, setIsInView] = useState(priority);
@@ -40,7 +46,7 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
             observer.disconnect();
           }
         },
-        { threshold: 0.1 }
+        { threshold: 0.1 },
       );
 
       if (imgRef.current) {
@@ -67,7 +73,7 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
         {placeholder === 'blur' && !isLoaded && (
           <div className="absolute inset-0 bg-muted animate-pulse dark:bg-muted" />
         )}
-        
+
         <img
           ref={imgRef}
           src={shouldLoad ? src : undefined}
@@ -77,13 +83,13 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
           className={cn(
             'w-full h-full object-cover transition-opacity duration-500',
             isLoaded ? 'opacity-100' : 'opacity-0',
-            hasError && 'hidden'
+            hasError && 'hidden',
           )}
           onLoad={handleLoad}
           onError={handleError}
           {...props}
         />
-        
+
         {hasError && (
           <div className="absolute inset-0 flex items-center justify-center bg-muted">
             <div className="text-muted-foreground text-sm">
@@ -93,7 +99,7 @@ export const OptimizedImage = React.forwardRef<HTMLImageElement, OptimizedImageP
         )}
       </div>
     );
-  }
+  },
 );
 
 OptimizedImage.displayName = 'OptimizedImage';

@@ -5,12 +5,14 @@ export const useScrollSpy = (sectionIds: string[], offset = 0) => {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    const elements = sectionIds.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
     if (!elements.length) return;
 
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
             if (id) {
@@ -19,10 +21,13 @@ export const useScrollSpy = (sectionIds: string[], offset = 0) => {
           }
         });
       },
-      { rootMargin: `0px 0px -${window.innerHeight - offset - 1}px 0px`, threshold: 0 }
+      {
+        rootMargin: `0px 0px -${window.innerHeight - offset - 1}px 0px`,
+        threshold: 0,
+      },
     );
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [sectionIds, offset]);
 

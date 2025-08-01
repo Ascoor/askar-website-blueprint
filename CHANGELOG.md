@@ -1,4 +1,3 @@
-
 # Changelog
 
 All notable changes to the Askar Software Solutions website will be documented in this file.
@@ -6,12 +5,14 @@ All notable changes to the Askar Software Solutions website will be documented i
 ## [2.2.0] - 2025-08-01
 
 ### 🛡️ Security
+
 - Ran `npm audit` and `npm audit fix`
 - Added automated `npm audit` workflow
 
 ## [2.1.0] - 2024-02-15
 
 ### ♻️ Sections Refactor
+
 - Moved all section components into dedicated folders
 - Unified container layout and design tokens
 - Removed unused console logging
@@ -20,6 +21,7 @@ All notable changes to the Askar Software Solutions website will be documented i
 ## [2.0.0] - 2024-01-25
 
 ### 🎬 Major Hero Slider Overhaul
+
 - **BREAKING**: Increased slide duration from 8s to 10s for cinematic experience
 - **NEW**: Implemented proper cinematic zoom animation (1.0 → 1.08 scale over 10s)
 - **NEW**: Text appears only in last 4 seconds with glass background highlight
@@ -28,6 +30,7 @@ All notable changes to the Askar Software Solutions website will be documented i
 - **PERF**: Improved image coverage with absolute positioning and `object-cover`
 
 ### 🎨 Animation System Improvements
+
 - **FIX**: All `framer-motion` animations now use proper TypeScript-compatible easing
 - **NEW**: Standardized easing functions across components
   - `CINEMATIC_EASING: [0.42, 0, 0.58, 1]` for hero slider
@@ -36,6 +39,7 @@ All notable changes to the Askar Software Solutions website will be documented i
 - **PERF**: Optimized animation performance with proper transition configurations
 
 ### 🌐 Localization & Typography
+
 - **NEW**: Enhanced font loading with Google Fonts preconnect
 - **NEW**: Proper font family assignments:
   - Tajawal/Cairo for Arabic text
@@ -44,30 +48,35 @@ All notable changes to the Askar Software Solutions website will be documented i
 - **FIX**: Resolved translation key type errors in Footer component
 
 ### 🚀 Performance Optimizations
+
 - **PERF**: Implemented lazy loading for hero images
 - **PERF**: Added image quality optimization (90% quality)
 - **PERF**: Improved bundle size with proper code splitting
 - **PERF**: Enhanced mobile performance with responsive image loading
 
 ### 🎯 Accessibility Improvements
+
 - **A11Y**: Added proper ARIA labels for slide indicators
 - **A11Y**: Enhanced keyboard navigation support
 - **A11Y**: Improved screen reader compatibility
 - **A11Y**: Added semantic HTML structure for better SEO
 
 ### 🔧 Code Quality & Architecture
+
 - **REFACTOR**: Cleaned up component structure and removed dead code
 - **REFACTOR**: Improved TypeScript type safety across all components
 - **REFACTOR**: Enhanced error handling and edge cases
 - **REFACTOR**: Standardized component naming conventions
 
 ### 📱 Responsive Design
+
 - **RESPONSIVE**: Enhanced mobile-first design approach
 - **RESPONSIVE**: Improved tablet and desktop breakpoints
 - **RESPONSIVE**: Better text scaling across all devices
 - **RESPONSIVE**: Fixed layout issues on ultra-wide screens
 
 ### 🛠️ Developer Experience
+
 - **DX**: Added comprehensive TypeScript types
 - **DX**: Improved ESLint configuration
 - **DX**: Enhanced debugging with console logs
@@ -76,6 +85,7 @@ All notable changes to the Askar Software Solutions website will be documented i
 ## [1.0.0] - 2024-01-01
 
 ### Initial Release
+
 - Basic hero slider implementation
 - Multi-language support (EN/AR/EG)
 - Responsive design foundation

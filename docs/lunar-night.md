@@ -4,15 +4,15 @@ This guide defines the "Lunar Night" visual identity for **Askar Software Soluti
 
 ## Color Tokens
 
-| Token | HEX |
-|-------|-----|
-| `brand-primary` | `#0A1A2F` |
-| `brand-secondary` | `#36B3F5` |
-| `brand-surface-dark` | `#0B0E14` |
+| Token                 | HEX       |
+| --------------------- | --------- |
+| `brand-primary`       | `#0A1A2F` |
+| `brand-secondary`     | `#36B3F5` |
+| `brand-surface-dark`  | `#0B0E14` |
 | `brand-surface-light` | `#1E2A3B` |
-| `brand-glow` | `#5DCBFF` |
-| `text-base` | `#D6E9FF` |
-| `text-muted` | `#A2B3C2` |
+| `brand-glow`          | `#5DCBFF` |
+| `text-base`           | `#D6E9FF` |
+| `text-muted`          | `#A2B3C2` |
 
 ## Typography
 

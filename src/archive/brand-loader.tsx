@@ -63,7 +63,11 @@ export const BrandLoader: React.FC<BrandLoaderProps> = ({
                     darkColors,
                   )}
                   animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: speed * 2, ease: 'linear' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 2,
+                    ease: 'linear',
+                  }}
                 />
                 <motion.div
                   className={cn(
@@ -71,7 +75,11 @@ export const BrandLoader: React.FC<BrandLoaderProps> = ({
                     darkColors,
                   )}
                   animate={{ rotate: -360 }}
-                  transition={{ repeat: Infinity, duration: speed * 1.6, ease: 'linear' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 1.6,
+                    ease: 'linear',
+                  }}
                 />
               </>
             ) : (
@@ -82,7 +90,11 @@ export const BrandLoader: React.FC<BrandLoaderProps> = ({
                     lightColors,
                   )}
                   animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ repeat: Infinity, duration: speed * 2, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 2,
+                    ease: 'easeInOut',
+                  }}
                 />
                 <motion.div
                   className={cn(
@@ -90,7 +102,11 @@ export const BrandLoader: React.FC<BrandLoaderProps> = ({
                     lightColors,
                   )}
                   animate={{ scale: [1.2, 1, 1.2] }}
-                  transition={{ repeat: Infinity, duration: speed * 1.6, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 1.6,
+                    ease: 'easeInOut',
+                  }}
                 />
               </>
             )}

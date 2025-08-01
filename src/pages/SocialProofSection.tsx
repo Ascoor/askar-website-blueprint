@@ -1,66 +1,70 @@
-import React from 'react'
-import { Star, Quote } from 'lucide-react'
-import clsx from 'clsx'
+import React from 'react';
+import { Star, Quote } from 'lucide-react';
+import clsx from 'clsx';
 
 interface SocialProofSectionProps {
   isArabic: boolean;
 }
 
-const SocialProofSection: React.FC<SocialProofSectionProps> = ({ isArabic }) => {
+const SocialProofSection: React.FC<SocialProofSectionProps> = ({
+  isArabic,
+}) => {
   const clients = [
     { name: 'TechCorp', logo: '🏢' },
     { name: 'InnovateHub', logo: '🚀' },
     { name: 'DataFlow', logo: '📊' },
     { name: 'CloudSystem', logo: '☁️' },
     { name: 'SecureNet', logo: '🔒' },
-    { name: 'FastTrack', logo: '⚡' }
+    { name: 'FastTrack', logo: '⚡' },
   ];
 
-  const testimonials = isArabic ? [
-    {
-      text: 'فريق Ask-ar.net قدم لنا حلول تقنية متطورة ساعدتنا في تحسين أدائنا بشكل كبير',
-      author: 'أحمد محمد',
-      position: 'مدير التقنية',
-      company: 'شركة التقنيات المتقدمة',
-      rating: 5
-    },
-    {
-      text: 'جودة العمل والالتزام بالمواعيد أمر مميز جداً، أنصح بالتعامل معهم',
-      author: 'سارة أحمد',
-      position: 'مديرة المشاريع',
-      company: 'مؤسسة الابتكار',
-      rating: 5
-    },
-    {
-      text: 'الدعم الفني المستمر وجودة الحلول المقدمة فاقت توقعاتنا',
-      author: 'محمد علي',
-      position: 'المدير التنفيذي',
-      company: 'شركة البيانات الذكية',
-      rating: 5
-    }
-  ] : [
-    {
-      text: 'Ask-ar.net team provided us with advanced technical solutions that significantly improved our performance',
-      author: 'Ahmed Mohammed',
-      position: 'CTO',
-      company: 'Advanced Technologies Inc.',
-      rating: 5
-    },
-    {
-      text: 'The quality of work and commitment to deadlines is exceptional, I highly recommend working with them',
-      author: 'Sarah Ahmed',
-      position: 'Project Manager',
-      company: 'Innovation Enterprise',
-      rating: 5
-    },
-    {
-      text: 'The continuous technical support and quality of solutions exceeded our expectations',
-      author: 'Mohammed Ali',
-      position: 'CEO',
-      company: 'Smart Data Corp',
-      rating: 5
-    }
-  ];
+  const testimonials = isArabic
+    ? [
+        {
+          text: 'فريق Ask-ar.net قدم لنا حلول تقنية متطورة ساعدتنا في تحسين أدائنا بشكل كبير',
+          author: 'أحمد محمد',
+          position: 'مدير التقنية',
+          company: 'شركة التقنيات المتقدمة',
+          rating: 5,
+        },
+        {
+          text: 'جودة العمل والالتزام بالمواعيد أمر مميز جداً، أنصح بالتعامل معهم',
+          author: 'سارة أحمد',
+          position: 'مديرة المشاريع',
+          company: 'مؤسسة الابتكار',
+          rating: 5,
+        },
+        {
+          text: 'الدعم الفني المستمر وجودة الحلول المقدمة فاقت توقعاتنا',
+          author: 'محمد علي',
+          position: 'المدير التنفيذي',
+          company: 'شركة البيانات الذكية',
+          rating: 5,
+        },
+      ]
+    : [
+        {
+          text: 'Ask-ar.net team provided us with advanced technical solutions that significantly improved our performance',
+          author: 'Ahmed Mohammed',
+          position: 'CTO',
+          company: 'Advanced Technologies Inc.',
+          rating: 5,
+        },
+        {
+          text: 'The quality of work and commitment to deadlines is exceptional, I highly recommend working with them',
+          author: 'Sarah Ahmed',
+          position: 'Project Manager',
+          company: 'Innovation Enterprise',
+          rating: 5,
+        },
+        {
+          text: 'The continuous technical support and quality of solutions exceeded our expectations',
+          author: 'Mohammed Ali',
+          position: 'CEO',
+          company: 'Smart Data Corp',
+          rating: 5,
+        },
+      ];
 
   const sectionTitle = isArabic ? 'عملاؤنا يثقون بنا' : 'Our Clients Trust Us';
 
@@ -83,7 +87,7 @@ const SocialProofSection: React.FC<SocialProofSectionProps> = ({ isArabic }) => 
             className={clsx(
               'flex w-max items-center',
               isArabic ? 'animate-marquee-rtl' : 'animate-marquee',
-              'gap-8 sm:gap-12 md:gap-16'
+              'gap-8 sm:gap-12 md:gap-16',
             )}
           >
             {[...clients, ...clients].map((client, index) => (
@@ -123,12 +127,16 @@ const SocialProofSection: React.FC<SocialProofSectionProps> = ({ isArabic }) => 
               </div>
 
               {/* Testimonial Text */}
-              <p className={`text-foreground mb-6 leading-relaxed break-words ${isArabic ? 'text-right' : 'text-left'}`}>
+              <p
+                className={`text-foreground mb-6 leading-relaxed break-words ${isArabic ? 'text-right' : 'text-left'}`}
+              >
                 "{testimonial.text}"
               </p>
 
               {/* Author Info */}
-              <div className={`border-t border-border pt-4 mt-4 ${isArabic ? 'text-right' : 'text-left'}`}>
+              <div
+                className={`border-t border-border pt-4 mt-4 ${isArabic ? 'text-right' : 'text-left'}`}
+              >
                 <div className="font-semibold text-foreground">
                   {testimonial.author}
                 </div>
@@ -173,7 +181,6 @@ const SocialProofSection: React.FC<SocialProofSectionProps> = ({ isArabic }) => 
           </div>
         </div>
       </div>
-
     </section>
   );
 };

@@ -1,4 +1,3 @@
-
 export const eg = {
   // Navigation
   home: 'الرئيسية',
@@ -29,15 +28,19 @@ export const eg = {
 
   // Enhanced Services
   digitalInfrastructure: 'البنية التحتية الرقمية',
-  digitalInfrastructureDesc: 'استضافة سحابية قوية وخدمات مُدارة وبنية تحتية على مستوى الشركات',
+  digitalInfrastructureDesc:
+    'استضافة سحابية قوية وخدمات مُدارة وبنية تحتية على مستوى الشركات',
   aiCreativeProduction: 'الإنتاج الإبداعي بالذكاء الاصطناعي',
-  aiCreativeProductionDesc: 'إنشاء محتوى ذكي وسير عمل إبداعي أوتوماتيكي بأحدث تقنيات الـ AI',
+  aiCreativeProductionDesc:
+    'إنشاء محتوى ذكي وسير عمل إبداعي أوتوماتيكي بأحدث تقنيات الـ AI',
   virtualTours: 'جولات Matterport الافتراضية',
   virtualToursDesc: 'جولات افتراضية ثلاثية الأبعاد وتجارب تفاعلية للشركات',
   ordermeplatform: 'منصة OrdarMe',
-  ordermeplatformDesc: 'منصة تجارة إلكترونية اجتماعية كاملة تربط الشركات بالعملاء',
+  ordermeplatformDesc:
+    'منصة تجارة إلكترونية اجتماعية كاملة تربط الشركات بالعملاء',
   fortemonBranding: 'تصميم علامة Fortemont التجارية',
-  fortemonBrandingDesc: 'خدمات العلامة التجارية المهنية والهوية المؤسسية وتصميم ويب مذهل',
+  fortemonBrandingDesc:
+    'خدمات العلامة التجارية المهنية والهوية المؤسسية وتصميم ويب مذهل',
 
   // Solutions Section
   solutionsTitle: 'حلولنا',
@@ -76,7 +79,7 @@ export const eg = {
   allRightsReserved: 'كل الحقوق محفوظة.',
   followUs: 'تابعنا',
   quickLinks: 'لينكات سريعة',
-  
+
   // Common
   loading: 'بيحمل...',
   error: 'في مشكلة',
@@ -89,7 +92,7 @@ export const eg = {
   goodMorning: 'صباح الفل',
   goodAfternoon: 'مساء الخير',
   goodEvening: 'مساء النور',
-  
+
   // Enhanced CTAs
   requestDemo: 'اطلب تجربة',
   bookTour: 'احجز جولة افتراضية',
@@ -123,21 +126,22 @@ export const eg = {
   // Partners Section
   partnersTitle: 'بوابة الشركاء',
   partnersSubtitle: 'تعاون ونمو سوا',
-  
+
   // Meta
   siteTitle: 'أسكار للحلول البرمجية - شريك التكنولوجيا المبدع',
-  siteDescription: 'شركة رائدة في تطوير البرمجيات بتقدم حلول ويب وموبايل وسحابية متطورة. حول شغلك مع خدماتنا التقنية المتخصصة.',
-  
+  siteDescription:
+    'شركة رائدة في تطوير البرمجيات بتقدم حلول ويب وموبايل وسحابية متطورة. حول شغلك مع خدماتنا التقنية المتخصصة.',
+
   // 404 Page
   notFound: 'الصفحة مش موجودة',
   notFoundDesc: 'الصفحة اللي بتدور عليها مش موجودة.',
   backToHome: 'ارجع للرئيسية',
-  
+
   // CTA
   ctaTitle: 'مستعد تحول شغلك؟',
   ctaDesc: 'يلا نتكلم عن مشروعك وننشئ حاجة رائعة سوا.',
   ctaButton: 'ابدأ مشروعك',
 
   // Accessibility
-  skipToContent: 'انزل على المحتوى'
+  skipToContent: 'انزل على المحتوى',
 } as const;

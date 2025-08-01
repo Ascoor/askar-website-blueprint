@@ -35,9 +35,14 @@ const PartnerPage: React.FC = () => {
         {error && <p>Failed to load partner</p>}
         {data && (
           <article>
-            <h1 className="text-5xl font-bold mb-4 text-foreground">{data.name}</h1>
+            <h1 className="text-5xl font-bold mb-4 text-foreground">
+              {data.name}
+            </h1>
             {data.description && (
-              <div className="prose" dangerouslySetInnerHTML={{ __html: data.description }} />
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{ __html: data.description }}
+              />
             )}
           </article>
         )}

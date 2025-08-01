@@ -75,7 +75,11 @@ export const CinematicLoader: React.FC<CinematicLoaderProps> = ({
                     darkColors,
                   )}
                   animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: speed * 2, ease: 'linear' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 2,
+                    ease: 'linear',
+                  }}
                 />
                 <motion.div
                   className={cn(
@@ -83,12 +87,20 @@ export const CinematicLoader: React.FC<CinematicLoaderProps> = ({
                     darkColors,
                   )}
                   animate={{ rotate: -360 }}
-                  transition={{ repeat: Infinity, duration: speed * 1.6, ease: 'linear' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 1.6,
+                    ease: 'linear',
+                  }}
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-radial from-white/5 via-transparent to-transparent"
                   animate={{ opacity: [0.6, 0.2, 0.6] }}
-                  transition={{ repeat: Infinity, duration: speed * 2.5, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 2.5,
+                    ease: 'easeInOut',
+                  }}
                 />
               </>
             ) : (
@@ -99,7 +111,11 @@ export const CinematicLoader: React.FC<CinematicLoaderProps> = ({
                     lightColors,
                   )}
                   animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ repeat: Infinity, duration: speed * 2, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 2,
+                    ease: 'easeInOut',
+                  }}
                 />
                 <motion.div
                   className={cn(
@@ -107,12 +123,20 @@ export const CinematicLoader: React.FC<CinematicLoaderProps> = ({
                     lightColors,
                   )}
                   animate={{ scale: [1.2, 1, 1.2] }}
-                  transition={{ repeat: Infinity, duration: speed * 1.6, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 1.6,
+                    ease: 'easeInOut',
+                  }}
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/30 to-transparent"
                   animate={{ opacity: [0.5, 0.9, 0.5] }}
-                  transition={{ repeat: Infinity, duration: speed * 3, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: speed * 3,
+                    ease: 'easeInOut',
+                  }}
                 />
               </>
             )}
@@ -126,7 +150,11 @@ export const CinematicLoader: React.FC<CinematicLoaderProps> = ({
             <motion.div
               className="w-28 h-28 flex items-center justify-center"
               animate={{ scale: [1, 1.15, 1] }}
-              transition={{ repeat: Infinity, duration: speed * 2, ease: 'easeInOut' }}
+              transition={{
+                repeat: Infinity,
+                duration: speed * 2,
+                ease: 'easeInOut',
+              }}
             >
               {logo ?? <Logo />}
             </motion.div>

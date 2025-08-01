@@ -12,24 +12,49 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { name: 'حداثة', description: 'أحد الأعمال الإبداعية لشركة عريقة...', href: 'app-hadatha/', image: '/images/projects/hadathah.webp' },
-  { name: 'عقارك', description: 'عقارك واجهتك...', href: 'aqark/', image: '/images/projects/aqark.webp' },
-  { name: 'Bellalife', description: 'واجهة قوية...', href: 'bellalife/', image: '/images/projects/bella.jpg' },
-  { name: 'Dashboard', description: 'نظام إدارة مبتكر...', href: 'dashboard/', image: '/images/projects/dashboard.webp' },
-  { name: 'Technogym', description: 'حلول تقنية متقدمة...', href: 'technogym/', image: '/images/projects/tecnogym.webp' }
+  {
+    name: 'حداثة',
+    description: 'أحد الأعمال الإبداعية لشركة عريقة...',
+    href: 'app-hadatha/',
+    image: '/images/projects/hadathah.webp',
+  },
+  {
+    name: 'عقارك',
+    description: 'عقارك واجهتك...',
+    href: 'aqark/',
+    image: '/images/projects/aqark.webp',
+  },
+  {
+    name: 'Bellalife',
+    description: 'واجهة قوية...',
+    href: 'bellalife/',
+    image: '/images/projects/bella.jpg',
+  },
+  {
+    name: 'Dashboard',
+    description: 'نظام إدارة مبتكر...',
+    href: 'dashboard/',
+    image: '/images/projects/dashboard.webp',
+  },
+  {
+    name: 'Technogym',
+    description: 'حلول تقنية متقدمة...',
+    href: 'technogym/',
+    image: '/images/projects/tecnogym.webp',
+  },
 ];
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-  }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
 };
 
 const item = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 }
+  show: { opacity: 1, y: 0 },
 };
 
 const ServicesSection: React.FC = () => {
@@ -91,9 +116,22 @@ const ServicesSection: React.FC = () => {
                 </div>
               </div>
               <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
-              <p className="text-sm opacity-90 mb-4 flex-1">{project.description}</p>
-              <Button asChild variant="secondary" className="group mt-auto inline-flex">
-                <a href={project.href} aria-label={language === 'ar' ? `تفاصيل ${project.name}` : `View ${project.name}`}>
+              <p className="text-sm opacity-90 mb-4 flex-1">
+                {project.description}
+              </p>
+              <Button
+                asChild
+                variant="secondary"
+                className="group mt-auto inline-flex"
+              >
+                <a
+                  href={project.href}
+                  aria-label={
+                    language === 'ar'
+                      ? `تفاصيل ${project.name}`
+                      : `View ${project.name}`
+                  }
+                >
                   {language === 'ar' ? 'عرض التفاصيل' : 'View Details'}
                   <ArrowRight
                     className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 mr-2' : 'ml-2'}`}

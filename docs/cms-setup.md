@@ -5,6 +5,7 @@ This project uses **Strapi** as the headless CMS. Configure the CMS base URL in 
 ## Content Models
 
 ### Blog
+
 - `title` (Text)
 - `slug` (UID)
 - `summary` (Text)
@@ -12,6 +13,7 @@ This project uses **Strapi** as the headless CMS. Configure the CMS base URL in 
 - `publishedAt` (DateTime)
 
 ### Careers
+
 - `title` (Text)
 - `slug` (UID)
 - `location` (Text)
@@ -19,6 +21,7 @@ This project uses **Strapi** as the headless CMS. Configure the CMS base URL in 
 - `open` (Boolean)
 
 ### Partners
+
 - `name` (Text)
 - `logo` (Media)
 - `description` (Rich Text)

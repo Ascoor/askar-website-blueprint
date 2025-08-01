@@ -1,6 +1,12 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { Server, Cloud, Database, Code, Globe, Layers } from 'lucide-react';
 
 interface Tech {
@@ -34,7 +40,10 @@ const TechnologiesSection: React.FC = () => {
             {techs.map((tech, idx) => {
               const Icon = tech.icon;
               return (
-                <CarouselItem key={idx} className="pl-4 basis-1/2 md:basis-1/4 lg:basis-1/6">
+                <CarouselItem
+                  key={idx}
+                  className="pl-4 basis-1/2 md:basis-1/4 lg:basis-1/6"
+                >
                   <div className="p-6 bg-muted rounded-lg flex flex-col items-center hover:shadow-lg transition-shadow">
                     <Icon className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium">{tech.name}</span>

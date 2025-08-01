@@ -1,8 +1,8 @@
 **Section 1: Image prompts**
 
-1. *Digital Transformation Panorama* – "Ultra-wide 16:9 view of a cutting-edge digital workspace, sleek glass buildings glowing with blue neon, people interacting with holographic data interfaces, futuristic city skyline in the background, vibrant lights, modern tech vibe."
-2. *Cloud Solutions Skyline* – "Panoramic cloud-computing concept, skyscrapers merging into floating servers, streams of data flowing upward into the sky, soft clouds illuminated by sunrise hues, dynamic perspective, modern corporate style."
-3. *AI Insights Visualization* – "Wide-angle 16:9 scene of a high-tech command center, large screens displaying AI-generated analytics and graphs, diverse team collaborating, deep blue and purple color palette, subtle tech glow, forward-looking ambience."
+1. _Digital Transformation Panorama_ – "Ultra-wide 16:9 view of a cutting-edge digital workspace, sleek glass buildings glowing with blue neon, people interacting with holographic data interfaces, futuristic city skyline in the background, vibrant lights, modern tech vibe."
+2. _Cloud Solutions Skyline_ – "Panoramic cloud-computing concept, skyscrapers merging into floating servers, streams of data flowing upward into the sky, soft clouds illuminated by sunrise hues, dynamic perspective, modern corporate style."
+3. _AI Insights Visualization_ – "Wide-angle 16:9 scene of a high-tech command center, large screens displaying AI-generated analytics and graphs, diverse team collaborating, deep blue and purple color palette, subtle tech glow, forward-looking ambience."
 
 ---
 
@@ -10,24 +10,24 @@
 
 ```tsx
 // HeroSlideshow.tsx
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
-    image: "/images/slide1.jpg", // Digital Transformation
-    title: "Empower Digital Change",
-    subtitle: "Streamline operations with cutting-edge solutions.",
+    image: '/images/slide1.jpg', // Digital Transformation
+    title: 'Empower Digital Change',
+    subtitle: 'Streamline operations with cutting-edge solutions.',
   },
   {
-    image: "/images/slide2.jpg", // Cloud Solutions
-    title: "Scale with the Cloud",
-    subtitle: "Reliable, secure, and scalable infrastructure.",
+    image: '/images/slide2.jpg', // Cloud Solutions
+    title: 'Scale with the Cloud',
+    subtitle: 'Reliable, secure, and scalable infrastructure.',
   },
   {
-    image: "/images/slide3.jpg", // AI Insights
-    title: "Leverage AI Insights",
-    subtitle: "Data-driven decisions for tomorrow’s success.",
+    image: '/images/slide3.jpg', // AI Insights
+    title: 'Leverage AI Insights',
+    subtitle: 'Data-driven decisions for tomorrow’s success.',
   },
 ];
 
@@ -37,7 +37,7 @@ export default function HeroSlideshow() {
   useEffect(() => {
     const interval = setInterval(
       () => setIndex((prev) => (prev + 1) % slides.length),
-      4500
+      4500,
     );
     return () => clearInterval(interval);
   }, []);

@@ -35,9 +35,14 @@ const BlogPostPage: React.FC = () => {
         {error && <p>Failed to load post</p>}
         {data && (
           <article>
-            <h1 className="text-5xl font-bold mb-4 text-foreground">{data.title}</h1>
+            <h1 className="text-5xl font-bold mb-4 text-foreground">
+              {data.title}
+            </h1>
             {data.content && (
-              <div className="prose" dangerouslySetInnerHTML={{ __html: data.content }} />
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{ __html: data.content }}
+              />
             )}
           </article>
         )}

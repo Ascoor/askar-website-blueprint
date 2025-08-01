@@ -1,13 +1,13 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const sizeMap = {
-  "navbar-sm": { w: 48, h: 48 },
-  "navbar-lg": { w: 96, h: 96 },
-  "footer-sm": { w: 72, h: 72 },
-  "footer-lg": { w: 180, h: 180 },
+  'navbar-sm': { w: 48, h: 48 },
+  'navbar-lg': { w: 96, h: 96 },
+  'footer-sm': { w: 72, h: 72 },
+  'footer-lg': { w: 180, h: 180 },
 };
 
 type LogoProps = {
@@ -18,9 +18,9 @@ type LogoProps = {
 };
 
 export const Logo = ({
-  className = "",
+  className = '',
   clickable = false,
-  size = "navbar-sm",
+  size = 'navbar-sm',
   forceDay = false,
 }: LogoProps) => {
   const { theme, toggleTheme } = useTheme();
@@ -28,29 +28,29 @@ export const Logo = ({
 
   // Memoize getLogoSrc for React best practices
   const getLogoSrc = useCallback(() => {
-    if (forceDay) return "/logo-dark.png";
-    return theme === "dark" ? "/logo-dark.png" : "/logo-day.png";
+    if (forceDay) return '/logo-dark.png';
+    return theme === 'dark' ? '/logo-dark.png' : '/logo-day.png';
   }, [theme, forceDay]);
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc);
-useEffect(() => {
-  setLogoSrc(getLogoSrc());
-}, [theme, language, forceDay, getLogoSrc]);
+  useEffect(() => {
+    setLogoSrc(getLogoSrc());
+  }, [theme, language, forceDay, getLogoSrc]);
 
-  const altTitle = language === "en" ? "Company Logo" : "شعار الشركة";
-  const { w, h } = sizeMap[size] || sizeMap["navbar-sm"];
+  const altTitle = language === 'en' ? 'Company Logo' : 'شعار الشركة';
+  const { w, h } = sizeMap[size] || sizeMap['navbar-sm'];
 
   return (
     <span
-      className={cn("inline-flex items-center justify-center", className)}
+      className={cn('inline-flex items-center justify-center', className)}
       style={{
         width: w,
         height: h,
         minWidth: w,
         minHeight: h,
-        background: "transparent",
+        background: 'transparent',
         borderRadius: 0,
-        boxShadow: "none",
+        boxShadow: 'none',
         padding: 0,
       }}
     >
@@ -60,13 +60,13 @@ useEffect(() => {
         title={altTitle}
         draggable={false}
         className={cn(
-          "object-contain select-none transition-transform duration-300 hover:scale-105 w-full h-full",
-          clickable && "cursor-pointer hover:opacity-90"
+          'object-contain select-none transition-transform duration-300 hover:scale-105 w-full h-full',
+          clickable && 'cursor-pointer hover:opacity-90',
         )}
         onClick={clickable ? toggleTheme : undefined}
         style={{
           borderRadius: 0,
-          background: "transparent",
+          background: 'transparent',
         }}
       />
     </span>

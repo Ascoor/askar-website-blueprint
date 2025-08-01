@@ -8,7 +8,10 @@ The application includes a strict Content Security Policy to prevent loading una
 Add the following tag inside `index.html`:
 
 ```html
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'" />
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'"
+/>
 ```
 
 This policy blocks external scripts while allowing Google Fonts, Font Awesome styles, and local assets. Images are restricted to local files and `data:` URLs.
@@ -21,8 +24,6 @@ If you deploy the project behind a backend or proxy, enable the same `Content-Se
 
 Open the browser developer tools after deployment and check the **Console** tab. If any scripts or styles are blocked by the policy, they will appear as CSP violations. Adjust the policy only when necessary.
 
-
 ## NPM Audit
 
 The project dependencies are checked using `npm audit` on every pull request. On **2025-08-01** the audit reported three moderate vulnerabilities related to `esbuild` via `vite`. No automatic fix is currently available.
-

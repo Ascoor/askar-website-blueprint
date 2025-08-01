@@ -17,50 +17,50 @@ const projects: Project[] = [
     name: { en: 'Hadathah Advertising', ar: 'مشروع حداثة' },
     description: {
       en: 'A creative campaign for a renowned advertising company.',
-      ar: 'حملة إبداعية لشركة رائدة في الدعاية والإعلان'
+      ar: 'حملة إبداعية لشركة رائدة في الدعاية والإعلان',
     },
-    link: '/projects/hadathah'
+    link: '/projects/hadathah',
   },
   {
     image: '/hero2.png',
     name: { en: 'Mobile Web App', ar: 'تطبيق ويب للموبايل' },
     description: {
       en: 'Bringing your brand closer to your customers through mobile.',
-      ar: 'نقرب علامتك التجارية إلى عملائك عبر تطبيقات الموبايل'
+      ar: 'نقرب علامتك التجارية إلى عملائك عبر تطبيقات الموبايل',
     },
-    link: '/projects/mobile-app'
+    link: '/projects/mobile-app',
   },
   {
     image: '/hero3.png',
     name: { en: 'Control Dashboard', ar: 'لوحة تحكم متقدمة' },
     description: {
       en: 'Dynamic dashboards for real-time analytics and smooth UX.',
-      ar: 'لوحات تحكم تفاعلية لتحليلات آنية وتجربة مستخدم سلسة'
+      ar: 'لوحات تحكم تفاعلية لتحليلات آنية وتجربة مستخدم سلسة',
     },
-    link: '/projects/dashboard'
+    link: '/projects/dashboard',
   },
   {
     image: '/hero4.png',
     name: { en: 'AI Assistant Platform', ar: 'منصة المساعد الذكي' },
     description: {
       en: 'An AI-powered assistant platform with smart automation features.',
-      ar: 'منصة مدعومة بالذكاء الاصطناعي توفر أتمتة ذكية للمهام'
+      ar: 'منصة مدعومة بالذكاء الاصطناعي توفر أتمتة ذكية للمهام',
     },
-    link: '/projects/ai-assistant'
-  }
+    link: '/projects/ai-assistant',
+  },
 ];
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
-  }
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
 };
 
 const item = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 }
+  show: { opacity: 1, y: 0 },
 };
 
 const PortfolioSection: React.FC = () => {
@@ -123,7 +123,9 @@ const PortfolioSection: React.FC = () => {
                 {language === 'ar' ? project.name.ar : project.name.en}
               </h3>
               <p className="mb-4 opacity-90 leading-relaxed text-sm">
-                {language === 'ar' ? project.description.ar : project.description.en}
+                {language === 'ar'
+                  ? project.description.ar
+                  : project.description.en}
               </p>
               <Button
                 variant="secondary"

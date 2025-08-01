@@ -4,14 +4,14 @@ This style guide defines the core tokens and UI guidelines for building interfac
 
 ## Brand Colors
 
-| Token | HEX | Usage |
-|-------|-----|-------|
-| `brand-primary` | `#002F5D` | Headers, primary actions |
-| `brand-secondary` | `#36B3F5` | Links, highlights |
-| `brand-amber` | `#FF9800` | Accent light |
-| `brand-dark` | `#0B0E14` | Dark surfaces |
-| `brand-light` | `#ECF0F3` | Light surfaces |
-| `glass-bg` | `rgba(255,255,255,0.05)` | Glassmorphic backgrounds |
+| Token             | HEX                      | Usage                    |
+| ----------------- | ------------------------ | ------------------------ |
+| `brand-primary`   | `#002F5D`                | Headers, primary actions |
+| `brand-secondary` | `#36B3F5`                | Links, highlights        |
+| `brand-amber`     | `#FF9800`                | Accent light             |
+| `brand-dark`      | `#0B0E14`                | Dark surfaces            |
+| `brand-light`     | `#ECF0F3`                | Light surfaces           |
+| `glass-bg`        | `rgba(255,255,255,0.05)` | Glassmorphic backgrounds |
 
 ## Typography
 
@@ -25,13 +25,13 @@ This style guide defines the core tokens and UI guidelines for building interfac
 
 Semantic spacing utilities are provided for consistent padding and margin:
 
-| Token | Value |
-|-------|-------|
-| `xs` | `4px` |
-| `sm` | `8px` |
-| `md` | `12px` |
-| `lg` | `16px` |
-| `xl` | `24px` |
+| Token | Value  |
+| ----- | ------ |
+| `xs`  | `4px`  |
+| `sm`  | `8px`  |
+| `md`  | `12px` |
+| `lg`  | `16px` |
+| `xl`  | `24px` |
 | `2xl` | `32px` |
 | `3xl` | `48px` |
 
@@ -39,11 +39,11 @@ Semantic spacing utilities are provided for consistent padding and margin:
 
 Rounded corners are defined for common components:
 
-| Token | Value |
-|-------|-------|
-| `card` | `12px` |
+| Token   | Value  |
+| ------- | ------ |
+| `card`  | `12px` |
 | `modal` | `20px` |
-| `pill` | `32px` |
+| `pill`  | `32px` |
 
 ## Shadows and Effects
 
@@ -60,4 +60,3 @@ Rounded corners are defined for common components:
 ## Identity Traits
 
 The interface combines dark, glassy surfaces with neon blue highlights and subtle glow animations. A penguin mascot can appear in the header or loading states. The overall tone is futuristic and professional.
-

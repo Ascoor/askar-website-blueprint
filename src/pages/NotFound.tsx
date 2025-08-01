@@ -44,7 +44,9 @@ const NotFound = () => {
           transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1], delay: 0.2 }}
           className="mb-8"
         >
-          <div className="text-8xl md:text-9xl font-bold text-primary mb-4">404</div>
+          <div className="text-8xl md:text-9xl font-bold text-primary mb-4">
+            404
+          </div>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
         </motion.div>
 
