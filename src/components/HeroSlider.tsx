@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, easeInOut } from 'framer-motion';
-import AnimatedText from '@/components/ui/animated-text';
 import { useLanguage } from '@/contexts/LanguageContext.helpers';
 // Last 5 seconds
 
@@ -269,7 +268,7 @@ export default function HeroSlider({ lang = 'en' }) {
                   textShadow: '0 0 10px var(--color-moon)',
                 }}
               >
-                <AnimatedText text={SLIDES[active].text[language]} />
+                {SLIDES[active].text[language]}
               </motion.h1>
               <motion.p
                 variants={pVariants}
@@ -282,7 +281,7 @@ export default function HeroSlider({ lang = 'en' }) {
                   filter: 'drop-shadow(0 0 6px var(--color-moon))',
                 }}
               >
-                <AnimatedText text={SLIDES[active].subtitle[language]} />
+                {SLIDES[active].subtitle[language]}
               </motion.p>
             </motion.div>
           )}
