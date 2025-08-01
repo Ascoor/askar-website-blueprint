@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { motion } from 'framer-motion';
 
 const NotFound = () => {

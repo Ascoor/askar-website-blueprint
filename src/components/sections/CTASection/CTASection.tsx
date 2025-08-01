@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { motion } from 'framer-motion';
 
 const CTASection: React.FC = () => {

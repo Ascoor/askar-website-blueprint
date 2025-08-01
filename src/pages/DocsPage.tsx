@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 
 const DocsPage: React.FC = () => {
   const { t } = useLanguage();
