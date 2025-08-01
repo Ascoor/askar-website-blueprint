@@ -1,13 +1,19 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { useQuery } from '@tanstack/react-query';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import { fetchCareerPosts, type CareerPost } from '@/lib/cms';
 
 const CareersPage: React.FC = () => {
   const { t } = useLanguage();
+  const { data, isLoading, error } = useQuery<CareerPost[]>({
+    queryKey: ['careerPosts'],
+    queryFn: fetchCareerPosts,
+  });
   return (
     <div id="main" className="min-h-screen">
       <Helmet>
@@ -30,7 +36,25 @@ const CareersPage: React.FC = () => {
         <p className="text-lg text-muted-foreground mb-8">
           {t('careersSubtitle')}
         </p>
-        <Button size="lg">{t('applyNow')}</Button>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Failed to load jobs</p>}
+        {data && (
+          <ul className="space-y-4 mt-8">
+            {data.map((career) => (
+              <li key={career.id} className="text-left">
+                <h2 className="text-2xl font-semibold text-foreground">
+                  {career.title}
+                </h2>
+                {career.location && (
+                  <p className="text-muted-foreground">{career.location}</p>
+                )}
+                <Button size="sm" className="mt-2">
+                  {t('applyNow')}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        )}
       </main>
       <Footer />
       <BackToTopButton />
