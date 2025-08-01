@@ -1,6 +1,6 @@
 
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { translations, type Language, type TranslationKey } from '@/locales';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { loadTranslations, type Language, type TranslationKey } from '@/locales';
 
 interface LanguageContextType {
   language: Language;
@@ -14,6 +14,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   // Default language Arabic with RTL direction
   const [language, setLanguageState] = useState<Language>('ar');
+  const [messages, setMessages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    loadTranslations(language).then(setMessages);
+  }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
@@ -25,7 +30,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const t = (key: TranslationKey): string => {
-    return translations[language][key] || key;
+    return messages[key] || key;
   };
 
   const isRTL = language !== 'en';
