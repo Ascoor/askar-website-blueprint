@@ -43,14 +43,16 @@
     --spring-glow: 184 98% 60% / 0.4; /* Neon glow */
 
     /* Navigation System */
-    --nav-text-light: #101829; /* Light mode nav text */
-    --nav-active-light: #36f1fe; /* Active link on hero */
-    --nav-light-glow: #36f1fe70; /* Glow for icons */
-    --nav-text-dark: #eaf6fa; /* Dark mode nav text */
-    --nav-active-dark: #36f1fe; /* Dark mode active link */
-    --nav-dark-glow: #36f1fe80; /* Dark mode glow */
-    --nav-shadow: #0fd8c170; /* Light text shadow */
-    --nav-shadow-soft: #0fd8c150; /* Softer shadow for mobile */
+    --color-moon: #f7faff;
+    --color-active: #2f62e9;
+    --nav-text-light: var(--color-moon);
+    --nav-active-light: var(--color-moon);
+    --nav-light-glow: #f7faffb0;
+    --nav-text-dark: var(--color-moon);
+    --nav-active-dark: var(--color-moon);
+    --nav-dark-glow: #f7faffb0;
+    --nav-shadow: #f7faff80; /* Light text shadow */
+    --nav-shadow-soft: #f7faff50; /* Softer shadow for mobile */
 
     /* Hero Background */
     --hero-gradient-from: #030c2e;
