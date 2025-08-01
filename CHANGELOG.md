@@ -3,6 +3,12 @@
 
 All notable changes to the Askar Software Solutions website will be documented in this file.
 
+## [2.2.0] - 2025-08-01
+
+### 🛡️ Security
+- Ran `npm audit` and `npm audit fix`
+- Added automated `npm audit` workflow
+
 ## [2.1.0] - 2024-02-15
 
 ### ♻️ Sections Refactor
