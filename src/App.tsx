@@ -21,7 +21,7 @@ const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const CareerPostPage = lazy(() => import("./pages/CareerPostPage"));
 const PartnerPage = lazy(() => import("./pages/PartnerPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-import Layout from "./components/Layout";
+const Layout = lazy(() => import("./components/Layout"));
 
 
 const queryClient = new QueryClient();

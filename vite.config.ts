@@ -45,9 +45,12 @@ export default defineConfig(({ mode }) => {
       minify: "esbuild",
       rollupOptions: {
         output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom'],
-            ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react')) return 'vendor';
+              if (id.includes('@radix-ui')) return 'ui';
+            }
+            if (id.includes('src/locales')) return 'locales';
           }
         }
       }

@@ -1,15 +1,15 @@
+export type Language = 'en' | 'ar' | 'eg';
 
-import { en } from './en';
-import { ar } from './ar';
-import { eg } from './eg';
-
-export const translations = {
-  en,
-  ar,
-  eg,
-} as const;
+import type { en } from './en';
+import type { ar } from './ar';
+import type { eg } from './eg';
 
 export type TranslationKey = keyof typeof en;
-export type Language = keyof typeof translations;
 
-export { en, ar, eg };
+const loaders = {
+  en: () => import('./en').then(m => m.en),
+  ar: () => import('./ar').then(m => m.ar),
+  eg: () => import('./eg').then(m => m.eg),
+};
+
+export const loadTranslations = (lang: Language) => loaders[lang]();
