@@ -11,7 +11,7 @@ import FAQSection from '@/components/sections/FAQSection/FAQSection';
 import CTASection from '@/components/sections/CTASection/CTASection';
 import ContactSection from '@/components/sections/ContactSection/ContactSection';
 import BackToTopButton from '@/components/layout/BackToTopButton';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import Status from '@/components/ui/status';
 
 const Index: React.FC = () => {

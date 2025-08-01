@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, Target, Users, Zap } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 
 const AboutSection = () => {
   const { t } = useLanguage();

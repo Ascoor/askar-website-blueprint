@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import type { Language } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
+import type { Language } from '@/contexts/LanguageContext.helpers';
+import { useTheme } from '@/contexts/ThemeContext.helpers';
 import { Logo } from '@/components/ui/logo';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { motion, AnimatePresence } from 'framer-motion';

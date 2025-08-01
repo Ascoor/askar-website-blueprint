@@ -1,7 +1,7 @@
 import React from 'react';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 import { Logo } from '@/components/ui/logo';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 
 const Footer = () => {
   const { t, isRTL } = useLanguage();

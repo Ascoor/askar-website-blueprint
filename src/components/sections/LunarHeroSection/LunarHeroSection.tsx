@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { cn } from '@/lib/utils';
 import PenguinMascot from '@/components/ui/PenguinMascot';
 import { Button } from '@/components/ui/button';

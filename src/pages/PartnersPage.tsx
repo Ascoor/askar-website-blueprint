@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BackToTopButton from '@/components/layout/BackToTopButton';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { fetchPartners, type Partner } from '@/lib/cms';
 
 const PartnersPage: React.FC = () => {

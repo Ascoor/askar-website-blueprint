@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './layout/Navigation';
 import Footer from './layout/Footer';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import Preloader from './ui/Preloader';
 
 interface LayoutProps {
