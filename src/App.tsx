@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import Preloader from '@/components/ui/Preloader';
 const Index = lazy(() => import('./pages/Index'));
 const SiteIndex = lazy(() => import('./pages/SiteIndex'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -33,7 +33,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<Preloader onComplete={() => {}} />}>
               <Routes>
                 <Route
                   path="/"
