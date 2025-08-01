@@ -37,7 +37,7 @@ const SolutionsSection: React.FC = () => {
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-lg bg-background shadow-elegant hover:shadow-premium transition-shadow"
+              className="p-6 rounded-lg bg-glass-bg border border-glass-border backdrop-blur-md shadow-md hover:shadow-elegant transition-shadow"
             >
               <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
               <p className="text-muted-foreground">{item.desc}</p>

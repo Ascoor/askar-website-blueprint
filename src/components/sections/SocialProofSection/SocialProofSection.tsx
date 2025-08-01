@@ -158,7 +158,11 @@ const SocialProofSection: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 className="flex min-w-[8rem] sm:min-w-[9rem] h-16 items-center justify-center gap-2 bg-card border border-border rounded-card shadow-md hover:shadow-elegant focus-visible:ring-2 focus-visible:ring-primary transition-all"
               >
-                <span className="text-2xl sm:text-3xl" aria-hidden="true">
+                <span
+                  className="text-2xl sm:text-3xl"
+                  role="img"
+                  aria-label={client.name}
+                >
                   {client.logo}
                 </span>
                 <span className="font-medium text-sm text-foreground break-words min-w-0">
@@ -206,7 +210,7 @@ const SocialProofSection: React.FC = () => {
 
               <p
                 className={cn(
-                  'text-foreground mb-6 leading-relaxed break-words',
+                  'text-base sm:text-lg text-foreground mb-6 leading-relaxed break-words',
                   isRTL ? 'text-right' : 'text-left',
                 )}
               >
@@ -236,7 +240,12 @@ const SocialProofSection: React.FC = () => {
         <div className="mt-20 text-center">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
             <div className="flex flex-col items-center justify-center space-y-1">
-              <div className="text-3xl font-bold text-primary">150+</div>
+              <div
+                aria-live="polite"
+                className="text-3xl font-bold text-primary"
+              >
+                150+
+              </div>
               <div className="text-sm text-muted-foreground break-words">
                 {language === 'ar' || language === 'eg'
                   ? 'عميل راضٍ'
@@ -244,7 +253,12 @@ const SocialProofSection: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-1">
-              <div className="text-3xl font-bold text-primary">98%</div>
+              <div
+                aria-live="polite"
+                className="text-3xl font-bold text-primary"
+              >
+                98%
+              </div>
               <div className="text-sm text-muted-foreground break-words">
                 {language === 'ar' || language === 'eg'
                   ? 'معدل النجاح'
@@ -252,7 +266,12 @@ const SocialProofSection: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-1">
-              <div className="text-3xl font-bold text-primary">24/7</div>
+              <div
+                aria-live="polite"
+                className="text-3xl font-bold text-primary"
+              >
+                24/7
+              </div>
               <div className="text-sm text-muted-foreground break-words">
                 {language === 'ar' || language === 'eg'
                   ? 'دعم فني'
@@ -260,7 +279,12 @@ const SocialProofSection: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-1">
-              <div className="text-3xl font-bold text-primary">5+</div>
+              <div
+                aria-live="polite"
+                className="text-3xl font-bold text-primary"
+              >
+                5+
+              </div>
               <div className="text-sm text-muted-foreground break-words">
                 {language === 'ar' || language === 'eg'
                   ? 'سنوات خبرة'
