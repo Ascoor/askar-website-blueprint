@@ -71,7 +71,7 @@ export default function Navigation() {
 
   const getGlow = (active?: boolean) =>
     active
-      ? `drop-shadow(0 0 8px var(--color-moon))`
+      ? `drop-shadow(0 0 8px var(--color-active))`
       : `drop-shadow(0 0 4px var(--color-moon))`;
 
   // متغيرات قائمة الموبايل
@@ -130,7 +130,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
-                    color: getNavTextColor(),
+                    color: isActive ? 'var(--color-active)' : getNavTextColor(),
                     textShadow: isHero ? `0 0 9px var(--nav-shadow)` : 'none',
                     fontWeight: isActive ? 700 : 500,
                     filter: getGlow(isActive),
@@ -264,7 +264,9 @@ export default function Navigation() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       style={{
-                        color: getNavTextColor(),
+                        color: isActive
+                          ? 'var(--color-active)'
+                          : getNavTextColor(),
                         textShadow: isHero
                           ? `0 0 9px var(--nav-shadow-soft)`
                           : 'none',
