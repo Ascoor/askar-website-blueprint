@@ -22,11 +22,11 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             <div className="absolute animate-spin h-[28rem] w-[28rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
             <div className="absolute animate-spin h-[28rem] w-[28rem] rounded-full border-tr-4 border-b-4 border-[hsl(var(--brand-primary))] dark:border-[var(--spinner-dark-1)]"></div>
             <div className="absolute animate-spin h-[26rem] w-[26rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
-            <div className="absolute animate-spin h-[24rem] w-[24rem] rounded-full border-tr-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-1)]"></div>
+            <div className="absolute animate-spin h-[24rem] w-[24rem] rounded-full border-tr-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-3)]"></div>
             <div className="absolute animate-spin h-[22rem] w-[22rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-primary))] dark:border-[var(--spinner-dark-4)]"></div>
-            <div className="absolute animate-spin h-[20rem] w-[20rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
-            <div className="absolute animate-spin h-[18rem] w-[18rem] rounded-full border-tr-4 border-b-4 border-[hsl(var(--brand-secondary))] dark:border-[var(--spinner-dark-5)]"></div>
-            <div className="absolute animate-spin h-[16rem] w-[16rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
+            <div className="absolute animate-spin h-[18rem] w-[18rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
+            <div className="absolute animate-spin h-[16rem] w-[16rem] rounded-full border-tr-4 border-b-4 border-[hsl(var(--brand-secondary))] dark:border-[var(--spinner-dark-5)]"></div>
+            <div className="absolute animate-spin h-[14rem] w-[14rem] rounded-full border-tl-4 border-b-4 border-[hsl(var(--brand-accent))] dark:border-[var(--spinner-dark-6)]"></div>
 
             <div className="rounded-full h-36 w-36 animate-bounce flex items-center justify-center font-semibold text-xl text-white">
               Loading...

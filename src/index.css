@@ -58,12 +58,12 @@
     --hero-gradient-from: #030c2e;
     --hero-gradient-to: #020816;
     --accent-glow: #3fffb5;
-    --spinner-dark-1: #004c7c;
-    --spinner-dark-2: #0066cc;
-    --spinner-dark-3: #2c3e50;
-    --spinner-dark-4: #3498db;
-    --spinner-dark-5: #2980b9;
-    --spinner-dark-6: #1abc9c;
+    --spinner-dark-1: #fff457;
+    --spinner-dark-2: #00d1ff;
+    --spinner-dark-3: #ff7a1f;
+    --spinner-dark-4: #fff457;
+    --spinner-dark-5: #b67eff;
+    --spinner-dark-6: #23fff7;
 
     /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
     --background: var(--brand-bg);
