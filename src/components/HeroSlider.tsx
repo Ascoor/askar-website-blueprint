@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext.helpers';
 
 const SLIDES = [
   {
-    image: '/images/slides/hero-1.png',
+    image: '/images/slides/hero-1.webp',
     text: {
       en: 'Limitless Innovation',
       ar: 'ابتكار بلا حدود',
@@ -18,7 +18,7 @@ const SLIDES = [
     },
   },
   {
-    image: '/images/slides/hero-2.png',
+    image: '/images/slides/hero-2.webp',
     text: {
       en: 'Empowering Tomorrow',
       ar: 'تمكين الغد',
@@ -31,7 +31,7 @@ const SLIDES = [
     },
   },
   {
-    image: '/images/slides/hero-3.png',
+    image: '/images/slides/hero-3.webp',
     text: {
       en: 'Unleashing Potential',
       ar: 'إطلاق العنان للإمكانات',
@@ -44,7 +44,7 @@ const SLIDES = [
     },
   },
   {
-    image: '/images/slides/hero-4.png',
+    image: '/images/slides/hero-4.webp',
     text: {
       en: 'Innovate. Inspire. Impact',
       ar: 'ابتكر. ألهم. أثر',
@@ -57,7 +57,7 @@ const SLIDES = [
     },
   },
   {
-    image: '/images/slides/hero-5.png',
+    image: '/images/slides/hero-5.webp',
     text: {
       en: 'Beyond Boundaries',
       ar: 'تجاوز الحدود',
