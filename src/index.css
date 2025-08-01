@@ -41,7 +41,7 @@
     --glass-bg: 220 43% 14% / 0.6; /* Futuristic glass */
     --glass-border: 184 98% 60% / 0.2; /* Neon glass border */
     --spring-glow: 184 98% 60% / 0.4; /* Neon glow */
-
+    --spring-glow: 198 98% 60%; /* مثال: لون أزرق فوسفوري HSL */
     /* Navigation System */
     --color-moon: #f7faff;
     --color-active: #2f62e9;
@@ -310,7 +310,9 @@
   .animate-fade-in {
     animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-
+  .ring-spring-glow {
+    --tw-ring-color: hsl(var(--spring-glow));
+  }
   .animate-fade-in-up {
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
@@ -383,7 +385,7 @@
   .spring-button {
     @apply bg-primary text-primary-foreground hover:bg-primary-hover;
     @apply rounded-xl transition-all duration-300;
-    @apply ring-1 ring-transparent hover:ring-spring-glow;
+    @apply ring-1 ring-transparent hover:ring-[hsl(198_98%_60%)];
     @apply shadow-md hover:shadow-lg hover:shadow-primary/20;
   }
 
