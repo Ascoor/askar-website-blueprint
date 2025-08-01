@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useTheme } from '@/contexts/ThemeContext.helpers';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { Logo } from './logo';
 import { cn } from '@/lib/utils';
 

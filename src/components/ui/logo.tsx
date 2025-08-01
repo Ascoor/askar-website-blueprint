@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext.helpers';
+import { useTheme } from '@/contexts/ThemeContext.helpers';
 import { cn } from '@/lib/utils';
 
 const sizeMap = {
