@@ -1,22 +1,22 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
-import type { Language } from "@/contexts/LanguageContext";
-import { useTheme } from "@/contexts/ThemeContext";
-import { Logo } from "@/components/ui/logo";
-import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+import type { Language } from '@/contexts/LanguageContext';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Logo } from '@/components/ui/logo';
+import { useScrollSpy } from '@/hooks/useScrollSpy';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const NAVBAR_HEIGHT = 72;
 const SCROLL_THRESHOLD = 10; // اعتبر فوق 10px ليس Hero
 
 // Theme tokens
-const NAV_LIGHT = "var(--nav-text-light)";
-const NAV_LIGHT_ACTIVE = "var(--nav-active-light)";
-const NAV_DARK = "var(--nav-text-dark)";
-const NAV_DARK_ACTIVE = "var(--nav-active-dark)";
+const NAV_LIGHT = 'var(--nav-text-light)';
+const NAV_LIGHT_ACTIVE = 'var(--nav-active-light)';
+const NAV_DARK = 'var(--nav-text-dark)';
+const NAV_DARK_ACTIVE = 'var(--nav-active-dark)';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,52 +32,53 @@ export default function Navigation() {
   }, []);
 
   // عناصر التنقل
-  const navItems = useMemo(() => [
-    { key: "home" as const, href: "#hero", label: t("home") },
-    { key: "services" as const, href: "#services", label: t("services") },
-    { key: "about" as const, href: "#about", label: t("about") },
-    { key: "projects" as const, href: "#projects", label: t("projects") },
-    { key: "contact" as const, href: "#contact", label: t("contact") },
-  ], [t]);
+  const navItems = useMemo(
+    () => [
+      { key: 'home' as const, href: '#hero', label: t('home') },
+      { key: 'services' as const, href: '#services', label: t('services') },
+      { key: 'about' as const, href: '#about', label: t('about') },
+      { key: 'projects' as const, href: '#projects', label: t('projects') },
+      { key: 'contact' as const, href: '#contact', label: t('contact') },
+    ],
+    [t],
+  );
 
-  const activeId = useScrollSpy([
-    "hero", "services", "about", "projects", "contact"
-  ], NAVBAR_HEIGHT + 50);
+  const activeId = useScrollSpy(
+    ['hero', 'services', 'about', 'projects', 'contact'],
+    NAVBAR_HEIGHT + 50,
+  );
 
   // منطق تغيير اللغة
   const handleLanguageChange = useCallback(() => {
-    const order: Language[] = ["en", "ar", "eg"];
+    const order: Language[] = ['en', 'ar', 'eg'];
     const next = order[(order.indexOf(language) + 1) % order.length];
     setLanguage(next);
   }, [language, setLanguage]);
   const getLanguageLabel = useCallback(() => {
     switch (language) {
-      case "en": return "عربي";
-      case "ar": return "EN";
-      case "eg": return "English";
-      default: return "En";
+      case 'en':
+        return 'عربي';
+      case 'ar':
+        return 'EN';
+      case 'eg':
+        return 'English';
+      default:
+        return 'En';
     }
   }, [language]);
 
-  // دالة لتحديد لون النص (مشع في الأعلى/مناسب للأسفل)
-  const getNavTextColor = (isActive: boolean) => {
-    if (isHero) return isActive ? NAV_LIGHT_ACTIVE : NAV_LIGHT;
-    if (theme === "light") return ""; // tailwind default
-    return isActive ? NAV_DARK_ACTIVE : NAV_DARK;
-  };
+  const getNavTextColor = () => 'var(--color-moon)';
 
-  const getGlow = () => {
-    if (!isHero) return "none";
-    return theme === "light"
-      ? `drop-shadow(0 0 8px var(--nav-light-glow))`
-      : `drop-shadow(0 0 8px var(--nav-dark-glow))`;
-  };
+  const getGlow = (active?: boolean) =>
+    active
+      ? `drop-shadow(0 0 8px var(--color-moon))`
+      : `drop-shadow(0 0 4px var(--color-moon))`;
 
   // متغيرات قائمة الموبايل
   const mobileMenuVariants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 }},
-    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 }},
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
   };
 
   // تحكم في التنقل السلس
@@ -85,7 +86,10 @@ export default function Navigation() {
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = sectionId === 'hero' ? 0 : NAVBAR_HEIGHT;
-      const top = sectionId === 'hero' ? 0 : element.getBoundingClientRect().top + window.scrollY - offset;
+      const top =
+        sectionId === 'hero'
+          ? 0
+          : element.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
       setIsOpen(false);
     }
@@ -93,17 +97,17 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      dir={isRTL ? "rtl" : "ltr"}
+      dir={isRTL ? 'rtl' : 'ltr'}
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-500 ease-out",
+        'fixed top-0 w-full z-50 transition-all duration-500 ease-out',
         isHero
-          ? "bg-transparent"
-          : "bg-background dark:bg-midnight/95 backdrop-blur-xl shadow-lg border-b border-border/50"
+          ? 'bg-transparent'
+          : 'bg-background dark:bg-midnight/95 backdrop-blur-xl shadow-lg border-b border-border/50',
       )}
       style={{ height: `${NAVBAR_HEIGHT}px` }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
@@ -126,15 +130,18 @@ export default function Navigation() {
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
-                    color: getNavTextColor(isActive),
-                    textShadow: isHero ? `0 0 9px var(--nav-shadow)` : "none",
+                    color: getNavTextColor(),
+                    textShadow: isHero ? `0 0 9px var(--nav-shadow)` : 'none',
                     fontWeight: isActive ? 700 : 500,
+                    filter: getGlow(isActive),
+                    borderColor: isActive
+                      ? 'var(--color-active)'
+                      : 'transparent',
                   }}
                   className={cn(
-                    "relative px-4 py-2 mx-1 text-sm lg:text-base font-medium rounded-lg",
-                    "transition-all duration-300 ease-out",
-                    isActive && "border-b-2 border-primary",
-                    !isHero && theme === "light" && !isActive && "text-foreground hover:text-primary"
+                    'relative px-4 py-2 mx-1 text-sm lg:text-base font-medium rounded-lg',
+                    'transition-all duration-300 ease-out',
+                    isActive && 'border-b-2',
                   )}
                 >
                   <span className="relative z-10">{item.label}</span>
@@ -150,16 +157,18 @@ export default function Navigation() {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                aria-label={theme === "light" ? "Enable dark mode" : "Enable light mode"}
+                aria-label={
+                  theme === 'light' ? 'Enable dark mode' : 'Enable light mode'
+                }
                 style={{
-                  color: getNavTextColor(false),
+                  color: getNavTextColor(),
                   filter: getGlow(),
                 }}
                 className={cn(
-                  "rounded-full w-10 h-10 transition-colors duration-300"
+                  'rounded-full w-10 h-10 transition-colors duration-300',
                 )}
               >
-                {theme === "light" ? (
+                {theme === 'light' ? (
                   <Moon className="h-4 w-4" />
                 ) : (
                   <Sun className="h-4 w-4" />
@@ -173,12 +182,12 @@ export default function Navigation() {
                 size="sm"
                 onClick={handleLanguageChange}
                 style={{
-                  color: getNavTextColor(false),
+                  color: getNavTextColor(),
                   filter: getGlow(),
                   fontWeight: 600,
                 }}
                 className={cn(
-                  "rounded-full text-xs lg:text-sm font-medium transition-colors duration-300"
+                  'rounded-full text-xs lg:text-sm font-medium transition-colors duration-300',
                 )}
               >
                 <Globe className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
@@ -192,14 +201,16 @@ export default function Navigation() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(!isOpen)}
-                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-label={isOpen ? 'Close menu' : 'Open menu'}
                   aria-expanded={isOpen}
                   aria-controls="mobile-menu"
                   style={{
-                    color: getNavTextColor(false),
+                    color: getNavTextColor(),
                     filter: getGlow(),
                   }}
-                  className={cn("rounded-full w-10 h-10 transition-colors duration-300")}
+                  className={cn(
+                    'rounded-full w-10 h-10 transition-colors duration-300',
+                  )}
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -209,7 +220,11 @@ export default function Navigation() {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                      {isOpen ? (
+                        <X className="h-5 w-5" />
+                      ) : (
+                        <Menu className="h-5 w-5" />
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </Button>
@@ -237,24 +252,32 @@ export default function Navigation() {
                       key={item.key}
                       onClick={() => scrollToSection(item.href.slice(1))}
                       initial={{ opacity: 0, y: 30 }}
-                      animate={{ 
-                        opacity: 1, 
+                      animate={{
+                        opacity: 1,
                         y: 0,
-                        transition: { delay: index * 0.09, duration: 0.29, ease: "easeOut" }
+                        transition: {
+                          delay: index * 0.09,
+                          duration: 0.29,
+                          ease: 'easeOut',
+                        },
                       }}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       style={{
-                        color: getNavTextColor(isActive),
-                        textShadow: isHero ? `0 0 9px var(--nav-shadow-soft)` : "none",
+                        color: getNavTextColor(),
+                        textShadow: isHero
+                          ? `0 0 9px var(--nav-shadow-soft)`
+                          : 'none',
                         fontWeight: isActive ? 700 : 600,
+                        filter: getGlow(isActive),
+                        borderColor: isActive
+                          ? 'var(--color-active)'
+                          : 'transparent',
                       }}
                       className={cn(
-                        "relative text-2xl font-semibold transition-all duration-300",
-                        "px-8 py-4 rounded-xl",
-                        isActive 
-                          ? "text-primary bg-primary/10 border border-primary/20" 
-                          : "hover:text-primary hover:bg-primary/5"
+                        'relative text-2xl font-semibold transition-all duration-300',
+                        'px-8 py-4 rounded-xl',
+                        isActive ? 'border-b-2' : 'hover:opacity-90',
                       )}
                     >
                       {item.label}
