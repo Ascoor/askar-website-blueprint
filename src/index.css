@@ -11,90 +11,90 @@
   :root {
     /* ============= SPRING THEME - LIGHT MODE DESIGN SYSTEM ============= */
     /* Core Brand Colors - Spring Theme */
-    --brand-primary: 201 86% 58%;          /* #36B3F5 - Sky blue accent */
-    --brand-primary-foreground: 0 0% 100%; /* White on sky blue */
-    --brand-primary-hover: 201 86% 65%;    /* Lighter sky blue */
-    --brand-primary-glow: 201 86% 58% / 0.3; /* Sky blue glow */
+    --brand-primary: 184 98% 60%; /* #36f1fe - Neon blue */
+    --brand-primary-foreground: 0 0% 100%; /* White on neon blue */
+    --brand-primary-hover: 184 98% 66%; /* Lighter neon blue */
+    --brand-primary-glow: 184 98% 60% / 0.3; /* Neon blue glow */
 
-    --brand-secondary: 199 100% 73%;       /* #81D4FA - Light aqua */
-    --brand-secondary-foreground: 214 65% 11%; /* Navy on aqua */
-    --brand-secondary-hover: 199 100% 78%; /* Lighter aqua */
-    --brand-secondary-glow: 199 100% 73% / 0.4; /* Aqua glow */
+    --brand-secondary: 173 88% 45%; /* #0fd8c1 - Electric cyan */
+    --brand-secondary-foreground: 214 65% 11%; /* Navy on cyan */
+    --brand-secondary-hover: 173 88% 52%; /* Lighter cyan */
+    --brand-secondary-glow: 173 88% 45% / 0.4; /* Cyan glow */
 
     /* Semantic Brand Tokens */
-    --brand-bg: 210 40% 95%;          /* Soft spring background */
-    --brand-surface: 0 0% 100%;       /* Default card surface */
-    --brand-surface-dark: 220 28% 8%; /* Dark background */
-    --brand-surface-light: 0 0% 100%; /* Light surface */
-    --brand-glow: 201 86% 58%;        /* Primary glow base */
+    --brand-bg: 214 54% 97%; /* Light glass background */
+    --brand-surface: 220 43% 14% / 0.72; /* Glass surface */
+    --brand-surface-dark: 220 44% 11%; /* Dark background */
+    --brand-surface-light: 214 54% 97%; /* Light surface */
+    --brand-glow: 265 96% 67%; /* Purple glow base */
 
-    --brand-accent: 207 90% 25%;           /* #004C7C - Ocean blue for titles */
-    --brand-accent-foreground: 0 0% 100%;  /* White on ocean blue */
-    --brand-accent-hover: 207 90% 30%;     /* Lighter ocean blue */
-    
+    --brand-accent: 265 96% 67%; /* #9e5afc - Soft purple */
+    --brand-accent-foreground: 0 0% 100%; /* White on purple */
+    --brand-accent-hover: 265 96% 73%; /* Lighter purple */
+
     /* Spring Theme Text Colors */
-    --text-base: 214 65% 11%;              /* #0A1A2F - High contrast navy */
-    --text-muted: 207 20% 45%;             /* Muted navy for labels */
-    --text-title: 207 90% 25%;             /* #004C7C - Bold section titles */
+    --text-base: 220 44% 11%; /* Deep navy text */
+    --text-muted: 220 20% 60%; /* Muted navy for labels */
+    --text-title: 265 96% 67%; /* Purple titles */
 
     /* Spring Glass & Effects */
-    --glass-bg: 199 100% 97% / 0.6;        /* Soft spring glass */
-    --glass-border: 201 86% 58% / 0.2;     /* Sky blue glass border */
-    --spring-glow: 201 86% 58% / 0.4;      /* Soft spring glow */
+    --glass-bg: 220 43% 14% / 0.6; /* Futuristic glass */
+    --glass-border: 184 98% 60% / 0.2; /* Neon glass border */
+    --spring-glow: 184 98% 60% / 0.4; /* Neon glow */
 
     /* Navigation System */
-    --nav-text-light: #e6ecfa;             /* Light nav text */
-    --nav-active-light: #fafdff;           /* Active link on hero */
-    --nav-light-glow: #e6ecfa70;           /* Glow for icons */
-    --nav-text-dark: #b8c3d6;              /* Dark mode nav text */
-    --nav-active-dark: #eaf3ff;            /* Dark mode active link */
-    --nav-dark-glow: #e6ecfa80;            /* Dark mode glow */
-    --nav-shadow: #b7c6e3a0;               /* Light text shadow */
-    --nav-shadow-soft: #e6ecfa60;          /* Softer shadow for mobile */
+    --nav-text-light: #101829; /* Light mode nav text */
+    --nav-active-light: #36f1fe; /* Active link on hero */
+    --nav-light-glow: #36f1fe70; /* Glow for icons */
+    --nav-text-dark: #eaf6fa; /* Dark mode nav text */
+    --nav-active-dark: #36f1fe; /* Dark mode active link */
+    --nav-dark-glow: #36f1fe80; /* Dark mode glow */
+    --nav-shadow: #0fd8c170; /* Light text shadow */
+    --nav-shadow-soft: #0fd8c150; /* Softer shadow for mobile */
 
     /* Hero Background */
     --hero-gradient-from: #030c2e;
     --hero-gradient-to: #020816;
     --accent-glow: #3fffb5;
-    --spinner-dark-1: #004C7C;
-    --spinner-dark-2: #0066CC;
-    --spinner-dark-3: #2C3E50;
-    --spinner-dark-4: #3498DB;
-    --spinner-dark-5: #2980B9;
-    --spinner-dark-6: #1ABC9C;
+    --spinner-dark-1: #004c7c;
+    --spinner-dark-2: #0066cc;
+    --spinner-dark-3: #2c3e50;
+    --spinner-dark-4: #3498db;
+    --spinner-dark-5: #2980b9;
+    --spinner-dark-6: #1abc9c;
 
     /* ============= SEMANTIC TOKENS - LIGHT MODE ============= */
     --background: var(--brand-bg);
-    --foreground: var(--text-base);        /* High contrast navy text */
-    
-    --card: 0 0% 100%;                     /* Pure white cards */
+    --foreground: var(--text-base); /* High contrast navy text */
+
+    --card: 0 0% 100%; /* Pure white cards */
     --card-foreground: var(--brand-primary);
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: var(--brand-primary);
-    
-    --muted: 199 100% 96%;                 /* Soft spring muted surfaces */
+
+    --muted: 199 100% 96%; /* Soft spring muted surfaces */
     --muted-foreground: var(--text-muted); /* Spring muted text */
-    
-    --accent: var(--brand-secondary);      /* Light aqua accent */
+
+    --accent: var(--brand-secondary); /* Light aqua accent */
     --accent-foreground: var(--brand-secondary-foreground);
     --accent-hover: var(--brand-secondary-hover);
-    
-    --border: 199 50% 85%;                 /* Soft aqua borders */
-    --input: 199 50% 88%;                  /* Light input borders */
-    --ring: var(--spring-glow);            /* Spring glow focus rings */
-    
+
+    --border: 199 50% 85%; /* Soft aqua borders */
+    --input: 199 50% 88%; /* Light input borders */
+    --ring: var(--spring-glow); /* Spring glow focus rings */
+
     /* Status Colors */
-    --success: 142 76% 36%;                /* Green */
+    --success: 142 76% 36%; /* Green */
     --success-foreground: 0 0% 98%;
-    
-    --warning: 201 86% 58%;                /* Use sky blue as warning */
+
+    --warning: 201 86% 58%; /* Use sky blue as warning */
     --warning-foreground: 0 0% 100%;
-    
-    --info: var(--brand-secondary);        /* Use sky blue */
+
+    --info: var(--brand-secondary); /* Use sky blue */
     --info-foreground: 0 0% 98%;
-    
-    --destructive: 0 84% 60%;              /* Red */
+
+    --destructive: 0 84% 60%; /* Red */
     --destructive-foreground: 0 0% 98%;
     --destructive-hover: 0 84% 55%;
 
@@ -111,34 +111,36 @@
 
   .dark {
     /* ============= LUNAR NIGHT - DARK MODE DOMINANCE ============= */
-    --brand-bg: 220 28% 8%;               /* #0B0E14 */
-    --brand-surface: 218 16% 18%;         /* glass panels */
-    --brand-surface-light: 218 16% 22%;   /* lighter cards */
-    --brand-surface-dark: 220 28% 8%;     /* dark base */
+    --brand-bg: 220 44% 11%; /* #101829 */
+    --brand-surface: 220 43% 14% / 0.72; /* glass panels */
+    --brand-surface-light: 220 43% 18% / 0.8; /* lighter cards */
+    --brand-surface-dark: 220 44% 11%; /* dark base */
     --background: var(--brand-bg);
     --foreground: var(--text-base);
-    
-    --card: var(--brand-surface-light);            /* Glass card surface */
+    --text-base: 195 62% 95%; /* Off-white text */
+    --text-muted: 195 20% 80%; /* Muted off-white */
+
+    --card: var(--brand-surface-light); /* Glass card surface */
     --card-foreground: var(--text-base);
-    
+
     --popover: var(--brand-surface-light);
     --popover-foreground: var(--text-base);
-    
-    --muted: var(--brand-surface-light);           /* Dark glass surfaces */
-    --muted-foreground: var(--text-muted);         /* Desaturated lunar text */
-    
-    --border: 215 28% 20%;                         /* Subtle dark borders */
-    --input: 215 28% 20%;
-    --ring: var(--brand-glow);                     /* Neon glow focus rings */
-    
+
+    --muted: var(--brand-surface-light); /* Dark glass surfaces */
+    --muted-foreground: var(--text-muted); /* Desaturated lunar text */
+
+    --border: 220 28% 20%; /* Subtle dark borders */
+    --input: 220 28% 20%;
+    --ring: var(--brand-glow); /* Neon glow focus rings */
+
     /* Dark Mode Status Colors */
     --success: 142 71% 45%;
     --destructive: 0 63% 31%;
     --destructive-hover: 0 63% 36%;
 
     /* Dark Glass Effects */
-    --glass-bg: 0 0% 100% / 0.02;         /* Very subtle white overlay */
-    --glass-border: 0 0% 100% / 0.05;     /* Subtle white border */
+    --glass-bg: 0 0% 100% / 0.05; /* Subtle white overlay */
+    --glass-border: 0 0% 100% / 0.1; /* Stronger white border */
 
     /* Navigation Dark overrides (reuse same values) */
 
@@ -169,7 +171,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-variation-settings: normal;
     text-rendering: optimizeLegibility;
@@ -190,10 +198,11 @@
     background:
       radial-gradient(at 25% 25%, hsl(199 100% 94%) 0%, transparent 50%),
       radial-gradient(at 75% 75%, hsl(199 100% 88%) 0%, transparent 50%),
-      linear-gradient(135deg, 
-        hsl(210 40% 95%) 0%,     /* #ECF0F3 */
-        hsl(199 100% 94%) 35%,   /* #DFF6FF */
-        hsl(199 100% 90%) 100%   /* #CDEFFC */
+      linear-gradient(
+        135deg,
+        hsl(210 40% 95%) 0%,
+        /* #ECF0F3 */ hsl(199 100% 94%) 35%,
+        /* #DFF6FF */ hsl(199 100% 90%) 100% /* #CDEFFC */
       );
     background-attachment: fixed;
     background-size: cover;
@@ -206,7 +215,10 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-image: radial-gradient(hsla(0,0%,100%,0.06) 1px, transparent 0);
+    background-image: radial-gradient(
+      hsla(0, 0%, 100%, 0.06) 1px,
+      transparent 0
+    );
     background-size: 3px 3px;
     mix-blend-mode: overlay;
     opacity: 0.05;
@@ -214,15 +226,32 @@
 
   .dark body::before {
     background:
-      radial-gradient(at 20% 30%, hsl(var(--brand-secondary) / 0.12), transparent 70%),
-      radial-gradient(at 80% 70%, hsl(var(--brand-glow) / 0.08), transparent 70%),
-      radial-gradient(at 60% 50%, hsl(var(--brand-primary) / 0.04), transparent 80%),
+      radial-gradient(
+        at 20% 30%,
+        hsl(var(--brand-secondary) / 0.12),
+        transparent 70%
+      ),
+      radial-gradient(
+        at 80% 70%,
+        hsl(var(--brand-glow) / 0.08),
+        transparent 70%
+      ),
+      radial-gradient(
+        at 60% 50%,
+        hsl(var(--brand-primary) / 0.04),
+        transparent 80%
+      ),
       linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
     opacity: 1;
   }
 
   /* Enhanced Typography Scale */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Space Grotesk', system-ui, sans-serif;
     font-weight: 600;
     line-height: 1.2;
@@ -249,16 +278,16 @@
   }
 
   /* RTL Support Enhanced */
-  [dir="rtl"] {
+  [dir='rtl'] {
     text-align: right;
   }
 
-  [dir="rtl"] .space-x-4 > * + * {
+  [dir='rtl'] .space-x-4 > * + * {
     margin-left: 0;
     margin-right: 1rem;
   }
 
-  [dir="rtl"] .space-x-8 > * + * {
+  [dir='rtl'] .space-x-8 > * + * {
     margin-left: 0;
     margin-right: 2rem;
   }
@@ -344,7 +373,9 @@
   }
 
   .spring-glow {
-    box-shadow: 0 0 20px hsl(var(--spring-glow)), 0 0 40px hsl(var(--spring-glow) / 0.2);
+    box-shadow:
+      0 0 20px hsl(var(--spring-glow)),
+      0 0 40px hsl(var(--spring-glow) / 0.2);
   }
 
   .spring-button {
@@ -362,11 +393,19 @@
   }
 
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-hover)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-hover)) 100%
+    );
   }
 
   .gradient-secondary {
-    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--accent)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--secondary)) 0%,
+      hsl(var(--accent)) 100%
+    );
   }
 
   .text-gradient {
@@ -374,16 +413,22 @@
   }
 
   .neon-glow {
-    text-shadow: 0 0 6px hsl(var(--accent)), 0 0 12px hsl(var(--primary));
+    text-shadow:
+      0 0 6px hsl(var(--accent)),
+      0 0 12px hsl(var(--primary));
   }
 
   /* Enhanced Shadow System */
   .shadow-elegant {
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.1),
+      0 2px 8px -2px rgba(0, 0, 0, 0.06);
   }
 
   .shadow-premium {
-    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -4px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 8px 30px -4px rgba(0, 0, 0, 0.15),
+      0 4px 12px -4px rgba(0, 0, 0, 0.1);
   }
 
   /* Improved Scrollbar */
@@ -455,7 +500,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -482,7 +528,9 @@
 }
 
 @keyframes matrix {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     transform: scaleY(0.4);
   }
   20% {
@@ -490,14 +538,12 @@
   }
 }
 
-
-
 /* Print Styles */
 @media print {
   * {
     @apply text-black bg-white;
   }
-  
+
   .no-print {
     display: none !important;
   }
@@ -515,21 +561,27 @@
   @apply relative pb-1 transition-all duration-300 ease-in-out;
 }
 .nav-link::after {
-  content: "";
+  content: '';
   @apply absolute left-0 bottom-0 h-0.5 w-full bg-current transform scale-x-0 origin-left transition-transform duration-300 ease-in-out;
 }
 .nav-link:hover::after {
   @apply scale-x-100;
 }
 .neon-active {
-  text-shadow: 0 0 8px rgba(63,255,181,0.8), 0 0 16px rgba(63,255,181,0.6);
+  text-shadow:
+    0 0 8px rgba(63, 255, 181, 0.8),
+    0 0 16px rgba(63, 255, 181, 0.6);
 }
 
 .card-neon {
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 .card-neon:hover {
-  box-shadow: 0 0 20px rgba(63,255,181,0.6), 0 0 40px rgba(63,255,181,0.4);
+  box-shadow:
+    0 0 20px rgba(63, 255, 181, 0.6),
+    0 0 40px rgba(63, 255, 181, 0.4);
 }
 
 .waves {
@@ -546,7 +598,7 @@
   height: 3rem;
   background-repeat: repeat-x;
   background-size: 50% 100%;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNDQwIDYwJz48cGF0aCBmaWxsPSdyZ2JhKDYzLDI1NSwxODEsMC40KScgZD0nTTAsMzAgQzEyMCw0NSAyNDAsMTUgMzYwLDMwIEM0ODAsNDUgNjAwLDE1IDcyMCwzMCBDODQwLDQ1IDk2MCwxNSAxMDgwLDMwIEMxMjAwLDQ1IDEzMjAsMTUgMTQ0MCwzMCBWNjAgSDBaJy8+PC9zdmc+");
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNDQwIDYwJz48cGF0aCBmaWxsPSdyZ2JhKDYzLDI1NSwxODEsMC40KScgZD0nTTAsMzAgQzEyMCw0NSAyNDAsMTUgMzYwLDMwIEM0ODAsNDUgNjAwLDE1IDcyMCwzMCBDODQwLDQ1IDk2MCwxNSAxMDgwLDMwIEMxMjAwLDQ1IDEzMjAsMTUgMTQ0MCwzMCBWNjAgSDBaJy8+PC9zdmc+');
   opacity: 0.35;
   animation: wave 8s linear infinite;
 }
@@ -572,12 +624,20 @@
 
 /* Marquee animation for scrolling logos */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes marquee-rtl {
-  from { transform: translateX(0); }
-  to { transform: translateX(50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
 }
 .animate-marquee {
   animation: marquee 30s linear infinite;
@@ -585,4 +645,3 @@
 .animate-marquee-rtl {
   animation: marquee-rtl 30s linear infinite;
 }
-
