@@ -64,65 +64,48 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
         transition={{ duration: 0.8, delay: 0.2 }}
         className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-secondary/10 blur-2xl"
       />
-      <div className="container grid items-center gap-10 md:grid-cols-2">
+      <motion.div
+        variants={itemVariants}
+        className={cn(
+          'relative z-10 space-y-6 p-6 rounded-glass glass-spring shadow-glow',
+          isRTL ? 'md:order-2 text-right' : 'text-left',
+        )}
+      >
+        <motion.h1
+          id="hero-heading"
+          variants={itemVariants}
+          className={cn(
+            'font-heading font-bold text-4xl md:text-5xl',
+            'text-moon drop-shadow-[0_1px_20px_#f7faff]',
+          )}
+        >
+          {title ?? t('heroTitle')}
+        </motion.h1>
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl text-moon/90"
+        >
+          {subtitle ?? t('heroSubtitle')}
+        </motion.p>
         <motion.div
           variants={itemVariants}
           className={cn(
-            'relative z-10 space-y-6 p-6 rounded-glass glass-spring shadow-glow',
-            isRTL ? 'md:order-2 text-right' : 'text-left',
+            'flex gap-4 pt-2',
+            isRTL ? 'justify-end' : 'justify-start',
           )}
         >
-          <motion.h1
-            id="hero-heading"
-            variants={itemVariants}
-            className={cn(
-              'font-heading font-bold text-4xl md:text-5xl',
-              'text-moon drop-shadow-[0_1px_20px_#f7faff]',
-            )}
+          <Button
+            variant="secondary"
+            size="lg"
+            className="spring-button px-6 py-3"
           >
-            {title ?? t('heroTitle')}
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-moon/90"
-          >
-            {subtitle ?? t('heroSubtitle')}
-          </motion.p>
-          <motion.div
-            variants={itemVariants}
-            className={cn(
-              'flex gap-4 pt-2',
-              isRTL ? 'justify-end' : 'justify-start',
-            )}
-          >
-            <Button
-              variant="secondary"
-              size="lg"
-              className="spring-button px-6 py-3"
-            >
-              {t('getStarted')}
-            </Button>
-            <Button variant="ghost" size="lg" className="nav-link text-moon">
-              {t('learnMore')}
-            </Button>
-          </motion.div>
+            {t('getStarted')}
+          </Button>
+          <Button variant="ghost" size="lg" className="nav-link text-moon">
+            {t('learnMore')}
+          </Button>
         </motion.div>
-        <motion.div
-          variants={itemVariants}
-          className="relative z-10 flex justify-center"
-        >
-          {showMascot ? (
-            <PenguinMascot className="w-40 md:w-56 lg:w-64" aria-hidden />
-          ) : (
-            <img
-              src={illustrationSrc}
-              alt={t('heroTitle')}
-              loading="lazy"
-              className="max-w-md w-full object-cover rounded-2xl shadow-lunar-lg"
-            />
-          )}
-        </motion.div>
-      </div>
+      </motion.div>
     </motion.section>
   );
 };
