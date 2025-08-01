@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 import PenguinMascot from '@/components/ui/PenguinMascot';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton as Button } from '@/components/ui/enhanced-button';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -37,6 +37,8 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
   return (
     <motion.section
       id="hero"
+      aria-labelledby="hero-heading"
+      role="region"
       dir={isRTL ? 'rtl' : 'ltr'}
       initial="hidden"
       whileInView="show"
@@ -52,23 +54,30 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
         className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary via-transparent to-brand-secondary/20"
         aria-hidden="true"
       />
-      <div
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
         className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-secondary/20 blur-3xl"
-        aria-hidden="true"
       />
-      <div
-        className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-secondary/10 blur-2xl"
+      <motion.div
         aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-secondary/10 blur-2xl"
       />
       <div className="container grid items-center gap-10 md:grid-cols-2">
         <motion.div
           variants={itemVariants}
           className={cn(
-            'relative z-10 space-y-6 p-6 rounded-glass border border-glass-border bg-glass-bg/60 backdrop-blur-lg shadow-glow',
+            'relative z-10 space-y-6 p-6 rounded-glass glass-spring shadow-glow',
             isRTL ? 'md:order-2 text-right' : 'text-left',
           )}
         >
           <motion.h1
+            id="hero-heading"
             variants={itemVariants}
             className="text-4xl md:text-5xl font-heading font-bold drop-shadow-[0_0_8px_var(--color-moon)]"
           >
@@ -84,10 +93,14 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
               isRTL ? 'justify-end' : 'justify-start',
             )}
           >
-            <Button variant="secondary" className="spring-button px-6 py-3">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="spring-button px-6 py-3"
+            >
               {t('getStarted')}
             </Button>
-            <Button variant="ghost" className="nav-link text-moon">
+            <Button variant="ghost" size="lg" className="nav-link text-moon">
               {t('learnMore')}
             </Button>
           </motion.div>
@@ -97,11 +110,12 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
           className="relative z-10 flex justify-center"
         >
           {showMascot ? (
-            <PenguinMascot className="w-40 md:w-56 lg:w-64" />
+            <PenguinMascot className="w-40 md:w-56 lg:w-64" aria-hidden />
           ) : (
             <img
               src={illustrationSrc}
               alt={t('heroTitle')}
+              loading="lazy"
               className="max-w-md w-full object-cover rounded-2xl shadow-lunar-lg"
             />
           )}
