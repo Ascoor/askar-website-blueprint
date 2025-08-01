@@ -26,6 +26,9 @@ export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
 
   return {
+    // Use relative paths when building so the site works when opened from a
+    // subdirectory or directly from the file system.
+    base: './',
     // Server config only applies in development
     server: isDev
       ? {
