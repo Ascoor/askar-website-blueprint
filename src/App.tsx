@@ -4,19 +4,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import Index from "./pages/Index";
-import SiteIndex from "./pages/SiteIndex";
-import AboutPage from "./pages/AboutPage";
-import ServicesPage from "./pages/ServicesPage";
-import PortfolioPage from "./pages/PortfolioPage";
-import SolutionsPage from "./pages/SolutionsPage";
-import CareersPage from "./pages/CareersPage";
-import DocsPage from "./pages/DocsPage";
-import BlogPage from "./pages/BlogPage";
-import PartnersPage from "./pages/PartnersPage";
-import NotFound from "./pages/NotFound";
+const Index = lazy(() => import("./pages/Index"));
+const SiteIndex = lazy(() => import("./pages/SiteIndex"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
+const SolutionsPage = lazy(() => import("./pages/SolutionsPage"));
+const CareersPage = lazy(() => import("./pages/CareersPage"));
+const DocsPage = lazy(() => import("./pages/DocsPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const PartnersPage = lazy(() => import("./pages/PartnersPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 import Layout from "./components/Layout";
 
 
@@ -29,8 +30,15 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>  
-<Routes>
+          <BrowserRouter>
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-screen">
+                  Loading...
+                </div>
+              }
+            >
+              <Routes>
   <Route path="/" element={<Layout><SiteIndex /></Layout>} />
   <Route path="/demo" element={<Layout><Index /></Layout>} />
   <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
@@ -43,6 +51,7 @@ const App = () => (
   <Route path="/partners" element={<Layout><PartnersPage /></Layout>} />
   <Route path="*" element={<Layout><NotFound /></Layout>} />
 </Routes>
+            </Suspense>
 
           </BrowserRouter>
         </TooltipProvider>
