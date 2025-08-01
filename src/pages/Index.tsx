@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroSlider from '@/components/HeroSlider';
 import LunarHeroSection from '@/components/sections/LunarHeroSection/LunarHeroSection';
-import SocialProofSection from './SocialProofSection';
+import SocialProofSection from '@/components/sections/SocialProofSection/SocialProofSection';
 import ServicesSection from '@/components/sections/ServicesSection/ServicesSection';
 import SolutionsSection from '@/components/sections/SolutionsSection/SolutionsSection';
 import PortfolioSection from '@/components/sections/PortfolioSection/PortfolioSection';
@@ -20,7 +20,7 @@ const Index: React.FC = () => {
   return (
     <main id="main-content" className="min-h-screen font-sans">
       <HeroSlider />
-      <SocialProofSection isArabic={false} />
+      <SocialProofSection />
       <LunarHeroSection />
       <Status />
       <ServicesSection />
