@@ -39,14 +39,12 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
     <section
       id="hero"
       className={cn(
-        'relative pt-20 pb-20 overflow-hidden transition-colors duration-500',
+        'relative pt-20 pb-20 overflow-hidden transition-colors duration-500 bg-midnight',
         alignText === 'center' && 'text-center',
         alignText === 'left' && 'text-left',
         alignText === 'right' && 'text-right',
-        theme === 'dark'
-          ? 'bg-midnight text-moonWhite'
-          : 'bg-brand-bg text-foreground',
       )}
+      style={{ color: 'var(--color-moon)' }}
     >
       <div
         className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary via-transparent to-brand-secondary/20"
@@ -60,10 +58,13 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
         className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-secondary/10 blur-2xl"
         aria-hidden="true"
       />
-      <h1 className="font-heading text-brand-glow mb-4 animate-fade-in-up delay-100">
+      <h1
+        className="font-heading mb-4 animate-fade-in-up delay-100"
+        style={{ textShadow: '0 0 8px var(--color-moon)' }}
+      >
         {title ?? content.title}
       </h1>
-      <p className="text-base text-muted-foreground mb-8 animate-fade-in-up delay-100 max-w-xl mx-auto">
+      <p className="text-base mb-8 animate-fade-in-up delay-100 max-w-xl mx-auto">
         {subtitle ?? content.subtitle}
       </p>
       {showMascot && (

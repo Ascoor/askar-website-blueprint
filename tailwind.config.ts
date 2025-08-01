@@ -60,7 +60,8 @@ export default {
         // Ask-ar brand palette
         primary: '#36f1fe',
         accent: '#9e5afc',
-        moonWhite: '#eaf6fa',
+        moon: '#f7faff',
+        active: '#2f62e9',
         surface: '#f5f8fc',
         card: '#ffffff',
         muted: '#141e32',

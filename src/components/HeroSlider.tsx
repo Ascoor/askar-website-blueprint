@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+// Last 5 seconds
 
 const SLIDES = [
   {
@@ -58,9 +59,8 @@ const SLIDES = [
 ];
 
 const SLIDE_DURATION = 10000;
-const FADE_DURATION = 1.7;
-const BLEND_DURATION = 1400;
-const TEXT_DELAY = 3000;
+const FADE_DURATION = 1.7; // مدة التلاشي والتداخل (ثواني)
+const BLEND_DURATION = 1400; // ms
 
 export default function HeroSlider({ lang = 'en' }) {
   const [active, setActive] = useState(0);
@@ -71,10 +71,10 @@ export default function HeroSlider({ lang = 'en' }) {
 
   useEffect(() => {
     setShowText(false);
-    const textIn = setTimeout(() => setShowText(true), TEXT_DELAY);
+    const textIn = setTimeout(() => setShowText(true), SLIDE_DURATION / 2.6);
     const textOut = setTimeout(
       () => setShowText(false),
-      SLIDE_DURATION - BLEND_DURATION,
+      SLIDE_DURATION - BLEND_DURATION + 400,
     );
     const nextSlide = setTimeout(() => {
       setPrev(active);
@@ -89,15 +89,20 @@ export default function HeroSlider({ lang = 'en' }) {
     };
   }, [active, language]);
 
-  function getScaleFor(idx: number, phase: 'init' | 'anim' | 'exit') {
-    if (idx % 2 === 0) {
-      if (phase === 'init') return 1.01;
-      if (phase === 'anim') return 1.16;
-      if (phase === 'exit') return 1.18;
+  // --- منطق الزوم للشرائح
+  // الشرائح الفردية: زوم إن فقط
+  // الشرائح الزوجية: زوم أوت فقط
+  function getScaleFor(activeIndex: number, phase: 'init' | 'anim' | 'exit') {
+    if (activeIndex % 2 === 0) {
+      // فردية: Zoom In
+      if (phase === 'init') return 1.01; // تبدأ شبه عادية
+      if (phase === 'anim') return 1.16; // تقترب ببطء (Zoom In)
+      if (phase === 'exit') return 1.18; // عند الخروج تكون وصلت زوم إن أقصى
     } else {
-      if (phase === 'init') return 1.19;
-      if (phase === 'anim') return 1.05;
-      if (phase === 'exit') return 1.03;
+      // زوجية: Zoom Out
+      if (phase === 'init') return 1.19; // تبدأ مكبرة
+      if (phase === 'anim') return 1.05; // تصغر ببطء (Zoom Out)
+      if (phase === 'exit') return 1.03; // عند الخروج تكون صغرت للحد المناسب
     }
     return 1;
   }
@@ -125,6 +130,7 @@ export default function HeroSlider({ lang = 'en' }) {
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-br from-[#030c2e] to-[#020816]">
+      {/* صورة الشريحة السابقة (خروج تدريجي) */}
       <AnimatePresence>
         {prev !== null && (
           <motion.img
@@ -213,42 +219,52 @@ export default function HeroSlider({ lang = 'en' }) {
           {showText && (
             <motion.div
               key={active + language}
-              initial="initial"
-              animate="animate"
-              exit="exit"
+              initial={{ opacity: 0, y: 40, filter: 'blur(15px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+              transition={{
+                duration: 1.0,
+                staggerChildren: 0.22,
+              }}
               className={`
                 flex flex-col max-w-xl w-full
                 ${isRTL ? 'items-end text-right' : 'items-start text-left'}
               `}
             >
               <motion.h1
-                variants={h1Variants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{
-                  type: 'spring',
-                  duration: 1.3, // أبطأ
-                  delay: 0.35, // يظهر بعد دخول الصورة
-                  bounce: 0.13, // انسيابية هادئة
+                initial={{ opacity: 0, x: isRTL ? 120 : -120, scale: 0.94 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: isRTL ? -35 : 35, scale: 1.08 }}
+                transition={{ duration: 1.1, type: 'spring' }}
+                className={`
+                  text-xl sm:text-3xl md:text-5xl
+                  font-black
+                  tracking-tight mb-2 animate-pulse
+                  ${isRTL ? 'text-right' : 'text-left'}
+                `}
+                style={{
+                  color: 'var(--color-moon)',
+                  textShadow: '0 0 10px var(--color-moon)',
                 }}
-                className="..."
               >
                 {SLIDES[active].text[language]}
               </motion.h1>
 
               <motion.p
-                variants={pVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{
-                  duration: 1.22, // أبطأ
-                  delay: 0.54, // يظهر بعد الهيدينج بقليل
-                  type: 'spring',
-                  bounce: 0.09,
+                initial={{ opacity: 0, x: isRTL ? 96 : -96, scale: 0.94 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: isRTL ? -28 : 28, scale: 1.07 }}
+                transition={{ duration: 1.1, type: 'spring' }}
+                className={`
+                  text-base sm:text-xl md:text-2xl
+                  font-medium
+                  tracking-wide
+                  ${isRTL ? 'text-right' : 'text-left'}
+                `}
+                style={{
+                  color: 'var(--color-moon)',
+                  filter: 'drop-shadow(0 0 6px var(--color-moon))',
                 }}
-                className="..."
               >
                 {SLIDES[active].subtitle[language]}
               </motion.p>

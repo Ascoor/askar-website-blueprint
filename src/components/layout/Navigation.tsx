@@ -67,19 +67,12 @@ export default function Navigation() {
     }
   }, [language]);
 
-  // دالة لتحديد لون النص (مشع في الأعلى/مناسب للأسفل)
-  const getNavTextColor = (isActive: boolean) => {
-    if (isHero) return isActive ? NAV_LIGHT_ACTIVE : NAV_LIGHT;
-    if (theme === 'light') return ''; // tailwind default
-    return isActive ? NAV_DARK_ACTIVE : NAV_DARK;
-  };
+  const getNavTextColor = () => 'var(--color-moon)';
 
-  const getGlow = () => {
-    if (!isHero) return 'none';
-    return theme === 'light'
-      ? `drop-shadow(0 0 8px var(--nav-light-glow))`
-      : `drop-shadow(0 0 8px var(--nav-dark-glow))`;
-  };
+  const getGlow = (active?: boolean) =>
+    active
+      ? `drop-shadow(0 0 8px var(--color-moon))`
+      : `drop-shadow(0 0 4px var(--color-moon))`;
 
   // متغيرات قائمة الموبايل
   const mobileMenuVariants = {
@@ -137,18 +130,18 @@ export default function Navigation() {
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
-                    color: getNavTextColor(isActive),
+                    color: getNavTextColor(),
                     textShadow: isHero ? `0 0 9px var(--nav-shadow)` : 'none',
                     fontWeight: isActive ? 700 : 500,
+                    filter: getGlow(isActive),
+                    borderColor: isActive
+                      ? 'var(--color-active)'
+                      : 'transparent',
                   }}
                   className={cn(
                     'relative px-4 py-2 mx-1 text-sm lg:text-base font-medium rounded-lg',
                     'transition-all duration-300 ease-out',
-                    isActive && 'border-b-2 border-primary',
-                    !isHero &&
-                      theme === 'light' &&
-                      !isActive &&
-                      'text-foreground hover:text-primary',
+                    isActive && 'border-b-2',
                   )}
                 >
                   <span className="relative z-10">{item.label}</span>
@@ -168,7 +161,7 @@ export default function Navigation() {
                   theme === 'light' ? 'Enable dark mode' : 'Enable light mode'
                 }
                 style={{
-                  color: getNavTextColor(false),
+                  color: getNavTextColor(),
                   filter: getGlow(),
                 }}
                 className={cn(
@@ -189,7 +182,7 @@ export default function Navigation() {
                 size="sm"
                 onClick={handleLanguageChange}
                 style={{
-                  color: getNavTextColor(false),
+                  color: getNavTextColor(),
                   filter: getGlow(),
                   fontWeight: 600,
                 }}
@@ -212,7 +205,7 @@ export default function Navigation() {
                   aria-expanded={isOpen}
                   aria-controls="mobile-menu"
                   style={{
-                    color: getNavTextColor(false),
+                    color: getNavTextColor(),
                     filter: getGlow(),
                   }}
                   className={cn(
@@ -271,18 +264,20 @@ export default function Navigation() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       style={{
-                        color: getNavTextColor(isActive),
+                        color: getNavTextColor(),
                         textShadow: isHero
                           ? `0 0 9px var(--nav-shadow-soft)`
                           : 'none',
                         fontWeight: isActive ? 700 : 600,
+                        filter: getGlow(isActive),
+                        borderColor: isActive
+                          ? 'var(--color-active)'
+                          : 'transparent',
                       }}
                       className={cn(
                         'relative text-2xl font-semibold transition-all duration-300',
                         'px-8 py-4 rounded-xl',
-                        isActive
-                          ? 'text-primary bg-primary/10 border border-primary/20'
-                          : 'hover:text-primary hover:bg-primary/5',
+                        isActive ? 'border-b-2' : 'hover:opacity-90',
                       )}
                     >
                       {item.label}
