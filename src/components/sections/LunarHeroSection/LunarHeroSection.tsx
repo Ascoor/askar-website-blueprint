@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext.helpers';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import PenguinMascot from '@/components/ui/PenguinMascot';
+import { EnhancedButton as Button } from '@/components/ui/enhanced-button';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -32,6 +33,8 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
   return (
     <motion.section
       id="hero"
+      aria-labelledby="hero-heading"
+      role="region"
       dir={isRTL ? 'rtl' : 'ltr'}
       initial="hidden"
       whileInView="show"
@@ -43,20 +46,34 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
         'dark:from-[var(--hero-gradient-dark-from)] dark:to-[var(--hero-gradient-dark-to)]',
       )}
     >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-accent/10" />
-      <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-accent/25 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-primary/15 blur-2xl" />
-
-      <div className="container flex flex-col items-center justify-center min-h-[60vh]">
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary via-transparent to-brand-secondary/20"
+        aria-hidden="true"
+      />
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-secondary/20 blur-3xl"
+      />
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-secondary/10 blur-2xl"
+      />
+      <div className="container grid items-center gap-10 md:grid-cols-2">
         <motion.div
           variants={itemVariants}
           className={cn(
-            'relative z-10 w-full max-w-2xl space-y-7 p-8 rounded-3xl border',
-            'border-glass-border bg-glass-bg/70 backdrop-blur-xl shadow-glow',
-            isRTL ? 'text-right' : 'text-left',
+            'relative z-10 space-y-6 p-6 rounded-glass glass-spring shadow-glow',
+            isRTL ? 'md:order-2 text-right' : 'text-left',
           )}
         >
           <motion.h1
+            id="hero-heading"
             variants={itemVariants}
             className={cn(
               'font-heading font-bold text-4xl md:text-5xl',
@@ -80,21 +97,30 @@ const LunarHeroSection: React.FC<LunarHeroSectionProps> = ({
           >
             <Button
               variant="secondary"
-              className={cn(
-                'spring-button px-7 py-3 font-semibold',
-                'text-moon bg-primary hover:bg-primary-hover',
-                'ring-1 ring-transparent hover:ring-[hsl(var(--spring-glow))]',
-              )}
+              size="lg"
+              className="spring-button px-6 py-3"
             >
               {t('getStarted')}
             </Button>
-            <Button
-              variant="ghost"
-              className={cn('nav-link text-moon/85 font-medium')}
-            >
+            <Button variant="ghost" size="lg" className="nav-link text-moon">
               {t('learnMore')}
             </Button>
           </motion.div>
+        </motion.div>
+        <motion.div
+          variants={itemVariants}
+          className="relative z-10 flex justify-center"
+        >
+          {showMascot ? (
+            <PenguinMascot className="w-40 md:w-56 lg:w-64" aria-hidden />
+          ) : (
+            <img
+              src={illustrationSrc}
+              alt={t('heroTitle')}
+              loading="lazy"
+              className="max-w-md w-full object-cover rounded-2xl shadow-lunar-lg"
+            />
+          )}
         </motion.div>
       </div>
     </motion.section>

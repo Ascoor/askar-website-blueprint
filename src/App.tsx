@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 const Index = lazy(() => import('./pages/Index'));
 const SiteIndex = lazy(() => import('./pages/SiteIndex'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -32,13 +33,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center h-screen">
-                  Loading...
-                </div>
-              }
-            >
+            <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route
                   path="/"
